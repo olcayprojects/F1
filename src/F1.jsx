@@ -4,11 +4,11 @@ const F1 = () => {
   const [sdata, setData] = useState([]);
 
   useEffect(() => {
-    fetch("http://ergast.com/api/f1/current/last/results.json")
+    fetch("https://ergast.com/api/f1/current/last/results.json")
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
-        //  console.log(data["MRData"].RaceTable.Races[0].raceName);
+        // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
         console.log(err.message);
@@ -17,24 +17,24 @@ const F1 = () => {
 
   return (
     <>
-      <div className="container">
-        {sdata?.map((item) => {
+      <div className="container-fluid bg-black text-light">
+        {sdata?.map((item, index) => {
           return (
-            <>
-              {console.log(item)}
-              <h1>
+            <div key={index}>
+              {/* {console.log(item)} */}
+              <h1 className="text-center">
                 {" "}
                 {item.season} {item.raceName} #{item.round}
               </h1>
-              <div class="table-responsive">
+              <div className="table-responsive">
                 <table className="table table-striped table-dark table-bordered  table-hover ">
                   <thead></thead>
                   <tbody>
-                    {item.Results.map((result) => {
+                    {item.Results.map((result, index) => {
                       // console.log(result);
 
                       return (
-                        <tr className="tableRow">
+                        <tr key={index} className="tableRow">
                           <td>{result.position}</td>
                           <td>{result.Driver.code}</td>
                           <td>
@@ -49,7 +49,7 @@ const F1 = () => {
                   </tbody>
                 </table>
               </div>
-            </>
+            </div>
           );
         })}
       </div>
