@@ -3,10 +3,15 @@ import react, { useEffect, useState } from "react";
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
 
+  let url=""
+  if (props.season) {
+    
+      url=`https://ergast.com/api/f1/${props.season}/${props.round}/qualifying.json`;
+  }
+
   useEffect(() => {
-    console.log(props.season);
-    console.log(props.round);
-    fetch(`https://ergast.com/api/f1/${props.season}/${props.round}/qualifying.json`)
+
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
@@ -15,7 +20,8 @@ const QualifyingResults = (props) => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [props]);
+  }, [url]);
+
 
   return (
     <div className="container-fluid">
@@ -25,7 +31,7 @@ const QualifyingResults = (props) => {
           return (
               <>
               <thead>
-                <tr>
+                <tr key={index}>
                   <th className="text-center">Pos</th>
                   <th className="text-center">No</th>
                   <th className="text-center">Driver</th>
@@ -38,7 +44,7 @@ const QualifyingResults = (props) => {
               <tbody>
                 {item.QualifyingResults.map((qualifying, indexQ) => {
                   return (
-                    <tr>
+                    <tr key={indexQ}>
                       <th scope="row">{qualifying.position}</th>
                       <td>{qualifying.number}</td>
                       <td>

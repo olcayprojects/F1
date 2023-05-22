@@ -61,8 +61,7 @@ const F1 = () => {
             </div>
           );
         })}
-        {console.log(season)}
-        {console.log(round)}
+
         <QualifyingResults season={season} round={round}/>
         <WinRacesInaSeason/>
 
