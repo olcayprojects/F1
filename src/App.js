@@ -1,9 +1,10 @@
-import F1 from "./F1.jsx";
+import Components from "./Components";
+
 
 function App() {
   return (
     <div className="App">
-      <F1 />
+      <Components />
     </div>
   );
 }

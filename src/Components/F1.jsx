@@ -1,8 +1,14 @@
 import react, { useEffect, useState } from "react";
+import QualifyingResults from "./QualifyingResults";
+import WinRacesInaSeason from "./WinRacesInaSeason";
+
 
 const F1 = () => {
   const [sdata, setData] = useState([]);
-
+  let  season="";
+  let  round="";
+ 
+  
   useEffect(() => {
     fetch("https://ergast.com/api/f1/current/last/results.json")
       .then((response) => response.json())
@@ -19,6 +25,9 @@ const F1 = () => {
     <>
       <div className="container-fluid bg-black text-light">
         {sdata?.map((item, index) => {
+          season=(item.season);
+          round=(item.round);
+          
           return (
             <div key={index}>
               {/* {console.log(item)} */}
@@ -52,6 +61,12 @@ const F1 = () => {
             </div>
           );
         })}
+        {console.log(season)}
+        {console.log(round)}
+        <QualifyingResults season={season} round={round}/>
+        <WinRacesInaSeason/>
+
+        
       </div>
     </>
   );
