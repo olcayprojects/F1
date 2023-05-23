@@ -26,4 +26,8 @@ code {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   -ms-overflow-style: -ms-autohiding-scrollbar;
+  
+}
+.tableColumnFixed{
+  table-layout: fixed;
 }
