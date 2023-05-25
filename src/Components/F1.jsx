@@ -73,7 +73,7 @@ const F1 = () => {
                   </tbody>
                 </table>
               </div>
-              <hr />
+     
             </div>
           );
         })}

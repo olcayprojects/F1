@@ -22,7 +22,6 @@ const QualifyingResults = (props) => {
 
   return (
     <div className="bg-black container-fluid">
-
       <h1 className="text-center bg-black text-danger border border-danger border-5">
         Qualifying Results
       </h1>

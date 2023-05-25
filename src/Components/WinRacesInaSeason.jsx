@@ -22,7 +22,7 @@ const WinRacesInaSeason = (props) => {
 
   return (
     <div className="bg-black container-fluid">
-      <hr />
+      
       <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
         Drivers and Constructors Winning Races In a Season
       </h1>
