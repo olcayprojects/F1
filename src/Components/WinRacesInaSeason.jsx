@@ -22,7 +22,6 @@ const WinRacesInaSeason = (props) => {
 
   return (
     <div className="bg-black container-fluid">
-      
       <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
         Drivers and Constructors Winning Races In a Season
       </h1>
@@ -37,7 +36,7 @@ const WinRacesInaSeason = (props) => {
                     Round#{item.round} {item.raceName} ({item.date})
                   </tr>
                   <tr>
-                    |{item.Results[0].Driver.code}|  
+                    |{item.Results[0].Driver.code}|
                     {item.Results[0].Driver.givenName}{" "}
                     {item.Results[0].Driver.familyName}|
                     {item.Results[0].Driver.nationality}|
@@ -48,12 +47,15 @@ const WinRacesInaSeason = (props) => {
                   <tr>Time: {item.Results[0].Time.time}</tr>
                   <tr>Points: {item.Results[0].points}</tr>
                   <tr>***************</tr>
-                  <tr>Average Speed</tr>
+                  <tr>Fastest Lap: {item.Results[0].FastestLap.lap}</tr>
                   <tr>
-                    {item.Results[0].FastestLap.AverageSpeed.speed}kph Time:
-                    {item.Results[0].FastestLap.Time.time} Lap:
-                    {item.Results[0].FastestLap.lap}
+                    AverageSpeed:{" "}
+                    {item.Results[0].FastestLap.AverageSpeed.speed}kph
                   </tr>
+                  <tr>
+                    Time: {item.Results[0].FastestLap.Time.time}
+                  </tr>
+
                 </tbody>
               </table>
             </div>
