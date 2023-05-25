@@ -16,9 +16,7 @@ const DriverStandings = (props) => {
         setData(
           data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
         );
-        console.log(
-          data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
-        );
+        // console.log(data["MRData"].StandingsTable.StandingsLists[0].DriverStandings);
       })
       .catch((err) => {
         console.log(err.message);
@@ -26,15 +24,18 @@ const DriverStandings = (props) => {
   }, [url]);
 
   return (
-    <div className="container-fluid">
-      <hr />
-      <h2 className="text-center bg-dark text-danger">Driver Standings</h2>
+    <div className="bg-black container-fluid">
 
-      <table className="table table-dark table-bordered table-hover text-danger">
-        <thead>
-            <tr>
+      <hr />
+      <h2 className="text-center bg-black text-danger border border-danger border-5">
+        Driver Standings
+      </h2>
+
+      <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
+      <thead className="text-white">
+          <tr>
             <th scope="col">#</th>
-            <th scope="col">Code</th>
+            <th scope="col" className="text-center">Code</th>
             <th scope="col">Driver</th>
             <th scope="col">Constructor</th>
             <th scope="col">Points</th>
@@ -43,25 +44,31 @@ const DriverStandings = (props) => {
           </tr>
         </thead>
         {sdata?.map((driver, indexedDB) => {
-            return (
-              <tbody>
+          return (
+            <tbody key={indexedDB}>
               <tr key={indexedDB}>
-                <td className="col-1">{driver.position}</td>
-                <td className="col-1">{driver.Driver.code}</td>
-                <td className="col-3">{driver.Driver.givenName} {driver.Driver.familyName} ({driver.Driver.nationality})</td>
-                <td className="col-3">{driver.Constructors[0].name} ({driver.Constructors[0].nationality})</td>
-                <td className="col-1">{driver.points}</td>
+                <td className="col">{driver.position}</td>
+                <td className="col-1 text-center">{driver.Driver.code}</td>
+                <td className="col-3">
+                  {driver.Driver.givenName} {driver.Driver.familyName} (
+                  {driver.Driver.nationality})
+                </td>
+                <td className="col-3">
+                  {driver.Constructors[0].name} (
+                  {driver.Constructors[0].nationality})
+                </td>
+                <td className="col">{driver.points}</td>
                 <td className="col">{driver.wins}</td>
                 <td className="col">
-                    <a href={driver.Driver.url}>{driver.Driver.url}</a>
-                    
-                    </td>
+                  <a href={driver.Driver.url} className="link-danger">
+                    {driver.Driver.url}
+                  </a>
+                </td>
               </tr>
-        </tbody>
+            </tbody>
           );
         })}
       </table>
-     
     </div>
   );
 };

@@ -2,6 +2,8 @@ import react, { useEffect, useState } from "react";
 import QualifyingResults from "./QualifyingResults";
 import WinRacesInaSeason from "./WinRacesInaSeason";
 import DriverStandings from "./DriverStandings";
+import ConstructorStandings from "./ConstructorStandings";
+import Pitstops from "./Pitstops";
 
 const F1 = () => {
   const [sdata, setData] = useState([]);
@@ -22,24 +24,24 @@ const F1 = () => {
 
   return (
     <>
-      <div className="container-fluid bg-danger text-light">
+        <div className="container.fluid bg-dark p-3">
         {sdata?.map((item, index) => {
           season = item.season;
           round = item.round;
 
           return (
-            <div key={index}>
+            <div key={index} className="bg-dark pt-2">
               {/* {console.log(item)} */}
-              <h1 className="text-center bg-dark text-danger">
-                {" "}
-                {item.season} {item.raceName} #{item.round}
-              </h1>
-              <div className="table-responsive">
-                <table className="table table-striped table-dark table-bordered  table-hover text-danger">
-                  <thead>
+              <div className="table-responsive px-2">
+                <h1 className="text-center text-light bg-black border border-danger border-5">
+                  {" "}
+                  {item.season} {item.raceName} #{item.round}
+                </h1>
+                <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5">
+                     <thead className="text-white">
                     <tr>
                       <th>#</th>
-                      <th>No</th>                      
+                      <th>No</th>
                       <th>Driver</th>
                       <th>Constructor</th>
                       <th>Time</th>
@@ -48,37 +50,39 @@ const F1 = () => {
                   </thead>
                   <tbody>
                     {item.Results.map((result, index) => {
-                    
-
                       return (
                         <tr key={index} className="">
-                          <td className="col-1">{result.position}</td>
-                          <td className="col-1">{result.number}</td>                          
-                          <td className="col-2">
-                          {result.Driver.givenName} {result.Driver.familyName}({result.Driver.code})
+                          <td className="col">{result.position}</td>
+                          <td className="col">{result.number}</td>
+                          <td className="col-3">
+                            {result.Driver.givenName} {result.Driver.familyName}
+                            ({result.Driver.code})
                           </td>
                           <td className="col-2">{result.Constructor.name}</td>
                           <td className="col-1">
                             {result.Time?.time ? result.Time.time : "00.00"}
                           </td>
                           <td className="col-5">
-                          Average( {result.FastestLap.AverageSpeed.speed} kph )Speed | 
-                          Time({result.FastestLap.Time.time}) | 
-                          Lap({result.FastestLap.lap})
-                            </td>
+                            Average( {result.FastestLap.AverageSpeed.speed} kph
+                            )Speed | Time({result.FastestLap.Time.time}) | Lap(
+                            {result.FastestLap.lap})
+                          </td>
                         </tr>
                       );
                     })}
                   </tbody>
                 </table>
               </div>
+              <hr />
             </div>
           );
         })}
 
         <QualifyingResults season={season} round={round} />
-        <WinRacesInaSeason season={season} />
+        <Pitstops season={season} round={round} />
         <DriverStandings season={season} round={round} />
+        <ConstructorStandings season={season} round={round} />
+        <WinRacesInaSeason season={season} />
       </div>
     </>
   );

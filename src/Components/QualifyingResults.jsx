@@ -21,10 +21,13 @@ const QualifyingResults = (props) => {
   }, [url]);
 
   return (
-    <div className="container-fluid">
-      <h1 className="text-center bg-dark text-danger">Qualifying Results</h1>
-      <table className="table table-dark bg-dark table-bordered table-hover text-danger">
-        <thead>
+    <div className="bg-black container-fluid">
+
+      <h1 className="text-center bg-black text-danger border border-danger border-5">
+        Qualifying Results
+      </h1>
+      <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5">
+        <thead className="text-white">
           <tr>
             <th className="text-center">Pos</th>
             <th className="text-center">No</th>
@@ -35,31 +38,32 @@ const QualifyingResults = (props) => {
             <th className="text-center">Q3</th>
           </tr>
         </thead>
-        <tbody>
-          {sdata?.map((item, index) => {
-            return (
-              <>
-                {item?.QualifyingResults?.map((qualifying, indexQ) => {
-                  return (
-                    <tr key={indexQ}>
-                      <th scope="row">{qualifying.position}</th>
-                      <td>{qualifying.number}</td>
-                      <td>
-                        {qualifying.Driver.givenName}{" "}
-                        {qualifying.Driver.familyName}
-                      </td>
-                      <td>{qualifying.Constructor.name}</td>
-                      <td className=" text-center">{qualifying.Q1}</td>
-                      <td className=" text-center">{qualifying.Q2}</td>
-                      <td className=" text-center">{qualifying.Q3}</td>
-                    </tr>
-                  );
-                })}
-              </>
-            );
-          })}
-        </tbody>
+        {sdata?.map((item, index) => {
+          return (
+            <tbody key={index}>
+              {item?.QualifyingResults?.map((qualifying, indexQ) => {
+                return (
+                  <tr key={indexQ}>
+                    <th className="col" scope="row">
+                      {qualifying.position}
+                    </th>
+                    <td className="col">{qualifying.number}</td>
+                    <td className="col-4">
+                      {qualifying.Driver.givenName}{" "}
+                      {qualifying.Driver.familyName}
+                    </td>
+                    <td className="col-4">{qualifying.Constructor.name}</td>
+                    <td className=" text-center col">{qualifying.Q1}</td>
+                    <td className=" text-center col">{qualifying.Q2}</td>
+                    <td className=" text-center col">{qualifying.Q3}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          );
+        })}
       </table>
+      <hr />
     </div>
   );
 };
