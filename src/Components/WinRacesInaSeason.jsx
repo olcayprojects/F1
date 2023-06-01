@@ -49,7 +49,7 @@ const WinRacesInaSeason = (props) => {
                   <tr>***************</tr>
                   <tr>Fastest Lap: {item.Results[0].FastestLap.lap}</tr>
                   <tr>
-                    AverageSpeed:{" "}
+                    Average Speed:{" "}
                     {item.Results[0].FastestLap.AverageSpeed.speed}kph
                   </tr>
                   <tr>

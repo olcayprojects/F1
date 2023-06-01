@@ -1,9 +1,10 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import QualifyingResults from "./QualifyingResults";
 import WinRacesInaSeason from "./WinRacesInaSeason";
 import DriverStandings from "./DriverStandings";
 import ConstructorStandings from "./ConstructorStandings";
 import Pitstops from "./Pitstops";
+import Next from "./Next";
 
 const F1 = () => {
   const [sdata, setData] = useState([]);
@@ -25,6 +26,7 @@ const F1 = () => {
   return (
     <>
         <div className="container.fluid bg-dark p-3">
+    <Next/>
         {sdata?.map((item, index) => {
           season = item.season;
           round = item.round;

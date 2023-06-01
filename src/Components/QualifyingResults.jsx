@@ -1,4 +1,5 @@
 import react, { useEffect, useState } from "react";
+import {} from "@fortawesome/fontawesome-free"
 
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);

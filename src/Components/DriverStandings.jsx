@@ -27,9 +27,9 @@ const DriverStandings = (props) => {
     <div className="bg-black container-fluid">
 
       <hr />
-      <h2 className="text-center bg-black text-danger border border-danger border-5">
+      <h1 className="text-center bg-black text-danger border border-danger border-5">
         Driver Standings
-      </h2>
+      </h1>
 
       <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
       <thead className="text-white">

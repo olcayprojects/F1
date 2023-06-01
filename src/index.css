@@ -15,3 +15,24 @@ body {
 .tableColumnFixed {
   table-layout: fixed;
 }
+
+.blink {
+  animation: blinker 0.01s linear infinite;
+  background-color:rgba(0, 0, 0);
+  color: red;;
+
+  
+  
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+@keyframes blinker {
+  5% {
+    color:rgba(255, 0, 0, 0.8);
+  }
+  
+  1% {
+    color:white;
+    
+   
+  }
+}
