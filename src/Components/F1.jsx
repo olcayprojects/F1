@@ -25,8 +25,8 @@ const F1 = () => {
 
   return (
     <>
-        <div className="container.fluid bg-dark p-3">
-    <Next/>
+      <div className="container.fluid bg-dark p-3">
+        <Next />
         {sdata?.map((item, index) => {
           season = item.season;
           round = item.round;
@@ -37,16 +37,19 @@ const F1 = () => {
               <div className="table-responsive px-2">
                 <h1 className="text-center text-light bg-black border border-danger border-5">
                   {" "}
-                  {item.season} {item.raceName} #{item.round}
+                  {item.date} {item.raceName} #{item.round}
                 </h1>
                 <table className="table table-dark table-striped border-5 ">
-                     <thead className="text">
+                  <thead className="text">
                     <tr className="text">
                       <th>POS</th>
-                      <th>No</th>
+                      <th>NO</th>
                       <th>DRIVER</th>
                       <th>CONSTRUCTOR</th>
                       <th>TIME</th>
+                      <th>STATUS</th>
+                      <th>GRID</th>
+                      <th>LAPS</th>
                       <th>FASTEST LAP</th>
                     </tr>
                   </thead>
@@ -54,9 +57,9 @@ const F1 = () => {
                     {item.Results.map((result, index) => {
                       return (
                         <tr key={index} className="text-danger">
-                          <td className="col">{result.position}</td>
+                          <td className="col">{result.positionText}</td>
                           <td className="col">{result.number}</td>
-                          <td className="col-3">
+                          <td className="col-2">
                             {result.Driver.givenName} {result.Driver.familyName}
                             ({result.Driver.code})
                           </td>
@@ -64,6 +67,9 @@ const F1 = () => {
                           <td className="col-1">
                             {result.Time?.time ? result.Time.time : "00.00"}
                           </td>
+                          <td className="col-2">{result.status}</td>
+                          <td className="col">{result.grid}</td>
+                          <td className="col">{result.laps}</td>
                           <td className="col-5">
                             Average( {result.FastestLap.AverageSpeed.speed} kph
                             )Speed | Time({result.FastestLap.Time.time}) | Lap(
@@ -75,7 +81,6 @@ const F1 = () => {
                   </tbody>
                 </table>
               </div>
-     
             </div>
           );
         })}
