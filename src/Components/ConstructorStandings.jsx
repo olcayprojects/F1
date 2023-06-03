@@ -32,25 +32,25 @@ const ConstructorStandings = (props) => {
       </h1>
 
       <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
-      <thead className="text-white">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Constructor</th>
-            <th scope="col">Nationality</th>
-            <th scope="col">Points</th>
-            <th scope="col">Wins</th>
-            <th scope="col">Information-Constructor wikipedia</th>
+      <thead className="text-white border-dark">
+          <tr className="text-black">
+            <th scope="col" className="bg-danger">POS</th>
+            <th scope="col" className="bg-danger">CONSTRUCTOR</th>
+            <th scope="col" className="bg-danger">NATIONALITY</th>
+            <th scope="col" className="bg-danger">POINTS</th>
+            <th scope="col" className="bg-danger text-center">WINS</th>
+            <th scope="col" className="bg-danger">INFORMATION-CONSTRUCTOR WIKIPEDIA</th>
           </tr>
         </thead>
         {sdata?.map((ConstructorStandings, indexedDB) => {
           return (
             <tbody key={indexedDB}>
-              <tr key={indexedDB}>
+              <tr key={indexedDB} className="">
                 <td className="col">{ConstructorStandings.position}</td>
                 <td className="col-2">{ConstructorStandings.Constructor.name}</td>
                 <td className="col-2">{ConstructorStandings.Constructor.nationality}</td>
                 <td className="col">{ConstructorStandings.points}</td>
-                <td className="col">{ConstructorStandings.wins}</td>
+                <td className="col text-center">{ConstructorStandings.wins}</td>
                 <td className="col">
                   <a href={ConstructorStandings.Constructor.url} className="link-danger">
                     {ConstructorStandings.Constructor.url}

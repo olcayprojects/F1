@@ -27,15 +27,15 @@ const QualifyingResults = (props) => {
         Qualifying Results
       </h1>
       <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5">
-        <thead className="text-white">
-          <tr>
-            <th className="text-center">Pos</th>
-            <th className="text-center">No</th>
-            <th className="text-center">Driver</th>
-            <th className="text-center">Constructor</th>
-            <th className="text-center">Q1</th>
-            <th className="text-center">Q2</th>
-            <th className="text-center">Q3</th>
+        <thead className="border-dark">
+          <tr className="text-black">
+            <th className="bg-danger">POS</th>
+            <th className="bg-danger">NO</th>
+            <th className="text-center bg-danger">DRIVER</th>
+            <th className="text-center bg-danger">CONSTRUCTOR</th>
+            <th className="text-center bg-danger">Q1</th>
+            <th className="text-center bg-danger">Q2</th>
+            <th className="text-center bg-danger">Q3</th>
           </tr>
         </thead>
         {sdata?.map((item, index) => {

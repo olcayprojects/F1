@@ -24,7 +24,7 @@ const DriverId = (props) => {
   }, [url]);
 
   return(
-    sdata.givenName+" "+sdata.familyName+"("+sdata.code+")"
+    sdata.givenName+" "+sdata.familyName+" ( "+sdata.code+" )"
     
     ) 
     

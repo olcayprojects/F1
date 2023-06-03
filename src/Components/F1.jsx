@@ -32,28 +32,28 @@ const F1 = () => {
           round = item.round;
 
           return (
-            <div key={index} className="bg-dark pt-2">
+            <div key={index} className="bg-black pt-2">
               {/* {console.log(item)} */}
               <div className="table-responsive px-2">
                 <h1 className="text-center text-light bg-black border border-danger border-5">
                   {" "}
                   {item.season} {item.raceName} #{item.round}
                 </h1>
-                <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5">
-                     <thead className="text-white">
-                    <tr>
-                      <th>#</th>
+                <table className="table table-dark table-striped border-5 ">
+                     <thead className="text">
+                    <tr className="text">
+                      <th>POS</th>
                       <th>No</th>
-                      <th>Driver</th>
-                      <th>Constructor</th>
-                      <th>Time</th>
-                      <th>Fastest Lap</th>
+                      <th>DRIVER</th>
+                      <th>CONSTRUCTOR</th>
+                      <th>TIME</th>
+                      <th>FASTEST LAP</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody className="text-danger">
                     {item.Results.map((result, index) => {
                       return (
-                        <tr key={index} className="">
+                        <tr key={index} className="text-danger">
                           <td className="col">{result.position}</td>
                           <td className="col">{result.number}</td>
                           <td className="col-3">

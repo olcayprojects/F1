@@ -30,7 +30,7 @@ const WinRacesInaSeason = (props) => {
         {sdata?.map((item, index) => {
           return (
             <div key={index} className="col mb-1">
-              <table className="table  table-bordered table-dark bg-dark table-hover text-center h-100 border border-danger border-5">
+              <table className="table table-bordered table-dark bg-dark table-hover text-center h-100 border border-danger border-5">
                 <tbody>
                   <tr className="bg-danger text-black">
                     Round#{item.round} {item.raceName} ({item.date})

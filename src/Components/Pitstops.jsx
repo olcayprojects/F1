@@ -32,28 +32,28 @@ const Pitstops = (props) => {
       {sdata?.map((data, index) => {
         return (
           <table key={index} className="table  table-bordered table-dark bg-dark table-hover h-100 border border-danger border-5">
-            <thead className="text-white">
-              <tr>
+            <thead className="border-dark">
+              <tr className="text-black">
                
-                <th className="text-end">Driver</th>
-                <th>Stop</th>
-                <th>Lap</th>
-                <th className="text-center">Time</th>
-                <th className="text-center">Duration</th>
+                <th className="text-center bg-danger">DRIVER</th>
+                <th className="bg-danger">STOP</th>
+                <th className="bg-danger">LAP</th>
+                <th className="text-center bg-danger">TIME</th>
+                <th className="text-center bg-danger">DURATION</th>
               </tr>
             </thead>
             <tbody className="text-danger">
               {data?.PitStops.map((ps, index) => {
                 return (
                   <tr key={index}>
-                    <td className="col-5 text-end" style={{textTransform:"uppercase"}}>
+                    <td className="col-4 text-center" style={{textTransform:"uppercase"}}>
                     {/* {ps.driverId}  */}
                     {<DriverId Id={ps.driverId} />}
                     </td>
-                    <td className="col">{ps.stop}</td>
-                    <td className="col">{ps.lap}</td>
-                    <td className="col-3 text-center">{ps.time}</td>
-                    <td className="col-3 text-center">{ps.duration}</td>
+                    <td className="col text-center">{ps.stop}</td>
+                    <td className="col text-center">{ps.lap}</td>
+                    <td className="col-4 text-center">{ps.time}</td>
+                    <td className="col-4 text-center">{ps.duration}</td>
                   </tr>
                 );
               })}

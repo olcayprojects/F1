@@ -32,15 +32,15 @@ const DriverStandings = (props) => {
       </h1>
 
       <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
-      <thead className="text-white">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col" className="text-center">Code</th>
-            <th scope="col">Driver</th>
-            <th scope="col">Constructor</th>
-            <th scope="col">Points</th>
-            <th scope="col">Wins</th>
-            <th scope="col">Information-Driver Biography wikipedia</th>
+      <thead className="border-dark">
+          <tr className="text-black">
+            <th scope="col" className="bg-danger">POS</th>
+            <th scope="col" className="text-center bg-danger">CODE</th>
+            <th scope="col" className="bg-danger">DRIVER</th>
+            <th scope="col" className="bg-danger">CONSTRUCTOR</th>
+            <th scope="col" className="bg-danger">POINTS</th>
+            <th scope="col" className="bg-danger">WINS</th>
+            <th scope="col" className="bg-danger">INFORMATION-DRIVER BIOGRAPHY WIKIPEDIA</th>
           </tr>
         </thead>
         {sdata?.map((driver, indexedDB) => {
@@ -58,7 +58,7 @@ const DriverStandings = (props) => {
                   {driver.Constructors[0].nationality})
                 </td>
                 <td className="col">{driver.points}</td>
-                <td className="col">{driver.wins}</td>
+                <td className="col text-center">{driver.wins}</td>
                 <td className="col">
                   <a href={driver.Driver.url} className="link-danger">
                     {driver.Driver.url}
