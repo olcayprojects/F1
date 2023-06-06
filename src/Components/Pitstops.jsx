@@ -46,12 +46,12 @@ const Pitstops = (props) => {
               {data?.PitStops.map((ps, index) => {
                 return (
                   <tr key={index}>
-                    <td className="col-4 text-center" style={{textTransform:"uppercase"}}>
+                    <td className="col-1 text-center" style={{textTransform:"uppercase"}}>
                     {/* {ps.driverId}  */}
                     {<DriverId Id={ps.driverId} />}
                     </td>
-                    <td className="col text-center">{ps.stop}</td>
-                    <td className="col text-center">{ps.lap}</td>
+                    <td className="col-1 text-center">{ps.stop}</td>
+                    <td className="col-1 text-center">{ps.lap}</td>
                     <td className="col-4 text-center">{ps.time}</td>
                     <td className="col-4 text-center">{ps.duration}</td>
                   </tr>

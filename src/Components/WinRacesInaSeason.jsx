@@ -35,27 +35,13 @@ const WinRacesInaSeason = (props) => {
                   <tr className="bg-danger text-black">
                     Round#{item.round} {item.raceName} ({item.date})
                   </tr>
-                  <tr>
-                    |{item.Results[0].Driver.code}|
+                  <tr>                    
                     {item.Results[0].Driver.givenName}{" "}
-                    {item.Results[0].Driver.familyName}|
-                    {item.Results[0].Driver.nationality}|
-                    {item.Results[0].Driver.dateOfBirth}|
+                    {item.Results[0].Driver.familyName} | {item.Results[0].Constructor.name}
                   </tr>
-                  <tr>Constructor:{item.Results[0].Constructor.name}</tr>
-                  <tr>Laps: {item.Results[0].laps}</tr>
-                  <tr>Time: {item.Results[0].Time.time}</tr>
-                  <tr>Points: {item.Results[0].points}</tr>
-                  <tr>***************</tr>
-                  <tr>Fastest Lap: {item.Results[0].FastestLap.lap}</tr>
-                  <tr>
-                    Average Speed:{" "}
-                    {item.Results[0].FastestLap.AverageSpeed.speed}kph
+                  <tr>Laps: {item.Results[0].laps} | Time: {item.Results[0].Time.time} | Points: {item.Results[0].points}</tr>
+                  <tr>Fastest Lap: {item.Results[0].FastestLap.lap} | Avg Speed: {item.Results[0].FastestLap.AverageSpeed.speed}kph | Time: {item.Results[0].FastestLap.Time.time}
                   </tr>
-                  <tr>
-                    Time: {item.Results[0].FastestLap.Time.time}
-                  </tr>
-
                 </tbody>
               </table>
             </div>
