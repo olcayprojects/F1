@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
 import WinRacesInaSeason from "./WinRacesInaSeason";
 import DriverStandings from "./DriverStandings";
@@ -13,6 +14,13 @@ const F1 = () => {
   let season = "";
   let round = "";
   let laps = "";
+  let navigate = useNavigate();
+  const { season2 = "2023" } = useParams();
+
+  console.log(season2);
+
+  const year = new Date().getFullYear();
+  const years = Array.from(new Array(74), (val, index) => year - index);
 
   useEffect(() => {
     fetch("https://ergast.com/api/f1/current/last/results.json")
@@ -30,6 +38,27 @@ const F1 = () => {
     <>
       <div className="container.fluid bg-dark p-3">
         <Next />
+        <select
+          className="form-select bg-dark text-danger"
+          onChange={(e) => {
+            navigate(`/F1/${e.target.value}`);
+            navigate(0);
+          }}
+        >
+          <option value="" hidden>
+            Select Year for Drivers and Constructors Winning Races In a Season
+          </option>
+          {years.map((year, index) => {
+            return (
+              <option key={`year${index}`} value={year}>
+                {year}
+              </option>
+            );
+          })}
+        </select>
+        <WinRacesInaSeason season={season2} />
+
+
         {sdata?.map((item, index) => {
           season = item.season;
           round = item.round;
@@ -62,11 +91,16 @@ const F1 = () => {
                         <tr key={index} className="text-danger">
                           <td className="col">{result.positionText}</td>
                           <td className="col">{result.grid}</td>
-                          <td className="col-4">
+                          <td className="col-4 ">
                             {result.Driver.code}({result.number}){" "}
-                            {result.Driver.givenName} {result.Driver.familyName}{" "}
-                            ({result.Driver.nationality})
-                            {result.Driver.dateOfBirth})
+                            <b>
+                              <u>
+                                {result.Driver.givenName}{" "}
+                                {result.Driver.familyName}
+                              </u>
+                            </b>
+                            ({result.Driver.nationality}){" "}
+                            {result.Driver.dateOfBirth}
                           </td>
                           <td className="col-1">{result.Constructor.name}</td>
                           <td className="col-1">
@@ -76,9 +110,9 @@ const F1 = () => {
                           </td>
                           <td className="col">{result.laps}</td>
                           <td className="col-5">
-                            Average( {result.FastestLap.AverageSpeed.speed} kph
-                            )Speed | Time({result.FastestLap.Time.time}) | Lap(
-                            {result.FastestLap.lap})
+                            Average({result.FastestLap.AverageSpeed.speed}
+                            kph)Speed | Time({result.FastestLap.Time.time}) |
+                            Lap({result.FastestLap.lap})
                           </td>
                         </tr>
                       );
@@ -93,14 +127,13 @@ const F1 = () => {
         <Pitstops season={season} round={round} />
         <DriverStandings season={season} round={round} />
         <ConstructorStandings season={season} round={round} />
-        <WinRacesInaSeason season={season} />;
         <h1 className="text-center bg-black text-danger border border-danger border-5">
           Lap Times
         </h1>
-        <div className="row row-cols-1 row-cols-md-6 g-2 justify-content-md-center bg-dark">
+        <div className="row row-cols-1 row-cols-md-4 g-2 justify-content-md-center bg-dark">
           {(() => {
             const arr = [];
-            for (let i = laps-6; i <= laps; i++) {
+            for (let i = laps - 6; i <= laps; i++) {
               arr.push(
                 <div key={i} className="col mb-1">
                   <Laptimes season={season} round={round} lapsx={i} />

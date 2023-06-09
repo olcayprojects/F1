@@ -54,8 +54,8 @@ const QualifyingResults = (props) => {
                     </td>
                     <td className="col-4">{qualifying.Constructor.name}</td>
                     <td className=" text-center col">{qualifying.Q1}</td>
-                    <td className=" text-center col">{qualifying.Q2}</td>
-                    <td className=" text-center col">{qualifying.Q3}</td>
+                    <td className=" text-center col">{qualifying.Q2 ? qualifying.Q2: "0:00.000"}</td>
+                    <td className=" text-center col">{qualifying.Q3 ? qualifying.Q3: "0:00.000"}</td>
                   </tr>
                 );
               })}

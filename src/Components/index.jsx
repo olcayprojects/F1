@@ -6,7 +6,7 @@ const Components = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/F1" element={<F1 />} />
+        <Route path="/F1/:season2" element={<F1 />} />
       </Routes>
     </BrowserRouter>
   );
