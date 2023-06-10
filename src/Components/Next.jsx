@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Next = () => {
   const [sdata, setData] = useState([]);
+  let navigate = useNavigate();
+
 
   useEffect(() => {
     fetch("https://ergast.com/api/f1/current/next.json")
@@ -17,17 +20,18 @@ const Next = () => {
   return (
     <div className="bg-dark">
       {sdata?.map((data, index) => {
+          const dateTime=(d,t) =>new Date(d+" "+t).toLocaleString();
         return (
-          <h1 key={index} className="blink bg-dark">
+          <h1 key={index} title="click Go to HomePage" className="blink bg-dark cp" onClick={() =>{navigate("/")}} >
             <marquee className="blink">
-              Next Race #{data.round} {data.raceName} | {data.date} {data.time}{" "}
+              Next Race #{data.round} {data.raceName} | {dateTime(data.date,data.time)}{" "}
               | First Practice:
-              {data.FirstPractice.date} {data.FirstPractice.time} | Second
+              {dateTime(data.FirstPractice.date,data.FirstPractice.time)} | Second
               Practice:
-              {data.SecondPractice.date} {data.SecondPractice.time} | Third
+              {dateTime(data.SecondPractice.date,data.SecondPractice.time)} | Third
               Practice:
-              {data.ThirdPractice.date} {data.ThirdPractice.time} | Qualifying:
-              {data.Qualifying.date} {data.Qualifying.time}
+              {dateTime(data.ThirdPractice.date,data.ThirdPractice.time)} | Qualifying:
+              {dateTime(data.Qualifying.date,data.Qualifying.time)}
             </marquee>
           </h1>
         );

@@ -1,28 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
-import WinRacesInaSeason from "./WinRacesInaSeason";
-import DriverStandings from "./DriverStandings";
-import ConstructorStandings from "./ConstructorStandings";
 import Pitstops from "./Pitstops";
 import Next from "./Next";
 import Laptimes from "./Laptimes";
 import Images from "./Images";
-import RaceSchedule from "./RaceSchedule";
 
-const F1 = () => {
+const F1Race = () => {
   const [sdata, setData] = useState([]);
   let season = "";
   let round = "";
   let laps = "";
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
-
-  const year = new Date().getFullYear();
-  const years = Array.from(new Array(74), (val, index) => year - index);
+  const { rounds = "1" } = useParams();
 
   useEffect(() => {
-    fetch("https://ergast.com/api/f1/current/last/results.json")
+    fetch(`https://ergast.com/api/f1/${season2}/${rounds}/results.json`)
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
@@ -37,44 +31,19 @@ const F1 = () => {
     <>
       <div className="container.fluid bg-dark p-3">
         <Next />
-        <select
-          className="form-select bg-dark text-danger border-danger shadow-none"
-          onChange={(e) => {
-            navigate(`/F1/${e.target.value}`);
-            navigate(0);
-          }}
-        >
-          <option value="" hidden>
-            Select Year for Drivers and Constructors Winning Races In a Season
-          </option>
-          {years.map((year, index) => {
-            return (
-              <option key={`year${index}`} value={year}>
-                {year}
-              </option>
-            );
-          })}
-        </select>
-        <RaceSchedule season={season2} />
-        <WinRacesInaSeason season={season2} />
-        <DriverStandings season={season2} round={round} />
-        <ConstructorStandings season={season2} round={round} />
 
         {sdata?.map((item, index) => {
           season = item.season;
           round = item.round;
           laps = item.Results[0].laps;
-
-          const dateTime=(d,t) =>new Date(d+" "+t).toLocaleString();
+          const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
 
           return (
             <div key={index} className="bg-black pt-2 container-fluid">
               {/* {console.log(item)} */}
 
               <h1 className="text-center text-light bg-black border border-danger border-5">
-                {" "}
-                {item.raceName} #{item.round} ({dateTime(item.date,item.time)})
-                <Images name={item.raceName.split(" ")[0]} />
+                {item.raceName} #{item.round} ({dateTime(item.date, item.time)})
               </h1>
               <div className="table-responsive-sm">
                 <table className="table table-dark table-striped border-5 ">
@@ -114,9 +83,9 @@ const F1 = () => {
                           </td>
                           <td className="col">{result.laps}</td>
                           <td className="col-5">
-                            Average({result.FastestLap.AverageSpeed.speed}
-                            kph)Speed | Time({result.FastestLap.Time.time}) |
-                            Lap({result.FastestLap.lap})
+                            Average({result.FastestLap?.AverageSpeed?.speed}
+                            kph)Speed | Time({result.FastestLap?.Time.time}) |
+                            Lap({result.FastestLap?.lap})
                           </td>
                         </tr>
                       );
@@ -156,4 +125,4 @@ const F1 = () => {
   );
 };
 
-export default F1;
+export default F1Race;
