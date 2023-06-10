@@ -1,6 +1,5 @@
 import Components from "./Components";
 
-
 function App() {
   return (
     <div className="App">

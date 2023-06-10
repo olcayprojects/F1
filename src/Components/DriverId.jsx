@@ -8,12 +8,11 @@ export default function DriverId(props) {
 
   url = `https://ergast.com/api/f1/drivers/${props.Id}.json`;
 
-
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-       // console.log(data["MRData"].DriverTable.Drivers[0]);
+        // console.log(data["MRData"].DriverTable.Drivers[0]);
 
         setData(data["MRData"].DriverTable.Drivers[0]);
       })
@@ -21,13 +20,9 @@ export default function DriverId(props) {
         console.log(err.message);
       });
   }, [url]);
-  
 
-  return(    
+  return (
     // sdata.givenName+" "+sdata.familyName
     sdata.code
-  )
-  
-
-     
+  );
 }

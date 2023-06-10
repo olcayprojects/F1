@@ -6,7 +6,6 @@ const ConstructorStandings = (props) => {
 
   let url = "";
   if (props.season) {
-
     url = `https://ergast.com/api/f1/${props.season}/${props.round}/constructorStandings.json`;
   }
 
@@ -15,31 +14,46 @@ const ConstructorStandings = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setData(
-          data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings);
-         //console.log(data["MRData"].StandingsTable[0].ConstructorStandings);
+          data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings
+        );
+        //console.log(data["MRData"].StandingsTable[0].ConstructorStandings);
       })
       .catch((err) => {
-        console.log(err.message);
+        if (!err === "Unexpected token") {
+          console.log(err.message);
+        }
       });
   }, [url]);
 
   return (
     <div className="bg-black container-fluid">
-
       <hr />
       <h1 className="text-center bg-black text-danger border border-danger border-5">
-      Constructor Standings
+        Constructor Standings
       </h1>
+      <div className="table-responsive">
 
       <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
-      <thead className="text-white border-dark">
+        <thead className="text-white border-dark">
           <tr className="text-black">
-            <th scope="col" className="bg-danger">POS</th>
-            <th scope="col" className="bg-danger">CONSTRUCTOR</th>
-            <th scope="col" className="bg-danger">NATIONALITY</th>
-            <th scope="col" className="bg-danger">POINTS</th>
-            <th scope="col" className="bg-danger text-center">WINS</th>
-            <th scope="col" className="bg-danger">INFORMATION-CONSTRUCTOR WIKIPEDIA</th>
+            <th scope="col" className="bg-danger">
+              P
+            </th>
+            <th scope="col" className="bg-danger">
+              CONSTRUCTOR
+            </th>
+            <th scope="col" className="bg-danger">
+              NATIONALITY
+            </th>
+            <th scope="col" className="bg-danger">
+              POINTS
+            </th>
+            <th scope="col" className="bg-danger text-center">
+              WINS
+            </th>
+            <th scope="col" className="bg-danger">
+              INFORMATION-CONSTRUCTOR WIKIPEDIA
+            </th>
           </tr>
         </thead>
         {sdata?.map((ConstructorStandings, indexedDB) => {
@@ -47,12 +61,19 @@ const ConstructorStandings = (props) => {
             <tbody key={indexedDB}>
               <tr key={indexedDB} className="">
                 <td className="col">{ConstructorStandings.position}</td>
-                <td className="col-2">{ConstructorStandings.Constructor.name}</td>
-                <td className="col-2">{ConstructorStandings.Constructor.nationality}</td>
+                <td className="col-2">
+                  {ConstructorStandings.Constructor.name}
+                </td>
+                <td className="col-2">
+                  {ConstructorStandings.Constructor.nationality}
+                </td>
                 <td className="col">{ConstructorStandings.points}</td>
                 <td className="col text-center">{ConstructorStandings.wins}</td>
                 <td className="col">
-                  <a href={ConstructorStandings.Constructor.url} className="link-danger">
+                  <a
+                    href={ConstructorStandings.Constructor.url}
+                    className="link-danger"
+                  >
                     {ConstructorStandings.Constructor.url}
                   </a>
                 </td>
@@ -61,9 +82,10 @@ const ConstructorStandings = (props) => {
           );
         })}
       </table>
+      </div>
+      <hr />
     </div>
   );
 };
-
 
 export default ConstructorStandings;

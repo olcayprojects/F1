@@ -19,23 +19,27 @@ const Pitstops = (props) => {
         // console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
-        console.log(err.message);
+        if (!err === "Unexpected token") {
+          console.log(err.message);
+        }
       });
   }, [url]);
 
   return (
     <div className="bg-black container-fluid">
-
       <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
         Pit Stops
       </h1>
+      <div className="table-responsive-sm">
       {sdata?.map((data, index) => {
         return (
-          <table key={index} className="table  table-bordered table-dark bg-dark table-hover h-100 border border-danger border-5">
+          <table
+            key={index}
+            className="table  table-bordered table-dark bg-dark table-hover h-100 border border-danger border-5"
+          >
             <thead className="border-dark">
               <tr className="text-black">
-               
-                <th className="text-center bg-danger">DRIVER</th>
+                <th className="text-center bg-danger">DRV</th>
                 <th className="bg-danger">STOP</th>
                 <th className="bg-danger">LAP</th>
                 <th className="text-center bg-danger">TIME</th>
@@ -46,9 +50,12 @@ const Pitstops = (props) => {
               {data?.PitStops.map((ps, index) => {
                 return (
                   <tr key={index}>
-                    <td className="col-1 text-center" style={{textTransform:"uppercase"}}>
-                    {/* {ps.driverId}  */}
-                    {<DriverId Id={ps.driverId} />}
+                    <td
+                      className="col-1 text-center"
+                      style={{ textTransform: "uppercase" }}
+                    >
+                      {/* {ps.driverId}  */}
+                      {<DriverId Id={ps.driverId} />}
                     </td>
                     <td className="col-1 text-center">{ps.stop}</td>
                     <td className="col-1 text-center">{ps.lap}</td>
@@ -61,6 +68,7 @@ const Pitstops = (props) => {
           </table>
         );
       })}
+    </div>
     </div>
   );
 };

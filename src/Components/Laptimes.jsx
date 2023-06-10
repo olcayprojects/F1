@@ -23,7 +23,9 @@ const Laptimes = (props) => {
         // console.log(data["MRData"].RaceTable.Races[0].Laps);
       })
       .catch((err) => {
-        console.log(err.message);
+        if (!err === "Unexpected token") {
+          console.log(err.message);
+        }
       });
   };
 
@@ -32,38 +34,39 @@ const Laptimes = (props) => {
   }, [urlx]);
 
   return (
-    <div className="bg-black container-fluid">
-      <div className="row row-cols-1 row-cols-md-3 g-1 justify-content-md-center">
-        <table className="table  caption-top table-dark table-bordered table-hover text-danger border border-danger border-2">
-        <caption>Lap {props.lapsx}</caption>
-          <thead className="text-white border-dark">
-            <tr className="text-black">
-              <th scope="col" className="bg-danger text-center">DRV</th>
-              <th scope="col" className="bg-danger">
-                POS
-              </th>
-              <th scope="col" className="bg-danger">TIME</th>
+    <table className="table  caption-top table-dark table-bordered table-hover text-danger border border-danger border-2">
+      <caption className="text-center bg-dark text-danger">
+        <b>LAP {props.lapsx}</b>
+      </caption>
+      <thead className="text-white border-dark">
+        <tr className="text-black">
+          <th scope="col" className="bg-danger text-center">
+            DRV
+          </th>
+          <th scope="col" className="bg-danger">
+            POS
+          </th>
+          <th scope="col" className="bg-danger text-center">
+            TIME
+          </th>
+        </tr>
+      </thead>
+      {sdata.map((LapTimes, index) => {
+        // console.log("aa",LapTimes);
+
+        return (
+          <tbody key={index}>
+            <tr key={index} className="">
+              <td key={index} className="col-1">
+                {<DriverId Id={LapTimes.driverId} />}
+              </td>
+              <td className="col-1 text-center">{LapTimes.position}</td>
+              <td className="col text-center">{LapTimes.time}</td>
             </tr>
-          </thead>
-          {sdata.map((LapTimes, index) => {
-            // console.log("aa",LapTimes);
-
-            return (
-              <tbody key={index}>
-                <tr key={index} className="">
-                  <td key={index} className="col">
-                    {<DriverId Id={LapTimes.driverId} />}
-
-                  </td>
-                  <td className="col text-center">{LapTimes.position}</td>
-                  <td className="col">{LapTimes.time}</td>
-                </tr>
-              </tbody>
-            );
-          })}
-        </table>
-      </div>
-    </div>
+          </tbody>
+        );
+      })}
+    </table>
   );
 };
 

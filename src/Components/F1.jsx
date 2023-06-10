@@ -17,8 +17,6 @@ const F1 = () => {
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
 
-  console.log(season2);
-
   const year = new Date().getFullYear();
   const years = Array.from(new Array(74), (val, index) => year - index);
 
@@ -58,7 +56,6 @@ const F1 = () => {
         </select>
         <WinRacesInaSeason season={season2} />
 
-
         {sdata?.map((item, index) => {
           season = item.season;
           round = item.round;
@@ -67,17 +64,18 @@ const F1 = () => {
           return (
             <div key={index} className="bg-black pt-2">
               {/* {console.log(item)} */}
-              <div className="table-responsive px-2">
-                <h1 className="text-center text-light bg-black border border-danger border-5">
-                  {" "}
-                  {item.date} {item.raceName} #{item.round}
-                  <Images name={item.raceName.split(" ")[0]} />
-                </h1>
+
+              <h1 className="text-center text-light bg-black border border-danger border-5">
+                {" "}
+                {item.date} {item.raceName} #{item.round}
+                <Images name={item.raceName.split(" ")[0]} />
+              </h1>
+              <div className="table-responsive-sm">
                 <table className="table table-dark table-striped border-5 ">
                   <thead className="text">
                     <tr className="text">
-                      <th>POS</th>
-                      <th>GRID</th>
+                      <th>P</th>
+                      <th>G</th>
                       <th>DRIVER</th>
                       <th>CONSTRUCTOR</th>
                       <th>TIME</th>
@@ -127,13 +125,16 @@ const F1 = () => {
         <Pitstops season={season} round={round} />
         <DriverStandings season={season} round={round} />
         <ConstructorStandings season={season} round={round} />
+        <div className="bg-black container-fluid">
+          <hr />
+
         <h1 className="text-center bg-black text-danger border border-danger border-5">
           Lap Times
         </h1>
-        <div className="row row-cols-1 row-cols-md-4 g-2 justify-content-md-center bg-dark">
+        <div className="row row-cols-1 row-cols-md-6 g-2 justify-content-md-center bg-black">
           {(() => {
             const arr = [];
-            for (let i = laps - 6; i <= laps; i++) {
+            for (let i = laps - 12; i <= laps; i++) {
               arr.push(
                 <div key={i} className="col mb-1">
                   <Laptimes season={season} round={round} lapsx={i} />
@@ -143,6 +144,8 @@ const F1 = () => {
             return arr;
           })()}
         </div>
+      <hr />
+      </div>
       </div>
     </>
   );

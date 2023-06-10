@@ -19,7 +19,7 @@ const Next = () => {
       {sdata?.map((data, index) => {
         return (
           <h1 key={index} className="blink bg-dark">
-            <marquee  className="blink">
+            <marquee className="blink">
               Next Race #{data.round} {data.raceName} | {data.date} {data.time}{" "}
               | First Practice:
               {data.FirstPractice.date} {data.FirstPractice.time} | Second

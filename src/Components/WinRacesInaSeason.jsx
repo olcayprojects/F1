@@ -1,7 +1,6 @@
 import react, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 const WinRacesInaSeason = (props) => {
   const [sdata, setData] = useState([]);
 
@@ -19,7 +18,9 @@ const WinRacesInaSeason = (props) => {
         // console.log(data["MRData"].RaceTable);
       })
       .catch((err) => {
-        console.log(err.message);
+        if (!err === "Unexpected token") {
+          console.log(err.message);
+        }
       });
   }, [url]);
 
@@ -54,12 +55,26 @@ const WinRacesInaSeason = (props) => {
                   Laps: <b>{item.Results[0].laps}</b> Time:{" "}
                   <b>{item.Results[0].Time.time}</b>
                 </li>
-                {console.log(item.Results[0])}
                 <li className="list-group-item bg-dark text-danger">
                   Avg Speed:
-                  <b>{item.Results[0].FastestLap?.AverageSpeed?.speed ? item.Results[0].FastestLap.AverageSpeed.speed :" "}kph</b>{" "}
-                  Fastest Lap:<b>{item.Results[0].FastestLap?.lap ? item.Results[0].FastestLap.lap :" "}</b> Time:
-                  <b>{item.Results[0].FastestLap?.Time?.time ? item.Results[0].FastestLap?.Time?.time : " "}</b>
+                  <b>
+                    {item.Results[0].FastestLap?.AverageSpeed?.speed
+                      ? item.Results[0].FastestLap.AverageSpeed.speed
+                      : " "}
+                    kph
+                  </b>{" "}
+                  Fastest Lap:
+                  <b>
+                    {item.Results[0].FastestLap?.lap
+                      ? item.Results[0].FastestLap.lap
+                      : " "}
+                  </b>{" "}
+                  Time:
+                  <b>
+                    {item.Results[0].FastestLap?.Time?.time
+                      ? item.Results[0].FastestLap?.Time?.time
+                      : " "}
+                  </b>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,5 @@
 import react, { useEffect, useState } from "react";
-import {} from "@fortawesome/fontawesome-free"
+import {} from "@fortawesome/fontawesome-free";
 
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
@@ -17,19 +17,23 @@ const QualifyingResults = (props) => {
         // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
-        console.log(err.message);
+        if (!err === "Unexpected token") {
+          console.log(err.message);
+        }
       });
   }, [url]);
 
   return (
+    
     <div className="bg-black container-fluid">
       <h1 className="text-center bg-black text-danger border border-danger border-5">
         Qualifying Results
       </h1>
+      <div className="table-responsive">
       <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5">
         <thead className="border-dark">
           <tr className="text-black">
-            <th className="bg-danger">POS</th>
+            <th className="bg-danger">P</th>
             <th className="bg-danger">NO</th>
             <th className="text-center bg-danger">DRIVER</th>
             <th className="text-center bg-danger">CONSTRUCTOR</th>
@@ -54,8 +58,12 @@ const QualifyingResults = (props) => {
                     </td>
                     <td className="col-4">{qualifying.Constructor.name}</td>
                     <td className=" text-center col">{qualifying.Q1}</td>
-                    <td className=" text-center col">{qualifying.Q2 ? qualifying.Q2: "0:00.000"}</td>
-                    <td className=" text-center col">{qualifying.Q3 ? qualifying.Q3: "0:00.000"}</td>
+                    <td className=" text-center col">
+                      {qualifying.Q2 ? qualifying.Q2 : "0:00.000"}
+                    </td>
+                    <td className=" text-center col">
+                      {qualifying.Q3 ? qualifying.Q3 : "0:00.000"}
+                    </td>
                   </tr>
                 );
               })}
@@ -63,6 +71,7 @@ const QualifyingResults = (props) => {
           );
         })}
       </table>
+      </div>
       <hr />
     </div>
   );
