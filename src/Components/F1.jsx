@@ -37,7 +37,7 @@ const F1 = () => {
       <div className="container.fluid bg-dark p-3">
         <Next />
         <select
-          className="form-select bg-dark text-danger"
+          className="form-select bg-dark text-danger border-danger shadow-none"
           onChange={(e) => {
             navigate(`/F1/${e.target.value}`);
             navigate(0);
@@ -62,7 +62,7 @@ const F1 = () => {
           laps = item.Results[0].laps;
 
           return (
-            <div key={index} className="bg-black pt-2">
+            <div key={index} className="bg-black pt-2 container-fluid">
               {/* {console.log(item)} */}
 
               <h1 className="text-center text-light bg-black border border-danger border-5">
@@ -118,6 +118,7 @@ const F1 = () => {
                   </tbody>
                 </table>
               </div>
+              <hr />
             </div>
           );
         })}
@@ -128,24 +129,24 @@ const F1 = () => {
         <div className="bg-black container-fluid">
           <hr />
 
-        <h1 className="text-center bg-black text-danger border border-danger border-5">
-          Lap Times
-        </h1>
-        <div className="row row-cols-1 row-cols-md-6 g-2 justify-content-md-center bg-black">
-          {(() => {
-            const arr = [];
-            for (let i = laps - 12; i <= laps; i++) {
-              arr.push(
-                <div key={i} className="col mb-1">
-                  <Laptimes season={season} round={round} lapsx={i} />
-                </div>
-              );
-            }
-            return arr;
-          })()}
+          <h1 className="text-center bg-black text-danger border border-danger border-5">
+            Lap Times
+          </h1>
+          <div className="row row-cols-1 row-cols-md-6 g-1 justify-content-md-center bg-black">
+            {(() => {
+              const arr = [];
+              for (let i = laps - 12; i <= laps; i++) {
+                arr.push(
+                  <div key={i} className="col mb-0">
+                    <Laptimes season={season} round={round} lapsx={i} />
+                  </div>
+                );
+              }
+              return arr;
+            })()}
+          </div>
+          <hr />
         </div>
-      <hr />
-      </div>
       </div>
     </>
   );

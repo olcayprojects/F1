@@ -83,7 +83,6 @@ const ConstructorStandings = (props) => {
         })}
       </table>
       </div>
-      <hr />
     </div>
   );
 };

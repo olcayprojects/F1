@@ -69,6 +69,7 @@ const Pitstops = (props) => {
         );
       })}
     </div>
+    <hr />
     </div>
   );
 };
