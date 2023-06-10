@@ -6,7 +6,7 @@ const DriverStandings = (props) => {
 
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/driverStandings.json`;
+    url = `https://ergast.com/api/f1/${props.season}/driverStandings.json`;
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const DriverStandings = (props) => {
     <div className="bg-black container-fluid">
       <hr />
       <h1 className="text-center bg-black text-danger border border-danger border-5">
-        Driver Standings
+        Driver Standings {props.season}
       </h1>
       <div className="table-responsive">
         <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
@@ -48,7 +48,7 @@ const DriverStandings = (props) => {
                 CONSTRUCTOR
               </th>
               <th scope="col" className="bg-danger">
-                POINTS
+                PTS
               </th>
               <th scope="col" className="bg-danger">
                 WINS
@@ -63,10 +63,10 @@ const DriverStandings = (props) => {
               <tbody key={indexedDB}>
                 <tr key={indexedDB}>
                   <td className="col">{driver.position}</td>
-                  <td className="col-1 text-center">{driver.Driver.code}</td>
-                  <td className="col-3">
+                  <td className="col text-center">{driver.Driver.code}  </td>
+                  <td className="col-5">
                     {driver.Driver.givenName} {driver.Driver.familyName} (
-                    {driver.Driver.nationality})
+                    {driver.Driver.nationality}) {driver.Driver.dateOfBirth}
                   </td>
                   <td className="col-3">
                     {driver.Constructors[0].name} (

@@ -40,8 +40,8 @@ const Pitstops = (props) => {
             <thead className="border-dark">
               <tr className="text-black">
                 <th className="text-center bg-danger">DRV</th>
-                <th className="bg-danger">STOP</th>
-                <th className="bg-danger">LAP</th>
+                <th className="bg-danger text-center">STOP</th>
+                <th className="bg-danger text-center">LAP</th>
                 <th className="text-center bg-danger">TIME</th>
                 <th className="text-center bg-danger">DURATION</th>
               </tr>

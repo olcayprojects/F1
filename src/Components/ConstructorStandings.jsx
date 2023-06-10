@@ -6,7 +6,7 @@ const ConstructorStandings = (props) => {
 
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/constructorStandings.json`;
+    url = `https://ergast.com/api/f1/${props.season}/constructorStandings.json`;
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ const ConstructorStandings = (props) => {
     <div className="bg-black container-fluid">
       <hr />
       <h1 className="text-center bg-black text-danger border border-danger border-5">
-        Constructor Standings
+        Constructor Standings {props.season}
       </h1>
       <div className="table-responsive">
 

@@ -55,6 +55,8 @@ const F1 = () => {
           })}
         </select>
         <WinRacesInaSeason season={season2} />
+        <DriverStandings season={season2} round={round} />
+        <ConstructorStandings season={season2} round={round} />
 
         {sdata?.map((item, index) => {
           season = item.season;
@@ -124,8 +126,6 @@ const F1 = () => {
         })}
         <QualifyingResults season={season} round={round} />
         <Pitstops season={season} round={round} />
-        <DriverStandings season={season} round={round} />
-        <ConstructorStandings season={season} round={round} />
         <div className="bg-black container-fluid">
           <hr />
 
