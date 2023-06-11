@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/F1/static/css/main.073e0031.css",
-    "main.js": "/F1/static/js/main.43814280.js",
+    "main.js": "/F1/static/js/main.1ab292f7.js",
     "static/media/Spanish Grand Prix.png": "/F1/static/media/Spanish Grand Prix.dad19307e7ffcb694a22.png",
     "index.html": "/F1/index.html",
     "main.073e0031.css.map": "/F1/static/css/main.073e0031.css.map",
-    "main.43814280.js.map": "/F1/static/js/main.43814280.js.map"
+    "main.1ab292f7.js.map": "/F1/static/js/main.1ab292f7.js.map"
   },
   "entrypoints": [
     "static/css/main.073e0031.css",
-    "static/js/main.43814280.js"
+    "static/js/main.1ab292f7.js"
   ]
 }
