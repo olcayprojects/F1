@@ -14,7 +14,7 @@ const F1Race = () => {
   const { rounds = "1" } = useParams();
   const date = (d) => new Date(d).toDateString();
 
-  const url=`https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
+  const url = `https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
 
   useEffect(() => {
     fetch(url)
@@ -31,7 +31,14 @@ const F1Race = () => {
   return (
     <>
       <div className="container.fluid bg-dark p-3">
-       <h1 className="text-danger text-center cp" onClick={() =>{navigate("/")}}>Go to Home Page</h1>
+        <h1
+          className="text-danger text-center cp"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          Go to Home Page
+        </h1>
 
         {sdata?.map((item, index) => {
           season = item.season;
@@ -44,7 +51,8 @@ const F1Race = () => {
               {/* {console.log(item)} */}
 
               <h1 className="text-center text-light bg-black border border-danger border-5">
-                {item.raceName} #{item.round} ({item.time ? dateTime(item.date, item.time): item.date})
+                {item.raceName} #{item.round} (
+                {item.time ? dateTime(item.date, item.time) : item.date})
               </h1>
               <div className="table-responsive-sm">
                 <table className="table table-dark table-striped border-5 ">
