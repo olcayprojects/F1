@@ -1,8 +1,9 @@
+import scar from '../images/Auto_Racing_Yellow_Digiflag-SC.gif'
 export default function Loading() {
     return(
 
-      <div className="container bg-dark text-danger">
-    <h1 className="text-center"><i>Loading...</i></h1>;
+      <div className="container-fluid text-danger">
+    <img src={scar} className="rounded float-left" alt="Loading" srcset="" />
 
   </div>)
   }

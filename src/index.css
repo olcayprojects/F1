@@ -43,3 +43,8 @@ tr {
 }
 
 .cp { cursor: pointer; }
+
+select {
+  font-size: 30px !important;
+  text-align: center;
+}

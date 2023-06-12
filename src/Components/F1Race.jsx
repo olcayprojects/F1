@@ -1,35 +1,61 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import {Link, useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
 import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
+import Loading from "./Loading";
+
 
 const F1Race = () => {
   const [sdata, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  let url="";
+
   let season = "";
   let round = "";
   let laps = "";
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
-  const { rounds = "1" } = useParams();
+  const { rounds = 0 } = useParams();
   const date = (d) => new Date(d).toDateString();
 
-  const url = `https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
+  console.log(rounds);
+
+  if (rounds===0) {
+    url="http://ergast.com/api/f1/current/last/results.json"
+
+    
+  }
+  else{
+
+    url = `https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
+  }
+
 
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        setIsLoaded(true);
+
         setData(data["MRData"].RaceTable.Races);
         // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
+        setIsLoaded(true);
+
         console.log(err.message);
       });
   }, [url]);
 
+  if (!isLoaded) {
+    return <Loading />;
+  } else {
   return (
     <>
+        <Link to="/" className="btn btn-danger container-fluid"><h3>F1</h3></Link>
+
       <div className="container.fluid bg-dark p-3">
 
         {sdata?.map((item, index) => {
@@ -65,7 +91,7 @@ const F1Race = () => {
                         <tr key={index} className="text-danger">
                           <td className="col">{result.positionText}</td>
                           <td className="col">{result.grid}</td>
-                          <td className="col-5 cp"
+                          <td className="col-6 cp text-nowrap"
                           onClick={() => {
                             navigate("/ResultsDriver/" + item.season + "/" + result.Driver.driverId);
                           }}>
@@ -80,16 +106,16 @@ const F1Race = () => {
                             {date(result.Driver.dateOfBirth)}
                           </td>
                           <td className="col">{result.Constructor.name}</td>
-                          <td className="col-2">
+                          <td className="col-2 text-wrap">
                             {result.Time?.time
                               ? result.Time.time
                               : result.status}
                           </td>
                           <td className="col">{result.laps}</td>
-                          <td className="col-5">
-                            Average({result.FastestLap?.AverageSpeed?.speed}
-                            kph)Speed | Time({result.FastestLap?.Time.time}) |
-                            Lap({result.FastestLap?.lap})
+                          <td className={"col-6 text-nowrap "+(result.FastestLap?.rank ==='1' ? 'text-light text-uppercase': '')} style={{color:"gray"}}> ({result.FastestLap?.rank})
+                            Avg( {result.FastestLap?.AverageSpeed?.speed}
+                            kph )Speed | Time( {result.FastestLap?.Time.time} ) |
+                            Lap( {result.FastestLap?.lap} )
                           </td>
                         </tr>
                       );
@@ -112,7 +138,7 @@ const F1Race = () => {
           <div className="row row-cols-1 row-cols-md-6 g-1 justify-content-md-center bg-black">
             {(() => {
               const arr = [];
-              for (let i = laps - 12; i <= laps; i++) {
+              for (let i = laps - 5; i <= laps; i++) {
                 arr.push(
                   <div key={i} className="col mb-0">
                     <Laptimes season={season} round={round} lapsx={i} />
@@ -126,7 +152,9 @@ const F1Race = () => {
         </div>
       </div>
     </>
-  );
+
+);
+}
 };
 
 export default F1Race;

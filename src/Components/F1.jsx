@@ -1,25 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import QualifyingResults from "./QualifyingResults";
 import WinRacesInaSeason from "./WinRacesInaSeason";
 import DriverStandings from "./DriverStandings";
 import ConstructorStandings from "./ConstructorStandings";
-import Pitstops from "./Pitstops";
 import Next from "./Next";
-import Laptimes from "./Laptimes";
-import Images from "./Images";
 import RaceSchedule from "./RaceSchedule";
 import F1Race from "./F1Race";
+import Loading from "./Loading";
+
 
 
 const F1 = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const [sdata, setData] = useState([]);
-  let season = "";
   let round = "";
-  let laps = "";
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
-  const date = (d) => new Date(d).toDateString();
 
   const year = new Date().getFullYear();
   const years = Array.from(new Array(74), (val, index) => year - index);
@@ -28,14 +25,21 @@ const F1 = () => {
     fetch("https://ergast.com/api/f1/current/last/results.json")
       .then((response) => response.json())
       .then((data) => {
+        setIsLoaded(true);
+
         setData(data["MRData"].RaceTable.Races);
         // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
+        setIsLoaded(true);
+
         console.log(err.message);
       });
   }, []);
 
+  if (!isLoaded) {
+    return <Loading />;
+  } else {
   return (
     <>
       <div className="container.fluid bg-dark p-3">
@@ -48,8 +52,7 @@ const F1 = () => {
             navigate(0);
           }}
         >
-          <option value="" hidden>
-            Select Year for Drivers and Constructors Winning Races In a Season
+          <option value="" hidden>Select Year for Drivers and Constructors Winning Races In a Season 1950 - Now
           </option>
           {years.map((year, index) => {
             return (
@@ -68,7 +71,7 @@ const F1 = () => {
       
   
     </>
-  );
+  );}
 };
 
 export default F1;
