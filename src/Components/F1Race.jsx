@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
 import Pitstops from "./Pitstops";
-import Next from "./Next";
 import Laptimes from "./Laptimes";
-import Images from "./Images";
 
 const F1Race = () => {
   const [sdata, setData] = useState([]);
@@ -14,6 +12,7 @@ const F1Race = () => {
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = "1" } = useParams();
+  const date = (d) => new Date(d).toDateString();
 
   useEffect(() => {
     fetch(`https://ergast.com/api/f1/${season2}/${rounds}/results.json`)
@@ -30,7 +29,7 @@ const F1Race = () => {
   return (
     <>
       <div className="container.fluid bg-dark p-3">
-        <Next />
+       <h1 className="text-danger text-center cp" onClick={() =>{navigate("/")}}>Go to Home Page</h1>
 
         {sdata?.map((item, index) => {
           season = item.season;
@@ -43,7 +42,7 @@ const F1Race = () => {
               {/* {console.log(item)} */}
 
               <h1 className="text-center text-light bg-black border border-danger border-5">
-                {item.raceName} #{item.round} ({dateTime(item.date, item.time)})
+                {item.raceName} #{item.round} ({item.time ? dateTime(item.date, item.time): item.date})
               </h1>
               <div className="table-responsive-sm">
                 <table className="table table-dark table-striped border-5 ">
@@ -64,19 +63,19 @@ const F1Race = () => {
                         <tr key={index} className="text-danger">
                           <td className="col">{result.positionText}</td>
                           <td className="col">{result.grid}</td>
-                          <td className="col-4 ">
-                            {result.Driver.code}({result.number}){" "}
+                          <td className="col-5 ">
+                            {result.Driver.code}({result.number})_
                             <b>
                               <u>
                                 {result.Driver.givenName}{" "}
                                 {result.Driver.familyName}
                               </u>
                             </b>
-                            ({result.Driver.nationality}){" "}
-                            {result.Driver.dateOfBirth}
+                            _({result.Driver.nationality}){" "}
+                            {date(result.Driver.dateOfBirth)}
                           </td>
-                          <td className="col-1">{result.Constructor.name}</td>
-                          <td className="col-1">
+                          <td className="col">{result.Constructor.name}</td>
+                          <td className="col-2">
                             {result.Time?.time
                               ? result.Time.time
                               : result.status}

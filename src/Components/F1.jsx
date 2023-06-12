@@ -17,6 +17,7 @@ const F1 = () => {
   let laps = "";
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
+  const date = (d) => new Date(d).toDateString();
 
   const year = new Date().getFullYear();
   const years = Array.from(new Array(74), (val, index) => year - index);
@@ -65,7 +66,7 @@ const F1 = () => {
           round = item.round;
           laps = item.Results[0].laps;
 
-          const dateTime=(d,t) =>new Date(d+" "+t).toLocaleString();
+          const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
 
           return (
             <div key={index} className="bg-black pt-2 container-fluid">
@@ -73,7 +74,7 @@ const F1 = () => {
 
               <h1 className="text-center text-light bg-black border border-danger border-5">
                 {" "}
-                {item.raceName} #{item.round} ({dateTime(item.date,item.time)})
+                {item.raceName} #{item.round} ({dateTime(item.date, item.time)})
                 <Images name={item.raceName.split(" ")[0]} />
               </h1>
               <div className="table-responsive-sm">
@@ -95,16 +96,16 @@ const F1 = () => {
                         <tr key={index} className="text-danger">
                           <td className="col">{result.positionText}</td>
                           <td className="col">{result.grid}</td>
-                          <td className="col-4 ">
-                            {result.Driver.code}({result.number}){" "}
+                          <td className="col-5 ">
+                            {result.Driver.code}({result.number})_
                             <b>
                               <u>
                                 {result.Driver.givenName}{" "}
                                 {result.Driver.familyName}
                               </u>
                             </b>
-                            ({result.Driver.nationality}){" "}
-                            {result.Driver.dateOfBirth}
+                            _({result.Driver.nationality}){" "}
+                            {date(result.Driver.dateOfBirth)}
                           </td>
                           <td className="col-1">{result.Constructor.name}</td>
                           <td className="col-1">

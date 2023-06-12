@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const Next = () => {
   const [sdata, setData] = useState([]);
-  let navigate = useNavigate();
+
 
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Next = () => {
       {sdata?.map((data, index) => {
           const dateTime=(d,t) =>new Date(d+" "+t).toLocaleString();
         return (
-          <h1 key={index} title="click Go to HomePage" className="blink bg-dark cp" onClick={() =>{navigate("/")}} >
+          <h1 key={index} title="click Go to HomePage" className="blink bg-dark cp" >
             <marquee className="blink">
               Next Race #{data.round} {data.raceName} | {dateTime(data.date,data.time)}{" "}
               | First Practice:

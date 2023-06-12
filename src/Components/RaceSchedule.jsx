@@ -2,7 +2,6 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-
 const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ const RaceSchedule = (props) => {
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
 
-        console.log(data["MRData"].RaceTable.Races);
+        //console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -45,15 +44,24 @@ const RaceSchedule = (props) => {
           </thead>
           <tbody className="text-danger">
             {sdata?.map((rs, index) => {
-                const title="Click go to "+rs.raceName+" details ";
-                
-                let dateTime =new Date(rs?.date+" "+rs?.time).toLocaleString();
-               
+              const title = "Click go to " + rs.raceName + " details ";
+
+              const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
+
               return (
-                <tr className="cp" title={title} key={index} onClick={() =>{navigate("/F1Race/"+props.season+"/"+rs.round)}}>
+                <tr
+                  className="cp"
+                  title={title}
+                  key={index}
+                  onClick={() => {
+                    navigate("/F1Race/" + props.season + "/" + rs.round);
+                  }}
+                >
                   <td className="col text-center">{rs.round}</td>
                   <td className="col-3">{rs.raceName}</td>
-                  <td className="col text-center">{dateTime}</td>
+                  <td className="col text-center">
+                    {rs?.time ? dateTime(rs?.date, rs?.time) : rs?.date}
+                  </td>
                   <td className="col text-center">{rs.Sprint?.date}</td>
                   <td className="col-5">{rs.Circuit.circuitName}</td>
                 </tr>

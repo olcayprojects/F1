@@ -48,9 +48,9 @@ const QualifyingResults = (props) => {
               {item?.QualifyingResults?.map((qualifying, indexQ) => {
                 return (
                   <tr key={indexQ}>
-                    <th className="col" scope="row">
+                    <td className="col">
                       {qualifying.position}
-                    </th>
+                    </td>
                     <td className="col">{qualifying.number}</td>
                     <td className="col-4">
                       {qualifying.Driver.givenName}{" "}
