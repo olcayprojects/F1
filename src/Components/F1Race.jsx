@@ -14,8 +14,10 @@ const F1Race = () => {
   const { rounds = "1" } = useParams();
   const date = (d) => new Date(d).toDateString();
 
+  const url=`https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
+
   useEffect(() => {
-    fetch(`https://ergast.com/api/f1/${season2}/${rounds}/results.json`)
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
@@ -24,7 +26,7 @@ const F1Race = () => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, []);
+  }, [url]);
 
   return (
     <>
