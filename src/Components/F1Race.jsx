@@ -31,14 +31,6 @@ const F1Race = () => {
   return (
     <>
       <div className="container.fluid bg-dark p-3">
-        <h1
-          className="text-danger text-center cp"
-          onClick={() => {
-            navigate("/");
-          }}
-        >
-          Go to Home Page
-        </h1>
 
         {sdata?.map((item, index) => {
           season = item.season;
@@ -73,7 +65,10 @@ const F1Race = () => {
                         <tr key={index} className="text-danger">
                           <td className="col">{result.positionText}</td>
                           <td className="col">{result.grid}</td>
-                          <td className="col-5 ">
+                          <td className="col-5 cp"
+                          onClick={() => {
+                            navigate("/ResultsDriver/" + item.season + "/" + result.Driver.driverId);
+                          }}>
                             {result.Driver.code}({result.number})_
                             <b>
                               <u>

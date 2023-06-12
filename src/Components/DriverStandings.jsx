@@ -1,8 +1,12 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import ResultsDriver from "./ResultsDriver";
+import { useParams, useNavigate } from "react-router-dom";
+
 
 const DriverStandings = (props) => {
   const [sdata, setData] = useState([]);
+  const navigate = useNavigate();
 
   let url = "";
   if (props.season) {
@@ -59,13 +63,18 @@ const DriverStandings = (props) => {
             </tr>
           </thead>
           {sdata?.map((driver, indexedDB) => {
+            
             return (
               <tbody key={indexedDB}>
                 <tr key={indexedDB}>
                   <td className="col">{driver.position}</td>
                   <td className="col text-center">{driver.Driver.code}  </td>
-                  <td className="col-5">
-                    {driver.Driver.givenName} {driver.Driver.familyName} (
+                  <td className="col-5 cp"
+                  onClick={() => {
+                    navigate("/ResultsDriver/" + props.season + "/" + driver.Driver.driverId);
+                  }}
+                  >
+                    <b>{driver.Driver.givenName} {driver.Driver.familyName}</b> (
                     {driver.Driver.nationality}) {driver.Driver.dateOfBirth}
                   </td>
                   <td className="col-3">
