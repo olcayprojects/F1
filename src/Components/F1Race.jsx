@@ -5,6 +5,7 @@ import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 
+
 const F1Race = () => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -46,8 +47,10 @@ const F1Race = () => {
   } else {
     return (
       <>
-        <Link to="/" className="btn btn-danger container-fluid">
-          <h3>F1</h3>
+        <Link to="/" className="btn btn-danger container-fluid p-0">
+          
+          <img src={require("../images/race-car.png")} className="img p-0 mx-0" style={{maxWidth:"10%"}} alt="" />
+
         </Link>
 
         <div className="container.fluid bg-dark p-3">

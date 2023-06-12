@@ -8,8 +8,6 @@ import RaceSchedule from "./RaceSchedule";
 import F1Race from "./F1Race";
 import Loading from "./Loading";
 
-
-
 const F1 = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 

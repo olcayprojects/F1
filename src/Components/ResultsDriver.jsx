@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
 
 const ResultsDriver = () => {
@@ -48,8 +48,15 @@ const ResultsDriver = () => {
   } else {
     return (
       <div className="bg-black container-fluid">
-        <Link to="/" className="btn btn-danger container-fluid"><h3>F1</h3></Link>
-       
+        <Link to="/" className="btn btn-danger container-fluid">
+          <img
+            src={require("../images/race-car.png")}
+            className="img p-0 mx-0"
+            style={{ maxWidth: "10%" }}
+            alt=""
+          />
+        </Link>
+
         <div className="table-responsive">
           <h1 className="text-center bg-black text-light border border-danger border-5">
             Driver Results {season2}
@@ -85,38 +92,50 @@ const ResultsDriver = () => {
             </thead>
             {sdata?.map((item, index) => {
               return (
-                <>
+                <tbody key={index}>
                   {item?.Results?.map((results, indexQ) => {
                     return (
-                      <tbody key={indexQ}>
-                        <tr key={index}>
-                          <td className="col">
-                            Round#{item.round} <b> {item.raceName}</b> (
-                            {item.date})
-                          </td>
+                      <tr key={indexQ}>
+                        <td className="col">
+                          Round#{item.round} <b> {item.raceName}</b> (
+                          {item.date})
+                        </td>
 
-                          <td className={"col "+(results.positionText==="1" ? "bg-black text-danger" : "") }>{results.positionText}</td>
-                          <td className="col">{results.grid}</td>
-                          <td className="col">{results.Constructor.name}</td>
-                          <td className="col">{results.laps}</td>
-                          <td className=" text-center col">
-                            {results.Time?.time
-                              ? results.Time.time
-                              : results.status}
-                          </td>
-                          <td className=" text-center col">{results.points}</td>
+                        <td
+                          className={
+                            "col " +
+                            (results.positionText === "1"
+                              ? "bg-black text-danger"
+                              : "")
+                          }
+                        >
+                          {results.positionText}
+                        </td>
+                        <td className="col">{results.grid}</td>
+                        <td className="col">{results.Constructor.name}</td>
+                        <td className="col">{results.laps}</td>
+                        <td className=" text-center col">
+                          {results.Time?.time
+                            ? results.Time.time
+                            : results.status}
+                        </td>
+                        <td className=" text-center col">{results.points}</td>
 
-                          <td className={"text-center col "+(results.FastestLap?.rank==="1"?"bg-black":"") }>
-                            {results.FastestLap?.AverageSpeed.speed}
-                            {results.FastestLap?.AverageSpeed.units}-
-                            {results.FastestLap?.Time.time}-
-                            {results.FastestLap?.lap}-{results.FastestLap?.rank}
-                          </td>
-                        </tr>
-                      </tbody>
+                        <td
+                          className={
+                            "text-center col " +
+                            (results.FastestLap?.rank === "1" ? "bg-black" : "")
+                          }
+                        >
+                          {results.FastestLap?.AverageSpeed.speed}
+                          {results.FastestLap?.AverageSpeed.units}-
+                          {results.FastestLap?.Time.time}-
+                          {results.FastestLap?.lap}-{results.FastestLap?.rank}
+                        </td>
+                      </tr>
                     );
                   })}
-                </>
+                </tbody>
               );
             })}
           </table>

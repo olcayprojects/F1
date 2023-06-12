@@ -3,7 +3,7 @@ export default function Loading() {
     return(
 
       <div className="container-fluid text-danger">
-    <img src={scar} className="rounded float-left" alt="Loading" srcset="" />
+    <img src={scar} className="rounded float-left" alt="Loading" srcSet="" />
 
   </div>)
   }
