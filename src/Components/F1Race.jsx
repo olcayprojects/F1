@@ -23,7 +23,7 @@ const F1Race = () => {
   console.log(rounds);
 
   if (rounds===0) {
-    url="http://ergast.com/api/f1/current/last/results.json"
+    url="https://ergast.com/api/f1/current/last/results.json"
 
     
   }
