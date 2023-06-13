@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/F1/static/css/main.9cab3a1e.css",
-    "main.js": "/F1/static/js/main.265c4d61.js",
+    "main.js": "/F1/static/js/main.5176fab2.js",
     "static/media/Auto_Racing_Yellow_Digiflag-SC.gif": "/F1/static/media/Auto_Racing_Yellow_Digiflag-SC.49e620a0557c9b457ce8.gif",
     "static/media/race-car.png": "/F1/static/media/race-car.0d2a080c2ec4104bebe2.png",
     "index.html": "/F1/index.html",
     "main.9cab3a1e.css.map": "/F1/static/css/main.9cab3a1e.css.map",
-    "main.265c4d61.js.map": "/F1/static/js/main.265c4d61.js.map"
+    "main.5176fab2.js.map": "/F1/static/js/main.5176fab2.js.map"
   },
   "entrypoints": [
     "static/css/main.9cab3a1e.css",
-    "static/js/main.265c4d61.js"
+    "static/js/main.5176fab2.js"
   ]
 }
