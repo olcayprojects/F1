@@ -6,6 +6,12 @@ const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
   const navigate = useNavigate();
 
+  const dateNow= new Date();
+
+
+
+  console.log();
+
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}.json`;
@@ -46,21 +52,24 @@ const RaceSchedule = (props) => {
             {sdata?.map((rs, index) => {
               const title = "Click go to " + rs.raceName + " details ";
 
-              const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
+              const dateTime = (d, t) => new Date(d + " " + t);
 
               return (
                 <tr
                   className="cp"
                   title={title}
                   key={index}
-                  onClick={() => {
-                    navigate("/F1Race/" + props.season + "/" + rs.round);
-                  }}
+                 
+                  onClick={() =>dateTime(rs.date,rs.time) <dateNow  ? navigate("/F1Race/" + props.season + "/" + rs.round):""}
+                    
+                   
                 >
                   <td className="col text-center">{rs.round}</td>
                   <td className="col-3">{rs.raceName}</td>
                   <td className="col text-center">
-                    {rs?.time ? dateTime(rs?.date, rs?.time) : rs?.date}
+                    {dateTime(rs.date,rs.time) > dateNow   ? dateTime(rs.date,rs.time).toLocaleString():<b>{dateTime(rs.date,rs.time).toLocaleString()}</b>}
+                    {console.log(dateTime(rs.date,rs.time),"**",dateNow)}                 
+                    
                   </td>
                   <td className="col text-center">{rs.Sprint?.date}</td>
                   <td className="col-5">{rs.Circuit.circuitName}</td>

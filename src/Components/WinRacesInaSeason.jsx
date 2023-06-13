@@ -61,7 +61,10 @@ const WinRacesInaSeason = (props) => {
                   <td className="col">{item.Results[0].laps}</td>
                   <td className="col">{item.Results[0].Time.time}</td>
 
-                  <td className="col">
+                  <td className={
+                            "text-center col " +
+                            (item.Results[0].FastestLap?.rank === "1" ? "bg-black" : "")
+                          }>
                     Avg Speed(
                     {item.Results[0].FastestLap?.AverageSpeed?.speed
                       ? item.Results[0].FastestLap.AverageSpeed.speed

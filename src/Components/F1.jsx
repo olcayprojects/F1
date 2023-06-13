@@ -42,6 +42,7 @@ const F1 = () => {
     <>
       <div className="container.fluid bg-dark p-3">
         <Next />
+        <RaceSchedule season={season2} />
         <F1Race/>
         <select
           className="form-select bg-dark text-danger border-danger shadow-none"
@@ -60,7 +61,6 @@ const F1 = () => {
             );
           })}
         </select>
-        <RaceSchedule season={season2} />
         <WinRacesInaSeason season={season2} />
         <DriverStandings season={season2} round={round} />
         <ConstructorStandings season={season2} round={round} />

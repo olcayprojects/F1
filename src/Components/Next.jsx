@@ -22,7 +22,7 @@ const Next = () => {
       {sdata?.map((data, index) => {
           const dateTime=(d,t) =>new Date(d+" "+t).toLocaleString();
         return (
-          <h1 key={index} title="click Go to HomePage" className="blink bg-dark cp" >
+          <h1 key={index} className="blink bg-dark" >
             <marquee className="blink">
               Next Race #{data.round} {data.raceName} | {dateTime(data.date,data.time)}{" "}
               | First Practice:
