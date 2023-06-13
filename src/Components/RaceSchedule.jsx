@@ -61,14 +61,12 @@ const RaceSchedule = (props) => {
                   key={index}
                  
                   onClick={() =>dateTime(rs.date,rs.time) <dateNow  ? navigate("/F1Race/" + props.season + "/" + rs.round):""}
-                    
-                   
+                                       
                 >
                   <td className="col text-center">{rs.round}</td>
                   <td className="col-3">{rs.raceName}</td>
                   <td className="col text-center">
                     {dateTime(rs.date,rs.time) > dateNow   ? dateTime(rs.date,rs.time).toLocaleString():<b>{dateTime(rs.date,rs.time).toLocaleString()}</b>}
-                    {console.log(dateTime(rs.date,rs.time),"**",dateNow)}                 
                     
                   </td>
                   <td className="col text-center">{rs.Sprint?.date}</td>

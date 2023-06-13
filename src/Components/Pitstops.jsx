@@ -30,7 +30,7 @@ const Pitstops = (props) => {
       <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
         Pit Stops
       </h1>
-      <div className="table-responsive-sm">
+      <div className="table-responsive">
         {sdata?.map((data, index) => {
           return (
             <table

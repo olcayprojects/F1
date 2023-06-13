@@ -5,10 +5,38 @@ import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 
+import { Box, Tab, Tabs, TabContext } from "@mui/material";
+import { blue, red, cyan } from "@mui/material/colors";
+
+import { createTheme } from "@mui/material/styles";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      light: "#757ce8",
+      main: "#3f50b5",
+      dark: "#002884",
+      contrastText: "#fff",
+    },
+    secondary: {
+      light: "#ff7961",
+      main: "#f44336",
+      dark: "#ba000d",
+      contrastText: "#000",
+    },
+  },
+});
 
 const F1Race = () => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const [currentTabIndex, setCurrentTabIndex] = useState(0);
+
+  const handleTabChange = (e, tabIndex) => {
+    console.log(tabIndex);
+    setCurrentTabIndex(tabIndex);
+  };
 
   let url = "";
 
@@ -48,9 +76,12 @@ const F1Race = () => {
     return (
       <>
         <Link to="/" className="btn btn-danger container-fluid p-0">
-          
-          <img src={require("../images/race-car.png")} className="img p-0 mx-0" style={{maxWidth:"10%"}} alt="" />
-
+          <img
+            src={require("../images/race-car.png")}
+            className="img p-0 mx-0"
+            style={{ maxWidth: "10%" }}
+            alt=""
+          />
         </Link>
 
         <div className="container.fluid bg-dark p-3">
@@ -142,31 +173,66 @@ const F1Race = () => {
               </div>
             );
           })}
-          
-          
-          <QualifyingResults season={season} round={round} />
-          <Pitstops season={season} round={round} />
-          <div className="bg-black container-fluid">
-            <hr />
 
-            <h1 className="text-center bg-black text-danger border border-danger border-5">
-              Lap Times
-            </h1>
-            <div className="row row-cols-1 row-cols-md-6 g-1 justify-content-md-center bg-black">
-              {(() => {
-                const arr = [];
-                for (let i = laps - 5; i <= laps; i++) {
-                  arr.push(
-                    <div key={i} className="col mb-0">
-                      <Laptimes season={season} round={round} lapsx={i} />
-                    </div>
-                  );
-                }
-                return arr;
-              })()}
-            </div>
-            <hr />
-          </div>
+          <Tabs
+            value={currentTabIndex}
+            onChange={handleTabChange}
+            centered
+            variant="standard"
+            sx={{
+              "& .MuiTabs-indicator": { backgroundColor: "#FFFFFF" },
+              "& .MuiTab-root": { color: red[500], fontSize: "22px" },
+              "& .Mui-selected": { color: "#FFFF", fontSize: "22px" },
+              boxShadow: 4,
+              p: 1,
+              borderRadius: 1,
+              borderColor: "primary.main",
+            }}
+          >
+            <Tab label="[Qualifying Results]" />
+            <Tab label="[Pit Stops]" />
+            <Tab label="[Lap Times]" />
+          </Tabs>
+
+          {currentTabIndex === 0 && (
+            <Box
+              sx={{
+                p: 1,
+              }}
+            >
+              <QualifyingResults season={season} round={round} />
+            </Box>
+          )}
+
+          {currentTabIndex === 1 && (
+            <Box sx={{ p: 1 }}>
+              <Pitstops season={season} round={round} />
+            </Box>
+          )}
+
+          {currentTabIndex === 2 && (
+            <Box sx={{ p: 1 }}>
+              <div className="bg-black container-fluid">
+                <h1 className="text-center bg-black text-danger border border-danger border-5">
+                  Lap Times
+                </h1>
+                <div className="row row-cols-1 row-cols-md-6 g-1 justify-content-md-center bg-black">
+                  {(() => {
+                    const arr = [];
+                    for (let i = laps - 5; i <= laps; i++) {
+                      arr.push(
+                        <div key={i} className="col mb-0">
+                          <Laptimes season={season} round={round} lapsx={i} />
+                        </div>
+                      );
+                    }
+                    return arr;
+                  })()}
+                </div>
+                <hr />
+              </div>
+            </Box>
+          )}
         </div>
       </>
     );
