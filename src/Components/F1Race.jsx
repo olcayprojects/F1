@@ -142,6 +142,8 @@ const F1Race = () => {
               </div>
             );
           })}
+          
+          
           <QualifyingResults season={season} round={round} />
           <Pitstops season={season} round={round} />
           <div className="bg-black container-fluid">
