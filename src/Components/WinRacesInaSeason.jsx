@@ -5,6 +5,9 @@ const WinRacesInaSeason = (props) => {
   const [sdata, setData] = useState([]);
   const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
 
+  let navigate = useNavigate();
+
+
   const { season2 = "2023" } = useParams();
   let url = "";
   if (props.season) {
@@ -27,9 +30,6 @@ const WinRacesInaSeason = (props) => {
 
   return (
     <div className="bg-black container-fluid">
-      <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
-        Drivers and Constructors Winning Races In a Season {season2}
-      </h1>
       <div className="table-responsive">
         <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
           <thead className="border-dark">
@@ -46,12 +46,28 @@ const WinRacesInaSeason = (props) => {
           {sdata?.map((item, index) => {
             return (
               <tbody key={index}>
-                <tr className="bg-dark">
-                  <td className="col">
+                <tr className="bg-dark"
+
+                >
+                  <td className="col cp" 
+                                  onClick={() => navigate("/F1Race/" + props.season + "/" + item.round)}
+
+                  
+                  >
                     #{item.round} <b>{item.raceName} </b>
                     {item.time ? dateTime(item.date, item.time) : item.date}
                   </td>
-                  <td className="col">
+                  <td className="col cp" 
+                  onClick={() => {
+                    navigate(
+                      "/ResultsDriver/" +
+                        item.season +
+                        "/" +
+                        item.Results[0].Driver.driverId
+                    );
+                  }}
+                  
+                  >
                     {item.Results[0].Driver.givenName}{" "}
                     {item.Results[0].Driver.familyName}
                   </td>

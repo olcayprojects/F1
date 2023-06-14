@@ -25,9 +25,7 @@ const QualifyingResults = (props) => {
   return (
     
     <div className="bg-black container-fluid">
-      <h1 className="text-center bg-black text-danger border border-danger border-5">
-        Qualifying Results
-      </h1>
+
       <div className="table-responsive">
       <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5">
         <thead className="border-dark">

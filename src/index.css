@@ -42,9 +42,22 @@ tr {
   border-color: red;
 }
 
-.cp { cursor: pointer; }
+.cp {
+  cursor: pointer;
+}
 
 select {
   font-size: 30px !important;
   text-align: center;
+}
+
+.raceComplete {
+}
+
+.raceNotComplete {
+  text-align: right;
+}
+
+.op{
+  opacity: 0.8;
 }

@@ -34,7 +34,6 @@ const F1Race = () => {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
 
   const handleTabChange = (e, tabIndex) => {
-    console.log(tabIndex);
     setCurrentTabIndex(tabIndex);
   };
 
@@ -117,7 +116,7 @@ const F1Race = () => {
                         return (
                           <tr key={index} className="text-danger">
                             <td className="col">{result.positionText}</td>
-                            <td className="col">{result.grid}</td>
+                            <td className="col op">{result.grid}</td>
                             <td
                               className="col-6 cp text-nowrap"
                               onClick={() => {
@@ -129,7 +128,7 @@ const F1Race = () => {
                                 );
                               }}
                             >
-                              {result.Driver.code}({result.number})_
+                              {result.Driver.code}(#{result.number})_
                               <b>
                                 <u>
                                   {result.Driver.givenName}{" "}
@@ -139,29 +138,27 @@ const F1Race = () => {
                               _({result.Driver.nationality}){" "}
                               {date(result.Driver.dateOfBirth)}
                             </td>
-                            <td className="col">{result.Constructor.name}</td>
+                            <td className="col op">{result.Constructor.name}</td>
                             <td className="col-2 text-wrap">
                               {result.Time?.time
                                 ? result.Time.time
                                 : result.status}
                             </td>
-                            <td className="col">{result.laps}</td>
+                            <td className="col op">{result.laps}</td>
                             <td
                               className={
                                 "col-6 text-nowrap " +
                                 (result.FastestLap?.rank === "1"
-                                  ? "text-light text-uppercase"
+                                  ? "text-warning"
                                   : "")
                               }
-                              style={{ color: "gray" }}
+                             
                             >
                               {" "}
-                              ({result.FastestLap?.rank}) Avg({" "}
+                              (#<b>{result.FastestLap?.rank}</b>#){" "}
+                              <b>{result.FastestLap?.Time.time}</b>{" "}
                               {result.FastestLap?.AverageSpeed?.speed}
-                              kph )Speed | Time( {
-                                result.FastestLap?.Time.time
-                              }{" "}
-                              ) | Lap( {result.FastestLap?.lap} )
+                              kph {result.FastestLap?.lap}
                             </td>
                           </tr>
                         );
@@ -213,9 +210,6 @@ const F1Race = () => {
           {currentTabIndex === 2 && (
             <Box sx={{ p: 1 }}>
               <div className="bg-black container-fluid">
-                <h1 className="text-center bg-black text-danger border border-danger border-5">
-                  Lap Times
-                </h1>
                 <div className="row row-cols-1 row-cols-md-6 g-1 justify-content-md-center bg-black">
                   {(() => {
                     const arr = [];

@@ -35,7 +35,6 @@ const F1 = () => {
 
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   const handleTabChange = (e, tabIndex) => {
-    console.log(tabIndex);
     setCurrentTabIndex(tabIndex);
   };
 
@@ -91,7 +90,7 @@ const F1 = () => {
               );
             })}
           </select>
-
+          <h1 className="text-black bg-danger text-center p-0 m-0">{season2}</h1>
           <Tabs
             value={currentTabIndex}
             onChange={handleTabChange}
@@ -103,7 +102,7 @@ const F1 = () => {
               "& .Mui-selected": { color: "#FFFF", fontSize: "22px" },
               boxShadow: 4,
               p: 1,
-              borderRadius: 1,
+              borderRadius: 0,
               borderColor: "primary.main",
             }}
           >
@@ -115,7 +114,7 @@ const F1 = () => {
           {currentTabIndex === 0 && (
             <Box
               sx={{
-                p: 1,
+                p: 0,
               }}
             >
               <WinRacesInaSeason season={season2} />
@@ -123,13 +122,13 @@ const F1 = () => {
           )}
 
           {currentTabIndex === 1 && (
-            <Box sx={{ p: 1 }}>
+            <Box sx={{ p: 0 }}>
               <DriverStandings season={season2} round={round} />
             </Box>
           )}
 
           {currentTabIndex === 2 && (
-            <Box sx={{ p: 1 }}>
+            <Box sx={{ p: 0 }}>
               <ConstructorStandings season={season2} round={round} />
             </Box>
           )}

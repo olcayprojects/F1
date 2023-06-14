@@ -14,8 +14,11 @@ const ResultsDriver = () => {
   let drvdateOfBirth = "";
   let drvnationality = "";
   let drvpermanentNumber = "";
+  let i,
+    j = "";
 
-  let url = `https://ergast.com/api/f1/${season2}/drivers/${driver}/results.json`;
+  // let url = `https://ergast.com/api/f1/${season2}/drivers/${driver}/results.json`;
+  let url = `https://ergast.com/api/f1/drivers/${driver}/results.json?limit=400`;
 
   useEffect(() => {
     fetch(url)
@@ -36,7 +39,7 @@ const ResultsDriver = () => {
     drvgivenName = sdata[0].Results[0].Driver.givenName;
     drvfamilyName = sdata[0].Results[0].Driver.familyName;
     drvcode = sdata[0].Results[0].Driver.code;
-    drvdateOfBirth = sdata[0].Results[0].Driver.dateOfBirth;
+    drvdateOfBirth = new Date(sdata[0].Results[0].Driver.dateOfBirth).toDateString();
     drvnationality = sdata[0].Results[0].Driver.nationality;
     drvpermanentNumber = sdata[0].Results[0].Driver.permanentNumber
       ? sdata[0].Results[0].Driver.permanentNumber
@@ -59,7 +62,7 @@ const ResultsDriver = () => {
 
         <div className="table-responsive">
           <h1 className="text-center bg-black text-light border border-danger border-5">
-            Driver Results {season2}
+            Driver Results
           </h1>
 
           <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5 caption-top">
@@ -69,7 +72,7 @@ const ResultsDriver = () => {
               </h3>
               <h4>
                 {"(" +
-                  drvcode +
+                  drvcode +"#"+
                   drvpermanentNumber +
                   ") " +
                   drvdateOfBirth +
@@ -79,8 +82,8 @@ const ResultsDriver = () => {
             </caption>
             <thead className="border-dark">
               <tr className="text-black">
+                <th className="bg-danger">Season</th>
                 <th className="bg-danger">Race Name</th>
-
                 <th className="bg-danger">Pos</th>
                 <th className="text-center bg-danger">Grid</th>
                 <th className="text-center bg-danger">Constructor</th>
@@ -91,11 +94,15 @@ const ResultsDriver = () => {
               </tr>
             </thead>
             {sdata?.map((item, index) => {
+              i = item.season;
+
               return (
                 <tbody key={index}>
                   {item?.Results?.map((results, indexQ) => {
+
                     return (
                       <tr key={indexQ}>
+                        <td>{item.season}</td>
                         <td className="col">
                           Round#{item.round} <b> {item.raceName}</b> (
                           {item.date})
@@ -103,15 +110,15 @@ const ResultsDriver = () => {
 
                         <td
                           className={
-                            "col " +
-                            (results.positionText === "1"
+                            "col text-center " +
+                            (results.positionText in ["1","2","3","4"] 
                               ? "bg-black text-danger"
                               : "")
                           }
                         >
                           {results.positionText}
                         </td>
-                        <td className="col">{results.grid}</td>
+                        <td className="col text-center">{results.grid}</td>
                         <td className="col">{results.Constructor.name}</td>
                         <td className="col">{results.laps}</td>
                         <td className=" text-center col">
@@ -124,13 +131,13 @@ const ResultsDriver = () => {
                         <td
                           className={
                             "text-center col " +
-                            (results.FastestLap?.rank === "1" ? "bg-black" : "")
+                            (results.FastestLap?.rank in ["1","2","3","4"]  ? "bg-black" : "")
                           }
                         >
-                          {results.FastestLap?.AverageSpeed.speed}
+                          #<b>{results.FastestLap?.rank}</b># <b>{results.FastestLap?.Time.time}</b>-
+                           {results.FastestLap?.AverageSpeed.speed}
                           {results.FastestLap?.AverageSpeed.units}-
-                          {results.FastestLap?.Time.time}-
-                          {results.FastestLap?.lap}-{results.FastestLap?.rank}
+                          {results.FastestLap?.lap}
                         </td>
                       </tr>
                     );

@@ -6,9 +6,7 @@ const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
   const navigate = useNavigate();
 
-  const dateNow= new Date();
-
-
+  const dateNow = new Date();
 
   console.log();
 
@@ -56,18 +54,24 @@ const RaceSchedule = (props) => {
 
               return (
                 <tr
-                  className="cp"
+                  className="col"
                   title={title}
                   key={index}
-                 
-                  onClick={() =>dateTime(rs.date,rs.time) <dateNow  ? navigate("/F1Race/" + props.season + "/" + rs.round):""}
-                                       
+                  onClick={() =>
+                    dateTime(rs.date, rs.time) < dateNow ||
+                    props.season !== "2023"
+                      ? navigate("/F1Race/" + props.season + "/" + rs.round)
+                      : ""
+                  }
                 >
                   <td className="col text-center">{rs.round}</td>
-                  <td className="col-3">{rs.raceName}</td>
-                  <td className="col text-center">
-                    {dateTime(rs.date,rs.time) > dateNow   ? dateTime(rs.date,rs.time).toLocaleString():<b>{dateTime(rs.date,rs.time).toLocaleString()}</b>}
-                    
+                  <td className="col">{rs.raceName}</td>
+                  <td className={"col "+(dateTime(rs.date, rs.time) < dateNow ?"raceComplete cp":"raceNotComplete")}>
+                    {dateTime(rs.date, rs.time) > dateNow ? (
+                      dateTime(rs.date, rs.time).toLocaleString()
+                    ) : rs.time ? dateTime(rs.date, rs.time).toLocaleString() : (
+                      rs.date
+                    )}
                   </td>
                   <td className="col text-center">{rs.Sprint?.date}</td>
                   <td className="col-5">{rs.Circuit.circuitName}</td>
