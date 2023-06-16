@@ -148,9 +148,10 @@ const F1Race = () => {
                             <td
                               className={
                                 "col-6 text-nowrap " +
-                                (result.FastestLap?.rank === "1"
-                                  ? "text-warning"
+                                (result.FastestLap?.rank in ["1","2","3","4"]
+                                  ? ["text-warning","text-info","text-success","text-primary"].map((v, i) =>  +" "+{v})
                                   : "")
+
                               }
                              
                             >
