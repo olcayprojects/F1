@@ -2,7 +2,7 @@ import React from 'react'
 
 const F1results = () => {
   return (
-    <div>F1results</div>
+    <div>F1results_</div>
   )
 }
 
