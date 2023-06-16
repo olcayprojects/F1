@@ -6,7 +6,7 @@ const ResultsDriver = () => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [sdata, setData] = useState([]);
-  const { season2 = "2023" } = useParams();
+  //const { season2 = "2023" } = useParams();
   const { driver = "alonso" } = useParams();
   let drvgivenName = "";
   let drvfamilyName = "";

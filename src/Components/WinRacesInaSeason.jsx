@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const WinRacesInaSeason = (props) => {
@@ -6,7 +6,6 @@ const WinRacesInaSeason = (props) => {
   const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
 
   let navigate = useNavigate();
-
 
   const { season2 = "2023" } = useParams();
   let url = "";
@@ -46,27 +45,26 @@ const WinRacesInaSeason = (props) => {
           {sdata?.map((item, index) => {
             return (
               <tbody key={index}>
-                <tr className="bg-dark"
-
-                >
-                  <td className="col cp" 
-                                  onClick={() => navigate("/F1Race/" + props.season + "/" + item.round)}
-
-                  
+                <tr className="bg-dark">
+                  <td
+                    className="col cp"
+                    onClick={() =>
+                      navigate("/F1Race/" + props.season + "/" + item.round)
+                    }
                   >
                     #{item.round} <b>{item.raceName} </b>
                     {item.time ? dateTime(item.date, item.time) : item.date}
                   </td>
-                  <td className="col cp" 
-                  onClick={() => {
-                    navigate(
-                      "/ResultsDriver/" +
-                        item.season +
-                        "/" +
-                        item.Results[0].Driver.driverId
-                    );
-                  }}
-                  
+                  <td
+                    className="col cp"
+                    onClick={() => {
+                      navigate(
+                        "/ResultsDriver/" +
+                          item.season +
+                          "/" +
+                          item.Results[0].Driver.driverId
+                      );
+                    }}
                   >
                     {item.Results[0].Driver.givenName}{" "}
                     {item.Results[0].Driver.familyName}
@@ -77,11 +75,19 @@ const WinRacesInaSeason = (props) => {
                   <td className="col">{item.Results[0].laps}</td>
                   <td className="col">{item.Results[0].Time.time}</td>
 
-                  <td className={
-                            "text-center col " +
-                            (item.Results[0].FastestLap?.rank === "1" ? "bg-black" : "")
-                          }>
-                    Avg Speed(
+                  <td
+                    className={
+                      "text-center col " +
+                      (item.Results[0].FastestLap?.rank === "1"
+                        ? "bg-black"
+                        : "")
+                    }
+                  >
+                    #{item.Results[0].FastestLap?.rank}#{" "}
+                    {item.Results[0].FastestLap?.Time?.time
+                      ? item.Results[0].FastestLap?.Time?.time
+                      : " "}{" "}
+                    AvgSpd(
                     {item.Results[0].FastestLap?.AverageSpeed?.speed
                       ? item.Results[0].FastestLap.AverageSpeed.speed
                       : " "}
@@ -89,11 +95,7 @@ const WinRacesInaSeason = (props) => {
                     {item.Results[0].FastestLap?.lap
                       ? item.Results[0].FastestLap.lap
                       : " "}
-                    ) Time(
-                    {item.Results[0].FastestLap?.Time?.time
-                      ? item.Results[0].FastestLap?.Time?.time
-                      : " "}
-                    ) Rank({item.Results[0].FastestLap?.rank})
+                    )
                   </td>
                 </tr>
               </tbody>

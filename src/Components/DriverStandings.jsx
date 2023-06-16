@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import ResultsDriver from "./ResultsDriver";
-import { useParams, useNavigate } from "react-router-dom";
+//import ResultsDriver from "./ResultsDriver";
+import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 
 const DriverStandings = (props) => {
@@ -49,8 +49,8 @@ const DriverStandings = (props) => {
                 <th scope="col" className="text-center bg-danger">
                   CODE
                 </th>
-                <th scope="col" className="bg-danger">
-                  DRIVER
+                <th scope="col" className="bg-danger text-center">
+                  DRIVER INFO
                 </th>
                 <th scope="col" className="bg-danger">
                   CONSTRUCTOR
@@ -89,7 +89,7 @@ const DriverStandings = (props) => {
                       ({driver.Driver.nationality}) {driver.Driver.dateOfBirth}
                     </td>
                     <td className="col-3">
-                      {driver.Constructors[0].name} (
+                      <b>{driver.Constructors[0].name}</b> (
                       {driver.Constructors[0].nationality})
                     </td>
                     <td className="col">{driver.points}</td>

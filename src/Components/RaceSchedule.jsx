@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
@@ -41,8 +41,10 @@ const RaceSchedule = (props) => {
             <tr className="text-black">
               <th className="text-center bg-danger">Rnd</th>
               <th className="bg-danger text-center">Race Name</th>
-              <th className="bg-danger text-center">DATE</th>
+              <th className="bg-danger text-center">Race</th>
               <th className="text-center bg-danger">Sprint</th>
+              <th className="bg-danger text-center">Qualifying</th>
+              <th className="bg-danger text-center">Practice1</th>
               <th className="text-center bg-danger">Circuit</th>
             </tr>
           </thead>
@@ -65,16 +67,41 @@ const RaceSchedule = (props) => {
                   }
                 >
                   <td className="col text-center">{rs.round}</td>
-                  <td className="col">{rs.raceName}</td>
-                  <td className={"col "+(dateTime(rs.date, rs.time) < dateNow ?"raceComplete cp":"raceNotComplete")}>
-                   <b> {dateTime(rs.date, rs.time) > dateNow ? (
-                      dateTime(rs.date, rs.time).toLocaleString()
-                    ) : rs.time ? dateTime(rs.date, rs.time).toLocaleString() : (
-                      rs.date
-                    )}</b>
+                  <td className="col text-nowrap">{rs.raceName}</td>
+                  <td
+                    className={
+                      "col-2  text-nowrap " +
+                      (dateTime(rs.date, rs.time) < dateNow
+                        ? "raceComplete cp bg-black"
+                        : "raceNotComplete")
+                    }
+                  >
+                    <b>
+                      {" "}
+                      {dateTime(rs.date, rs.time) > dateNow
+                        ? dateTime(rs.date, rs.time).toLocaleString()
+                        : rs.time
+                        ? dateTime(rs.date, rs.time).toLocaleString()
+                        : rs.date}
+                    </b>
                   </td>
-                  <td className="col text-center">{rs.Sprint?.date}</td>
-                  <td className="col-5">{rs.Circuit.circuitName}</td>
+                    <td className="col text-center text-nowrap">{
+                      rs.Sprint?.date?dateTime(rs.Sprint?.date,rs.Sprint?.time).toLocaleString():""
+                    
+                    }</td>
+                  <td className="col text-center text-nowrap">
+                    {dateTime(
+                      rs.Qualifying?.date,
+                      rs.Qualifying?.time
+                    ).toLocaleString()}
+                  </td>
+                  <td className="col text-center text-nowrap">
+                    {dateTime(
+                      rs.FirstPractice?.date,
+                      rs.FirstPractice?.time
+                    ).toLocaleString()}
+                  </td>
+                  <td className="col text-nowrap">{rs.Circuit.circuitName}</td>
                 </tr>
               );
             })}

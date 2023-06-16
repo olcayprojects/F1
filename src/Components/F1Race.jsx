@@ -5,33 +5,19 @@ import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 
-import { Box, Tab, Tabs, TabContext } from "@mui/material";
-import { blue, red, cyan } from "@mui/material/colors";
+import { Box, Tab, Tabs } from "@mui/material";
+import { red } from "@mui/material/colors";
 
-import { createTheme } from "@mui/material/styles";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: "#757ce8",
-      main: "#3f50b5",
-      dark: "#002884",
-      contrastText: "#fff",
-    },
-    secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
-      contrastText: "#000",
-    },
-  },
-});
+
 
 const F1Race = () => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const randomNumber = (min, max) =>
+    Math.floor(Math.random() * (max - min + 1)) + min;
 
   const handleTabChange = (e, tabIndex) => {
     setCurrentTabIndex(tabIndex);
@@ -104,11 +90,11 @@ const F1Race = () => {
                       <tr className="text">
                         <th>P</th>
                         <th>G</th>
-                        <th>DRIVER</th>
+                        <th className="text-center">DRIVER INFO</th>
                         <th>CONSTRUCTOR</th>
-                        <th>TIME</th>
+                        <th className="text-center">TIME</th>
                         <th>LAPS</th>
-                        <th>FASTEST LAP</th>
+                        <th className="text-center">FASTEST LAP</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">
@@ -138,7 +124,9 @@ const F1Race = () => {
                               _({result.Driver.nationality}){" "}
                               {date(result.Driver.dateOfBirth)}
                             </td>
-                            <td className="col op">{result.Constructor.name}</td>
+                            <td className="col op">
+                              {result.Constructor.name}
+                            </td>
                             <td className="col-2 text-wrap">
                               {result.Time?.time
                                 ? result.Time.time
@@ -148,12 +136,11 @@ const F1Race = () => {
                             <td
                               className={
                                 "col-6 text-nowrap " +
-                                (result.FastestLap?.rank in ["1","2","3","4"]
-                                  ? ["text-warning","text-info","text-success","text-primary"].map((v, i) =>  +" "+{v})
+                                (result.FastestLap?.rank in ["1", "2", "3", "4"]
+                                  ? "text-info "
                                   : "")
-
                               }
-                             
+                              
                             >
                               {" "}
                               (#<b>{result.FastestLap?.rank}</b>#){" "}
