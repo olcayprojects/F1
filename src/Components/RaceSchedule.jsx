@@ -67,11 +67,11 @@ const RaceSchedule = (props) => {
                   <td className="col text-center">{rs.round}</td>
                   <td className="col">{rs.raceName}</td>
                   <td className={"col "+(dateTime(rs.date, rs.time) < dateNow ?"raceComplete cp":"raceNotComplete")}>
-                    {dateTime(rs.date, rs.time) > dateNow ? (
+                   <b> {dateTime(rs.date, rs.time) > dateNow ? (
                       dateTime(rs.date, rs.time).toLocaleString()
                     ) : rs.time ? dateTime(rs.date, rs.time).toLocaleString() : (
                       rs.date
-                    )}
+                    )}</b>
                   </td>
                   <td className="col text-center">{rs.Sprint?.date}</td>
                   <td className="col-5">{rs.Circuit.circuitName}</td>
