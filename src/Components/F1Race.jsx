@@ -4,12 +4,10 @@ import QualifyingResults from "./QualifyingResults";
 import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
 import Loading from "./Loading";
+import { DrvInfo } from "./DriverInfo";
 
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
-
-
-
 
 const F1Race = () => {
   const [sdata, setData] = useState([]);
@@ -28,32 +26,39 @@ const F1Race = () => {
   let season = "";
   let round = "";
   let laps = "";
+  let teamId = "";
+  let DrId = "";
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
   const date = (d) => new Date(d).toDateString();
 
+  let urlx;
   if (rounds === 0) {
-    url = "https://ergast.com/api/f1/current/last/results.json";
+    urlx = "https://ergast.com/api/f1/current/last/results.json";
   } else {
-    url = `https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
+    urlx = `https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
   }
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoaded(true);
+    function fetchData() {
+      fetch(urlx)
+        .then((response) => response.json())
+        .then((data) => {
+          setIsLoaded(true);
 
-        setData(data["MRData"].RaceTable.Races);
-        // console.log(data["MRData"].RaceTable.Races[0].raceName);
-      })
-      .catch((err) => {
-        setIsLoaded(true);
+          setData(data["MRData"].RaceTable.Races);
 
-        console.log(err.message);
-      });
-  }, [url]);
+          //  console.log(sdata);
+        })
+        .catch((err) => {
+          if (!err === "Unexpected token") {
+            console.log(err.message);
+          }
+        });
+    }
+    fetchData();
+  }, []);
 
   if (!isLoaded) {
     return <Loading />;
@@ -90,7 +95,7 @@ const F1Race = () => {
                       <tr className="text">
                         <th>P</th>
                         <th>G</th>
-                        <th className="text-center">DRIVER INFO</th>
+                        <th className="text-center">DRIVER</th>
                         <th>CONSTRUCTOR</th>
                         <th className="text-center">TIME</th>
                         <th>LAPS</th>
@@ -98,57 +103,72 @@ const F1Race = () => {
                       </tr>
                     </thead>
                     <tbody className="text-danger">
-                      {item.Results.map((result, index) => {
+                      {item?.Results?.map((result, index) => {
                         return (
-                          <tr key={index} className="text-danger">
-                            <td className="col">{result.positionText}</td>
-                            <td className="col op">{result.grid}</td>
-                            <td
-                              className="col-6 cp text-nowrap"
-                              onClick={() => {
-                                navigate(
-                                  "/ResultsDriver/" +
-                                    item.season +
-                                    "/" +
-                                    result.Driver.driverId
-                                );
-                              }}
-                            >
-                              {result.Driver.code}(#{result.number})_
-                              <b>
-                                <u>
-                                  {result.Driver.givenName}{" "}
-                                  {result.Driver.familyName}
-                                </u>
-                              </b>
-                              _({result.Driver.nationality}){" "}
-                              {date(result.Driver.dateOfBirth)}
-                            </td>
-                            <td className="col op">
-                              {result.Constructor.name}
-                            </td>
-                            <td className="col-2 text-wrap">
-                              {result.Time?.time
-                                ? result.Time.time
-                                : result.status}
-                            </td>
-                            <td className="col op">{result.laps}</td>
-                            <td
-                              className={
-                                "col-6 text-nowrap " +
-                                (result.FastestLap?.rank in ["1", "2", "3", "4"]
-                                  ? "text-info "
-                                  : "")
-                              }
-                              
-                            >
-                              {" "}
-                              (#<b>{result.FastestLap?.rank}</b>#){" "}
-                              <b>{result.FastestLap?.Time.time}</b>{" "}
-                              {result.FastestLap?.AverageSpeed?.speed}
-                              kph {result.FastestLap?.lap}
-                            </td>
-                          </tr>
+                          <>
+                            <tr key={index} className="text-danger">
+                              <td className="align-middle col">
+                                {result.positionText}
+                              </td>
+                              <td className="align-middle col op">
+                                {result.grid}
+                              </td>
+
+                              <td
+                                className="text-center col-1 cp p-0 text-nowrap"
+                                onClick={() => {
+                                  navigate(
+                                    "/ResultsDriver/" +
+                                      item.season +
+                                      "/" +
+                                      result.Driver.driverId
+                                  );
+                                }}
+                              >
+                                {
+                                  <DrvInfo
+                                    drv={
+                                      result.Driver?.givenName +
+                                      " " +
+                                      result.Driver?.familyName
+                                    }
+                                  />
+                                }
+                                <p>
+                                  {result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName}
+                                </p>
+                              </td>
+
+                              <td className="align-middle col op">
+                                {result.Constructor.name}
+                              </td>
+                              <td className="align-middle col text-wrap">
+                                {result.Time?.time
+                                  ? result.Time.time
+                                  : result.status}
+                              </td>
+                              <td className="align-middle col op">
+                                {result.laps}
+                              </td>
+                              <td
+                                className={
+                                  "align-middle text-nowrap " +
+                                  (result.FastestLap?.rank in
+                                  ["1", "2", "3", "4"]
+                                    ? "text-info "
+                                    : "")
+                                }
+                              >
+                                {" "}
+                                (#<b>{result.FastestLap?.rank}</b>#){" "}
+                                <b>{result.FastestLap?.Time.time}</b>{" "}
+                                {result.FastestLap?.AverageSpeed?.speed}
+                                kph {result.FastestLap?.lap}
+                              </td>
+                            </tr>
+                          </>
                         );
                       })}
                     </tbody>

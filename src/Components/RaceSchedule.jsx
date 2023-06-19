@@ -63,7 +63,7 @@ const RaceSchedule = (props) => {
                     dateTime(rs.date, rs.time) < dateNow ||
                     props.season !== "2023"
                       ? navigate("/F1Race/" + props.season + "/" + rs.round)
-                      : ""
+                      : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
                   }
                 >
                   <td className="col text-center">{rs.round}</td>
@@ -73,7 +73,7 @@ const RaceSchedule = (props) => {
                       "col-2  text-nowrap " +
                       (dateTime(rs.date, rs.time) < dateNow
                         ? "raceComplete cp bg-black"
-                        : "raceNotComplete")
+                        : " cp raceNotComplete")
                     }
                   >
                     <b>

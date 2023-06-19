@@ -11,7 +11,6 @@ const Next = () => {
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
-        // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
         console.log(err.message);
@@ -24,14 +23,16 @@ const Next = () => {
         return (
           <h1 key={index} className="blink bg-dark" >
             <marquee className="blink">
-              Next Race #{data.round} {data.raceName} | {dateTime(data.date,data.time)}{" "}
+              Next Race #{data.round} {data.raceName} | {dateTime(data?.date,data.time)}{" "}
               | First Practice:
-              {dateTime(data.FirstPractice.date,data.FirstPractice.time)} | Second
+              {dateTime(data.FirstPractice?.date,data.FirstPractice?.time)} | Second
               Practice:
-              {dateTime(data.SecondPractice.date,data.SecondPractice.time)} | Third
+              {dateTime(data.SecondPractice?.date,data.SecondPractice?.time)} | Third
               Practice:
-              {dateTime(data.ThirdPractice.date,data.ThirdPractice.time)} | Qualifying:
-              {dateTime(data.Qualifying.date,data.Qualifying.time)}
+              {dateTime(data.ThirdPractice?.date,data.ThirdPractice?.time)} | Qualifying:
+              {dateTime(data.Qualifying?.date,data.Qualifying?.time)}
+              {data.Sprint ? "|Sprint:"+dateTime(data.Sprint?.date,data.Sprint?.time) :""}
+
             </marquee>
           </h1>
         );

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
+import F1Race from "./F1Race";
+import DriverDB from "./DriverDB";
+
+import { DrvInfo } from "./DriverInfo";
 
 const ResultsDriver = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -39,7 +43,9 @@ const ResultsDriver = () => {
     drvgivenName = sdata[0].Results[0].Driver.givenName;
     drvfamilyName = sdata[0].Results[0].Driver.familyName;
     drvcode = sdata[0].Results[0].Driver.code;
-    drvdateOfBirth = new Date(sdata[0].Results[0].Driver.dateOfBirth).toDateString();
+    drvdateOfBirth = new Date(
+      sdata[0].Results[0].Driver.dateOfBirth
+    ).toDateString();
     drvnationality = sdata[0].Results[0].Driver.nationality;
     drvpermanentNumber = sdata[0].Results[0].Driver.permanentNumber
       ? sdata[0].Results[0].Driver.permanentNumber
@@ -61,24 +67,10 @@ const ResultsDriver = () => {
         </Link>
 
         <div className="table-responsive">
-          <h1 className="text-center bg-black text-light border border-danger border-5">
-            Driver Results
-          </h1>
-
           <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5 caption-top">
             <caption className="text-danger text-center">
-              <h3 className="bg-danger text-black">
-                {drvgivenName + " " + drvfamilyName}
-              </h3>
-              <h4>
-                {"(" +
-                  drvcode +"#"+
-                  drvpermanentNumber +
-                  ") " +
-                  drvdateOfBirth +
-                  " " +
-                  drvnationality}
-              </h4>
+              {<DrvInfo drv={drvgivenName + " " + drvfamilyName} />}
+              {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
             </caption>
             <thead className="border-dark">
               <tr className="text-black">
@@ -99,7 +91,6 @@ const ResultsDriver = () => {
               return (
                 <tbody key={index}>
                   {item?.Results?.map((results, indexQ) => {
-
                     return (
                       <tr key={indexQ}>
                         <td>{item.season}</td>
@@ -111,7 +102,7 @@ const ResultsDriver = () => {
                         <td
                           className={
                             "col text-center " +
-                            (results.positionText in ["1","2","3","4"] 
+                            (results.positionText in ["1", "2", "3", "4"]
                               ? "bg-black text-danger"
                               : "")
                           }
@@ -131,11 +122,14 @@ const ResultsDriver = () => {
                         <td
                           className={
                             "text-center col " +
-                            (results.FastestLap?.rank in ["1","2","3","4"]  ? "bg-black" : "")
+                            (results.FastestLap?.rank in ["1", "2", "3", "4"]
+                              ? "bg-black"
+                              : "")
                           }
                         >
-                          #<b>{results.FastestLap?.rank}</b># <b>{results.FastestLap?.Time.time}</b>-
-                           {results.FastestLap?.AverageSpeed.speed}
+                          #<b>{results.FastestLap?.rank}</b>#{" "}
+                          <b>{results.FastestLap?.Time.time}</b>-
+                          {results.FastestLap?.AverageSpeed.speed}
                           {results.FastestLap?.AverageSpeed.units}-
                           {results.FastestLap?.lap}
                         </td>
