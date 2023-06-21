@@ -36,8 +36,8 @@ const WinRacesInaSeason = (props) => {
               <th className="bg-danger text-center">Race Name</th>
               <th className="bg-danger">Driver</th>
               <th className="bg-danger">Constructor</th>
-              <th className="bg-danger">Pts</th>
-              <th className="bg-danger">Laps</th>
+              <th className="bg-danger text-center">Pts</th>
+              <th className="bg-danger text-center">Laps</th>
               <th className="bg-danger text-center">Time</th>
               <th className="bg-danger text-center">Fastest Lap</th>
             </tr>
@@ -70,10 +70,10 @@ const WinRacesInaSeason = (props) => {
                     {item.Results[0].Driver.familyName}
                   </td>
                   <td className="col">{item.Results[0].Constructor.name}</td>
-                  <td className="col">{item.Results[0].points}</td>
+                  <td className="col text-center">{item.Results[0].points}</td>
 
-                  <td className="col">{item.Results[0].laps}</td>
-                  <td className="col">{item.Results[0].Time.time}</td>
+                  <td className="col text-center">{item.Results[0].laps}</td>
+                  <td className="col text-center">{item.Results[0].Time.time}</td>
 
                   <td
                     className={

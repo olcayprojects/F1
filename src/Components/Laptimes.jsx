@@ -40,13 +40,13 @@ const Laptimes = (props) => {
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
-          <th scope="col" className="bg-danger text-center">
-            DRV
+          <th  className="bg-danger text-center">
+            DRIVER NAME
           </th>
-          <th scope="col" className="bg-danger">
+          <th  className="bg-danger">
             POS
           </th>
-          <th scope="col" className="bg-danger text-center">
+          <th  className="bg-danger text-center">
             TIME
           </th>
         </tr>
@@ -57,11 +57,11 @@ const Laptimes = (props) => {
         return (
           <tbody key={index}>
             <tr key={index} className="">
-              <td key={index} className="col-1">
+              <td key={index} className="col-5">
                 {<DriverId Id={LapTimes.driverId} />}
               </td>
               <td className="col-1 text-center">{LapTimes.position}</td>
-              <td className="col text-center">{LapTimes.time}</td>
+              <td className="col-1 text-center">{LapTimes.time}</td>
             </tr>
           </tbody>
         );

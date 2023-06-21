@@ -5,6 +5,8 @@ import DriverId from "./DriverId";
 const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
 
+  //console.log(drvn);
+
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json`;
@@ -14,7 +16,10 @@ const Pitstops = (props) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setData(data["MRData"].RaceTable.Races);
+        const delay = setTimeout(() => {
+          setData(data["MRData"].RaceTable.Races);
+        }, 5);
+        return () => clearTimeout(delay);
 
         // console.log(data["MRData"].RaceTable.Races);
       })
@@ -36,7 +41,7 @@ const Pitstops = (props) => {
             >
               <thead className="border-dark">
                 <tr className="text-black">
-                  <th className="text-center bg-danger">DRV</th>
+                  <th className="text-center bg-danger">DRIVER NAME</th>
                   <th className="bg-danger text-center">STOP</th>
                   <th className="bg-danger text-center">LAP</th>
                   <th className="text-center bg-danger">TIME</th>
@@ -48,11 +53,12 @@ const Pitstops = (props) => {
                   return (
                     <tr key={index}>
                       <td
-                        className="col-1 text-center"
+                        className="col-2"
                         style={{ textTransform: "uppercase" }}
                       >
+                        <DriverId Id={ps.driverId} />
+
                         {/* {ps.driverId}  */}
-                        {<DriverId Id={ps.driverId} />}
                       </td>
                       <td className="col-1 text-center">{ps.stop}</td>
                       <td className="col-1 text-center">{ps.lap}</td>

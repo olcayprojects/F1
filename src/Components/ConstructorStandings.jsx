@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import Team from "./Team";
 
 const ConstructorStandings = (props) => {
   const [sdata, setData] = useState([]);
@@ -58,15 +59,22 @@ const ConstructorStandings = (props) => {
                   <td className="col">{ConstructorStandings.position}</td>
                   <td className="col-2">
                     {ConstructorStandings.Constructor.name}
+                    {ConstructorStandings.position in ["1", "2", "3", "4"] ? (
+                      <Team teamName={ConstructorStandings.Constructor.name} />
+                    ) : (
+                      ""
+                    )}
                   </td>
-                  <td className="col-2">
+                  <td className="col-2 align-middle">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col">{ConstructorStandings.points}</td>
-                  <td className="col text-center">
+                  <td className="col align-middle">
+                    {ConstructorStandings.points}
+                  </td>
+                  <td className="col align-middle text-center">
                     {ConstructorStandings.wins}
                   </td>
-                  <td className="col">
+                  <td className="col align-middle">
                     <a
                       href={ConstructorStandings.Constructor.url}
                       className="link-danger"

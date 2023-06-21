@@ -7,6 +7,8 @@ import Next from "./Next";
 import RaceSchedule from "./RaceSchedule";
 import F1Race from "./F1Race";
 import Loading from "./Loading";
+import Carousel from "./Carousel";
+
 
 import { Box, Tab, Tabs, TabContext } from "@mui/material";
 import { blue, red, cyan } from "@mui/material/colors";
@@ -69,6 +71,7 @@ const F1 = () => {
       <>
         <div className="container.fluid bg-dark p-3">
           <Next />
+          <Carousel />
           <RaceSchedule season={season2} />
           <F1Race />
           <select

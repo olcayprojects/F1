@@ -1,28 +1,39 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 export default function DriverId(props) {
-  const [sdata, setData] = useState([]);
+  const [sdata1, setData] = useState();
 
   let url = "";
 
   url = `https://ergast.com/api/f1/drivers/${props.Id}.json`;
+  //console.log(url);
 
+  let datalar=""
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        // console.log(data["MRData"].DriverTable.Drivers[0]);
+    
+    
+    axios.get(url).then((response) => {
+      
+      
+        setData(response.data["MRData"].DriverTable.Drivers[0]);
 
-        setData(data["MRData"].DriverTable.Drivers[0]);
-      })
-      .catch((err) => {
-        console.log(err.message);
+
+
       });
+
+
   }, [url]);
 
+  
+  if (sdata1!==undefined) {
+    console.log("sdata",sdata1);
   return (
     // sdata.givenName+" "+sdata.familyName
-    sdata.code
-  );
+      
+    sdata1.givenName+" "+sdata1.familyName
+      );
+    }
 }

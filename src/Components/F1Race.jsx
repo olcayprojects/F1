@@ -5,11 +5,12 @@ import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 import { DrvInfo } from "./DriverInfo";
+import Team from "./Team";
 
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
 
-const F1Race = () => {
+const F1Race = (props) => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -28,6 +29,8 @@ const F1Race = () => {
   let laps = "";
   let teamId = "";
   let DrId = "";
+  let name = "";
+
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
@@ -65,11 +68,13 @@ const F1Race = () => {
   } else {
     return (
       <>
-        <Link to="/" className="btn btn-danger container-fluid p-0">
+        <Link to="/" className="p-0">
           <img
-            src={require("../images/race-car.png")}
-            className="img p-0 mx-0"
-            style={{ maxWidth: "10%" }}
+            src={
+              "https://www.thesportsdb.com/images/media/team/jersey/2f0s8q1679829159.png"
+            }
+            className="img p-0 mx-auto d-block"
+            style={{ objectFit: "cover", width: "500px", height: "200px" }}
             alt=""
           />
         </Link>
@@ -108,14 +113,14 @@ const F1Race = () => {
                           <>
                             <tr key={index} className="text-danger">
                               <td className="align-middle col">
-                                {result.positionText}
+                                <b>{result.positionText}</b>
                               </td>
                               <td className="align-middle col op">
                                 {result.grid}
                               </td>
 
                               <td
-                                className="text-center col-1 cp p-0 text-nowrap"
+                                className="align-middle text-center col-1 cp"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" +
@@ -125,7 +130,7 @@ const F1Race = () => {
                                   );
                                 }}
                               >
-                                {
+                                {result.positionText in ["1", "2", "3", "4"] ? (
                                   <DrvInfo
                                     drv={
                                       result.Driver?.givenName +
@@ -133,15 +138,24 @@ const F1Race = () => {
                                       result.Driver?.familyName
                                     }
                                   />
-                                }
-                                <p>
-                                  {result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName}
-                                </p>
+                                ) : (
+                                  ""
+                                )}
+
+                                {result.Driver?.givenName +
+                                  " " +
+                                  result.Driver?.familyName}
                               </td>
 
-                              <td className="align-middle col op">
+                              <td
+                                className="align-middle text-center col-3 op p-0"
+                                title={result.Constructor.name}
+                              >
+                                {result.positionText in ["1", "2", "3", "4"] ? (
+                                  <Team teamName={result?.Constructor.name} />
+                                ) : (
+                                  ""
+                                )}
                                 {result.Constructor.name}
                               </td>
                               <td className="align-middle col text-wrap">
@@ -218,12 +232,12 @@ const F1Race = () => {
           {currentTabIndex === 2 && (
             <Box sx={{ p: 1 }}>
               <div className="bg-black container-fluid">
-                <div className="row row-cols-1 row-cols-md-6 g-1 justify-content-md-center bg-black">
+                <div className="row row-cols-1 row-cols-md-5 g-1 justify-content-md-center bg-black">
                   {(() => {
                     const arr = [];
-                    for (let i = laps - 5; i <= laps; i++) {
+                    for (let i = laps - 4; i <= laps; i++) {
                       arr.push(
-                        <div key={i} className="col mb-0">
+                        <div key={i} className="mb-0">
                           <Laptimes season={season} round={round} lapsx={i} />
                         </div>
                       );

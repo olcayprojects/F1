@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 //import ResultsDriver from "./ResultsDriver";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import { DrvInfo } from "./DriverInfo";
+import Team from "./Team";
 
 const DriverStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -73,7 +75,7 @@ const DriverStandings = (props) => {
                     <td className="col">{driver.position}</td>
                     <td className="col text-center">{driver.Driver.code} </td>
                     <td
-                      className="col-5 cp"
+                      className="col-3 cp"
                       onClick={() => {
                         navigate(
                           "/ResultsDriver/" +
@@ -87,14 +89,32 @@ const DriverStandings = (props) => {
                         {driver.Driver.givenName} {driver.Driver.familyName}
                       </b>{" "}
                       ({driver.Driver.nationality}) {driver.Driver.dateOfBirth}
+                      {driver.position in ["1", "2", "3", "4"] ? (
+                        <DrvInfo
+                          drv={
+                            driver.Driver?.givenName +
+                            " " +
+                            driver.Driver?.familyName
+                          }
+                        />
+                      ) : (
+                        ""
+                      )}
                     </td>
-                    <td className="col-3">
+                    <td className="col-4 align-middle">
                       <b>{driver.Constructors[0].name}</b> (
                       {driver.Constructors[0].nationality})
+                      {driver.position in ["1", "2", "3", "4"] ? (
+                        <Team teamName={driver?.Constructors[0].name} />
+                      ) : (
+                        ""
+                      )}
                     </td>
-                    <td className="col">{driver.points}</td>
-                    <td className="col text-center">{driver.wins}</td>
-                    <td className="col">
+                    <td className="col align-middle">{driver.points}</td>
+                    <td className="col align-middle text-center">
+                      {driver.wins}
+                    </td>
+                    <td className="col align-middle">
                       <a href={driver.Driver.url} className="link-danger">
                         {driver.Driver.url}
                       </a>

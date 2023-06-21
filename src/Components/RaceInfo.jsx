@@ -34,13 +34,15 @@ const RaceInfo = () => {
      
         return (
               <div className="col text-center" key={index}>
-                {/* <img className="img-fluid" src={event.strThumb + "/preview"} alt="" srcSet="" /> */}
+                <h1 className="text-light">{event.strFilename}</h1>
+                <img className="img-fluid" src={event.strThumb + "/preview"} alt="" srcSet="" />
+                <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" />
                 {/* <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" /> */}
-                <h5 className="text-light">{event.strFilename}</h5>
                 <h5 className="text-light">{event.strVenue}</h5>
                 <h5 className="text-light">{event.strCountry}</h5>
                 <h5 className="text-light">{event.strCity}</h5>
-                <h5 className="text-light">{event.strTimestamp}</h5>
+                <h5 className="text-light">{new Date(event.strTimestamp).toLocaleString()}</h5>
+                <h5 className="text-light">{event.strDescriptionEN}</h5>
               </div>
         );
     })}

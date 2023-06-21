@@ -61,3 +61,13 @@ select {
 .op{
   opacity: 0.8;
 }
+
+
+
+.carousel img{
+
+}
+/* 
+img:hover {
+  transform: scaleX(-1);
+} */

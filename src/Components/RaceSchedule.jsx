@@ -20,8 +20,6 @@ const RaceSchedule = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
-
-        //console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -70,10 +68,13 @@ const RaceSchedule = (props) => {
                   <td className="col text-nowrap">{rs.raceName}</td>
                   <td
                     className={
-                      "col-2  text-nowrap " +
+                      "col-2 cp text-nowrap " +
                       (dateTime(rs.date, rs.time) < dateNow
-                        ? "raceComplete cp bg-black"
-                        : " cp raceNotComplete")
+                        ? "raceComplete bg-black"
+                        : rs.date.split("-")[1] ===
+                          dateNow.toISOString().split("T")[0].split("-")[1]
+                        ? "  text-center"
+                        : "")
                     }
                   >
                     <b>
@@ -85,21 +86,29 @@ const RaceSchedule = (props) => {
                         : rs.date}
                     </b>
                   </td>
-                    <td className="col text-center text-nowrap">{
-                      rs.Sprint?.date?dateTime(rs.Sprint?.date,rs.Sprint?.time).toLocaleString():""
-                    
-                    }</td>
                   <td className="col text-center text-nowrap">
-                    {dateTime(
-                      rs.Qualifying?.date,
-                      rs.Qualifying?.time
-                    ).toLocaleString()}
+                    {rs.Sprint?.date
+                      ? dateTime(
+                          rs.Sprint?.date,
+                          rs.Sprint?.time
+                        ).toLocaleString()
+                      : ""}
                   </td>
                   <td className="col text-center text-nowrap">
-                    {dateTime(
-                      rs.FirstPractice?.date,
-                      rs.FirstPractice?.time
-                    ).toLocaleString()}
+                    {rs.Qualifying?.date
+                      ? dateTime(
+                          rs.Qualifying?.date,
+                          rs.Qualifying?.time
+                        ).toLocaleString()
+                      : ""}
+                  </td>
+                  <td className="col text-center text-nowrap">
+                    {rs.FirstPractice?.date
+                      ? dateTime(
+                          rs.FirstPractice?.date,
+                          rs.FirstPractice?.time
+                        ).toLocaleString()
+                      : ""}
                   </td>
                   <td className="col text-nowrap">{rs.Circuit.circuitName}</td>
                 </tr>
