@@ -4,9 +4,6 @@ import DriverId from "./DriverId";
 
 const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
-
-  //console.log(drvn);
-
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json`;
@@ -20,8 +17,6 @@ const Pitstops = (props) => {
           setData(data["MRData"].RaceTable.Races);
         }, 5);
         return () => clearTimeout(delay);
-
-        // console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -30,6 +25,7 @@ const Pitstops = (props) => {
       });
   }, [url]);
 
+  //  console.log(DriverId({ Id: "alonso" }));
   return (
     <div className="bg-black container-fluid">
       <div className="table-responsive">
@@ -52,10 +48,7 @@ const Pitstops = (props) => {
                 {data?.PitStops.map((ps, index) => {
                   return (
                     <tr key={index}>
-                      <td
-                        className="col-2"
-                        style={{ textTransform: "uppercase" }}
-                      >
+                      <td className="col-2" style={{ textTransform: "" }}>
                         <DriverId Id={ps.driverId} />
 
                         {/* {ps.driverId}  */}

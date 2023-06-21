@@ -59,6 +59,7 @@ const Laptimes = (props) => {
             <tr key={index} className="">
               <td key={index} className="col-5">
                 {<DriverId Id={LapTimes.driverId} />}
+                {/* {LapTimes.driverId} */}
               </td>
               <td className="col-1 text-center">{LapTimes.position}</td>
               <td className="col-1 text-center">{LapTimes.time}</td>
