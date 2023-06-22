@@ -90,21 +90,21 @@ const F1Race = (props) => {
               <div key={index} className="bg-black pt-2 container-fluid">
                 {/* {console.log(item)} */}
 
-                <h1 className="text-center text-light bg-black border border-danger border-5">
+                <h1 className="text-center text-danger bg-black border border-danger border-5">
                   {item.raceName} #{item.round} (
                   {item.time ? dateTime(item.date, item.time) : item.date})
                 </h1>
                 <div className="table-responsive-sm">
-                  <table className="table table-dark table-striped border-5 ">
+                  <table className="table table-dark table-striped border-1 border-danger ">
                     <thead className="text">
-                      <tr className="text">
-                        <th>P</th>
-                        <th>G</th>
-                        <th className="text-center">DRIVER</th>
-                        <th>CONSTRUCTOR</th>
-                        <th className="text-center">TIME</th>
-                        <th>LAPS</th>
-                        <th className="text-center">FASTEST LAP</th>
+                      <tr className="">
+                        <th className="bg-danger">P</th>
+                        <th className="bg-danger">G</th>
+                        <th className="text-center bg-danger">DRIVER</th>
+                        <th className="bg-danger">CONSTRUCTOR</th>
+                        <th className="text-center bg-danger">TIME</th>
+                        <th className="bg-danger">LAPS</th>
+                        <th className="text-center bg-danger">FASTEST LAP</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">

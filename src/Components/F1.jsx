@@ -10,7 +10,7 @@ import Loading from "./Loading";
 import Carousel from "./Carousel";
 
 
-import { Box, Tab, Tabs, TabContext } from "@mui/material";
+import { Box, Tab, Tabs, TabContext, Select } from "@mui/material";
 import { blue, red, cyan } from "@mui/material/colors";
 
 import { createTheme } from "@mui/material/styles";
@@ -75,16 +75,15 @@ const F1 = () => {
           <RaceSchedule season={season2} />
           <F1Race />
           <select
-            className="form-select bg-dark text-danger border-danger shadow-none"
+            className="form-select bg-black text-danger border-danger shadow-none cp"
             onChange={(e) => {
               navigate(`/F1/${e.target.value}`);
               navigate(0);
             }}
+            defaultValue={season2}
+           
           >
-            <option value="" hidden>
-              Select Year for Drivers and Constructors Winning Races In a Season
-              1950 - Now
-            </option>
+
             {years.map((year, index) => {
               return (
                 <option key={`year${index}`} value={year}>
@@ -93,7 +92,6 @@ const F1 = () => {
               );
             })}
           </select>
-          <h1 className="text-black bg-danger text-center p-0 m-0">{season2}</h1>
           <Tabs
             value={currentTabIndex}
             onChange={handleTabChange}
