@@ -41,6 +41,7 @@ const Sprint = () => {
             <th className="bg-danger">TIME</th>
             <th className="">PTS</th>
             <th className="bg-danger">FASTEST LAP</th>
+            <th className="bg-danger">CIRCUIT NAME</th>
           </tr>
         </thead>
         <tbody>
@@ -59,9 +60,9 @@ const Sprint = () => {
                 }</td>
                 <td className="col">{item.points}</td>
                 <td className="col">
-                  {item.FastestLap?.lap} {item.FastestLap?.Time.time}
+                 {item.FastestLap?.Time.time}({item.FastestLap?.lap}) 
                 </td>
-                <td className="col"></td>
+                <td className="col">{data?.Circuit?.circuitName}</td>
               </tr>
             );
           })}
