@@ -34,39 +34,33 @@ const Laptimes = (props) => {
   }, [urlx]);
 
   return (
-    <table className="table  caption-top table-dark table-bordered table-hover text-danger border border-danger border-2">
-      <caption className="text-center bg-dark text-danger">
+    <table className="table table-dark table-striped">
+      <caption className="text-center bg-dark text-danger caption-top">
         <b>LAP {props.lapsx}</b>
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
-          <th  className="bg-danger text-center">
-            DRIVER NAME
-          </th>
-          <th  className="bg-danger">
-            POS
-          </th>
-          <th  className="bg-danger text-center">
-            TIME
-          </th>
+          <th className="bg-danger">DRIVER NAME</th>
+          <th className="bg-danger text-center">P</th>
+          <th className="bg-danger text-center">TIME</th>
         </tr>
       </thead>
-      {sdata.map((LapTimes, index) => {
-        // console.log("aa",LapTimes);
+      <tbody>
+        {sdata.map((LapTimes, index) => {
+          // console.log("aa",LapTimes);
 
-        return (
-          <tbody key={index}>
+          return (
             <tr key={index} className="">
-              <td key={index} className="col-5">
+              <td key={index} className="col">
                 {<DriverId Id={LapTimes.driverId} />}
                 {/* {LapTimes.driverId} */}
               </td>
-              <td className="col-1 text-center">{LapTimes.position}</td>
-              <td className="col-1 text-center">{LapTimes.time}</td>
+              <td className="col text-center">{LapTimes.position}</td>
+              <td className="col text-center">{LapTimes.time}</td>
             </tr>
-          </tbody>
-        );
-      })}
+          );
+        })}
+      </tbody>
     </table>
   );
 };

@@ -30,10 +30,10 @@ const WinRacesInaSeason = (props) => {
   return (
     <div className="bg-black container-fluid">
       <div className="table-responsive">
-        <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
-          <thead className="border-dark">
+        <table className="table table-dark table-striped">
+          <thead className="">
             <tr className="text-dark">
-              <th className="bg-danger text-center">Race Name</th>
+              <th className="bg-danger">Race Name</th>
               <th className="bg-danger">Driver</th>
               <th className="bg-danger">Constructor</th>
               <th className="bg-danger text-center">Pts</th>
@@ -42,10 +42,10 @@ const WinRacesInaSeason = (props) => {
               <th className="bg-danger text-center">Fastest Lap</th>
             </tr>
           </thead>
-          {sdata?.map((item, index) => {
-            return (
-              <tbody key={index}>
-                <tr className="bg-dark">
+          <tbody>
+            {sdata?.map((item, index) => {
+              return (
+                <tr className="bg-dark" key={index}>
                   <td
                     className="col cp"
                     onClick={() =>
@@ -56,30 +56,31 @@ const WinRacesInaSeason = (props) => {
                     {item.time ? dateTime(item.date, item.time) : item.date}
                   </td>
                   <td
-                    className="col cp"
+                    className="col cp text-danger"
                     onClick={() => {
                       navigate(
-                        "/ResultsDriver/" +
-                          item.season +
-                          "/" +
-                          item.Results[0].Driver.driverId
+                        "/ResultsDriver/" + item.Results[0].Driver.driverId
                       );
                     }}
                   >
                     {item.Results[0].Driver.givenName}{" "}
                     {item.Results[0].Driver.familyName}
                   </td>
-                  <td className="col">{item.Results[0].Constructor.name}</td>
+                  <td className="col text-danger">
+                    {item.Results[0].Constructor.name}
+                  </td>
                   <td className="col text-center">{item.Results[0].points}</td>
 
                   <td className="col text-center">{item.Results[0].laps}</td>
-                  <td className="col text-center">{item.Results[0].Time.time}</td>
+                  <td className="col text-center">
+                    {item.Results[0].Time.time}
+                  </td>
 
                   <td
                     className={
                       "text-center col " +
                       (item.Results[0].FastestLap?.rank === "1"
-                        ? "bg-black"
+                        ? "text-danger"
                         : "")
                     }
                   >
@@ -98,9 +99,9 @@ const WinRacesInaSeason = (props) => {
                     )
                   </td>
                 </tr>
-              </tbody>
-            );
-          })}
+              );
+            })}
+          </tbody>
         </table>
       </div>
     </div>

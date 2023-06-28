@@ -23,51 +23,51 @@ const QualifyingResults = (props) => {
   }, [url]);
 
   return (
-    
     <div className="bg-black container-fluid">
-
       <div className="table-responsive">
-      <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5">
-        <thead className="border-dark">
-          <tr className="text-black">
-            <th className="bg-danger">P</th>
-            <th className="bg-danger">NO</th>
-            <th className="text-center bg-danger">DRIVER</th>
-            <th className="text-center bg-danger">CONSTRUCTOR</th>
-            <th className="text-center bg-danger">Q1</th>
-            <th className="text-center bg-danger">Q2</th>
-            <th className="text-center bg-danger">Q3</th>
-          </tr>
-        </thead>
-        {sdata?.map((item, index) => {
-          return (
-            <tbody key={index}>
-              {item?.QualifyingResults?.map((qualifying, indexQ) => {
-                return (
-                  <tr key={indexQ}>
-                    <td className="col">
-                      {qualifying.position}
-                    </td>
-                    <td className="col">{qualifying.number}</td>
-                    <td className="col-4">
-                      {qualifying.Driver.givenName}{" "}
-                      {qualifying.Driver.familyName}
-                    </td>
-                    <td className="col-4">{qualifying.Constructor.name}</td>
-                    <td className=" text-center col">{qualifying.Q1}</td>
-                    <td className=" text-center col">
-                      {qualifying.Q2 ? qualifying.Q2 : "0:00.000"}
-                    </td>
-                    <td className="text-center col">
-                      {qualifying.Q3 ? qualifying.Q3 : "0:00.000"}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          );
-        })}
-      </table>
+        <table className="table table-dark table-striped">
+          <thead className="">
+            <tr className="text-black">
+              <th className="bg-danger text-center">P</th>
+              <th className="bg-danger text-center">NO</th>
+              <th className="bg-danger">DRIVER</th>
+              <th className="bg-danger">CONSTRUCTOR</th>
+              <th className="text-center bg-danger">Q1</th>
+              <th className="text-center bg-danger">Q2</th>
+              <th className="text-center bg-danger">Q3</th>
+            </tr>
+          </thead>
+          {sdata?.map((item, index) => {
+            return (
+              <tbody key={index}>
+                {item?.QualifyingResults?.map((qualifying, indexQ) => {
+                  return (
+                    <tr key={indexQ}>
+                      <td className="col text-center">{qualifying.position}</td>
+                      <td className="col text-center">{qualifying.number}</td>
+                      <td className="col">
+                        {qualifying.Driver.givenName}{" "}
+                        {qualifying.Driver.familyName}(
+                        {qualifying.Driver.nationality})
+                      </td>
+                      <td className="col">
+                        {qualifying.Constructor.name}(
+                        {qualifying.Constructor.nationality})
+                      </td>
+                      <td className=" text-center col">{qualifying.Q1}</td>
+                      <td className=" text-center col">
+                        {qualifying.Q2 ? qualifying.Q2 : "0:00.000"}
+                      </td>
+                      <td className="text-center col">
+                        {qualifying.Q3 ? qualifying.Q3 : "0:00.000"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            );
+          })}
+        </table>
       </div>
       <hr />
     </div>

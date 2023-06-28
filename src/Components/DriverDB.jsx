@@ -30,12 +30,13 @@ const DriverDB = (props) => {
 
   return (
     <>
-    <h1 className="text-light">{data?.strPlayer}</h1>
-    <pre className="p-0 text-wrap">{data?.dateBorn} {data?.strBirthLocation}</pre>
-    <pre className="p-0 text-wrap">{data?.strTeam} #{data?.strNumber}</pre>
-    <p className="p-0 text-light">{data?.strDescriptionEN}</p>
-
-
+      <pre className="p-0 text-wrap">
+        {data?.dateBorn} {data?.strBirthLocation}
+      </pre>
+      <pre className="p-0 text-wrap">
+        {data?.strTeam} #{data?.strNumber}
+      </pre>
+      <p className="p-0 text-light">{data?.strDescriptionEN}</p>
     </>
   );
 };

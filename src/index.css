@@ -71,3 +71,8 @@ select {
 img:hover {
   transform: scaleX(-1);
 } */
+
+thead th {
+  background-color: red !important;
+  color: black !important;
+}

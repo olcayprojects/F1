@@ -29,10 +29,10 @@ const ConstructorStandings = (props) => {
   return (
     <div className="bg-black container-fluid">
       <div className="table-responsive">
-        <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
+      <table className="table table-dark table-striped">
           <thead className="text-white border-dark">
             <tr className="text-black">
-              <th scope="col" className="bg-danger">
+              <th scope="col" className="bg-danger text-center">
                 P
               </th>
               <th scope="col" className="bg-danger">
@@ -41,51 +41,43 @@ const ConstructorStandings = (props) => {
               <th scope="col" className="bg-danger">
                 NATIONALITY
               </th>
-              <th scope="col" className="bg-danger">
+              <th scope="col" className="bg-danger text-center">
                 POINTS
               </th>
               <th scope="col" className="bg-danger text-center">
                 WINS
               </th>
-              <th scope="col" className="bg-danger">
-                INFORMATION-CONSTRUCTOR WIKIPEDIA
-              </th>
             </tr>
           </thead>
+          <tbody key={indexedDB}>
           {sdata?.map((ConstructorStandings, indexedDB) => {
             return (
-              <tbody key={indexedDB}>
                 <tr key={indexedDB} className="">
-                  <td className="col">{ConstructorStandings.position}</td>
-                  <td className="col-2">
+                  <td className="col text-center align-middle">
+                    {ConstructorStandings.position}
+                  </td>
+                  <td className="col">
                     {ConstructorStandings.Constructor.name}
-                    {ConstructorStandings.position in ["1", "2", "3", "4"] ? (
+                    {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
+                    props.season ? (
                       <Team teamName={ConstructorStandings.Constructor.name} />
                     ) : (
                       ""
                     )}
                   </td>
-                  <td className="col-2 align-middle">
+                  <td className="col align-middle">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col align-middle">
+                  <td className="col align-middle text-center">
                     {ConstructorStandings.points}
                   </td>
                   <td className="col align-middle text-center">
                     {ConstructorStandings.wins}
                   </td>
-                  <td className="col align-middle">
-                    <a
-                      href={ConstructorStandings.Constructor.url}
-                      className="link-danger"
-                    >
-                      {ConstructorStandings.Constructor.url}
-                    </a>
-                  </td>
                 </tr>
-              </tbody>
             );
           })}
+          </tbody>
         </table>
       </div>
     </div>

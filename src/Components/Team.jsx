@@ -28,16 +28,14 @@ const Team = (props) => {
 
     if (props.teamName.substring(0, 4) === teams.strTeam.substring(0, 4)) {
       return (
-        <>
-          <img
-            key={index}
-            className="img-fluid"
-            src={teams.strTeamLogo + "/preview"}
-            alt=""
-            srcSet=""
-            title={teams.strDescriptionEN}
-          />
-        </>
+        <img
+          key={index}
+          className="img-fluid"
+          src={teams.strTeamLogo + "/preview"}
+          alt=""
+          srcSet=""
+          title={teams.strDescriptionEN}
+        />
       );
     } else {
       //  console.log(teams);

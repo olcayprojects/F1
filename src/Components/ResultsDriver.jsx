@@ -5,8 +5,11 @@ import F1Race from "./F1Race";
 import DriverDB from "./DriverDB";
 
 import { DrvInfo } from "./DriverInfo";
+import { useNavigate } from "react-router-dom";
 
 const ResultsDriver = () => {
+  const navigate = useNavigate();
+
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [sdata, setData] = useState([]);
@@ -40,15 +43,15 @@ const ResultsDriver = () => {
   }, [url]);
 
   if (sdata[0]?.Results) {
-    drvgivenName = sdata[0].Results[0].Driver.givenName;
-    drvfamilyName = sdata[0].Results[0].Driver.familyName;
-    drvcode = sdata[0].Results[0].Driver.code;
+    drvgivenName = sdata[0]?.Results[0].Driver.givenName;
+    drvfamilyName = sdata[0]?.Results[0].Driver.familyName;
+    drvcode = sdata[0]?.Results[0]?.Driver.code;
     drvdateOfBirth = new Date(
-      sdata[0].Results[0].Driver.dateOfBirth
+      sdata[0]?.Results[0]?.Driver.dateOfBirth
     ).toDateString();
-    drvnationality = sdata[0].Results[0].Driver.nationality;
-    drvpermanentNumber = sdata[0].Results[0].Driver.permanentNumber
-      ? sdata[0].Results[0].Driver.permanentNumber
+    drvnationality = sdata[0]?.Results[0].Driver.nationality;
+    drvpermanentNumber = sdata[0]?.Results[0].Driver.permanentNumber
+      ? sdata[0]?.Results[0]?.Driver.permanentNumber
       : "";
   }
 
@@ -60,23 +63,23 @@ const ResultsDriver = () => {
         <Link to="/" className="btn btn-danger container-fluid">
           <img
             src={require("../images/race-car.png")}
-            className="img p-0 mx-0"
+            className="img-fluid p-0 mx-0"
             style={{ maxWidth: "10%" }}
             alt=""
           />
         </Link>
-
-        <div className="table-responsive">
-          <table className="table table-dark bg-dark table-bordered table-hover text-danger border border-danger border-5 caption-top">
-            <caption className="text-danger text-center">
-              {<DrvInfo drv={drvgivenName + " " + drvfamilyName} />}
-              {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
-            </caption>
-            <thead className="border-dark">
-              <tr className="text-black">
-                <th className="bg-danger">Season</th>
+        <div className="container-fluid text-center text-light">
+        <h1>{drvgivenName} {drvfamilyName}</h1>
+          {<DrvInfo drv={drvgivenName + " " + drvfamilyName} />}
+          {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
+        </div>
+        <div className="table-responsive-sm">
+          <table className="table table-dark table-striped">
+            <thead>
+              <tr>
+                <th className="bg-danger text-center">Season</th>
                 <th className="bg-danger">Race Name</th>
-                <th className="bg-danger">Pos</th>
+                <th className="text-center bg-danger">Pos</th>
                 <th className="text-center bg-danger">Grid</th>
                 <th className="text-center bg-danger">Constructor</th>
                 <th className="text-center bg-danger">Laps</th>
@@ -85,63 +88,65 @@ const ResultsDriver = () => {
                 <th className="text-center bg-danger">Fastest Lap</th>
               </tr>
             </thead>
-            {sdata?.map((item, index) => {
-              i = item.season;
+            <tbody>
+              {sdata?.map((item, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="col text-center">{item.season}</td>
+                    <td
+                      className="col cp"
+                      onClick={() =>
+                        navigate("/F1Race/" + item.season + "/" + item.round)
+                      }
+                    >
+                      Round#{item.round} <b> {item.raceName}</b> ({item.date})
+                    </td>
 
-              return (
-                <tbody key={index}>
-                  {item?.Results?.map((results, indexQ) => {
-                    return (
-                      <tr key={indexQ}>
-                        <td>{item.season}</td>
-                        <td className="col">
-                          Round#{item.round} <b> {item.raceName}</b> (
-                          {item.date})
-                        </td>
+                    <td
+                      className={
+                        "col text-center " +
+                        (item.Results[0]?.positionText in ["1", "2", "3", "4"]
+                          ? "text-danger"
+                          : "")
+                      }
+                    >
+                      {item.Results[0]?.positionText}
+                    </td>
+                    <td className="col text-center">{item.Results[0]?.grid}</td>
+                    <td className="col text-center">
+                      {item.Results[0]?.Constructor.name}
+                    </td>
+                    <td className="col text-center">{item.Results[0]?.laps}</td>
+                    <td className="text-center col">
+                      {item.Results[0]?.Time?.time
+                        ? item.Results[0]?.Time.time
+                        : item.Results[0]?.status}
+                    </td>
+                    <td className=" text-center col">
+                      {item.Results[0]?.points}
+                    </td>
 
-                        <td
-                          className={
-                            "col text-center " +
-                            (results.positionText in ["1", "2", "3", "4"]
-                              ? "bg-black text-danger"
-                              : "")
-                          }
-                        >
-                          {results.positionText}
-                        </td>
-                        <td className="col text-center">{results.grid}</td>
-                        <td className="col">{results.Constructor.name}</td>
-                        <td className="col">{results.laps}</td>
-                        <td className=" text-center col">
-                          {results.Time?.time
-                            ? results.Time.time
-                            : results.status}
-                        </td>
-                        <td className=" text-center col">{results.points}</td>
-
-                        <td
-                          className={
-                            "text-center col " +
-                            (results.FastestLap?.rank in ["1", "2", "3", "4"]
-                              ? "bg-black"
-                              : "")
-                          }
-                        >
-                          #<b>{results.FastestLap?.rank}</b>#{" "}
-                          <b>{results.FastestLap?.Time.time}</b>-
-                          {results.FastestLap?.AverageSpeed.speed}
-                          {results.FastestLap?.AverageSpeed.units}-
-                          {results.FastestLap?.lap}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              );
-            })}
+                    <td
+                      className={
+                        "text-center col " +
+                        (item.Results[0]?.FastestLap?.rank in
+                        ["1", "2", "3", "4"]
+                          ? "text-danger"
+                          : "")
+                      }
+                    >
+                      #<b>{item.Results[0]?.FastestLap?.rank}</b>#{" "}
+                      <b>{item.Results[0]?.FastestLap?.Time.time}</b>-
+                      {item.Results[0]?.FastestLap?.AverageSpeed.speed}
+                      {item.Results[0]?.FastestLap?.AverageSpeed.units}-
+                      {item.Results[0]?.FastestLap?.lap}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
           </table>
         </div>
-        <hr />
       </div>
     );
   }

@@ -6,7 +6,6 @@ import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 import { DrvInfo } from "./DriverInfo";
 import Team from "./Team";
-
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
 
@@ -15,26 +14,21 @@ const F1Race = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
-  const randomNumber = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1)) + min;
+  // const randomNumber = (min, max) =>
+  //   Math.floor(Math.random() * (max - min + 1)) + min;
 
   const handleTabChange = (e, tabIndex) => {
     setCurrentTabIndex(tabIndex);
   };
 
-  let url = "";
-
   let season = "";
   let round = "";
   let laps = "";
-  let teamId = "";
-  let DrId = "";
-  let name = "";
 
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
-  const date = (d) => new Date(d).toDateString();
+  // const date = (d) => new Date(d).toDateString();
 
   let urlx;
   if (rounds === 0) {
@@ -61,24 +55,13 @@ const F1Race = (props) => {
         });
     }
     fetchData();
-  }, []);
+  }, [urlx]);
 
   if (!isLoaded) {
     return <Loading />;
   } else {
     return (
       <>
-        <Link to="/" className="p-0">
-          <img
-            src={
-              "https://www.thesportsdb.com/images/media/team/jersey/2f0s8q1679829159.png"
-            }
-            className="img p-0 mx-auto d-block"
-            style={{ objectFit: "cover", width: "500px", height: "200px" }}
-            alt=""
-          />
-        </Link>
-
         <div className="container.fluid bg-dark p-3">
           {sdata?.map((item, index) => {
             season = item.season;
@@ -94,95 +77,105 @@ const F1Race = (props) => {
                   {item.raceName} #{item.round} (
                   {item.time ? dateTime(item.date, item.time) : item.date})
                 </h1>
-                <div className="table-responsive-sm">
-                  <table className="table table-dark table-striped border-1 border-danger ">
+                <div className="table-responsive-md">
+                  <table className="table table-dark table-striped">
                     <thead className="text">
                       <tr className="">
-                        <th className="bg-danger">P</th>
-                        <th className="bg-danger">G</th>
+                        <th className="bg-danger text-center">P</th>
+                        <th className="bg-danger text-center">G</th>
                         <th className="text-center bg-danger">DRIVER</th>
-                        <th className="bg-danger">CONSTRUCTOR</th>
+                        <th className="bg-danger text-center">CONSTRUCTOR</th>
+                        <th className="bg-danger text-center">LAPS</th>
                         <th className="text-center bg-danger">TIME</th>
-                        <th className="bg-danger">LAPS</th>
+                        <th className="text-center bg-danger">PTS</th>
                         <th className="text-center bg-danger">FASTEST LAP</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">
                       {item?.Results?.map((result, index) => {
                         return (
-                          <>
-                            <tr key={index} className="text-danger">
-                              <td className="align-middle col">
-                                <b>{result.positionText}</b>
-                              </td>
-                              <td className="align-middle col op">
-                                {result.grid}
-                              </td>
+                          <tr key={index} className="text-danger">
+                            <td className="align-middle col text-center">
+                              <b>{result.positionText}</b>
+                            </td>
+                            <td className="align-middle col op text-center">
+                              {result.grid}
+                            </td>
 
-                              <td
-                                className="align-middle text-center col-1 cp"
-                                onClick={() => {
-                                  navigate(
-                                    "/ResultsDriver/" +
-                                      item.season +
-                                      "/" +
-                                      result.Driver.driverId
-                                  );
-                                }}
-                              >
-                                {result.positionText in ["1", "2", "3", "4"] ? (
-                                  <DrvInfo
-                                    drv={
-                                      result.Driver?.givenName +
-                                      " " +
-                                      result.Driver?.familyName
-                                    }
-                                  />
-                                ) : (
-                                  ""
-                                )}
+                            <td
+                              className="align-middle col cp"
+                              onClick={() => {
+                                navigate(
+                                  "/ResultsDriver/" + result.Driver.driverId
+                                );
+                              }}
+                            >
+                              {(result.positionText in ["1", "2", "3", "4"]) &
+                              (season2 === "2023") ? (
+                                <DrvInfo
+                                  drv={
+                                    result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName
+                                  }
+                                />
+                              ) : (
+                                ""
+                              )}
 
-                                {result.Driver?.givenName +
-                                  " " +
-                                  result.Driver?.familyName}
-                              </td>
+                              {result.Driver?.givenName +
+                                " " +
+                                result.Driver?.familyName +
+                                " - " +
+                                result.Driver?.nationality}
+                            </td>
 
-                              <td
-                                className="align-middle text-center col-3 op p-0"
-                                title={result.Constructor.name}
-                              >
-                                {result.positionText in ["1", "2", "3", "4"] ? (
-                                  <Team teamName={result?.Constructor.name} />
-                                ) : (
-                                  ""
-                                )}
-                                {result.Constructor.name}
-                              </td>
-                              <td className="align-middle col text-wrap">
-                                {result.Time?.time
-                                  ? result.Time.time
-                                  : result.status}
-                              </td>
-                              <td className="align-middle col op">
-                                {result.laps}
-                              </td>
-                              <td
-                                className={
-                                  "align-middle text-nowrap " +
-                                  (result.FastestLap?.rank in
-                                  ["1", "2", "3", "4"]
-                                    ? "text-info "
-                                    : "")
-                                }
-                              >
-                                {" "}
-                                (#<b>{result.FastestLap?.rank}</b>#){" "}
-                                <b>{result.FastestLap?.Time.time}</b>{" "}
-                                {result.FastestLap?.AverageSpeed?.speed}
-                                kph {result.FastestLap?.lap}
-                              </td>
-                            </tr>
-                          </>
+                            <td
+                              className="align-middle text-center col-3 op p-0"
+                              title={result.Constructor.name}
+                            >
+                              {(result.positionText in ["1", "2", "3", "4"]) &
+                              (season2 === "2023") ? (
+                                <Team teamName={result?.Constructor.name} />
+                              ) : (
+                                ""
+                              )}
+                              {result.Constructor.name} -{" "}
+                              {result.Constructor.nationality}
+                            </td>
+                            <td className="align-middle col text-center">
+                              {result.laps}
+                            </td>
+                            <td className="align-middle col op text-wrap text-center">
+                              {result.Time?.time
+                                ? result.Time.time
+                                : result.status}
+                            </td>
+                            <td className="align-middle col text-center">
+                              {result.points}
+                            </td>
+
+                            <td
+                              className={
+                                "align-middle op text-nowrap " +
+                                (result.FastestLap?.rank in ["1", "2", "3", "4"]
+                                  ? "text-danger "
+                                  : "")
+                              }
+                            >
+                              {result.FastestLap
+                                ? "_" +
+                                  result.FastestLap.rank +
+                                  "_TIME(" +
+                                  result.FastestLap?.Time.time +
+                                  ") AVG SPEED(" +
+                                  result.FastestLap?.AverageSpeed?.speed +
+                                  ") LAP(" +
+                                  result.FastestLap?.lap +
+                                  ")"
+                                : ""}
+                            </td>
+                          </tr>
                         );
                       })}
                     </tbody>
@@ -200,8 +193,8 @@ const F1Race = (props) => {
             variant="standard"
             sx={{
               "& .MuiTabs-indicator": { backgroundColor: "#FFFFFF" },
-              "& .MuiTab-root": { color: red[500], fontSize: "22px" },
-              "& .Mui-selected": { color: "#FFFF", fontSize: "22px" },
+              "& .MuiTab-root": { color: red[500], fontSize: "20px" },
+              "& .Mui-selected": { color: red[500], fontSize: "24px" },
               boxShadow: 4,
               p: 1,
               borderRadius: 1,
@@ -249,6 +242,16 @@ const F1Race = (props) => {
               </div>
             </Box>
           )}
+          <Link to="/" className="p-0">
+            <img
+              src={
+                "https://www.thesportsdb.com/images/media/team/jersey/2f0s8q1679829159.png"
+              }
+              className="img-fluid p-0 mx-auto d-block"
+              style={{ objectFit: "cover", width: "500px", height: "200px" }}
+              alt=""
+            />
+          </Link>
         </div>
       </>
     );

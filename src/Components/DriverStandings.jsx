@@ -42,8 +42,8 @@ const DriverStandings = (props) => {
     return (
       <div className="bg-black container-fluid">
         <div className="table-responsive">
-          <table className="table table-dark table-bordered table-hover text-danger border border-danger border-5 ">
-            <thead className="border-dark">
+          <table className="table table-dark table-striped">
+            <thead className="">
               <tr className="text-black">
                 <th scope="col" className="bg-danger">
                   P
@@ -54,7 +54,7 @@ const DriverStandings = (props) => {
                 <th scope="col" className="bg-danger text-center">
                   DRIVER INFO
                 </th>
-                <th scope="col" className="bg-danger">
+                <th scope="col" className="bg-danger text-center">
                   CONSTRUCTOR
                 </th>
                 <th scope="col" className="bg-danger">
@@ -63,19 +63,20 @@ const DriverStandings = (props) => {
                 <th scope="col" className="bg-danger">
                   WINS
                 </th>
-                <th scope="col" className="bg-danger">
-                  INFORMATION-DRIVER BIOGRAPHY WIKIPEDIA
-                </th>
               </tr>
             </thead>
-            {sdata?.map((driver, indexedDB) => {
-              return (
-                <tbody key={indexedDB}>
+            <tbody key={indexedDB}>
+              {sdata?.map((driver, indexedDB) => {
+                return (
                   <tr key={indexedDB}>
-                    <td className="col">{driver.position}</td>
-                    <td className="col text-center">{driver.Driver.code} </td>
+                    <td className="col align-middle text-center">
+                      {driver.position}
+                    </td>
+                    <td className="col text-center align-middle">
+                      {driver.Driver.code}{" "}
+                    </td>
                     <td
-                      className="col-3 cp"
+                      className="col cp"
                       onClick={() => {
                         navigate(
                           "/ResultsDriver/" +
@@ -89,7 +90,8 @@ const DriverStandings = (props) => {
                         {driver.Driver.givenName} {driver.Driver.familyName}
                       </b>{" "}
                       ({driver.Driver.nationality}) {driver.Driver.dateOfBirth}
-                      {driver.position in ["1", "2", "3", "4"] ? (
+                      {(driver.position in ["1", "2", "3", "4"]) &
+                      (props.season === "2023") ? (
                         <DrvInfo
                           drv={
                             driver.Driver?.givenName +
@@ -102,27 +104,26 @@ const DriverStandings = (props) => {
                       )}
                     </td>
                     <td className="col-4 align-middle">
-                      <b>{driver.Constructors[0].name}</b> (
-                      {driver.Constructors[0].nationality})
-                      {driver.position in ["1", "2", "3", "4"] ? (
+                      {(driver.position in ["1", "2", "3", "4"]) &
+                      (props.season === "2023") ? (
                         <Team teamName={driver?.Constructors[0].name} />
                       ) : (
-                        ""
+                        driver.Constructors[0].name +
+                        " (" +
+                        driver.Constructors[0].nationality +
+                        ")"
                       )}
                     </td>
-                    <td className="col align-middle">{driver.points}</td>
+                    <td className="col align-middle text-center">
+                      {driver.points}
+                    </td>
                     <td className="col align-middle text-center">
                       {driver.wins}
                     </td>
-                    <td className="col align-middle">
-                      <a href={driver.Driver.url} className="link-danger">
-                        {driver.Driver.url}
-                      </a>
-                    </td>
                   </tr>
-                </tbody>
-              );
-            })}
+                );
+              })}
+            </tbody>
           </table>
         </div>
       </div>

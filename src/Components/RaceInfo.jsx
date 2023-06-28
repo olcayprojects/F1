@@ -26,27 +26,37 @@ const RaceInfo = () => {
     fetchData();
   }, [url]);
 
-
   return (
-  <div className="container-fluid">
+    <div className="container-fluid">
       <div className="row">
-      {data?.map((event, index) => {
-     
-        return (
-              <div className="col text-center" key={index}>
-                <h1 className="text-light">{event.strFilename}</h1>
-                <img className="img-fluid" src={event.strThumb + "/preview"} alt="" srcSet="" />
-                <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" />
-                {/* <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" /> */}
-                <h5 className="text-light">{event.strVenue}</h5>
-                <h5 className="text-light">{event.strCountry}</h5>
-                <h5 className="text-light">{event.strCity}</h5>
-                <h5 className="text-light">{new Date(event.strTimestamp).toLocaleString()}</h5>
-                <h5 className="text-light">{event.strDescriptionEN}</h5>
-              </div>
-        );
-    })}
-    </div>
+        {data?.map((event, index) => {
+          return (
+            <div className="col text-center" key={index}>
+              <h1 className="text-light">{event.strFilename}</h1>
+              <img
+                className="img-fluid"
+                src={event.strThumb + "/preview"}
+                alt=""
+                srcSet=""
+              />
+              <img
+                className="img-fluid"
+                src={event.strMap + "/preview"}
+                alt=""
+                srcSet=""
+              />
+              {/* <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" /> */}
+              <h5 className="text-light">{event.strVenue}</h5>
+              <h5 className="text-light">{event.strCountry}</h5>
+              <h5 className="text-light">{event.strCity}</h5>
+              <h5 className="text-light">
+                {new Date(event.strTimestamp).toLocaleString()}
+              </h5>
+              <h5 className="text-light">{event.strDescriptionEN}</h5>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
