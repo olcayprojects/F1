@@ -83,7 +83,11 @@ const RaceSchedule = (props) => {
                         : rs.date}
                     </b>
                   </td>
-                  <td className="col text-center text-nowrap">
+                  <td className="col text-center text-nowrap cp"
+                   onClick={() =>
+                    navigate("/Sprint/" + props.season + "/" + rs.round)
+                  }
+                  >
                     {rs.Sprint?.time
                       ? dateTime(
                           rs.Sprint?.date,
