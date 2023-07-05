@@ -27,9 +27,9 @@ const ConstructorStandings = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid">
+    <div className="bg-black container-fluid p-0">
       <div className="table-responsive">
-      <table className="table table-dark table-striped">
+        <table className="table table-dark table-striped">
           <thead className="text-white border-dark">
             <tr className="text-black">
               <th scope="col" className="bg-danger text-center">
@@ -50,13 +50,13 @@ const ConstructorStandings = (props) => {
             </tr>
           </thead>
           <tbody key={indexedDB}>
-          {sdata?.map((ConstructorStandings, indexedDB) => {
-            return (
+            {sdata?.map((ConstructorStandings, indexedDB) => {
+              return (
                 <tr key={indexedDB} className="">
                   <td className="col text-center align-middle">
                     {ConstructorStandings.position}
                   </td>
-                  <td className="col">
+                  <td className="col op">
                     {ConstructorStandings.Constructor.name}
                     {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
                     props.season ? (
@@ -68,15 +68,15 @@ const ConstructorStandings = (props) => {
                   <td className="col align-middle">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col align-middle text-center">
+                  <td className="col align-middle text-center op">
                     {ConstructorStandings.points}
                   </td>
                   <td className="col align-middle text-center">
                     {ConstructorStandings.wins}
                   </td>
                 </tr>
-            );
-          })}
+              );
+            })}
           </tbody>
         </table>
       </div>

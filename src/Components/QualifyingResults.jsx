@@ -1,4 +1,4 @@
-import react, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
@@ -23,7 +23,7 @@ const QualifyingResults = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid">
+    <div className="bg-black container-fluid p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped">
           <thead className="">
@@ -31,7 +31,6 @@ const QualifyingResults = (props) => {
               <th className="bg-danger text-center">P</th>
               <th className="bg-danger text-center">NO</th>
               <th className="bg-danger">DRIVER</th>
-              <th className="bg-danger">CONSTRUCTOR</th>
               <th className="text-center bg-danger">Q1</th>
               <th className="text-center bg-danger">Q2</th>
               <th className="text-center bg-danger">Q3</th>
@@ -44,18 +43,26 @@ const QualifyingResults = (props) => {
                   return (
                     <tr key={indexQ}>
                       <td className="col text-center">{qualifying.position}</td>
-                      <td className="col text-center">{qualifying.number}</td>
-                      <td className="col">
-                        {qualifying.Driver.givenName}{" "}
-                        {qualifying.Driver.familyName}(
-                        {qualifying.Driver.nationality})
+                      <td className="col text-center op">
+                        {qualifying.number}
                       </td>
                       <td className="col">
-                        {qualifying.Constructor.name}(
-                        {qualifying.Constructor.nationality})
+                        <b className="fs-5">
+                          {qualifying.Driver.givenName}{" "}
+                          {qualifying.Driver.familyName}
+                        </b>
+                        <span className="">
+                          {" "}
+                          {qualifying.Driver.nationality}{" "}
+                        </span>
+                        <i className="fw-lighter fs-5">
+                          {qualifying.Constructor.name}{" "} 
+                        </i>
+                        <span className="">{qualifying.Constructor.nationality}</span>
                       </td>
+
                       <td className=" text-center col">{qualifying.Q1}</td>
-                      <td className=" text-center col">
+                      <td className=" text-center col op">
                         {qualifying.Q2 ? qualifying.Q2 : "0:00.000"}
                       </td>
                       <td className="text-center col">

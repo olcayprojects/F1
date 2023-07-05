@@ -28,17 +28,32 @@ const Team = (props) => {
 
     if (props.teamName.substring(0, 4) === teams.strTeam.substring(0, 4)) {
       return (
-        <img
-          key={index}
-          className="img-fluid"
-          src={teams.strTeamLogo + "/preview"}
-          alt=""
-          srcSet=""
-          title={teams.strDescriptionEN}
-        />
+        <div key={index} className="">
+                      <img
+            key={index}
+            className="img-fluid"
+            style={{width:"220px", height:"46px",objectFit:"cover"}}
+            src={teams.strTeamJersey + "/preview"}
+            alt=""
+            srcSet=""
+            title={teams.strDescriptionEN}
+          />
+            <img
+              key={index}
+              className="img-fluid"
+              style={{width:"190px", height:"100px",objectFit:"cover"}}
+
+              src={teams.strTeamBadge + "/preview"}
+              alt=""
+              srcSet=""
+              title=""
+            />
+
+
+        </div>
       );
     } else {
-      //  console.log(teams);
+        // console.log(teams);
     }
   });
 };

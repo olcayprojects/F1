@@ -17,7 +17,7 @@ const Next = () => {
   return (
     <div className="bg-dark">
       {sdata?.map((data, index) => {
-        const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
+        const dateTime = (d, t) => new Date(d + " " + t).toLocaleString("en-EN",{dateStyle:"full",timeStyle:"short"});
         return (
           <h1 key={index} className="blink bg-dark">
             <marquee className="blink">

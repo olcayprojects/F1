@@ -28,14 +28,13 @@ const WinRacesInaSeason = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid">
+    <div className="bg-black container-fluid p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped">
           <thead className="">
             <tr className="text-dark">
               <th className="bg-danger">Race Name</th>
               <th className="bg-danger">Driver</th>
-              <th className="bg-danger">Constructor</th>
               <th className="bg-danger text-center">Pts</th>
               <th className="bg-danger text-center">Laps</th>
               <th className="bg-danger text-center">Time</th>
@@ -52,27 +51,32 @@ const WinRacesInaSeason = (props) => {
                       navigate("/F1Race/" + props.season + "/" + item.round)
                     }
                   >
-                    #{item.round} <b>{item.raceName} </b>
+                   <b className="fs-5"> #{item.round} {item.raceName} </b>
+                   <i>
+
                     {item.time ? dateTime(item.date, item.time) : item.date}
+                   </i>
                   </td>
                   <td
-                    className="col cp text-danger"
+                    className="col cp op"
                     onClick={() => {
                       navigate(
                         "/ResultsDriver/" + item.Results[0].Driver.driverId
                       );
                     }}
                   >
-                    {item.Results[0].Driver.givenName}{" "}
-                    {item.Results[0].Driver.familyName}
+                    <b className="fs-5">
+                      {item.Results[0].Driver.givenName}{" "}
+                      {item.Results[0].Driver.familyName}
+                    </b>
+                    {" "}<i className="fw-light">{item.Results[0].Constructor.name}</i>
                   </td>
-                  <td className="col text-danger">
-                    {item.Results[0].Constructor.name}
+                  <td className="col text-center op">
+                    {item.Results[0].points}
                   </td>
-                  <td className="col text-center">{item.Results[0].points}</td>
 
                   <td className="col text-center">{item.Results[0].laps}</td>
-                  <td className="col text-center">
+                  <td className="col text-center op">
                     {item.Results[0].Time.time}
                   </td>
 
@@ -84,19 +88,18 @@ const WinRacesInaSeason = (props) => {
                         : "")
                     }
                   >
-                    #{item.Results[0].FastestLap?.rank}#{" "}
-                    {item.Results[0].FastestLap?.Time?.time
-                      ? item.Results[0].FastestLap?.Time?.time
-                      : " "}{" "}
-                    AvgSpd(
-                    {item.Results[0].FastestLap?.AverageSpeed?.speed
-                      ? item.Results[0].FastestLap.AverageSpeed.speed
-                      : " "}
-                    )kph Laps(
-                    {item.Results[0].FastestLap?.lap
-                      ? item.Results[0].FastestLap.lap
-                      : " "}
-                    )
+                    {item.Results[0].FastestLap
+                      ? "#" +
+                        item.Results[0].FastestLap?.rank +
+                        "# " +
+                        "Time(" +
+                        item.Results[0].FastestLap?.Time?.time +
+                        ") AvgSpd(" +
+                        item.Results[0].FastestLap?.AverageSpeed?.speed +
+                        "kph) Lap(" +
+                        item.Results[0].FastestLap.lap +
+                        ")"
+                      : ""}
                   </td>
                 </tr>
               );

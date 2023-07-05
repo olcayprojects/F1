@@ -27,16 +27,25 @@ const DriverDB = (props) => {
     }
     fetchData();
   }, [url]);
+  console.log(data);
 
   return (
     <>
-      <pre className="p-0 text-wrap">
-        {data?.dateBorn} {data?.strBirthLocation}
-      </pre>
-      <pre className="p-0 text-wrap">
-        {data?.strTeam} #{data?.strNumber}
-      </pre>
-      <p className="p-0 text-light">{data?.strDescriptionEN}</p>
+          <img
+        className="img-fluid w-25"
+        style={{width: "", height: "" }}
+        src={data?.strRender?  data?.strRender + "/preview":data?.strCutout + "/preview"}
+        alt=""
+        title={data?.strDescriptionEN}
+        srcSet=""
+      />
+      <p className="p-0">
+        Team: {data?.strTeam} #{data?.strNumber} <br />
+        Country: {data?.strNationality} <br />
+        Date of birth: {data?.dateBorn} <br />
+        Place of birth: {data?.strBirthLocation}
+      </p>
+      <p className="p-0">{data?.strDescriptionEN}</p>
     </>
   );
 };

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
-import F1Race from "./F1Race";
 import DriverDB from "./DriverDB";
 
 import { DrvInfo } from "./DriverInfo";
@@ -9,30 +8,34 @@ import { useNavigate } from "react-router-dom";
 
 const ResultsDriver = () => {
   const navigate = useNavigate();
-
   const [isLoaded, setIsLoaded] = useState(false);
-
   const [sdata, setData] = useState([]);
   //const { season2 = "2023" } = useParams();
+
+  const todate = (d) => new Date(d).toLocaleString("en-EN",{dateStyle:"long"})
   const { driver = "alonso" } = useParams();
   let drvgivenName = "";
   let drvfamilyName = "";
-  let drvcode = "";
-  let drvdateOfBirth = "";
-  let drvnationality = "";
-  let drvpermanentNumber = "";
-  let i,
-    j = "";
 
   // let url = `https://ergast.com/api/f1/${season2}/drivers/${driver}/results.json`;
   let url = `https://ergast.com/api/f1/drivers/${driver}/results.json?limit=400`;
+  let urlSprint = `https://ergast.com/api/f1/drivers/${driver}/sprint.json`;
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
+    Promise.all([fetch(url), fetch(urlSprint)])
+      .then(([resRace, resSprint]) =>
+        Promise.all([resRace.json(), resSprint.json()])
+      )
+      .then(([dataRace, dataSprint]) => {
         setIsLoaded(true);
-        setData(data["MRData"].RaceTable.Races);
+
+        setData(
+          dataRace["MRData"].RaceTable.Races.concat(
+            dataSprint["MRData"].RaceTable.Races
+          )
+        );
+        //setData(dataSprint["MRData"].RaceTable.Races);
+        // setSprintData(dataSprint["MRData"]);
       })
       .catch((err) => {
         setIsLoaded(true);
@@ -40,37 +43,28 @@ const ResultsDriver = () => {
           console.log(err.message);
         }
       });
-  }, [url]);
+  }, [url, urlSprint]);
 
   if (sdata[0]?.Results) {
-    drvgivenName = sdata[0]?.Results[0].Driver.givenName;
-    drvfamilyName = sdata[0]?.Results[0].Driver.familyName;
-    drvcode = sdata[0]?.Results[0]?.Driver.code;
-    drvdateOfBirth = new Date(
-      sdata[0]?.Results[0]?.Driver.dateOfBirth
-    ).toDateString();
-    drvnationality = sdata[0]?.Results[0].Driver.nationality;
-    drvpermanentNumber = sdata[0]?.Results[0].Driver.permanentNumber
-      ? sdata[0]?.Results[0]?.Driver.permanentNumber
-      : "";
+    drvgivenName = sdata[0]?.Results[0]?.Driver.givenName;
+    drvfamilyName = sdata[0]?.Results[0]?.Driver.familyName;
+  } else {
+    drvgivenName = sdata[0]?.SprintResults[0]?.Driver.givenName;
+    drvfamilyName = sdata[0]?.SprintResults[0]?.Driver.familyName;
   }
 
   if (!isLoaded) {
     return <Loading />;
   } else {
     return (
-      <div className="bg-black container-fluid">
+      <div className="bg-black container-fluid p-0">
         <Link to="/" className="btn btn-danger container-fluid">
-          <img
-            src={require("../images/race-car.png")}
-            className="img-fluid p-0 mx-0"
-            style={{ maxWidth: "10%" }}
-            alt=""
-          />
+          <h1>F1</h1>
         </Link>
         <div className="container-fluid text-center text-light">
-        <h1>{drvgivenName} {drvfamilyName}</h1>
-          {<DrvInfo drv={drvgivenName + " " + drvfamilyName} />}
+          <h2>
+            {drvgivenName} {drvfamilyName}
+          </h2>
           {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
         </div>
         <div className="table-responsive-sm">
@@ -89,61 +83,104 @@ const ResultsDriver = () => {
               </tr>
             </thead>
             <tbody>
-              {sdata?.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td className="col text-center">{item.season}</td>
-                    <td
-                      className="col cp"
-                      onClick={() =>
-                        navigate("/F1Race/" + item.season + "/" + item.round)
-                      }
-                    >
-                      Round#{item.round} <b> {item.raceName}</b> ({item.date})
-                    </td>
+              {sdata
+                ?.sort((a, b) => (a["date"] < b["date"] ? 1 : -1))
+                .map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td className="col text-center">{item.season}</td>
+                      <td
+                        className={
+                          "col cp op " + (!item.Results ? "text-info" : "")
+                        }
+                        onClick={() =>
+                          item.Results
+                            ? navigate(
+                                "/F1Race/" + item.season + "/" + item.round
+                              )
+                            : navigate(
+                                "/Sprint/" + item.season + "/" + item.round
+                              )
+                        }
+                      >
+                        Round#{item.round}{" "}
+                        <b>
+                          {item.Results
+                            ? item.raceName
+                            : item.raceName + " Sprint"}
+                        </b>{" "}
+                        ({todate(item.date)})
+                      </td>
 
-                    <td
-                      className={
-                        "col text-center " +
-                        (item.Results[0]?.positionText in ["1", "2", "3", "4"]
-                          ? "text-danger"
-                          : "")
-                      }
-                    >
-                      {item.Results[0]?.positionText}
-                    </td>
-                    <td className="col text-center">{item.Results[0]?.grid}</td>
-                    <td className="col text-center">
-                      {item.Results[0]?.Constructor.name}
-                    </td>
-                    <td className="col text-center">{item.Results[0]?.laps}</td>
-                    <td className="text-center col">
-                      {item.Results[0]?.Time?.time
-                        ? item.Results[0]?.Time.time
-                        : item.Results[0]?.status}
-                    </td>
-                    <td className=" text-center col">
-                      {item.Results[0]?.points}
-                    </td>
+                      <td className={"col text-center "}>
+                        {item.Results
+                          ? item?.Results[0]?.positionText
+                          : item?.SprintResults[0]?.positionText}
+                      </td>
+                      <td className="col text-center op">
+                        {item.Results
+                          ? item?.Results[0]?.grid
+                          : item?.SprintResults[0]?.grid}
+                      </td>
+                      <td className="col text-center">
+                        {item?.Results
+                          ? item?.Results[0]?.Constructor?.name
+                          : item?.SprintResults[0]?.Constructor?.name}
+                      </td>
+                      <td className="col text-center op">
+                        {item?.Results
+                          ? item?.Results[0]?.laps
+                          : item?.SprintResults[0]?.laps}
+                      </td>
+                      <td className="text-center col">
+                        {item?.Results
+                          ? item?.Results[0]?.Time?.time
+                            ? item?.Results[0]?.Time?.time
+                            : item?.Results[0]?.status
+                          : item?.SprintResults[0]?.Time?.time
+                          ? item?.SprintResults[0]?.Time?.time
+                          : item?.SprintResults[0]?.status}
+                      </td>
+                      <td className=" text-center col op">
+                        {item?.Results
+                          ? item?.Results[0]?.points
+                          : item?.SprintResults[0]?.points}
+                      </td>
 
-                    <td
-                      className={
-                        "text-center col " +
-                        (item.Results[0]?.FastestLap?.rank in
-                        ["1", "2", "3", "4"]
-                          ? "text-danger"
-                          : "")
-                      }
-                    >
-                      #<b>{item.Results[0]?.FastestLap?.rank}</b>#{" "}
-                      <b>{item.Results[0]?.FastestLap?.Time.time}</b>-
-                      {item.Results[0]?.FastestLap?.AverageSpeed.speed}
-                      {item.Results[0]?.FastestLap?.AverageSpeed.units}-
-                      {item.Results[0]?.FastestLap?.lap}
-                    </td>
-                  </tr>
-                );
-              })}
+                      <td
+                        className={
+                          "text-center col " +
+                          (item?.Results
+                            ? item?.Results[0]?.FastestLap?.rank
+                            : item?.SprintResults[0]?.FastestLap?.rank in
+                              ["1", "2", "3", "4"]
+                            ? "text-danger"
+                            : "")
+                        }
+                      >
+                        {item?.Results
+                          ? item?.Results[0]?.FastestLap
+                            ? "#" +
+                              item?.Results[0]?.FastestLap?.rank +
+                              "# " +
+                              item?.Results[0]?.FastestLap?.Time.time +
+                              "-" +
+                              item?.Results[0]?.FastestLap?.AverageSpeed
+                                ?.speed +
+                              item?.Results[0]?.FastestLap?.AverageSpeed
+                                ?.units +
+                              "-" +
+                              item?.Results[0]?.FastestLap?.lap
+                            : ""
+                          : item?.SprintResults[0]?.FastestLap
+                          ? item?.SprintResults[0]?.FastestLap?.Time.time +
+                            "-" +
+                            item?.SprintResults[0]?.FastestLap?.lap
+                          : ""}
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </div>

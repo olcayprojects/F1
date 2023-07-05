@@ -41,7 +41,7 @@ const Laptimes = (props) => {
       <thead className="text-white border-dark">
         <tr className="text-black">
           <th className="bg-danger">DRIVER NAME</th>
-          <th className="bg-danger text-center">P</th>
+          <th className="text-center">P</th>
           <th className="bg-danger text-center">TIME</th>
         </tr>
       </thead>
@@ -55,7 +55,7 @@ const Laptimes = (props) => {
                 {<DriverId Id={LapTimes.driverId} />}
                 {/* {LapTimes.driverId} */}
               </td>
-              <td className="col text-center">{LapTimes.position}</td>
+              <td className="col text-center op">{LapTimes.position}</td>
               <td className="col text-center">{LapTimes.time}</td>
             </tr>
           );

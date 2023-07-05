@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
@@ -28,6 +27,9 @@ const RaceInfo = () => {
 
   return (
     <div className="container-fluid">
+      <Link to="/" className="btn btn-danger container-fluid">
+        <h1>F1</h1>
+      </Link>
       <div className="row">
         {data?.map((event, index) => {
           return (

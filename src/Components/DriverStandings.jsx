@@ -40,27 +40,24 @@ const DriverStandings = (props) => {
     return <Loading />;
   } else {
     return (
-      <div className="bg-black container-fluid">
+      <div className="bg-black container-fluid p-0">
         <div className="table-responsive">
           <table className="table table-dark table-striped">
             <thead className="">
               <tr className="text-black">
-                <th scope="col" className="bg-danger">
+                <th scope="col" className="bg-danger text-center">
                   P
                 </th>
                 <th scope="col" className="text-center bg-danger">
                   CODE
                 </th>
-                <th scope="col" className="bg-danger text-center">
+                <th scope="col" className="bg-danger">
                   DRIVER INFO
                 </th>
                 <th scope="col" className="bg-danger text-center">
-                  CONSTRUCTOR
-                </th>
-                <th scope="col" className="bg-danger">
                   PTS
                 </th>
-                <th scope="col" className="bg-danger">
+                <th scope="col" className="bg-danger text-center">
                   WINS
                 </th>
               </tr>
@@ -72,24 +69,15 @@ const DriverStandings = (props) => {
                     <td className="col align-middle text-center">
                       {driver.position}
                     </td>
-                    <td className="col text-center align-middle">
+                    <td className="col text-center align-middle op">
                       {driver.Driver.code}{" "}
                     </td>
                     <td
                       className="col cp"
                       onClick={() => {
-                        navigate(
-                          "/ResultsDriver/" +
-                            props.season +
-                            "/" +
-                            driver.Driver.driverId
-                        );
+                        navigate("/ResultsDriver/" + driver.Driver.driverId);
                       }}
                     >
-                      <b>
-                        {driver.Driver.givenName} {driver.Driver.familyName}
-                      </b>{" "}
-                      ({driver.Driver.nationality}) {driver.Driver.dateOfBirth}
                       {(driver.position in ["1", "2", "3", "4"]) &
                       (props.season === "2023") ? (
                         <DrvInfo
@@ -102,22 +90,21 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )}
-                    </td>
-                    <td className="col-4 align-middle">
-                      {(driver.position in ["1", "2", "3", "4"]) &
-                      (props.season === "2023") ? (
-                        <Team teamName={driver?.Constructors[0].name} />
-                      ) : (
-                        driver.Constructors[0].name +
-                        " (" +
-                        driver.Constructors[0].nationality +
-                        ")"
-                      )}
-                    </td>
-                    <td className="col align-middle text-center">
-                      {driver.points}
+                      <b className="fs-5">
+                        {driver.Driver.givenName} {driver.Driver.familyName}
+                      </b>{" "}
+                      <span>
+                        {driver.Driver.nationality} {driver.Driver.dateOfBirth}
+                      </span>{" "}
+                      <i className="fw-light fs-5">
+                        {driver.Constructors[0].name}
+                      </i>
+                      <i> {driver.Constructors[0].nationality}</i>
                     </td>
                     <td className="col align-middle text-center">
+                      <b>{driver.points}</b>
+                    </td>
+                    <td className="col align-middle text-center op">
                       {driver.wins}
                     </td>
                   </tr>

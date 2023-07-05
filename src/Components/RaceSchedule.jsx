@@ -8,8 +8,6 @@ const RaceSchedule = (props) => {
 
   const dateNow = new Date();
 
-  console.log();
-
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}.json`;
@@ -29,21 +27,21 @@ const RaceSchedule = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid">
-      <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
-        Race Schedule {props.season}
-      </h1>
+    <div className="bg-black container-fluid p-0">
+      <h2 className="text-center bg-black text-danger border border-danger border-5 mb-2">
+        F1 Schedule {props.season}
+      </h2>
       <div className="table-responsive-sm">
-      <table className="table table-dark table-striped">
+        <table className="table table-dark table-striped">
           <thead className="text-danger tho">
             <tr className="text-black">
-              <th className="text-center bg-danger">Rnd</th>
+              <th className="text-center">Rnd</th>
               <th className="bg-danger text-center">Race Name</th>
-              <th className="bg-danger text-center">Race</th>
-              <th className="text-center bg-danger">Sprint</th>
-              <th className="bg-danger text-center">Qualifying</th>
+              <th className=" text-center">Race</th>
+              <th className="text-center bg-info">Sprint</th>
+              <th className="text-center">Qualifying</th>
               <th className="bg-danger text-center">Practice1</th>
-              <th className="text-center bg-danger">Circuit</th>
+              <th className="text-center">Circuit</th>
             </tr>
           </thead>
           <tbody className="text-danger">
@@ -55,10 +53,11 @@ const RaceSchedule = (props) => {
               return (
                 <tr className="col" key={index}>
                   <td className="col text-center">{rs.round}</td>
-                  <td className="col text-nowrap">{rs.raceName}</td>
-                  <td title={title} 
+                  <td className="col text-nowrap op"><b>{rs.raceName}</b></td>
+                  <td
+                    title={title}
                     className={
-                      "col-2 cp text-center text-nowrap " +
+                      "col cp text-center text-nowrap " +
                       (dateTime(rs.date, rs.time) < dateNow
                         ? "raceComplete text-danger"
                         : (rs.date.split("-")[1] ===
@@ -77,22 +76,32 @@ const RaceSchedule = (props) => {
                     <b>
                       {" "}
                       {dateTime(rs.date, rs.time) > dateNow
-                        ? dateTime(rs.date, rs.time).toLocaleString()
+                        ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
+                            dateStyle: "short",
+                            timeStyle: "short",
+                          })
                         : rs.time
-                        ? dateTime(rs.date, rs.time).toLocaleString()
+                        ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
+                            dateStyle: "short",
+                            timeStyle: "short",
+                          })
                         : rs.date}
                     </b>
                   </td>
-                  <td className="col text-center text-nowrap cp"
-                   onClick={() =>
-                    navigate("/Sprint/" + props.season + "/" + rs.round)
-                  }
+                  <td
+                    className="col text-center text-nowrap cp text-info op"
+                    onClick={() =>
+                      navigate("/Sprint/" + props.season + "/" + rs.round)
+                    }
                   >
                     {rs.Sprint?.time
                       ? dateTime(
                           rs.Sprint?.date,
                           rs.Sprint?.time
-                        ).toLocaleString()
+                        ).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
                       : rs.Sprint?.date}
                   </td>
                   <td className="col text-center text-nowrap">
@@ -100,15 +109,21 @@ const RaceSchedule = (props) => {
                       ? dateTime(
                           rs.Qualifying?.date,
                           rs.Qualifying?.time
-                        ).toLocaleString()
+                        ).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
                       : rs.Qualifying?.date}
                   </td>
-                  <td className="col text-center text-nowrap">
+                  <td className="col text-center text-nowrap op">
                     {rs.FirstPractice?.time
                       ? dateTime(
                           rs.FirstPractice?.date,
                           rs.FirstPractice?.time
-                        ).toLocaleString()
+                        ).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
                       : rs.FirstPractice?.date}
                   </td>
                   <td

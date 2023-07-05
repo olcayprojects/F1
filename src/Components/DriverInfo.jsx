@@ -29,9 +29,11 @@ export const DrvInfo = (props) => {
   return (
     <>
       <img
-        className="img-fluid"
+        className="img-fluid w-25"
+        style={{width: "", height: "" }}
         src={data1?.strCutout + "/preview"}
         alt=""
+        title={data1?.strDescriptionEN}
         srcSet=""
       />
     </>

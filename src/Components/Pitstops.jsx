@@ -5,11 +5,9 @@ import DriverId from "./DriverId";
 const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
 
-  const pitstopsDriver = {};
-
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json?limit=60`;
+    url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json?limit=100`;
   }
 
   useEffect(() => {
@@ -28,15 +26,15 @@ const Pitstops = (props) => {
       });
   }, [url]);
 
-  //  console.log(DriverId({ Id: "alonso" }));
   return (
-    <div className="bg-black container-fluid">
+    <div className="bg-black container-fluid p-0">
       <div className="table-responsive">
         {sdata?.map((data, index) => {
           return (
             <table key={index} className="table table-dark table-striped">
               <thead className="border-dark">
                 <tr className="text-black">
+                  <th className="bg-danger">#</th>
                   <th className="bg-danger">DRIVER NAME</th>
                   <th className="bg-danger text-center">STOP</th>
                   <th className="bg-danger text-center">LAP</th>
@@ -48,14 +46,15 @@ const Pitstops = (props) => {
                 {data?.PitStops.map((ps, index) => {
                   return (
                     <tr key={index}>
+                      <td className="col">{index+1}</td>
                       <td className="col" style={{ textTransform: "" }}>
                         <DriverId Id={ps.driverId} />
 
                         {/* {ps.driverId}  */}
                       </td>
-                      <td className="col text-center">{ps.stop}</td>
+                      <td className="col text-center op">{ps.stop}</td>
                       <td className="col text-center">{ps.lap}</td>
-                      <td className="col text-center">{ps.time}</td>
+                      <td className="col text-center op">{ps.time}</td>
                       <td className="col text-center">{ps.duration}</td>
                     </tr>
                   );
