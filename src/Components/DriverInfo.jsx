@@ -21,16 +21,15 @@ export const DrvInfo = (props) => {
         .catch((err) => {
           console.log(err.message);
         });
-      }
-      fetchData();
-
+    }
+    fetchData();
   }, [url]);
 
   return (
     <>
       <img
-        className="img-fluid w-25"
-        style={{width: "", height: "" }}
+        className="img-fluid"
+        style={{ width: "", height: "" }}
         src={data1?.strCutout + "/preview"}
         alt=""
         title={data1?.strDescriptionEN}

@@ -48,13 +48,13 @@ const DriverStandings = (props) => {
                 <th scope="col" className="bg-danger text-center">
                   P
                 </th>
-                <th scope="col" className="text-center bg-danger">
+                <th scope="col" className="text-center bg-danger op">
                   CODE
                 </th>
                 <th scope="col" className="bg-danger">
                   DRIVER INFO
                 </th>
-                <th scope="col" className="bg-danger text-center">
+                <th scope="col" className="bg-danger text-center op">
                   PTS
                 </th>
                 <th scope="col" className="bg-danger text-center">
@@ -101,10 +101,10 @@ const DriverStandings = (props) => {
                       </i>
                       <i> {driver.Constructors[0].nationality}</i>
                     </td>
-                    <td className="col align-middle text-center">
+                    <td className="col align-middle text-center op">
                       <b>{driver.points}</b>
                     </td>
-                    <td className="col align-middle text-center op">
+                    <td className="col align-middle text-center">
                       {driver.wins}
                     </td>
                   </tr>

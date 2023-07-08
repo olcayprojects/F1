@@ -34,11 +34,11 @@ const Pitstops = (props) => {
             <table key={index} className="table table-dark table-striped">
               <thead className="border-dark">
                 <tr className="text-black">
-                  <th className="bg-danger">#</th>
+                  <th className="bg-danger op">#</th>
                   <th className="bg-danger">DRIVER NAME</th>
-                  <th className="bg-danger text-center">STOP</th>
+                  <th className="bg-danger text-center op">STOP</th>
                   <th className="bg-danger text-center">LAP</th>
-                  <th className="text-center bg-danger">TIME OF DAY</th>
+                  <th className="text-center bg-danger op">TIME OF DAY</th>
                   <th className="text-center bg-danger">TIME</th>
                 </tr>
               </thead>
@@ -46,7 +46,7 @@ const Pitstops = (props) => {
                 {data?.PitStops.map((ps, index) => {
                   return (
                     <tr key={index}>
-                      <td className="col">{index+1}</td>
+                      <td className="col op">{index + 1}</td>
                       <td className="col" style={{ textTransform: "" }}>
                         <DriverId Id={ps.driverId} />
 

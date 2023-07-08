@@ -58,7 +58,7 @@ select {
 }
 
 .op {
-  opacity: 0.90;
+  opacity: 0.9;
 }
 
 .carousel img {
@@ -71,4 +71,27 @@ img:hover {
 thead th {
   background-color: red !important;
   color: black !important;
+}
+
+.imgrun {
+  position: relative;
+  animation-name: example;
+  animation-duration: 6s;
+  animation-delay: 2s;
+}
+
+@keyframes example {
+  0% {
+    left: -600px;
+  }
+  25% {
+    left: 20px;
+  }
+  75% {
+    transform: scaleX(-1);
+    left: -20px;
+  }
+  100% {
+    left: 0px;
+  }
 }

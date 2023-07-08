@@ -28,11 +28,11 @@ const QualifyingResults = (props) => {
         <table className="table table-dark table-striped">
           <thead className="">
             <tr className="text-black">
-              <th className="bg-danger text-center">P</th>
+              <th className="bg-danger text-center op">P</th>
               <th className="bg-danger text-center">NO</th>
-              <th className="bg-danger">DRIVER</th>
+              <th className="bg-danger op">DRIVER</th>
               <th className="text-center bg-danger">Q1</th>
-              <th className="text-center bg-danger">Q2</th>
+              <th className="text-center bg-danger op">Q2</th>
               <th className="text-center bg-danger">Q3</th>
             </tr>
           </thead>
@@ -42,11 +42,11 @@ const QualifyingResults = (props) => {
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
                     <tr key={indexQ}>
-                      <td className="col text-center">{qualifying.position}</td>
                       <td className="col text-center op">
-                        {qualifying.number}
+                        {qualifying.position}
                       </td>
-                      <td className="col">
+                      <td className="col text-center">{qualifying.number}</td>
+                      <td className="col op">
                         <b className="fs-5">
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
@@ -56,9 +56,11 @@ const QualifyingResults = (props) => {
                           {qualifying.Driver.nationality}{" "}
                         </span>
                         <i className="fw-lighter fs-5">
-                          {qualifying.Constructor.name}{" "} 
+                          {qualifying.Constructor.name}{" "}
                         </i>
-                        <span className="">{qualifying.Constructor.nationality}</span>
+                        <span className="">
+                          {qualifying.Constructor.nationality}
+                        </span>
                       </td>
 
                       <td className=" text-center col">{qualifying.Q1}</td>

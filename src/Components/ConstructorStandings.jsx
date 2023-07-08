@@ -35,13 +35,13 @@ const ConstructorStandings = (props) => {
               <th scope="col" className="bg-danger text-center">
                 P
               </th>
-              <th scope="col" className="bg-danger">
+              <th scope="col" className="bg-danger op">
                 CONSTRUCTOR
               </th>
               <th scope="col" className="bg-danger">
                 NATIONALITY
               </th>
-              <th scope="col" className="bg-danger text-center">
+              <th scope="col" className="bg-danger text-center op">
                 POINTS
               </th>
               <th scope="col" className="bg-danger text-center">
@@ -69,7 +69,7 @@ const ConstructorStandings = (props) => {
                     {ConstructorStandings.Constructor.nationality}
                   </td>
                   <td className="col align-middle text-center op">
-                    {ConstructorStandings.points}
+                    <b>{ConstructorStandings.points}</b>
                   </td>
                   <td className="col align-middle text-center">
                     {ConstructorStandings.wins}

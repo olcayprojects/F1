@@ -26,34 +26,31 @@ const Team = (props) => {
       teams.strTeam = "AlphaTauri";
     }
 
-    if (props.teamName.substring(0, 4) === teams.strTeam.substring(0, 4)) {
+    if (props.teamName.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
       return (
         <div key={index} className="">
-                      <img
+          <img
             key={index}
-            className="img-fluid"
-            style={{width:"220px", height:"46px",objectFit:"cover"}}
-            src={teams.strTeamJersey + "/preview"}
+            className="img-fluid imgrun"
+            style={{ width: "270px", height: "58px", objectFit: "cover" }}
+            src={teams?.strTeamJersey + "/preview"}
             alt=""
             srcSet=""
-            title={teams.strDescriptionEN}
+            title={teams?.strDescriptionEN}
           />
-            <img
-              key={index}
-              className="img-fluid"
-              style={{width:"190px", height:"100px",objectFit:"cover"}}
-
-              src={teams.strTeamBadge + "/preview"}
-              alt=""
-              srcSet=""
-              title=""
-            />
-
-
+          <img
+            key={index}
+            className="img-fluid"
+            style={{ width: "260px", height: "140px", objectFit: "cover" }}
+            src={teams?.strTeamBadge + "/preview"}
+            alt=""
+            srcSet=""
+            title=""
+          />
         </div>
       );
     } else {
-        // console.log(teams);
+      // console.log(teams);
     }
   });
 };

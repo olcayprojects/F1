@@ -117,7 +117,7 @@ const F1Race = (props) => {
                                 );
                               }}
                             >
-                              {season2 === "2023" ? (
+                              {(result.positionText in ["1", "2", "3", "4"]) & season2 === "2023" ? (
                                 <DrvInfo
                                   drv={
                                     result.Driver?.givenName +
@@ -143,7 +143,7 @@ const F1Race = (props) => {
                               className="align-middle col-2 p-0"
                               title={result.Constructor.name}
                             >
-                              {season2 === "2023" ? (
+                              {(result.positionText in ["1", "2", "3", "4"]) & season2 === "2023" ? (
                                 <Team teamName={result?.Constructor.name} />
                               ) : (
                                 result.Constructor.name +
