@@ -165,11 +165,16 @@ const F1Race = (props) => {
 
                             <td
                               className={
-                                "align-middle text-nowrap " +
+                                "align-middle text-nowrap cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
                                   ? "text-danger "
                                   : "")
                               }
+                              onClick={() => {
+                                navigate(
+                                  "/Laps/" + result.Driver.driverId+"/"+season+"/"+round
+                                );
+                              }}
                             >
                               {result.FastestLap
                                 ? "#" +

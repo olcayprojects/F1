@@ -7,6 +7,7 @@ import ResultsDriver from "./ResultsDriver";
 import RaceInfo from "./RaceInfo";
 import Circuit from "./Circuit";
 import Sprint from "./Sprint";
+import Laps from "./Laps";
 
 
 
@@ -21,6 +22,7 @@ const Components = () => {
         <Route path="/ResultsDriver/:driver" element={<ResultsDriver />} />
         <Route path="/Circuit/:cname" element={<Circuit />} />
         <Route path="/Sprint/:season2/:rounds" element={<Sprint />} />
+        <Route path="/Laps/:drvname/:season/:rounds" element={<Laps />} />
       </Routes>
     </HashRouter>
   );
