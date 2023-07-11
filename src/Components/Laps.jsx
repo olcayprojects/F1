@@ -4,6 +4,7 @@ import DriverId from "./DriverId";
 
 const Laps = () => {
   const [sdata, setData] = useState([]);
+  const [dtime, setDtime] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const { drvname = "alonso" } = useParams();
@@ -11,7 +12,9 @@ const Laps = () => {
   const { rounds = "1" } = useParams();
   const lapObj = {};
 
-  let url = `https://ergast.com/api/f1/${season}/${rounds}/drivers/${drvname}/laps.json?limit=5000`;
+  //let url = `https://ergast.com/api/f1/${season}/${rounds}/drivers/${drvname}/laps.json?limit=5000`;
+
+  let url = `https://ergast.com/api/f1/${season}/${rounds}/laps.json?limit=5000`;
 
   useEffect(() => {
     function fetchData() {
@@ -37,34 +40,56 @@ const Laps = () => {
       <Link to="/" className="btn btn-danger container-fluid mb-1">
         <h1>F1</h1>
       </Link>
-      <h1 className="text-center text-danger">{sdata.raceName}</h1>
+      <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
       <h2 className="text-center text-danger">
-        {sdata.season}#{sdata.round}
+        #{sdata.round} {sdata.season}
       </h2>
       <div className="table-responsive-sm">
         <table className="table table-dark table-striped">
           <thead className="text">
             <tr>
-              <th>Lap</th>
+              <th>#</th>
+              <th>PST</th>
               <th>Driver</th>
               <th>Time</th>
-              <th>PST</th>
             </tr>
           </thead>
-          <tbody>
-            {sdata?.Laps?.map((items, index) => {
-              return (
-                <tr>
-                  <td className="col">{items?.number}</td>
-                  <td className="col op">
-                    {<DriverId Id={items?.Timings[0]?.driverId} />}{" "}
+          {sdata?.Laps?.map((items, index) => {
+            items?.Timings.sort((a, b) => (a["time"] > b["time"] ? 1 : -1));
+
+            return (
+              <tbody key={index}>
+                <tr className="text-center">
+                  <td></td>
+                  <td></td>
+                  <td className="text-danger fs-3">
+                    Lap {items?.number} Times
                   </td>
-                  <td className="col">{items?.Timings[0]?.time}</td>
-                  <td className="col op">{items?.Timings[0]?.position}</td>
+                  <td></td>
                 </tr>
-              );
-            })}
-          </tbody>
+
+                <tr>
+                  <th>#</th>
+                  <th>PST</th>
+                  <th>Driver</th>
+                  <th>Time</th>
+                </tr>
+
+                {items?.Timings?.map((item, index2) => {
+                  return (
+                    <tr key={index2}>
+                      <td className="col-1 op">{index2 + 1}</td>
+                      <td className="col-1 op">{item?.position}</td>
+                      <td className="col-8 op">
+                        {<DriverId Id={item?.driverId} />}{" "}
+                      </td>
+                      <td className="col-4">{item?.time}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            );
+          })}
         </table>
       </div>
     </div>
