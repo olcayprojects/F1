@@ -31,7 +31,7 @@ const Team = (props) => {
         <div key={index} className="">
           <img
             className="img-fluid imgrun"
-            style={{ width: "270px", height: "58px", objectFit: "cover" }}
+            style={{ width: "320px", height: "68px", objectFit: "cover" }}
             src={teams?.strTeamJersey + "/preview"}
             alt=""
             srcSet=""
@@ -39,7 +39,7 @@ const Team = (props) => {
           />
           <img
             className="img-fluid"
-            style={{ width: "260px", height: "140px", objectFit: "cover" }}
+            style={{ width: "260px", height: "180px", objectFit: "cover" }}
             src={teams?.strTeamBadge + "/preview"}
             alt=""
             srcSet=""

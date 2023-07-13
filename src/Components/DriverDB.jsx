@@ -39,13 +39,13 @@ const DriverDB = (props) => {
         title={data?.strDescriptionEN}
         srcSet=""
       />
-      <p className="p-0">
+      <p className="p-0 ">
         Team: {data?.strTeam} #{data?.strNumber} <br />
         Country: {data?.strNationality} <br />
         Date of birth: {data?.dateBorn} <br />
         Place of birth: {data?.strBirthLocation}
       </p>
-      <p className="p-0">{data?.strDescriptionEN}</p>
+      <p className="p-0 fs-6">{data?.strDescriptionEN}</p>
     </>
   );
 };
