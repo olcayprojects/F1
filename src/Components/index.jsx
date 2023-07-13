@@ -8,6 +8,7 @@ import RaceInfo from "./RaceInfo";
 import Circuit from "./Circuit";
 import Sprint from "./Sprint";
 import Laps from "./Laps";
+import ConstructorsResult from "./ConstructorsResult";
 
 
 
@@ -23,6 +24,7 @@ const Components = () => {
         <Route path="/Circuit/:cname" element={<Circuit />} />
         <Route path="/Sprint/:season2/:rounds" element={<Sprint />} />
         <Route path="/Laps/:drvname/:season/:rounds" element={<Laps />} />
+        <Route path="/ConstructorsResult/:constructors/:season/" element={<ConstructorsResult />} />
       </Routes>
     </HashRouter>
   );

@@ -8,6 +8,7 @@ import { DrvInfo } from "./DriverInfo";
 import Team from "./Team";
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
+import ConstructorsResult from "./ConstructorsResult";
 
 const F1Race = (props) => {
   const [sdata, setData] = useState([]);
@@ -66,7 +67,7 @@ const F1Race = (props) => {
           <Link to="/" className="btn btn-danger container-fluid">
             <h1>F1</h1>
           </Link>
-          {sdata?.map((item, index) => {
+          {sdata?.map((item, indexItem) => {
             season = item.season;
             round = item.round;
             laps = item.Results[0].laps;
@@ -77,8 +78,7 @@ const F1Race = (props) => {
               });
 
             return (
-              <div key={index} className="bg-black p-0 pt-1 container-fluid">
-                {/* {console.log(item)} */}
+              <div key={indexItem} className="bg-black p-0 pt-1 container-fluid">
 
                 <h2 className="text-center text-danger bg-black border border-danger border-5">
                   {item.raceName} #{item.round} (
@@ -88,20 +88,20 @@ const F1Race = (props) => {
                   <table className="table table-dark table-striped">
                     <thead className="text">
                       <tr className="">
-                        <th className="bg-danger text-center">P</th>
+                        <th className="bg-danger text-center">POS</th>
                         <th className="text-center">G</th>
                         <th className="text-center bg-danger">DRIVER</th>
                         <th className="bg-danger"></th>
                         <th className="text-center">LAPS</th>
-                        <th className="text-center bg-danger">TIME</th>
+                        <th className="text-center bg-danger">TIME/RETIRED</th>
                         <th className="text-center">PTS</th>
                         <th className="text-center bg-danger">FASTEST LAP</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">
-                      {item?.Results?.map((result, index) => {
+                      {item?.Results?.map((result, indexResult) => {
                         return (
-                          <tr key={index} className="text-danger">
+                          <tr key={indexResult} className="bg-danger">
                             <td className="align-middle col text-center">
                               <b>{result.positionText}</b>
                             </td>
@@ -140,8 +140,12 @@ const F1Race = (props) => {
                             </td>
 
                             <td
-                              className="align-middle col-2 p-0"
+                              className="align-middle cp col-2 p-0"
                               title={result.Constructor.name}
+                              onClick={() => {
+                                navigate(
+                                  "/ConstructorsResult/" + result?.Constructor?.constructorId+"/"+season);
+                              }}
                             >
                               {(result.positionText in ["1", "2", "3", "4"]) & season2 === "2023" ? (
                                 <Team teamName={result?.Constructor.name} />

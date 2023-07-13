@@ -15,4 +15,7 @@ export default function DriverId(props) {
   if (sdata) {
     return sdata.givenName + " " + sdata.familyName;
   }
+  else{
+    return props.Id
+  }
 }

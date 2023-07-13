@@ -41,12 +41,12 @@ const QualifyingResults = (props) => {
               <tbody key={index}>
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
-                    <tr key={indexQ}>
-                      <td className="col text-center op">
+                    <tr key={indexQ} className="bg-danger">
+                      <td className="col text-center">
                         {qualifying.position}
                       </td>
-                      <td className="col text-center">{qualifying.number}</td>
-                      <td className="col op">
+                      <td className="col text-center op">{qualifying.number}</td>
+                      <td className="col">
                         <b className="fs-5">
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
@@ -63,11 +63,11 @@ const QualifyingResults = (props) => {
                         </span>
                       </td>
 
-                      <td className=" text-center col">{qualifying.Q1}</td>
-                      <td className=" text-center col op">
+                      <td className=" text-center col op">{qualifying.Q1}</td>
+                      <td className=" text-center col">
                         {qualifying.Q2 ? qualifying.Q2 : "0:00.000"}
                       </td>
-                      <td className="text-center col">
+                      <td className="text-center col op">
                         {qualifying.Q3 ? qualifying.Q3 : "0:00.000"}
                       </td>
                     </tr>

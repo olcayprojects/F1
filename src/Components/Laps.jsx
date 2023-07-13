@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import DriverId from "./DriverId";
+import Loading from "./Loading";
 
 const Laps = () => {
   const [sdata, setData] = useState([]);
-  const [dtime, setDtime] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  var drvt = {};
+  var drvTimeList = [];
 
   const { drvname = "alonso" } = useParams();
   const { season = "2020" } = useParams();
   const { rounds = "1" } = useParams();
-  const lapObj = {};
 
   //let url = `https://ergast.com/api/f1/${season}/${rounds}/drivers/${drvname}/laps.json?limit=5000`;
 
@@ -35,64 +37,64 @@ const Laps = () => {
     fetchData();
   }, [url]);
 
-  return (
-    <div className="container-fluid p-0">
-      <Link to="/" className="btn btn-danger container-fluid mb-1">
-        <h1>F1</h1>
-      </Link>
-      <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
-      <h2 className="text-center text-danger">
-        #{sdata.round} {sdata.season}
-      </h2>
-      <div className="table-responsive-sm">
-        <table className="table table-dark table-striped">
-          <thead className="text">
-            <tr>
-              <th>#</th>
-              <th>PST</th>
-              <th>Driver</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          {sdata?.Laps?.map((items, index) => {
-            items?.Timings.sort((a, b) => (a["time"] > b["time"] ? 1 : -1));
+  if (!isLoaded) {
+    return <Loading />;
+  } else {
+    return (
+      <div className="container-fluid p-0">
+        <Link to="/" className="btn btn-danger container-fluid mb-1">
+          <h1>F1</h1>
+        </Link>
+        <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
+        <h2 className="text-center text-danger">
+          #{sdata.round} {sdata.season}
+        </h2>
+        <div className="table-responsive-sm">
+          <table className="table table-dark table-striped op fs-5">
+            <thead className="text">
+              <tr>
+                <th className="">#</th>
+                <th className="bg-danger">Race PST</th>
+                <th className="">Driver</th>
+                <th className="bg-danger">Time ↓</th>
+                <th className="">Lap</th>
+              </tr>
+            </thead>
 
-            return (
-              <tbody key={index}>
-                <tr className="text-center">
-                  <td></td>
-                  <td></td>
-                  <td className="text-danger fs-3">
-                    Lap {items?.number} Times
-                  </td>
-                  <td></td>
-                </tr>
+            {sdata?.Laps?.map((items, index) => {
+              items?.Timings.sort((a, b) => (a["time"] < b["time"] ? 1 : -1));
 
-                <tr>
-                  <th>#</th>
-                  <th>PST</th>
-                  <th>Driver</th>
-                  <th>Time</th>
-                </tr>
+              items?.Timings?.map((item, index2) => {
+                drvt = {
+                  drvId: item?.driverId,
+                  time: item?.time,
+                  lap: items?.number,
+                  pst: item?.position,
+                };
+                drvTimeList.push(drvt);
+                drvTimeList?.sort((a, b) => (a["time"] > b["time"] ? 1 : -1));
+              });
+            })}
 
-                {items?.Timings?.map((item, index2) => {
-                  return (
-                    <tr key={index2}>
-                      <td className="col-1 op">{index2 + 1}</td>
-                      <td className="col-1 op">{item?.position}</td>
-                      <td className="col-8 op">
-                        {<DriverId Id={item?.driverId} />}{" "}
-                      </td>
-                      <td className="col-4">{item?.time}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            );
-          })}
-        </table>
+            <tbody>
+              {drvTimeList.map((drvitem, index3) => {
+                return (
+                  <tr key={index3} className="bg-danger">
+                    <td className="col">{index3 + 1}</td>
+                    <td className="col op">{drvitem?.pst}</td>
+                    <td className="col">
+                      {<DriverId Id={drvitem?.drvId} />}
+                    </td>
+                    <td className="col op">{drvitem?.time}</td>
+                    <td className="col">{drvitem?.lap}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 export default Laps;
