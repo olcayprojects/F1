@@ -26,7 +26,7 @@ const Team = (props) => {
       teams.strTeam = "AlphaTauri";
     }
 
-    if (props.teamName.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
+    if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
       return (
         <div key={index} className="">
           <img

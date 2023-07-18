@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Constructor from "./Constructor";
 
 import Loading from "./Loading";
@@ -14,7 +14,6 @@ const ConstructorsResult = () => {
 
   const { season = "2020" } = useParams();
 
-  let navigate = useNavigate();
 
   let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json`;
 
@@ -51,12 +50,15 @@ const ConstructorsResult = () => {
             <option value="" hidden>
               Select Constructors
             </option>
-            <Constructor />
+            <Constructor year={season} />
           </select>
         </div>
         <h2 className="text-light text-center">
-          <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} />
-          {sdata[0]?.Results[0]?.Constructor?.name}
+          {season === "2023" ? (
+            <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} />
+          ) : (
+            sdata[0]?.Results[0]?.Constructor?.name
+          )}
         </h2>
         {sdata.map((items, index) => {
           return (

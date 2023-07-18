@@ -12,7 +12,8 @@ const ResultsDriver = () => {
   const [sdata, setData] = useState([]);
   //const { season2 = "2023" } = useParams();
 
-  const todate = (d) => new Date(d).toLocaleString("en-EN",{dateStyle:"long"})
+  const todate = (d) =>
+    new Date(d).toLocaleString("en-EN", { dateStyle: "long" });
   const { driver = "alonso" } = useParams();
   let drvgivenName = "";
   let drvfamilyName = "";
@@ -113,9 +114,29 @@ const ResultsDriver = () => {
                       </td>
 
                       <td className={"col text-center "}>
-                        {item.Results
-                          ? item?.Results[0]?.positionText
-                          : item?.SprintResults[0]?.positionText}
+                        {item.Results ? (
+                          item?.Results[0]?.positionText < 4 ? (
+                            <i
+                              className={
+                                "bi bi-" +
+                                item?.Results[0]?.positionText +
+                                "-square fs-5"
+                              }
+                            ></i>
+                          ) : (
+                            item?.Results[0]?.positionText
+                          )
+                        ) : item?.SprintResults[0]?.positionText < 4 ? (
+                          <i
+                            className={
+                              "bi bi-" +
+                              item?.SprintResults[0]?.positionText +
+                              "-square"
+                            }
+                          ></i>
+                        ) : (
+                          item?.SprintResults[0]?.positionText
+                        )}
                       </td>
                       <td className="col text-center op">
                         {item.Results

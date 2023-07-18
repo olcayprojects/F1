@@ -2,8 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 
-const Constructor = () => {
-  let url = `https://ergast.com/api/f1/2023/constructors.json`;
+const Constructor = (props) => {
+  let url = `https://ergast.com/api/f1/${props.year}/constructors.json`;
 
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

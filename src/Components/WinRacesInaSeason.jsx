@@ -31,7 +31,7 @@ const WinRacesInaSeason = (props) => {
     <div className="bg-black container-fluid p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped">
-          <thead className="">
+          <thead className="fs-5">
             <tr className="text-dark">
               <th className="bg-danger">Race Name</th>
               <th className="bg-danger">Driver</th>
@@ -69,7 +69,7 @@ const WinRacesInaSeason = (props) => {
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
                     </b>
-                    {" "}<i className="fw-light">{item.Results[0].Constructor.name}</i>
+                    {" "}<i className="fw-light fs-5">{item.Results[0].Constructor.name}</i>
                   </td>
                   <td className="col text-center op">
                     {item.Results[0].points}

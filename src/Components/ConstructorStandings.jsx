@@ -56,7 +56,7 @@ const ConstructorStandings = (props) => {
                   <td className="col text-center align-middle">
                     {ConstructorStandings.position}
                   </td>
-                  <td className="col op">
+                  <td className="col op text-end">
                     {ConstructorStandings.Constructor.name}
                     {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
                     props.season ? (

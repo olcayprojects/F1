@@ -7,7 +7,6 @@ const DriverDB = (props) => {
 
   let url = "";
   if (props.drv === "Carlos Sainz") {
-    console.log(props.drv);
 
     url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Carlos Sainz Jr`;
   } else {
@@ -27,7 +26,6 @@ const DriverDB = (props) => {
     }
     fetchData();
   }, [url]);
-  console.log(data);
 
   return (
     <>

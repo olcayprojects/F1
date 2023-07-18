@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import DriverId from "./DriverId";
 import Loading from "./Loading";
+
 
 const Laps = () => {
   const [sdata, setData] = useState([]);
@@ -10,7 +11,7 @@ const Laps = () => {
   var drvt = {};
   var drvTimeList = [];
 
-  const { drvname = "alonso" } = useParams();
+  // const { drvname = "alonso" } = useParams();
   const { season = "2020" } = useParams();
   const { rounds = "1" } = useParams();
 
@@ -56,7 +57,7 @@ const Laps = () => {
                 <th className="">#</th>
                 <th className="bg-danger">Race PST</th>
                 <th className="">Driver</th>
-                <th className="bg-danger">Time ↓</th>
+                <th className="bg-danger">Time <i className="bi bi-sort-down-alt fs-4"></i></th>
                 <th className="">Lap</th>
               </tr>
             </thead>
@@ -81,7 +82,9 @@ const Laps = () => {
                 return (
                   <tr key={index3} className="bg-danger">
                     <td className="col">{index3 + 1}</td>
-                    <td className="col op">{drvitem?.pst}</td>
+                    <td className="col op fs-4">
+                    {drvitem?.pst<4 ?<i className={"bi bi-"+drvitem?.pst+"-circle-fill"}></i>:drvitem?.pst}
+                      </td>
                     <td className="col">
                       {<DriverId Id={drvitem?.drvId} />}
                     </td>

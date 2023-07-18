@@ -8,7 +8,6 @@ import { DrvInfo } from "./DriverInfo";
 import Team from "./Team";
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
-import ConstructorsResult from "./ConstructorsResult";
 
 const F1Race = (props) => {
   const [sdata, setData] = useState([]);
@@ -65,7 +64,7 @@ const F1Race = (props) => {
       <>
         <div className="container.fluid bg-dark p-0">
           <Link to="/" className="btn btn-danger container-fluid">
-            <h1>F1</h1>
+            <h1>F1 </h1>
           </Link>
           {sdata?.map((item, indexItem) => {
             season = item.season;
@@ -78,8 +77,10 @@ const F1Race = (props) => {
               });
 
             return (
-              <div key={indexItem} className="bg-black p-0 pt-1 container-fluid">
-
+              <div
+                key={indexItem}
+                className="bg-black p-0 pt-1 container-fluid"
+              >
                 <h2 className="text-center text-danger bg-black border border-danger border-5">
                   {item.raceName} #{item.round} (
                   {item.time ? dateTime(item.date, item.time) : item.date})
@@ -103,21 +104,37 @@ const F1Race = (props) => {
                         return (
                           <tr key={indexResult} className="bg-danger">
                             <td className="align-middle col text-center">
-                              <b>{result.positionText}</b>
+                              {result.positionText in [1,2,3,4] ? 
+                              result.positionText==="1"?
+
+                              "#"
+                              :result.positionText==="2"?
+
+                              "##"
+                              
+                              :result.positionText==="3"?
+
+                              "###"
+                              :
+                              result.positionText
+                               : (
+                                result.positionText
+                              )}
                             </td>
                             <td className="align-middle col op text-center">
                               {result.grid}
                             </td>
 
                             <td
-                              className="align-text-bottom col cp p-0"
+                              className="align-text-bottom text-end col cp p-0"
                               onClick={() => {
                                 navigate(
                                   "/ResultsDriver/" + result.Driver.driverId
                                 );
                               }}
                             >
-                              {(result.positionText in ["1", "2", "3", "4"]) & season2 === "2023" ? (
+                              {(result.positionText in ["1", "2", "3", "4"]) &
+                              (season2 === "2023") ? (
                                 <DrvInfo
                                   drv={
                                     result.Driver?.givenName +
@@ -140,19 +157,25 @@ const F1Race = (props) => {
                             </td>
 
                             <td
-                              className="align-middle cp col-2 p-0"
+                              className="align-middle cp col p-0"
                               title={result.Constructor.name}
                               onClick={() => {
                                 navigate(
-                                  "/ConstructorsResult/" + result?.Constructor?.constructorId+"/"+season);
+                                  "/ConstructorsResult/" +
+                                    result?.Constructor?.constructorId +
+                                    "/" +
+                                    season
+                                );
                               }}
                             >
-                              {(result.positionText in ["1", "2", "3", "4"]) & season2 === "2023" ? (
+                              {(result.positionText in ["1", "2", "3", "4"]) &
+                              (season2 === "2023") ? (
                                 <Team teamName={result?.Constructor.name} />
                               ) : (
-                                result.Constructor.name +
-                                " " +
-                                result.Constructor.nationality
+                                ""
+                                // result.Constructor.name +
+                                // " " +
+                                // result.Constructor.nationality
                               )}
                             </td>
                             <td className="align-middle op col text-center">
@@ -176,13 +199,17 @@ const F1Race = (props) => {
                               }
                               onClick={() => {
                                 navigate(
-                                  "/Laps/" + result.Driver.driverId+"/"+season+"/"+round
+                                  "/Laps/" +
+                                    result.Driver.driverId +
+                                    "/" +
+                                    season +
+                                    "/" +
+                                    round
                                 );
                               }}
                             >
                               {result.FastestLap
-                                ? "#" +
-                                  result.FastestLap.rank +
+                                ? result.FastestLap.rank +
                                   "# TIME(" +
                                   result.FastestLap?.Time.time +
                                   ") AVG SPEED(" +

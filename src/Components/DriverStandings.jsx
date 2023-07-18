@@ -66,8 +66,18 @@ const DriverStandings = (props) => {
               {sdata?.map((driver, indexedDB) => {
                 return (
                   <tr key={indexedDB}>
-                    <td className="col align-middle text-center">
-                      {driver.position}
+                    <td className="col align-middle text-center fs-5">
+                    {driver.position < 4 ? (
+                            <i
+                              className={
+                                "bi bi-" +
+                                driver.position +
+                                "-square"
+                              }
+                            ></i>
+                          )
+                          :driver.position
+                     }
                     </td>
                     <td className="col text-center align-middle op">
                       {driver.Driver.code}{" "}
