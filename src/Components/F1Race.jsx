@@ -104,20 +104,17 @@ const F1Race = (props) => {
                         return (
                           <tr key={indexResult} className="bg-danger">
                             <td className="align-middle col text-center">
-                              {result.positionText in [1,2,3,4] ? 
-                              result.positionText==="1"?
-
-                              "#"
-                              :result.positionText==="2"?
-
-                              "##"
-                              
-                              :result.positionText==="3"?
-
-                              "###"
-                              :
-                              result.positionText
-                               : (
+                              {result.positionText in [1, 2, 3, 4] ? (
+                                result.positionText === "1" ? (
+                                  <b className="text-black bg-danger p-2">1</b>
+                                ) : result.positionText === "2" ? (
+                                  <b className="text-black bg-danger p-2">2</b>
+                                ) : result.positionText === "3" ? (
+                                  <b className="text-black bg-danger p-2">3</b>
+                                ) : (
+                                  result.positionText
+                                )
+                              ) : (
                                 result.positionText
                               )}
                             </td>
@@ -189,12 +186,11 @@ const F1Race = (props) => {
                             <td className="align-middle col op text-center">
                               {result.points}
                             </td>
-
                             <td
                               className={
-                                "align-middle text-nowrap cp " +
+                                "align-middle cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
-                                  ? "text-danger "
+                                  ? "text-info text-end"
                                   : "")
                               }
                               onClick={() => {
@@ -208,16 +204,18 @@ const F1Race = (props) => {
                                 );
                               }}
                             >
-                              {result.FastestLap
-                                ? result.FastestLap.rank +
-                                  "# TIME(" +
-                                  result.FastestLap?.Time.time +
-                                  ") AVG SPEED(" +
-                                  result.FastestLap?.AverageSpeed?.speed +
-                                  ") LAP(" +
-                                  result.FastestLap?.lap +
-                                  ")"
-                                : ""}
+                              <b>
+                                {result.FastestLap
+                                  ? result.FastestLap.rank +
+                                    ". TIME(" +
+                                    result.FastestLap?.Time.time +
+                                    ") AVG SPEED(" +
+                                    result.FastestLap?.AverageSpeed?.speed +
+                                    ") LAP(" +
+                                    result.FastestLap?.lap +
+                                    ")"
+                                  : ""}
+                              </b>
                             </td>
                           </tr>
                         );
