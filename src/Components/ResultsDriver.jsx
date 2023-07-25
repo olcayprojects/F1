@@ -88,7 +88,7 @@ const ResultsDriver = () => {
                 ?.sort((a, b) => (a["date"] < b["date"] ? 1 : -1))
                 .map((item, index) => {
                   return (
-                    <tr key={index}>
+                    <tr key={index} className="text-danger">
                       <td className="col text-center">{item.season}</td>
                       <td
                         className={
@@ -129,9 +129,9 @@ const ResultsDriver = () => {
                         ) : item?.SprintResults[0]?.positionText < 4 ? (
                           <i
                             className={
-                              "bi bi-" +
+                              "text-info bi bi-" +
                               item?.SprintResults[0]?.positionText +
-                              "-square"
+                              "-square fs-5"
                             }
                           ></i>
                         ) : (

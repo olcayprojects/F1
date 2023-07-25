@@ -95,8 +95,10 @@ const F1Race = (props) => {
                         <th className="bg-danger"></th>
                         <th className="text-center">LAPS</th>
                         <th className="text-center bg-danger">TIME/RETIRED</th>
-                        <th className="text-center">PTS</th>
-                        <th className="text-center bg-danger">FASTEST LAP</th>
+                        <th className="text-center">FASTEST</th>
+                        <th className="text-center bg-danger">ON</th>
+                        <th className="text-center">AVG SPD</th>
+                        <th className="text-center bg-danger">PTS</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">
@@ -145,11 +147,11 @@ const F1Race = (props) => {
                               <b className="fs-5 ">
                                 {result.Driver?.givenName +
                                   " " +
-                                  result.Driver?.familyName +
-                                  " "}
+                                  result.Driver?.familyName +"("+
+                                  result.Driver?.nationality+") "}
                               </b>
                               <i className="fs-5">
-                                {" " + result.Constructor.name + " "}
+                                {result?.Constructor?.name}
                               </i>
                             </td>
 
@@ -183,14 +185,12 @@ const F1Race = (props) => {
                                 ? result.Time.time
                                 : result.status}
                             </td>
-                            <td className="align-middle col op text-center">
-                              {result.points}
-                            </td>
+                          
                             <td
                               className={
-                                "align-middle cp " +
+                                "align-middle op cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
-                                  ? "text-info text-end"
+                                  ? "text-info"
                                   : "")
                               }
                               onClick={() => {
@@ -206,16 +206,23 @@ const F1Race = (props) => {
                             >
                               <b>
                                 {result.FastestLap
-                                  ? result.FastestLap.rank +
-                                    ". TIME(" +
-                                    result.FastestLap?.Time.time +
-                                    ") AVG SPEED(" +
-                                    result.FastestLap?.AverageSpeed?.speed +
-                                    ") LAP(" +
-                                    result.FastestLap?.lap +
-                                    ")"
+                                  ? 
+                                    result.FastestLap?.Time.time+"("+result.FastestLap.rank+")"
+
                                   : ""}
                               </b>
+                            </td>
+                            <td className="align-middle col text-center">
+                              {result.FastestLap?.lap}
+                            </td>
+                            <td className="align-middle col op text-center">
+                              {result?.FastestLap?.AverageSpeed.speed?
+                              result?.FastestLap?.AverageSpeed.speed +result?.FastestLap?.AverageSpeed.units
+                            :
+                            ""}
+                            </td>
+                            <td className="align-middle col text-center">
+                              {result.points}
                             </td>
                           </tr>
                         );
