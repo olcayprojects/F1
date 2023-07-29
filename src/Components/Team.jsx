@@ -28,18 +28,18 @@ const Team = (props) => {
 
     if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
       return (
-        <div key={index} className="">
+        <div key={index} className="container p-0" style={{}}>
           <img
-            className="img-fluid imgrun"
-            style={{ width: "320px", height: "68px", objectFit: "cover" }}
+            className="img-fluid w-25"
+            style={{}}
             src={teams?.strTeamJersey + "/preview"}
             alt=""
             srcSet=""
             title={teams?.strDescriptionEN}
           />
           <img
-            className="img-fluid"
-            style={{ width: "260px", height: "180px", objectFit: "cover" }}
+            className="img-fluid w-25"
+            style={{}}
             src={teams?.strTeamBadge + "/preview"}
             alt=""
             srcSet=""

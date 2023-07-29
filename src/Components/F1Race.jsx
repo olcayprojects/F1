@@ -92,20 +92,20 @@ const F1Race = (props) => {
                         <th className="bg-danger text-center">POS</th>
                         <th className="text-center">G</th>
                         <th className="text-center bg-danger">DRIVER</th>
-                        <th className="bg-danger"></th>
-                        <th className="text-center">LAPS</th>
-                        <th className="text-center bg-danger">TIME/RETIRED</th>
-                        <th className="text-center">FASTEST</th>
-                        <th className="text-center bg-danger">ON</th>
-                        <th className="text-center">AVG SPD</th>
-                        <th className="text-center bg-danger">PTS</th>
+                        <th className="text-center">TEAM</th>
+                        <th className="text-center bg-danger">LAPS</th>
+                        <th className="text-center">TIME/RETIRED</th>
+                        <th className="text-center bg-danger">FASTEST</th>
+                        <th className="text-center">ON</th>
+                        <th className="text-center bg-danger">AVG SPD</th>
+                        <th className="text-center">PTS</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">
                       {item?.Results?.map((result, indexResult) => {
                         return (
                           <tr key={indexResult} className="bg-danger">
-                            <td className="align-middle col text-center">
+                            <td className="align-middle text-center">
                               {result.positionText in [1, 2, 3, 4] ? (
                                 result.positionText === "1" ? (
                                   <b className="text-black bg-danger p-2">1</b>
@@ -120,12 +120,12 @@ const F1Race = (props) => {
                                 result.positionText
                               )}
                             </td>
-                            <td className="align-middle col op text-center">
+                            <td className="align-middle op text-center">
                               {result.grid}
                             </td>
 
                             <td
-                              className="align-text-bottom text-end col cp p-0"
+                              className="cp p-0 align-middle"
                               onClick={() => {
                                 navigate(
                                   "/ResultsDriver/" + result.Driver.driverId
@@ -147,16 +147,15 @@ const F1Race = (props) => {
                               <b className="fs-5 ">
                                 {result.Driver?.givenName +
                                   " " +
-                                  result.Driver?.familyName +"("+
-                                  result.Driver?.nationality+") "}
+                                  result.Driver?.familyName +
+                                  "(" +
+                                  result.Driver?.nationality +
+                                  ") "}
                               </b>
-                              <i className="fs-5">
-                                {result?.Constructor?.name}
-                              </i>
                             </td>
 
                             <td
-                              className="align-middle cp col p-0"
+                              className="cp op p-0 m-0 align-middle"
                               title={result.Constructor.name}
                               onClick={() => {
                                 navigate(
@@ -169,26 +168,33 @@ const F1Race = (props) => {
                             >
                               {(result.positionText in ["1", "2", "3", "4"]) &
                               (season2 === "2023") ? (
-                                <Team teamName={result?.Constructor.name} />
+                                <i className="fs-5">
+                                  {result.Constructor.name +
+                                    "(" +
+                                    result.Constructor.nationality +
+                                    ")"}
+                                </i>
                               ) : (
-                                ""
-                                // result.Constructor.name +
-                                // " " +
-                                // result.Constructor.nationality
+                                <i className="fs-5">
+                                  {result.Constructor.name +
+                                    "(" +
+                                    result.Constructor.nationality +
+                                    ")"}
+                                </i>
                               )}
                             </td>
-                            <td className="align-middle op col text-center">
+                            <td className="align-middle text-center">
                               {result.laps}
                             </td>
-                            <td className="align-middle col text-wrap text-center">
+                            <td className="align-middle op text-wrap text-center">
                               {result.Time?.time
                                 ? result.Time.time
                                 : result.status}
                             </td>
-                          
+
                             <td
                               className={
-                                "align-middle op cp " +
+                                "align-middle cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
                                   ? "text-info"
                                   : "")
@@ -206,22 +212,23 @@ const F1Race = (props) => {
                             >
                               <b>
                                 {result.FastestLap
-                                  ? 
-                                    result.FastestLap?.Time.time+"("+result.FastestLap.rank+")"
-
+                                  ? result.FastestLap?.Time.time +
+                                    "(" +
+                                    result.FastestLap.rank +
+                                    ")"
                                   : ""}
                               </b>
                             </td>
-                            <td className="align-middle col text-center">
+                            <td className="align-middle op text-center">
                               {result.FastestLap?.lap}
                             </td>
-                            <td className="align-middle col op text-center">
-                              {result?.FastestLap?.AverageSpeed.speed?
-                              result?.FastestLap?.AverageSpeed.speed +result?.FastestLap?.AverageSpeed.units
-                            :
-                            ""}
+                            <td className="align-middle text-center">
+                              {result?.FastestLap?.AverageSpeed.speed
+                                ? result?.FastestLap?.AverageSpeed.speed +
+                                  result?.FastestLap?.AverageSpeed.units
+                                : ""}
                             </td>
-                            <td className="align-middle col text-center">
+                            <td className="align-middle op text-center">
                               {result.points}
                             </td>
                           </tr>
