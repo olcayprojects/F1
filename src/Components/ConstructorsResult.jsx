@@ -14,7 +14,6 @@ const ConstructorsResult = () => {
 
   const { season = "2020" } = useParams();
 
-
   let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json`;
 
   useEffect(() => {
@@ -66,14 +65,14 @@ const ConstructorsResult = () => {
               <div className="table-responsive-sm">
                 <table className="table table-striped table-dark caption-top">
                   <caption className="text-danger text-center fs-4">
-                    {items.raceName + " " + items.date}
+                    <b>{items.raceName + " " + items.date}</b>
                   </caption>
                   <thead>
                     <tr className="">
                       <th className="bg-danger">DRIVER</th>
                       <th>TIME</th>
                       <th className="bg-danger">STATUS</th>
-                      <th>PTS</th>
+                      <th className="text-center">PTS</th>
                       <th className="bg-danger">FASTEST LAP</th>
                       <th>LAPS</th>
                       <th className="bg-danger">GRID</th>

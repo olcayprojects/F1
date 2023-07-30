@@ -30,7 +30,7 @@ const Team = (props) => {
       return (
         <div key={index} className="container p-0" style={{}}>
           <img
-            className="img-fluid w-25"
+            className="img-fluid w-25 imgrun"
             style={{}}
             src={teams?.strTeamJersey + "/preview"}
             alt=""

@@ -65,10 +65,13 @@ const QualifyingResults = (props) => {
 
                       <td className=" text-center col op">{qualifying.Q1}</td>
                       <td className=" text-center col">
-                        {qualifying.Q2 ? qualifying.Q2 : "0:00.000"}
+                        {qualifying.Q2 ? qualifying.Q2 : ""}
                       </td>
                       <td className="text-center col op">
-                        {qualifying.Q3 ? qualifying.Q3 : "0:00.000"}
+                        <b>
+
+                        {qualifying.Q3 ? qualifying.Q3 : ""}
+                        </b>
                       </td>
                     </tr>
                   );

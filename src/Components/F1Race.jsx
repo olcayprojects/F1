@@ -117,7 +117,9 @@ const F1Race = (props) => {
                                   result.positionText
                                 )
                               ) : (
-                                result.positionText
+                                isNaN(result.positionText) 
+                                ? result.position+"->"+ result.positionText
+                                :result.positionText
                               )}
                             </td>
                             <td className="align-middle op text-center">
@@ -194,7 +196,7 @@ const F1Race = (props) => {
 
                             <td
                               className={
-                                "align-middle cp " +
+                                "align-middle text-center cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
                                   ? "text-info"
                                   : "")
@@ -213,7 +215,7 @@ const F1Race = (props) => {
                               <b>
                                 {result.FastestLap
                                   ? result.FastestLap?.Time.time +
-                                    "(" +
+                                    " (" +
                                     result.FastestLap.rank +
                                     ")"
                                   : ""}
