@@ -39,9 +39,9 @@ const ConstructorsResult = () => {
     return (
       <div>
         <div className="container-fluid p-0">
-          <Link to="/" className="btn btn-danger container-fluid mb-1">
-            <h1>F1</h1>
-          </Link>
+        <Link to="/" className="btn container-fluid">
+          <h1 className="bg-black text-danger"><b>F1 Race Results</b></h1>
+        </Link>
           <select
             className="form-select bg-black text-danger border-danger border-5 shadow-none cp mb-1"
             onChange={(e) => setCons(e.target.value)}
@@ -52,7 +52,7 @@ const ConstructorsResult = () => {
             <Constructor year={season} />
           </select>
         </div>
-        <h2 className="text-light text-center">
+        <h2 className="text-light text-center m-0">
           {season === "2023" ? (
             <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} />
           ) : (

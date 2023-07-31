@@ -28,9 +28,9 @@ const Team = (props) => {
 
     if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
       return (
-        <div key={index} className="container p-0" style={{}}>
+        <div key={index} className="container-fluid p-0" style={{}}>
           <img
-            className="img-fluid w-25 imgrun"
+            className="img-responsive imgrun"
             style={{}}
             src={teams?.strTeamJersey + "/preview"}
             alt=""
@@ -38,7 +38,7 @@ const Team = (props) => {
             title={teams?.strDescriptionEN}
           />
           <img
-            className="img-fluid w-25"
+            className="img-fluid"
             style={{}}
             src={teams?.strTeamBadge + "/preview"}
             alt=""

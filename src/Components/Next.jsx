@@ -17,22 +17,34 @@ const Next = () => {
   return (
     <div className="bg-dark">
       {sdata?.map((data, index) => {
-        const dateTime = (d, t) => new Date(d + " " + t).toLocaleString("en-EN",{dateStyle:"full",timeStyle:"short"});
+        const dateTime = (d, t) =>
+          new Date(d + " " + t).toLocaleString("en-EN", {
+            dateStyle: "full",
+            timeStyle: "short",
+          });
         return (
-          <h1 key={index} className="blink bg-dark">
+          <h1 key={index} className="blink bg-dark m-0">
             <marquee className="blink">
-              Next Race #{data.round} {data.raceName} |{" "}
-              {dateTime(data?.date, data.time)} | First Practice:
-              {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)} |
+              Next Race <i class="bi bi-calendar3"></i> {data.raceName + ":"}{" "}
+              {dateTime(data?.date, data.time)}
+              <i class="bi bi-clock-fill"></i>
+              {data.Sprint
+                ?  "Sprint: " +dateTime(data.Sprint?.date, data.Sprint?.time)+" "
+                : ""}
+                
+              First Practice:
+              {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)}
+              <i class="bi bi-clock-fill"></i>
               Second Practice:
-              {dateTime(data.SecondPractice?.date, data.SecondPractice?.time)} |
-              Third Practice:
-              {dateTime(data.ThirdPractice?.date, data.ThirdPractice?.time)} |
+              {dateTime(data.SecondPractice?.date, data.SecondPractice?.time)}
+              <i class="bi bi-clock-fill"></i>
+              {data.ThirdPractice?.date
+                ? "Third Practice: " +
+                  dateTime(data.ThirdPractice?.date, data.ThirdPractice?.time) 
+                : " "}
+                <i class="bi bi-clock-fill"></i>
               Qualifying:
               {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
-              {data.Sprint
-                ? " | Sprint:" + dateTime(data.Sprint?.date, data.Sprint?.time)
-                : ""}
             </marquee>
           </h1>
         );

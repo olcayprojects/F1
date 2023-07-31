@@ -3,7 +3,6 @@ import { Link, useParams } from "react-router-dom";
 import DriverId from "./DriverId";
 import Loading from "./Loading";
 
-
 const Laps = () => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -43,8 +42,8 @@ const Laps = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" className="btn btn-danger container-fluid mb-1">
-          <h1>F1</h1>
+        <Link to="/" className="btn container-fluid">
+          <h1 className="bg-dark text-danger">F1</h1>
         </Link>
         <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
         <h2 className="text-center text-danger">
@@ -57,7 +56,9 @@ const Laps = () => {
                 <th className="">#</th>
                 <th className="bg-danger">Race PST</th>
                 <th className="">Driver</th>
-                <th className="bg-danger">Time <i className="bi bi-sort-down-alt fs-4"></i></th>
+                <th className="bg-danger">
+                  Time <i className="bi bi-sort-down-alt fs-4"></i>
+                </th>
                 <th className="">Lap</th>
               </tr>
             </thead>
@@ -83,11 +84,15 @@ const Laps = () => {
                   <tr key={index3} className="bg-danger">
                     <td className="col">{index3 + 1}</td>
                     <td className="col op fs-4">
-                    {drvitem?.pst<4 ?<i className={"bi bi-"+drvitem?.pst+"-circle-fill"}></i>:drvitem?.pst}
-                      </td>
-                    <td className="col">
-                      {<DriverId Id={drvitem?.drvId} />}
+                      {drvitem?.pst < 4 ? (
+                        <i
+                          className={"bi bi-" + drvitem?.pst + "-circle-fill"}
+                        ></i>
+                      ) : (
+                        drvitem?.pst
+                      )}
                     </td>
+                    <td className="col">{<DriverId Id={drvitem?.drvId} />}</td>
                     <td className="col op">{drvitem?.time}</td>
                     <td className="col">{drvitem?.lap}</td>
                   </tr>

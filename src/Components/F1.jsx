@@ -47,8 +47,8 @@ const F1 = () => {
   return (
     <>
       <div className="container.fluid bg-dark p-0">
-        <Next />
         <Carousel />
+        <Next />
         <F1Race />
         <select
           className="form-select bg-black text-danger border-danger border-5 shadow-none cp mb-1"

@@ -63,9 +63,9 @@ const F1Race = (props) => {
     return (
       <>
         <div className="container.fluid bg-dark p-0">
-          <Link to="/" className="btn btn-danger container-fluid">
-            <h1>F1 </h1>
-          </Link>
+        <Link to="/" className="btn container-fluid p-0">
+          <h1 className="bg-black text-danger p-0 m-0"><b>F1 Race Results</b></h1>
+        </Link>
           {sdata?.map((item, indexItem) => {
             season = item.season;
             round = item.round;
@@ -116,10 +116,10 @@ const F1Race = (props) => {
                                 ) : (
                                   result.positionText
                                 )
+                              ) : isNaN(result.positionText) ? (
+                                result.position + "->" + result.positionText
                               ) : (
-                                isNaN(result.positionText) 
-                                ? result.position+"->"+ result.positionText
-                                :result.positionText
+                                result.positionText
                               )}
                             </td>
                             <td className="align-middle op text-center">
@@ -216,7 +216,7 @@ const F1Race = (props) => {
                                 {result.FastestLap
                                   ? result.FastestLap?.Time.time +
                                     " (" +
-                                    result.FastestLap.rank +
+                                    result.FastestLap?.rank +
                                     ")"
                                   : ""}
                               </b>

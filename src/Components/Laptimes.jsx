@@ -33,7 +33,7 @@ const Laptimes = (props) => {
     fetchData(urlx);
   }, [urlx]);
 
-  return (
+  return sdata?.length > 0 ? (
     <table className="table table-dark table-striped">
       <caption className="text-center bg-dark text-danger caption-top">
         <b>LAP {props.lapsx}</b>
@@ -62,6 +62,8 @@ const Laptimes = (props) => {
         })}
       </tbody>
     </table>
+  ) : (
+    ""
   );
 };
 
