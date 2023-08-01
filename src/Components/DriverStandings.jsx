@@ -66,7 +66,7 @@ const DriverStandings = (props) => {
               {sdata?.map((driver, indexedDB) => {
                 return (
                   <tr key={indexedDB}>
-                    <td className="col align-middle text-center fs-5">
+                    <td className="align-middle text-center fs-5">
                     {driver.position < 4 ? (
                             <i
                               className={
@@ -79,16 +79,16 @@ const DriverStandings = (props) => {
                           :driver.position
                      }
                     </td>
-                    <td className="col text-center align-middle op">
+                    <td className="text-center align-middle op">
                       {driver.Driver.code}{" "}
                     </td>
                     <td
-                      className="col cp"
+                      className="cp"
                       onClick={() => {
                         navigate("/ResultsDriver/" + driver.Driver.driverId);
                       }}
                     >
-                      {(driver.position in ["1", "2", "3", "4"]) &
+                      {/* {(driver.position in ["1", "2", "3", "4"]) &
                       (props.season === "2023") ? (
                         <DrvInfo
                           drv={
@@ -99,7 +99,7 @@ const DriverStandings = (props) => {
                         />
                       ) : (
                         ""
-                      )}
+                      )} */}
                       <b className="fs-5">
                         {driver.Driver.givenName} {driver.Driver.familyName}
                       </b>{" "}
@@ -111,10 +111,10 @@ const DriverStandings = (props) => {
                       </i>
                       <i> {driver.Constructors[0].nationality}</i>
                     </td>
-                    <td className="col align-middle text-center op">
+                    <td className="align-middle text-center op">
                       <b>{driver.points}</b>
                     </td>
-                    <td className="col align-middle text-center">
+                    <td className="align-middle text-center">
                       {driver.wins}
                     </td>
                   </tr>

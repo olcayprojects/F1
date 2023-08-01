@@ -15,7 +15,7 @@ const Next = () => {
       });
   }, []);
   return (
-    <div className="bg-dark">
+    <div className="container-fluid bg-dark p-0 ">
       {sdata?.map((data, index) => {
         const dateTime = (d, t) =>
           new Date(d + " " + t).toLocaleString("en-EN", {
@@ -23,15 +23,16 @@ const Next = () => {
             timeStyle: "short",
           });
         return (
-          <h1 key={index} className="blink bg-dark m-0">
+          <h1 key={index} className="nextmarque m-0">
             <marquee className="blink">
               Next Race <i class="bi bi-calendar3"></i> {data.raceName + ":"}{" "}
               {dateTime(data?.date, data.time)}
               <i class="bi bi-clock-fill"></i>
               {data.Sprint
-                ?  "Sprint: " +dateTime(data.Sprint?.date, data.Sprint?.time)+" "
+                ? "Sprint: " +
+                  dateTime(data.Sprint?.date, data.Sprint?.time) +
+                  " "
                 : ""}
-                
               First Practice:
               {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)}
               <i class="bi bi-clock-fill"></i>
@@ -40,9 +41,9 @@ const Next = () => {
               <i class="bi bi-clock-fill"></i>
               {data.ThirdPractice?.date
                 ? "Third Practice: " +
-                  dateTime(data.ThirdPractice?.date, data.ThirdPractice?.time) 
+                  dateTime(data.ThirdPractice?.date, data.ThirdPractice?.time)
                 : " "}
-                <i class="bi bi-clock-fill"></i>
+              <i class="bi bi-clock-fill"></i>
               Qualifying:
               {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
             </marquee>

@@ -56,14 +56,14 @@ const ConstructorStandings = (props) => {
                   <td className="col text-center align-middle">
                     {ConstructorStandings.position}
                   </td>
-                  <td className="col op text-end">
+                  <td className="col op">
                     {ConstructorStandings.Constructor.name}
-                    {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
+                    {/* {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
                     props.season ? (
                       <Team teamName={ConstructorStandings.Constructor.name} />
                     ) : (
                       ""
-                    )}
+                    )} */}
                   </td>
                   <td className="col align-middle">
                     {ConstructorStandings.Constructor.nationality}
