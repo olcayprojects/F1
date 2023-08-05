@@ -61,7 +61,7 @@ select {
 }
 
 .op {
-  opacity: 0.9;
+  opacity: 0.94;
 }
 
 .carousel img {
@@ -97,11 +97,4 @@ thead th {
   100% {
     left: 0px;
   }
-}
-
-.nextmarque{
-  margin-top: 0;
-
-
-
 }

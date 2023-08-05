@@ -36,7 +36,7 @@ const Sprint = () => {
     return (
       <div className="container-fluid p-0">
         <Link to="/" className="btn btn-danger container-fluid mb-1">
-          <h1>F1</h1>
+          <h1>F1 Race Results</h1>
         </Link>
         <h2 className="bg-info text-black text-center">
           {data?.raceName.toUpperCase()}/

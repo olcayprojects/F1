@@ -39,9 +39,14 @@ const ConstructorsResult = () => {
     return (
       <div>
         <div className="container-fluid p-0">
-        <Link to="/" className="btn container-fluid">
-          <h1 className="bg-black text-danger"><b>F1 Race Results</b></h1>
-        </Link>
+          <Link
+            to="/"
+            className="btn btn-danger text-black container-fluid mb-1"
+          >
+            <h1>
+              <b>F1 Race Results</b>
+            </h1>
+          </Link>
           <select
             className="form-select bg-black text-danger border-danger border-5 shadow-none cp mb-1"
             onChange={(e) => setCons(e.target.value)}
@@ -64,11 +69,12 @@ const ConstructorsResult = () => {
             <div className="text-danger" key={index}>
               <div className="table-responsive-sm">
                 <table className="table table-striped table-dark caption-top">
-                  <caption className="text-danger text-center fs-4">
+                  <caption className="text-danger bg-dark text-center fs-4">
                     <b>{items.raceName + " " + items.date}</b>
                   </caption>
                   <thead>
                     <tr className="">
+                      <th className="bg-danger">#</th>
                       <th className="bg-danger">DRIVER</th>
                       <th>TIME</th>
                       <th className="bg-danger">STATUS</th>
@@ -82,26 +88,27 @@ const ConstructorsResult = () => {
                     {items?.Results.map((item, index) => {
                       return (
                         <tr key={index} className="">
+                          <td>{item.positionText}</td>
                           <td>
                             {item.Driver.givenName +
                               " " +
-                              item.Driver.familyName +
-                              " (#" +
-                              item.positionText +
-                              "#)"}
+                              item.Driver.familyName}
                           </td>
                           <td>{item.Time?.time}</td>
                           <td>{item.status}</td>
                           <td className="text-center">{item.points}</td>
                           <td>
-                            #
-                            {item?.FastestLap?.rank +
-                              "#-Time:" +
-                              item.FastestLap?.Time?.time +
-                              "-AvgSpd:" +
-                              item?.FastestLap?.AverageSpeed?.speed +
-                              "-Lap:" +
-                              item?.FastestLap?.lap}
+                            {item?.FastestLap
+                              ? "#" +
+                                item?.FastestLap?.rank +
+                                "# Time: " +
+                                item.FastestLap?.Time?.time +
+                                " - AvgSpd: " +
+                                item?.FastestLap?.AverageSpeed?.speed +
+                                item?.FastestLap?.AverageSpeed?.units +
+                                " - Lap: " +
+                                item?.FastestLap?.lap
+                              : ""}
                           </td>
                           <td>{item.laps}</td>
                           <td>{item.grid}</td>

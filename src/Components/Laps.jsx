@@ -43,7 +43,7 @@ const Laps = () => {
     return (
       <div className="container-fluid p-0">
         <Link to="/" className="btn container-fluid">
-          <h1 className="bg-dark text-danger">F1</h1>
+          <h1 className="bg-dark text-danger">F1 Race Results</h1>
         </Link>
         <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
         <h2 className="text-center text-danger">

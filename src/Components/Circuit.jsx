@@ -101,8 +101,8 @@ const Circuit = (props) => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" className="btn btn-danger container-fluid mb-1">
-          <h1 className="bg-danger">F1</h1>
+        <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
+          <h1><b>F1 Race Results</b></h1>
         </Link>
         <h2 className="bg-dark text-light text-center">
           {data

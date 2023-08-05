@@ -30,10 +30,10 @@ const QualifyingResults = (props) => {
             <tr className="text-black">
               <th className="bg-danger text-center op">P</th>
               <th className="bg-danger text-center">NO</th>
-              <th className="bg-danger op">DRIVER</th>
-              <th className="text-center bg-danger">Q1</th>
-              <th className="text-center bg-danger op">Q2</th>
+              <th className="bg-danger op text-center">D R I V E R</th>
               <th className="text-center bg-danger">Q3</th>
+              <th className="text-center bg-danger op">Q2</th>
+              <th className="text-center bg-danger">Q1</th>
             </tr>
           </thead>
           {sdata?.map((item, index) => {
@@ -42,11 +42,9 @@ const QualifyingResults = (props) => {
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
                     <tr key={indexQ} className="bg-danger">
-                      <td className="col text-center">
-                        {qualifying.position}
-                      </td>
-                      <td className="col text-center op">{qualifying.number}</td>
-                      <td className="col">
+                      <td className="text-center">{qualifying.position}</td>
+                      <td className="text-center op">{qualifying.number}</td>
+                      <td className="">
                         <b className="fs-5">
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
@@ -63,16 +61,11 @@ const QualifyingResults = (props) => {
                         </span>
                       </td>
 
-                      <td className=" text-center col op">{qualifying.Q1}</td>
-                      <td className=" text-center col">
-                        {qualifying.Q2 ? qualifying.Q2 : ""}
+                      <td className="text-center op">
+                        <b>{qualifying?.Q3}</b>
                       </td>
-                      <td className="text-center col op">
-                        <b>
-
-                        {qualifying.Q3 ? qualifying.Q3 : ""}
-                        </b>
-                      </td>
+                      <td className=" text-center ">{qualifying?.Q2}</td>
+                      <td className=" text-center op">{qualifying?.Q1}</td>
                     </tr>
                   );
                 })}

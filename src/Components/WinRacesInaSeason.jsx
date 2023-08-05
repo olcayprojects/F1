@@ -33,18 +33,18 @@ const WinRacesInaSeason = (props) => {
         <table className="table table-dark table-striped">
           <thead className="fs-5">
             <tr className="text-dark">
-              <th className="bg-danger">Race Name</th>
-              <th className="bg-danger">Driver</th>
+              <th className="bg-danger text-center">Race Name</th>
+              <th className="bg-danger text-center op">Driver</th>
               <th className="bg-danger text-center">Pts</th>
-              <th className="bg-danger text-center">Laps</th>
+              <th className="bg-danger op text-center">Laps</th>
               <th className="bg-danger text-center">Time</th>
-              <th className="bg-danger text-center">Fastest Lap</th>
+              <th className="bg-danger op text-center">Fastest Lap</th>
             </tr>
           </thead>
           <tbody>
             {sdata?.map((item, index) => {
               return (
-                <tr className="bg-dark" key={index}>
+                <tr className="" key={index}>
                   <td
                     className="col cp"
                     onClick={() =>
@@ -71,18 +71,18 @@ const WinRacesInaSeason = (props) => {
                     </b>
                     {" "}<i className="fw-light fs-5">{item.Results[0].Constructor.name}</i>
                   </td>
-                  <td className="col text-center op">
+                  <td className="col text-center">
                     {item.Results[0].points}
                   </td>
 
-                  <td className="col text-center">{item.Results[0].laps}</td>
-                  <td className="col text-center op">
+                  <td className="col text-center op">{item.Results[0].laps}</td>
+                  <td className="col text-center">
                     {item.Results[0].Time.time}
                   </td>
 
                   <td
                     className={
-                      "text-center col " +
+                      "text-center op col " +
                       (item.Results[0].FastestLap?.rank === "1"
                         ? "text-danger"
                         : "")

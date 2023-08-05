@@ -53,13 +53,15 @@ const RaceSchedule = (props) => {
               return (
                 <tr className="col" key={index}>
                   <td className="col text-center">{rs.round}</td>
-                  <td className="col text-nowrap op"><b>{rs.raceName}</b></td>
+                  <td className="col text-nowrap op">
+                    <b>{rs.raceName}</b>
+                  </td>
                   <td
                     title={title}
                     className={
-                      "col cp text-center text-nowrap " +
+                      "col cp  text-nowrap " +
                       (dateTime(rs.date, rs.time) < dateNow
-                        ? "raceComplete text-danger"
+                        ? "raceComplete fw-bold"
                         : (rs.date.split("-")[1] ===
                             dateNow.toISOString().split("T")[0].split("-")[1]) &
                           (props.season === "2023")
@@ -73,23 +75,23 @@ const RaceSchedule = (props) => {
                         : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
                     }
                   >
-                    <b>
-                      {" "}
-                      {dateTime(rs.date, rs.time) > dateNow
-                        ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
-                            dateStyle: "short",
-                            timeStyle: "short",
-                          })
-                        : rs.time
-                        ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
-                            dateStyle: "short",
-                            timeStyle: "short",
-                          })
-                        : rs.date}
-                    </b>
+                    {dateTime(rs.date, rs.time) > dateNow
+                      ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
+                      : rs.time
+                      ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
+                      : rs.date}
                   </td>
                   <td
-                    className="col text-center text-nowrap cp text-info op"
+                    className={
+                      "col text-center text-nowrap cp text-info op " +
+                      (dateTime(rs.date, rs.time) < dateNow ? "fw-bold" : "")
+                    }
                     onClick={() =>
                       navigate("/Sprint/" + props.season + "/" + rs.round)
                     }

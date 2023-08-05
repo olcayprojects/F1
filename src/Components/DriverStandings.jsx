@@ -67,17 +67,13 @@ const DriverStandings = (props) => {
                 return (
                   <tr key={indexedDB}>
                     <td className="align-middle text-center fs-5">
-                    {driver.position < 4 ? (
-                            <i
-                              className={
-                                "bi bi-" +
-                                driver.position +
-                                "-square"
-                              }
-                            ></i>
-                          )
-                          :driver.position
-                     }
+                      {driver.position < 4 ? (
+                        <i
+                          className={"bi bi-" + driver.position + "-square"}
+                        ></i>
+                      ) : (
+                        driver.position
+                      )}
                     </td>
                     <td className="text-center align-middle op">
                       {driver.Driver.code}{" "}
@@ -105,18 +101,17 @@ const DriverStandings = (props) => {
                       </b>{" "}
                       <span>
                         {driver.Driver.nationality} {driver.Driver.dateOfBirth}
-                      </span>{" "}
+                      </span>
+                      {" / "}
                       <i className="fw-light fs-5">
-                        {driver.Constructors[0].name}
+                        <b>{driver.Constructors[0].name}</b>
                       </i>
                       <i> {driver.Constructors[0].nationality}</i>
                     </td>
                     <td className="align-middle text-center op">
                       <b>{driver.points}</b>
                     </td>
-                    <td className="align-middle text-center">
-                      {driver.wins}
-                    </td>
+                    <td className="align-middle text-center">{driver.wins}</td>
                   </tr>
                 );
               })}

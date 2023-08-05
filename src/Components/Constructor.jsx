@@ -31,7 +31,7 @@ const Constructor = (props) => {
     return sdata?.map((item, index) => {
       return (
         <option key={index} value={item.constructorId}>
-          {item.name}
+          {item?.name}
         </option>
       );
     });

@@ -27,9 +27,9 @@ const RaceInfo = () => {
 
   return (
     <div className="container-fluid">
-      <Link to="/" className="btn btn-danger container-fluid">
-        <h1>F1</h1>
-      </Link>
+        <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
+          <h1><b>F1 Race Results</b></h1>
+        </Link>
       <div className="row">
         {data?.map((event, index) => {
           return (

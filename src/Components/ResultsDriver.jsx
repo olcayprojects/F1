@@ -59,8 +59,8 @@ const ResultsDriver = () => {
   } else {
     return (
       <div className="bg-black container-fluid p-0">
-        <Link to="/" className="btn container-fluid">
-          <h1 className="bg-black text-danger"><b>F1 Race Results</b></h1>
+        <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
+          <h1><b>F1 Race Results</b></h1>
         </Link>
         <div className="container-fluid text-center text-light">
           <h2>

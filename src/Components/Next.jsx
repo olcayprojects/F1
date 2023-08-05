@@ -25,9 +25,9 @@ const Next = () => {
         return (
           <h1 key={index} className="nextmarque m-0">
             <marquee className="blink">
-              Next Race <i class="bi bi-calendar3"></i> {data.raceName + ":"}{" "}
+              Next Race <i className="bi bi-calendar3"></i> {data.raceName + ":"}{" "}
               {dateTime(data?.date, data.time)}
-              <i class="bi bi-clock-fill"></i>
+              <i className="bi bi-clock-fill"></i>
               {data.Sprint
                 ? "Sprint: " +
                   dateTime(data.Sprint?.date, data.Sprint?.time) +
@@ -35,15 +35,15 @@ const Next = () => {
                 : ""}
               First Practice:
               {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)}
-              <i class="bi bi-clock-fill"></i>
+              <i className="bi bi-clock-fill"></i>
               Second Practice:
               {dateTime(data.SecondPractice?.date, data.SecondPractice?.time)}
-              <i class="bi bi-clock-fill"></i>
+              <i className="bi bi-clock-fill"></i>
               {data.ThirdPractice?.date
                 ? "Third Practice: " +
                   dateTime(data.ThirdPractice?.date, data.ThirdPractice?.time)
                 : " "}
-              <i class="bi bi-clock-fill"></i>
+              <i className="bi bi-clock-fill"></i>
               Qualifying:
               {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
             </marquee>
