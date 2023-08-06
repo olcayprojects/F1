@@ -36,7 +36,7 @@ const Sprint = () => {
     return (
       <div className="container-fluid p-0">
         <Link to="/" className="btn btn-danger container-fluid mb-1">
-          <h1>F1 Race Results</h1>
+          <h1 className="text-black fw-bold">F1 Race Results</h1>
         </Link>
         <h2 className="bg-info text-black text-center">
           {data?.raceName.toUpperCase()}/
@@ -46,19 +46,19 @@ const Sprint = () => {
         </h2>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped">
-            <thead className="text">
+            <thead className="text fw-bold">
               <tr className="">
                 <th className="">P</th>
                 <th className="bg-danger">G</th>
                 <th className="">DRIVER</th>
                 <th className="bg-danger">CONSTRUCTOR</th>
-                <th className="">LAPS</th>
+                <th className="text-center">LAPS</th>
                 <th className="bg-danger">TIME</th>
-                <th className="">PTS</th>
+                <th className="text-center">PTS</th>
                 <th className="bg-danger">FASTEST LAP</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="fw-bold">
               {data?.SprintResults.map((item, index) => {
                 return (
                   <tr key={index}>
@@ -68,11 +68,11 @@ const Sprint = () => {
                       {item.Driver.givenName} {item.Driver.familyName}
                     </td>
                     <td className="col-2">{item.Constructor.name}</td>
-                    <td className="col-1">{item.laps}</td>
+                    <td className="col-1 text-center">{item.laps}</td>
                     <td className="col-2">
                       {item.Time?.time ? item.Time?.time : item.status}
                     </td>
-                    <td className="col-1">{item.points}</td>
+                    <td className="col-1 text-center">{item.points}</td>
                     <td className="col-4">
                       {item.FastestLap
                         ? "Time: " +

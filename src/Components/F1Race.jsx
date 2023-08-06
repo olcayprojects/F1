@@ -87,9 +87,9 @@ const F1Race = (props) => {
                 </h2>
                 <div className="table-responsive-md">
                   <table className="table table-dark table-striped">
-                    <thead className="text">
+                    <thead className="">
                       <tr className="">
-                        <th className="bg-danger text-center"></th>
+                        <th className="bg-danger text-center">P</th>
                         <th className="text-center">G</th>
                         <th className="bg-danger text-center">NO</th>
                         <th className="text-center">D R I V E R</th>
@@ -193,10 +193,10 @@ const F1Race = (props) => {
                                 </i>
                               )}
                             </td>
-                            <td className="align-middle op text-center">
+                            <td className="align-middle op text-center fw-bold" style={{color:"pink"}}>
                               {result.laps}
                             </td>
-                            <td className="align-middle text-wrap text-center">
+                            <td className="align-middle text-wrap text-center text-warning fw-bold">
                               {result.Time?.time
                                 ? result.Time.time
                                 : result.status}
@@ -204,9 +204,9 @@ const F1Race = (props) => {
 
                             <td
                               className={
-                                "align-middle op text-center cp " +
+                                "align-middle fw-bold op text-center cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
-                                  ? "text-info"
+                                  ? "text-danger"
                                   : "")
                               }
                               onClick={() => {
@@ -220,14 +220,14 @@ const F1Race = (props) => {
                                 );
                               }}
                             >
-                              <b>
+                             
                                 {result.FastestLap
                                   ? result.FastestLap?.Time.time +
                                     " (" +
                                     result.FastestLap?.rank +
                                     ")"
                                   : ""}
-                              </b>
+                            
                             </td>
                             <td className="align-middle text-center">
                               {result.FastestLap?.lap}
@@ -238,7 +238,7 @@ const F1Race = (props) => {
                                  " "+ result?.FastestLap?.AverageSpeed.units
                                 : ""}
                             </td>
-                            <td className="align-middle text-center">
+                            <td className="align-middle text-center fw-bold" style={{color:"aquamarine"}}>
                               {result.points}
                             </td>
                           </tr>

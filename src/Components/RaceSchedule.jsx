@@ -37,8 +37,8 @@ const RaceSchedule = (props) => {
             <tr className="text-black">
               <th className="text-center">Rnd</th>
               <th className="bg-danger text-center">Race Name</th>
-              <th className=" text-center">Race</th>
-              <th className="text-center bg-info">Sprint</th>
+              <th className=" text-center">Race Date</th>
+              <th className="text-center bg-info">Sprint Date</th>
               <th className="text-center">Qualifying</th>
               <th className="bg-danger text-center">Practice1</th>
               <th className="text-center">Circuit</th>
@@ -61,7 +61,7 @@ const RaceSchedule = (props) => {
                     className={
                       "col cp  text-nowrap " +
                       (dateTime(rs.date, rs.time) < dateNow
-                        ? "raceComplete fw-bold"
+                        ? "raceComplete fw-bold text-decoration-line-through"
                         : (rs.date.split("-")[1] ===
                             dateNow.toISOString().split("T")[0].split("-")[1]) &
                           (props.season === "2023")
@@ -90,7 +90,7 @@ const RaceSchedule = (props) => {
                   <td
                     className={
                       "col text-center text-nowrap cp text-info op " +
-                      (dateTime(rs.date, rs.time) < dateNow ? "fw-bold" : "")
+                      (dateTime(rs.date, rs.time) < dateNow ? "fw-bold text-decoration-line-through" : "")
                     }
                     onClick={() =>
                       navigate("/Sprint/" + props.season + "/" + rs.round)
@@ -106,7 +106,7 @@ const RaceSchedule = (props) => {
                         })
                       : rs.Sprint?.date}
                   </td>
-                  <td className="col text-center text-nowrap">
+                  <td className="col text-nowrap">
                     {rs.Qualifying?.time
                       ? dateTime(
                           rs.Qualifying?.date,
@@ -117,7 +117,7 @@ const RaceSchedule = (props) => {
                         })
                       : rs.Qualifying?.date}
                   </td>
-                  <td className="col text-center text-nowrap op">
+                  <td className="col text-nowrap op">
                     {rs.FirstPractice?.time
                       ? dateTime(
                           rs.FirstPractice?.date,

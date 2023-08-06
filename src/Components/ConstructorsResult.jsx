@@ -74,14 +74,14 @@ const ConstructorsResult = () => {
                   </caption>
                   <thead>
                     <tr className="">
-                      <th className="bg-danger">#</th>
+                      <th className="bg-danger">P</th>
                       <th className="bg-danger">DRIVER</th>
                       <th>TIME</th>
-                      <th className="bg-danger">STATUS</th>
+                      <th className="bg-danger text-center">STATUS</th>
                       <th className="text-center">PTS</th>
                       <th className="bg-danger">FASTEST LAP</th>
-                      <th>LAPS</th>
-                      <th className="bg-danger">GRID</th>
+                      <th className="text-center">LAPS</th>
+                      <th className="bg-danger text-center">GRID</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -95,7 +95,7 @@ const ConstructorsResult = () => {
                               item.Driver.familyName}
                           </td>
                           <td>{item.Time?.time}</td>
-                          <td>{item.status}</td>
+                          <td className="text-center">{item.status}</td>
                           <td className="text-center">{item.points}</td>
                           <td>
                             {item?.FastestLap
@@ -110,8 +110,8 @@ const ConstructorsResult = () => {
                                 item?.FastestLap?.lap
                               : ""}
                           </td>
-                          <td>{item.laps}</td>
-                          <td>{item.grid}</td>
+                          <td className="text-center">{item.laps}</td>
+                          <td className="text-center">{item.grid}</td>
                         </tr>
                       );
                     })}
