@@ -63,9 +63,14 @@ const F1Race = (props) => {
     return (
       <>
         <div className="container.fluid bg-dark p-0">
-        <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
-          <h1><b>F1 Race Results</b></h1>
-        </Link>
+          <Link
+            to="/"
+            className="btn btn-danger text-black container-fluid mb-1"
+          >
+            <h1 className="">
+              <b className="shadow">F1 Race Results</b>
+            </h1>
+          </Link>
           {sdata?.map((item, indexItem) => {
             season = item.season;
             round = item.round;
@@ -107,7 +112,7 @@ const F1Race = (props) => {
                     <tbody className="text-danger">
                       {item?.Results?.map((result, indexResult) => {
                         return (
-                          <tr key={indexResult} className="bg-danger">
+                          <tr key={indexResult} className="">
                             <td className="align-middle text-center text-success">
                               {result.positionText in [1, 2, 3, 4] ? (
                                 result.positionText === "1" ? (
@@ -117,12 +122,8 @@ const F1Race = (props) => {
                                 ) : result.positionText === "3" ? (
                                   <b className="text-success bg-black p-2">3</b>
                                 ) : (
-                                  result.positionText
+                                  ""
                                 )
-                              ) : isNaN(result.positionText) ? (
-                                <b>
-                                  {result.position + "->" + result.positionText}
-                                </b>
                               ) : (
                                 <b>{result.positionText}</b>
                               )}
@@ -193,7 +194,10 @@ const F1Race = (props) => {
                                 </i>
                               )}
                             </td>
-                            <td className="align-middle op text-center fw-bold" style={{color:"pink"}}>
+                            <td
+                              className="align-middle op text-center fw-bold"
+                              style={{ color: "pink" }}
+                            >
                               {result.laps}
                             </td>
                             <td className="align-middle text-wrap text-center text-warning fw-bold">
@@ -220,14 +224,13 @@ const F1Race = (props) => {
                                 );
                               }}
                             >
-                             
-                                {result.FastestLap
-                                  ? result.FastestLap?.Time.time +
-                                    " (" +
-                                    result.FastestLap?.rank +
-                                    ")"
-                                  : ""}
-                            
+                              {result.FastestLap
+                                ? 
+                                
+                                result.FastestLap?.Time.time +
+                                  "->" +
+                                  result.FastestLap?.rank 
+                                : ""}
                             </td>
                             <td className="align-middle text-center">
                               {result.FastestLap?.lap}
@@ -235,10 +238,14 @@ const F1Race = (props) => {
                             <td className="align-middle op text-center">
                               {result?.FastestLap?.AverageSpeed.speed
                                 ? result?.FastestLap?.AverageSpeed.speed +
-                                 " "+ result?.FastestLap?.AverageSpeed.units
+                                  " " +
+                                  result?.FastestLap?.AverageSpeed.units
                                 : ""}
                             </td>
-                            <td className="align-middle text-center fw-bold" style={{color:"aquamarine"}}>
+                            <td
+                              className="align-middle text-center fw-bold"
+                              style={{ color: "aquamarine" }}
+                            >
                               {result.points}
                             </td>
                           </tr>

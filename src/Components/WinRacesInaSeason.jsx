@@ -51,11 +51,13 @@ const WinRacesInaSeason = (props) => {
                       navigate("/F1Race/" + props.season + "/" + item.round)
                     }
                   >
-                   <b className="fs-5"> #{item.round} {item.raceName} </b>
-                   <i>
-
-                    {item.time ? dateTime(item.date, item.time) : item.date}
-                   </i>
+                    <b className="fs-5">
+                      {" "}
+                      #{item.round} {item.raceName}{" "}
+                    </b>
+                    <i>
+                      {item.time ? dateTime(item.date, item.time) : item.date}
+                    </i>
                   </td>
                   <td
                     className="col cp op"
@@ -68,12 +70,12 @@ const WinRacesInaSeason = (props) => {
                     <b className="fs-5">
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
-                    </b>
-                    {" "}<i className="fw-light fs-5">{item.Results[0].Constructor.name}</i>
+                    </b>{" "}
+                    <i className="fw-light fs-5">
+                      {item.Results[0].Constructor.name}
+                    </i>
                   </td>
-                  <td className="col text-center">
-                    {item.Results[0].points}
-                  </td>
+                  <td className="col text-center">{item.Results[0].points}</td>
 
                   <td className="col text-center op">{item.Results[0].laps}</td>
                   <td className="col text-center">
@@ -89,16 +91,14 @@ const WinRacesInaSeason = (props) => {
                     }
                   >
                     {item.Results[0].FastestLap
-                      ? "#" +
-                        item.Results[0].FastestLap?.rank +
-                        "# " +
-                        "Time(" +
+                      ? item.Results[0].FastestLap?.rank +
+                        " | " +
+                        "Time: " +
                         item.Results[0].FastestLap?.Time?.time +
-                        ") AvgSpd(" +
+                        " | AvgSpd: " +
                         item.Results[0].FastestLap?.AverageSpeed?.speed +
-                        "kph) Lap(" +
-                        item.Results[0].FastestLap.lap +
-                        ")"
+                        " kph | Lap: " +
+                        item.Results[0].FastestLap.lap
                       : ""}
                   </td>
                 </tr>

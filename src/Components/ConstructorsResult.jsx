@@ -44,7 +44,7 @@ const ConstructorsResult = () => {
             className="btn btn-danger text-black container-fluid mb-1"
           >
             <h1>
-              <b>F1 Race Results</b>
+            <b className="shadow">F1 Race Results</b>
             </h1>
           </Link>
           <select
@@ -74,7 +74,7 @@ const ConstructorsResult = () => {
                   </caption>
                   <thead>
                     <tr className="">
-                      <th className="bg-danger">P</th>
+                      <th className="">P</th>
                       <th className="bg-danger">DRIVER</th>
                       <th>TIME</th>
                       <th className="bg-danger text-center">STATUS</th>

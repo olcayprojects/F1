@@ -35,9 +35,10 @@ const Sprint = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" className="btn btn-danger container-fluid mb-1">
-          <h1 className="text-black fw-bold">F1 Race Results</h1>
-        </Link>
+        <Link to="/" className="btn btn-danger container-fluid mb-1 text-dark">
+        <h1>
+            <b className="shadow">F1 Race Results</b>
+            </h1>        </Link>
         <h2 className="bg-info text-black text-center">
           {data?.raceName.toUpperCase()}/
           {data?.Circuit?.circuitName.toUpperCase()} Sprint Results -{" "}
@@ -63,21 +64,21 @@ const Sprint = () => {
                 return (
                   <tr key={index}>
                     <td className="col">{item.positionText}</td>
-                    <td className="col">{item.grid}</td>
-                    <td className="col-2">
+                    <td className="col op">{item.grid}</td>
+                    <td className="col fs-5">
                       {item.Driver.givenName} {item.Driver.familyName}
                     </td>
-                    <td className="col-2">{item.Constructor.name}</td>
-                    <td className="col-1 text-center">{item.laps}</td>
-                    <td className="col-2">
+                    <td className="col op fs-5 fst-italic">{item.Constructor.name}</td>
+                    <td className="col text-center">{item.laps}</td>
+                    <td className="col op">
                       {item.Time?.time ? item.Time?.time : item.status}
                     </td>
-                    <td className="col-1 text-center">{item.points}</td>
-                    <td className="col-4">
+                    <td className="col text-center">{item.points}</td>
+                    <td className="col op">
                       {item.FastestLap
                         ? "Time: " +
                           item.FastestLap?.Time.time +
-                          " Lap: " +
+                          " | Lap: " +
                           item.FastestLap?.lap
                         : "-"}
                     </td>

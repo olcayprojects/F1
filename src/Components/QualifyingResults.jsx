@@ -41,7 +41,7 @@ const QualifyingResults = (props) => {
               <tbody key={index}>
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
-                    <tr key={indexQ} className="bg-danger">
+                    <tr key={indexQ} className="">
                       <td className="text-center">{qualifying.position}</td>
                       <td className="text-center op">{qualifying.number}</td>
                       <td className="">

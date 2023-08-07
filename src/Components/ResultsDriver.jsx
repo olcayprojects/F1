@@ -60,7 +60,9 @@ const ResultsDriver = () => {
     return (
       <div className="bg-black container-fluid p-0">
         <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
-          <h1><b>F1 Race Results</b></h1>
+          <h1>
+            <b className="shadow">F1 Race Results</b>
+          </h1>
         </Link>
         <div className="container-fluid text-center text-light">
           <h2>
@@ -170,7 +172,7 @@ const ResultsDriver = () => {
 
                       <td
                         className={
-                          "text-center col " +
+                          "col " +
                           (item?.Results
                             ? item?.Results[0]?.FastestLap?.rank
                             : item?.SprintResults[0]?.FastestLap?.rank in
@@ -181,21 +183,21 @@ const ResultsDriver = () => {
                       >
                         {item?.Results
                           ? item?.Results[0]?.FastestLap
-                            ? "#" +
-                              item?.Results[0]?.FastestLap?.rank +
-                              "# " +
+                            ? item?.Results[0]?.FastestLap?.rank +
+                              ". | Time: " +
                               item?.Results[0]?.FastestLap?.Time.time +
-                              "-" +
+                              " | AvgSpd: " +
                               item?.Results[0]?.FastestLap?.AverageSpeed
                                 ?.speed +
                               item?.Results[0]?.FastestLap?.AverageSpeed
                                 ?.units +
-                              "-" +
+                              " | Lap: " +
                               item?.Results[0]?.FastestLap?.lap
                             : ""
                           : item?.SprintResults[0]?.FastestLap
-                          ? item?.SprintResults[0]?.FastestLap?.Time.time +
-                            "-" +
+                          ? "Time: " +
+                            item?.SprintResults[0]?.FastestLap?.Time.time +
+                            " | Lap: " +
                             item?.SprintResults[0]?.FastestLap?.lap
                           : ""}
                       </td>

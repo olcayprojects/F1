@@ -7,7 +7,6 @@ const DriverDB = (props) => {
 
   let url = "";
   if (props.drv === "Carlos Sainz") {
-
     url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Carlos Sainz Jr`;
   } else {
     url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${props.drv}`;
@@ -29,10 +28,10 @@ const DriverDB = (props) => {
 
   return (
     <>
-          <img
-        className="img-fluid w-25"
-        style={{width: "", height: "" }}
-        src={data?.strRender?  data?.strRender + "/preview":data?.strCutout + "/preview"}
+      <img
+        className="img-fluid w-25 "
+        style={{ width: "", height: "" }}
+        src={data?.strRender ? data?.strRender : data?.strCutout + "/preview"}
         alt=""
         title={data?.strDescriptionEN}
         srcSet=""
@@ -43,7 +42,7 @@ const DriverDB = (props) => {
         Date of birth: {data?.dateBorn} <br />
         Place of birth: {data?.strBirthLocation}
       </p>
-      <p className="p-0 fs-6">{data?.strDescriptionEN}</p>
+      <p className="p-0 fs-6 lh-sm">{data?.strDescriptionEN}</p>
     </>
   );
 };
