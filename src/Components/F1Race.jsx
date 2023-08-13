@@ -5,7 +5,6 @@ import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 import { DrvInfo } from "./DriverInfo";
-import Team from "./Team";
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
 
@@ -28,7 +27,7 @@ const F1Race = (props) => {
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
-  const timeMS = (d) => new Date(d);
+  // const timeMS = (d) => new Date(d);
 
   let urlx;
   if (rounds === 0) {
@@ -65,7 +64,7 @@ const F1Race = (props) => {
         <div className="container.fluid bg-dark p-0">
           <Link
             to="/"
-            className="btn btn-danger text-black container-fluid mb-1"
+            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
           >
             <h1 className="">
               <b className="shadow">F1 Race Results</b>

@@ -42,7 +42,9 @@ const Laps = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" className="btn container-fluid bg-danger">
+        <Link to="/" 
+            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
+            >
         <h1>
             <b className="shadow">F1 Race Results</b>
             </h1>        </Link>

@@ -35,16 +35,20 @@ const Sprint = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" className="btn btn-danger container-fluid mb-1 text-dark">
-        <h1>
+        <Link
+          to="/"
+          className="abc btn btn-danger text-black container-fluid mb-0 p-0"
+        >
+          <h1>
             <b className="shadow">F1 Race Results</b>
-            </h1>        </Link>
-        <h2 className="bg-info text-black text-center">
+          </h1>{" "}
+        </Link>
+        <h3 className="bg-info text-black text-center fw-bold mt-1">
           {data?.raceName.toUpperCase()}/
           {data?.Circuit?.circuitName.toUpperCase()} Sprint Results -{" "}
           {data?.season}#{data?.round} -{" "}
           {dateTime(data?.date, data?.time).toLocaleString()}
-        </h2>
+        </h3>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped">
             <thead className="text fw-bold">
@@ -68,7 +72,9 @@ const Sprint = () => {
                     <td className="col fs-5">
                       {item.Driver.givenName} {item.Driver.familyName}
                     </td>
-                    <td className="col op fs-5 fst-italic">{item.Constructor.name}</td>
+                    <td className="col op fs-5 fst-italic">
+                      {item.Constructor.name}
+                    </td>
                     <td className="col text-center">{item.laps}</td>
                     <td className="col op">
                       {item.Time?.time ? item.Time?.time : item.status}

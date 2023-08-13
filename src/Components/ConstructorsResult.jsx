@@ -41,7 +41,7 @@ const ConstructorsResult = () => {
         <div className="container-fluid p-0">
           <Link
             to="/"
-            className="btn btn-danger text-black container-fluid mb-1"
+            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
           >
             <h1>
             <b className="shadow">F1 Race Results</b>
@@ -88,15 +88,15 @@ const ConstructorsResult = () => {
                     {items?.Results.map((item, index) => {
                       return (
                         <tr key={index} className="">
-                          <td>{item.positionText}</td>
+                          <td className="op">{item.positionText}</td>
                           <td>
                             {item.Driver.givenName +
                               " " +
                               item.Driver.familyName}
                           </td>
-                          <td>{item.Time?.time}</td>
+                          <td className="op">{item.Time?.time}</td>
                           <td className="text-center">{item.status}</td>
-                          <td className="text-center">{item.points}</td>
+                          <td className="text-center op">{item.points}</td>
                           <td>
                             {item?.FastestLap
                               ? "#" +
@@ -110,7 +110,7 @@ const ConstructorsResult = () => {
                                 item?.FastestLap?.lap
                               : ""}
                           </td>
-                          <td className="text-center">{item.laps}</td>
+                          <td className="text-center op">{item.laps}</td>
                           <td className="text-center">{item.grid}</td>
                         </tr>
                       );

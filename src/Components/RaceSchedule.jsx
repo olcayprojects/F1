@@ -89,11 +89,17 @@ const RaceSchedule = (props) => {
                   </td>
                   <td
                     className={
-                      "col text-center text-nowrap cp text-info op " +
-                      (dateTime(rs.date, rs.time) < dateNow ? "fw-bold text-decoration-line-through" : "")
+                      "col text-center text-nowrap text-info op " +
+                      (rs.Sprint ? "cp" : "ch") +
+                      " " +
+                      (dateTime(rs.date, rs.time) < dateNow
+                        ? "fw-bold text-decoration-line-through"
+                        : "")
                     }
                     onClick={() =>
-                      navigate("/Sprint/" + props.season + "/" + rs.round)
+                      rs.Sprint
+                        ? navigate("/Sprint/" + props.season + "/" + rs.round)
+                        : ""
                     }
                   >
                     {rs.Sprint?.time

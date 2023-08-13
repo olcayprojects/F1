@@ -19,7 +19,7 @@ body {
 .blink {
   animation: blinker 0.02s linear infinite;
   background-color: rgba(0, 0, 0);
-  color:rgba(255, 0, 0, 0.9);
+  color: rgba(255, 0, 0, 0.9);
 
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
@@ -32,7 +32,7 @@ body {
     color: red;
   }
   1% {
-    color:black;
+    color: black;
   }
 }
 
@@ -47,6 +47,9 @@ tr {
 
 .cp {
   cursor: pointer;
+}
+.ch {
+  cursor: help;
 }
 
 select {
@@ -97,4 +100,8 @@ thead th {
   100% {
     left: 0px;
   }
+}
+.abc:hover {
+  color: red !important;
+  background-color: black !important;
 }
