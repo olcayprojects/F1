@@ -44,7 +44,7 @@ const ConstructorsResult = () => {
             className="abc btn btn-danger text-black container-fluid mb-0 p-0"
           >
             <h1>
-            <b className="shadow">F1 Race Results</b>
+            <b className="shadow rounded">F1 Race Results</b>
             </h1>
           </Link>
           <select
@@ -69,8 +69,8 @@ const ConstructorsResult = () => {
             <div className="text-danger" key={index}>
               <div className="table-responsive-sm">
                 <table className="table table-striped table-dark caption-top">
-                  <caption className="text-danger bg-dark text-center fs-4">
-                    <b>{items.raceName + " " + items.date}</b>
+                  <caption className="text-black bg-dark text-center fs-4">
+                    <b><span className="bg-danger shadow p-2">{items.raceName + " " + items.date}</span></b>
                   </caption>
                   <thead>
                     <tr className="">

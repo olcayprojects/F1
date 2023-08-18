@@ -82,11 +82,11 @@ const Sprint = () => {
                     <td className="col text-center">{item.points}</td>
                     <td className="col op">
                       {item.FastestLap
-                        ? "Time: " +
+                        ? 
                           item.FastestLap?.Time.time +
                           " | Lap: " +
                           item.FastestLap?.lap
-                        : "-"}
+                        : ""}
                     </td>
                   </tr>
                 );

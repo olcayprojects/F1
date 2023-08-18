@@ -77,13 +77,13 @@ const ResultsDriver = () => {
             <thead>
               <tr>
                 <th className="bg-danger text-center">Season</th>
-                <th className="bg-danger">Race Name</th>
+                <th className="bg">Race Name</th>
                 <th className="text-center bg-danger">Pos</th>
-                <th className="text-center bg-danger">Grid</th>
+                <th className="text-center">Grid</th>
                 <th className="text-center bg-danger">Constructor</th>
-                <th className="text-center bg-danger">Laps</th>
+                <th className="text-center">Laps</th>
                 <th className="text-center bg-danger">Time</th>
-                <th className="text-center bg-danger">Pts</th>
+                <th className="text-center">Pts</th>
                 <th className="text-center bg-danger">Fastest Lap</th>
               </tr>
             </thead>

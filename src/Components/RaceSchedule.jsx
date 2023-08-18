@@ -51,7 +51,13 @@ const RaceSchedule = (props) => {
               const dateTime = (d, t) => new Date(d + " " + t);
 
               return (
-                <tr className="col" key={index}>
+                <tr className={"col "+
+                ((rs.date.split("-")[1] ===
+                            dateNow.toISOString().split("T")[0].split("-")[1]) &
+                          (props.season === "2023")
+                        ? "  fw-bold fst-italic text-decoration-underline"
+                        : "") }
+                key={index}>
                   <td className="col text-center">{rs.round}</td>
                   <td className="col text-nowrap op">
                     <b>{rs.raceName}</b>
@@ -65,7 +71,7 @@ const RaceSchedule = (props) => {
                         : (rs.date.split("-")[1] ===
                             dateNow.toISOString().split("T")[0].split("-")[1]) &
                           (props.season === "2023")
-                        ? "  text-center"
+                        ? "  text-center fw-bold"
                         : "")
                     }
                     onClick={() =>
@@ -89,7 +95,7 @@ const RaceSchedule = (props) => {
                   </td>
                   <td
                     className={
-                      "col text-center text-nowrap text-info op " +
+                      "col text-nowrap text-info op " +
                       (rs.Sprint ? "cp" : "ch") +
                       " " +
                       (dateTime(rs.date, rs.time) < dateNow
