@@ -47,7 +47,10 @@ const Pitstops = (props) => {
                   return (
                     <tr key={index}>
                       <td className="col op">{index + 1}</td>
-                      <td className="col fw-bold" style={{ textTransform: "" }}>
+                      <td
+                        className="col fw-bold fst-italic"
+                        style={{ textTransform: "" }}
+                      >
                         <DriverId Id={ps.driverId} />
 
                         {/* {ps.driverId}  */}
@@ -55,7 +58,7 @@ const Pitstops = (props) => {
                       <td className="col text-center op">{ps.stop}</td>
                       <td className="col text-center">{ps.lap}</td>
                       <td className="col text-center op">{ps.time}</td>
-                      <td className="col text-center">{ps.duration}</td>
+                      <td className="col text-center fw-bold">{ps.duration}</td>
                     </tr>
                   );
                 })}

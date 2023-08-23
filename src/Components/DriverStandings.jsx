@@ -75,8 +75,8 @@ const DriverStandings = (props) => {
                         driver.position
                       )}
                     </td>
-                    <td className="text-center align-middle op">
-                      {driver.Driver.code}{" "}
+                    <td className="text-center align-middle op fw-bold">
+                      {driver.Driver.code}
                     </td>
                     <td
                       className="cp"
@@ -99,14 +99,14 @@ const DriverStandings = (props) => {
                       <b className="fs-5">
                         {driver.Driver.givenName} {driver.Driver.familyName}
                       </b>{" "}
-                      <span>
+                      <span className="fw-light">
                         {driver.Driver.nationality} {driver.Driver.dateOfBirth}
                       </span>
                       {" / "}
                       <i className="fw-light fs-5">
                         <b>{driver.Constructors[0].name}</b>
                       </i>
-                      <i> {driver.Constructors[0].nationality}</i>
+                      <i className="fw-light"> {driver.Constructors[0].nationality}</i>
                     </td>
                     <td className="align-middle text-center op">
                       <b>{driver.points}</b>

@@ -64,10 +64,10 @@ const F1Race = (props) => {
         <div className="container.fluid bg-dark p-0">
           <Link
             to="/"
-            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
+            className="abc btn btn-danger text-black container-fluid m-0 p-0"
           >
             <h1 className="">
-              <b className="shadow">F1 Race Results</b>
+              <span className="shadow fw-bold">F1 Race Results</span>
             </h1>
           </Link>
           {sdata?.map((item, indexItem) => {
@@ -155,12 +155,11 @@ const F1Race = (props) => {
                                 ""
                               )}
                               <b className="fs-5 ">
-                                {result.Driver?.givenName +
-                                  " " +
-                                  result.Driver?.familyName +
-                                  " (" +
-                                  result.Driver?.nationality +
-                                  ") "}
+                                <span>{result.Driver?.givenName} </span>
+                                <span>{result.Driver?.familyName} </span>
+                                <span className="fw-light">
+                                  /{result.Driver?.nationality}
+                                </span>
                               </b>
                             </td>
 
@@ -179,17 +178,17 @@ const F1Race = (props) => {
                               {(result.positionText in ["1", "2", "3", "4"]) &
                               (season2 === "2023") ? (
                                 <i className="fs-5">
-                                  {result.Constructor.name +
-                                    " (" +
-                                    result.Constructor.nationality +
-                                    ")"}
+                                  <span>{result.Constructor.name} </span>
+                                  <span className="fw-light">
+                                    \{result.Constructor.nationality}
+                                  </span>
                                 </i>
                               ) : (
                                 <i className="fs-5">
-                                  {result.Constructor.name +
-                                    " (" +
-                                    result.Constructor.nationality +
-                                    ")"}
+                                  <span>{result.Constructor.name} </span>
+                                  <span className="fw-light">
+                                    /{result.Constructor.nationality}
+                                  </span>
                                 </i>
                               )}
                             </td>
@@ -224,11 +223,9 @@ const F1Race = (props) => {
                               }}
                             >
                               {result.FastestLap
-                                ? 
-                                
-                                result.FastestLap?.Time.time +
+                                ? result.FastestLap?.Time.time +
                                   "->" +
-                                  result.FastestLap?.rank 
+                                  result.FastestLap?.rank
                                 : ""}
                             </td>
                             <td className="align-middle text-center">

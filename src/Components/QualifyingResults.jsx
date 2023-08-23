@@ -49,23 +49,23 @@ const QualifyingResults = (props) => {
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
                         </b>
-                        <span className="">
+                        <span className="fw-light">
                           {" "}
                           {qualifying.Driver.nationality}{" "}
                         </span>
-                        <i className="fw-lighter fs-5">
-                          {qualifying.Constructor.name}{" "}
-                        </i>
-                        <span className="">
+                        <i className="fs-5">{qualifying.Constructor.name} </i>
+                        <span className="fw-light">
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
 
-                      <td className="text-center op">
-                        <b>{qualifying?.Q3}</b>
+                      <td className="text-center op fw-bold">
+                        {qualifying?.Q3}{" "}
                       </td>
                       <td className=" text-center ">{qualifying?.Q2}</td>
-                      <td className=" text-center op">{qualifying?.Q1}</td>
+                      <td className=" text-center op fw-light">
+                        {qualifying?.Q1}
+                      </td>
                     </tr>
                   );
                 })}
