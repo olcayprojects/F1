@@ -1,5 +1,6 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useState, useCallback,useEffect  } from "react";
+import axios from "axios";
 //import ResultsDriver from "./ResultsDriver";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
@@ -12,29 +13,32 @@ const DriverStandings = (props) => {
   const [sdata, setData] = useState([]);
   const navigate = useNavigate();
 
+  const dateTime = (d) =>
+  new Date(d).toDateString();
+
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/driverStandings.json`;
   }
 
-  useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLoaded(true);
+  const fetchDriverStandings = useCallback(() => {
+    setIsLoaded(false);
+    axios
+      .get(url)
+      .then((res) => {
         setData(
-          data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
+          res.data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
         );
-        // console.log(data["MRData"].StandingsTable.StandingsLists[0].DriverStandings);
       })
-      .catch((err) => {
-        setIsLoaded(true);
-
-        if (!err === "Unexpected token") {
-          console.log(err.message);
-        }
-      });
+      .catch((e) => console.log(e))
+      .finally(() => setIsLoaded(true));
   }, [url]);
+
+  useEffect(() => {
+    fetchDriverStandings();
+  }, [fetchDriverStandings]);
+
+
 
   if (!isLoaded) {
     return <Loading />;
@@ -55,7 +59,7 @@ const DriverStandings = (props) => {
                   DRIVER INFO
                 </th>
                 <th scope="col" className="bg-danger text-center op">
-                  PTS
+                  POINTS
                 </th>
                 <th scope="col" className="bg-danger text-center">
                   WINS
@@ -75,7 +79,7 @@ const DriverStandings = (props) => {
                         driver.position
                       )}
                     </td>
-                    <td className="text-center align-middle op fw-bold">
+                    <td className="text-center align-middle op fw-bold  text-info">
                       {driver.Driver.code}
                     </td>
                     <td
@@ -97,10 +101,10 @@ const DriverStandings = (props) => {
                         ""
                       )} */}
                       <b className="fs-5">
-                        {driver.Driver.givenName} {driver.Driver.familyName}
+                        {driver.Driver.givenName} {driver.Driver.familyName} ({driver.Driver.permanentNumber})
                       </b>{" "}
                       <span className="fw-light">
-                        {driver.Driver.nationality} {driver.Driver.dateOfBirth}
+                        {driver.Driver.nationality} / {dateTime(driver.Driver.dateOfBirth)}
                       </span>
                       {" / "}
                       <i className="fw-light fs-5">
@@ -108,7 +112,7 @@ const DriverStandings = (props) => {
                       </i>
                       <i className="fw-light"> {driver.Constructors[0].nationality}</i>
                     </td>
-                    <td className="align-middle text-center op">
+                    <td className="align-middle text-center op text-warning">
                       <b>{driver.points}</b>
                     </td>
                     <td className="align-middle text-center">{driver.wins}</td>

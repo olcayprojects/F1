@@ -154,11 +154,13 @@ const F1Race = (props) => {
                               ) : (
                                 ""
                               )}
-                              <b className="fs-5 ">
-                                <span>{result.Driver?.givenName} </span>
-                                <span>{result.Driver?.familyName} </span>
-                                <span className="fw-light">
-                                  /{result.Driver?.nationality}
+                              <b className="fs-5">
+                                <span className="text-info">
+                                  {result.Driver?.givenName}{" "}
+                                  {result.Driver?.familyName}{" "}
+                                </span>
+                                <span className="fw-light fst-italic">
+                                  {result.Driver?.nationality}
                                 </span>
                               </b>
                             </td>
@@ -180,14 +182,14 @@ const F1Race = (props) => {
                                 <i className="fs-5">
                                   <span>{result.Constructor.name} </span>
                                   <span className="fw-light">
-                                    \{result.Constructor.nationality}
+                                    \ {result.Constructor.nationality}
                                   </span>
                                 </i>
                               ) : (
                                 <i className="fs-5">
                                   <span>{result.Constructor.name} </span>
                                   <span className="fw-light">
-                                    /{result.Constructor.nationality}
+                                    / {result.Constructor.nationality}
                                   </span>
                                 </i>
                               )}

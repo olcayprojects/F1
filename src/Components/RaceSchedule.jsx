@@ -7,6 +7,7 @@ const RaceSchedule = (props) => {
   const navigate = useNavigate();
 
   const dateNow = new Date();
+  const dateNow_= dateNow.setDate(dateNow.getDate() + 1)
 
   let url = "";
   if (props.season) {
@@ -34,7 +35,7 @@ const RaceSchedule = (props) => {
       <div className="table-responsive-sm">
         <table className="table table-dark table-striped">
           <thead className="text-danger tho">
-            <tr className="text-black">
+            <tr className="text-black fs-5">
               <th className="text-center">Rnd</th>
               <th className="bg-danger text-center">Race Name</th>
               <th className=" text-center">Race Date</th>
@@ -51,16 +52,20 @@ const RaceSchedule = (props) => {
               const dateTime = (d, t) => new Date(d + " " + t);
 
               return (
-                <tr className={"col "+
-                ((rs.date.split("-")[1] ===
-                            dateNow.toISOString().split("T")[0].split("-")[1]) &
-                          (props.season === "2023")
-                        ? "  fw-bold fst-italic text-decoration-underline"
-                        : "") }
-                key={index}>
+                <tr
+                  className={
+                    "col " +
+                    ((rs.date.split("-")[1] ===
+                      dateNow.toISOString().split("T")[0].split("-")[1]) &
+                    (props.season === "2023")
+                      ? "  fw-bold fst-italic text-decoration-underline"
+                      : "")
+                  }
+                  key={index}
+                >
                   <td className="col text-center">{rs.round}</td>
-                  <td className="col text-nowrap op">
-                    <b>{rs.raceName}</b>
+                  <td className="col text-nowrap op fw-bold fs-5 text-warning">
+                    {rs.raceName}
                   </td>
                   <td
                     title={title}

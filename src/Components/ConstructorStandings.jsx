@@ -17,7 +17,7 @@ const ConstructorStandings = (props) => {
         setData(
           data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings
         );
-        //console.log(data["MRData"].StandingsTable[0].ConstructorStandings);
+        //console.log(data["MRData"]);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -33,7 +33,7 @@ const ConstructorStandings = (props) => {
           <thead className="text-white border-dark">
             <tr className="text-black">
               <th scope="col" className="bg-danger text-center">
-                P
+                PST
               </th>
               <th scope="col" className="bg-danger op">
                 CONSTRUCTOR
@@ -68,7 +68,7 @@ const ConstructorStandings = (props) => {
                   <td className="col align-middle fst-italic fs-5">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col align-middle text-center op">
+                  <td className="col align-middle text-center op text-warning">
                     <b>{ConstructorStandings.points}</b>
                   </td>
                   <td className="col align-middle text-center">

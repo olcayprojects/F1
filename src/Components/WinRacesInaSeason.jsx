@@ -67,7 +67,7 @@ const WinRacesInaSeason = (props) => {
                       );
                     }}
                   >
-                    <b className="fs-5">
+                    <b className="fs-5 text-info">
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
                     </b>{" "}

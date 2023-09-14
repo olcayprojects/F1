@@ -59,7 +59,7 @@ const QualifyingResults = (props) => {
                         </span>
                       </td>
 
-                      <td className="text-center op fw-bold">
+                      <td className="text-center op fw-bold text-info">
                         {qualifying?.Q3}{" "}
                       </td>
                       <td className=" text-center ">{qualifying?.Q2}</td>
