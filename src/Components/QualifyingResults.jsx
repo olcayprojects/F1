@@ -41,11 +41,21 @@ const QualifyingResults = (props) => {
               <tbody key={index}>
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
-                    <tr key={indexQ} className="">
-                      <td className="text-center">{qualifying.position}</td>
+                    <tr key={indexQ} className="align-middle">
+                      <td className="text-center fs-5">
+                        {qualifying.position < 4 ? (
+                          <i
+                            className={
+                              "text-info bi bi-" + qualifying.position + "-square"
+                            }
+                          ></i>
+                        ) : (
+                          qualifying.position
+                        )}
+                      </td>
                       <td className="text-center op">{qualifying.number}</td>
                       <td className="">
-                        <b className="fs-5">
+                        <b className="fs-5 text-info">
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
                         </b>
@@ -53,18 +63,22 @@ const QualifyingResults = (props) => {
                           {" "}
                           {qualifying.Driver.nationality}{" "}
                         </span>
-                        <i className="fs-5">{qualifying.Constructor.name} </i>
+                        <i className="fs-5 text-warning">
+                          {qualifying.Constructor.name}{" "}
+                        </i>
                         <span className="fw-light">
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
 
-                      <td className="text-center op fw-bold text-info">
-                        {qualifying?.Q3}{" "}
+                      <td className="text-center op fw-bold text-primary">
+                        <span className="bg-black">{qualifying?.Q3}</span>
                       </td>
-                      <td className=" text-center ">{qualifying?.Q2}</td>
-                      <td className=" text-center op fw-light">
-                        {qualifying?.Q1}
+                      <td className=" text-center ">
+                        <span className="bg-black">{qualifying?.Q2}</span>
+                      </td>
+                      <td className=" text-center op">
+                        <span className="bg-black">{qualifying?.Q1}</span>{" "}
                       </td>
                     </tr>
                   );

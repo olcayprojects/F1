@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useCallback,useEffect  } from "react";
+import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 //import ResultsDriver from "./ResultsDriver";
 import { useNavigate } from "react-router-dom";
@@ -13,8 +13,7 @@ const DriverStandings = (props) => {
   const [sdata, setData] = useState([]);
   const navigate = useNavigate();
 
-  const dateTime = (d) =>
-  new Date(d).toDateString();
+  const dateTime = (d) => new Date(d).toDateString();
 
   let url = "";
   if (props.season) {
@@ -38,8 +37,6 @@ const DriverStandings = (props) => {
     fetchDriverStandings();
   }, [fetchDriverStandings]);
 
-
-
   if (!isLoaded) {
     return <Loading />;
   } else {
@@ -55,7 +52,7 @@ const DriverStandings = (props) => {
                 <th scope="col" className="text-center bg-danger op">
                   CODE
                 </th>
-                <th scope="col" className="bg-danger">
+                <th scope="col" className="bg-danger text-center">
                   DRIVER INFO
                 </th>
                 <th scope="col" className="bg-danger text-center op">
@@ -69,17 +66,17 @@ const DriverStandings = (props) => {
             <tbody key={indexedDB}>
               {sdata?.map((driver, indexedDB) => {
                 return (
-                  <tr key={indexedDB}>
-                    <td className="align-middle text-center fs-5">
+                  <tr key={indexedDB} className="align-middle">
+                    <td className="text-center fs-5">
                       {driver.position < 4 ? (
                         <i
-                          className={"bi bi-" + driver.position + "-square"}
+                          className={"text-info bi bi-" + driver.position + "-square"}
                         ></i>
                       ) : (
                         driver.position
                       )}
                     </td>
-                    <td className="text-center align-middle op fw-bold  text-info">
+                    <td className="text-center op fw-bold text-danger fs-5">
                       {driver.Driver.code}
                     </td>
                     <td
@@ -100,22 +97,29 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                      <b className="fs-5">
-                        {driver.Driver.givenName} {driver.Driver.familyName} ({driver.Driver.permanentNumber})
+                      <b className="fs-5 text-info">
+                        {driver.Driver.givenName} {driver.Driver.familyName} (
+                        {driver.Driver.permanentNumber})
                       </b>{" "}
                       <span className="fw-light">
-                        {driver.Driver.nationality} / {dateTime(driver.Driver.dateOfBirth)}
+                        {driver.Driver.nationality} /{" "}
+                        {dateTime(driver.Driver.dateOfBirth)}
                       </span>
                       {" / "}
                       <i className="fw-light fs-5">
-                        <b>{driver.Constructors[0].name}</b>
+                        <b className="text-warning">
+                          {driver.Constructors[0].name}
+                        </b>
                       </i>
-                      <i className="fw-light"> {driver.Constructors[0].nationality}</i>
+                      <i className="fw-light">
+                        {" "}
+                        {driver.Constructors[0].nationality}
+                      </i>
                     </td>
-                    <td className="align-middle text-center op text-warning">
+                    <td className="text-center op text-warning">
                       <b>{driver.points}</b>
                     </td>
-                    <td className="align-middle text-center">{driver.wins}</td>
+                    <td className="text-center">{driver.wins}</td>
                   </tr>
                 );
               })}

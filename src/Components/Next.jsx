@@ -33,7 +33,7 @@ const Next = () => {
                   dateTime(data.Sprint?.date, data.Sprint?.time) +
                   " "
                 : ""}
-              First Practice:
+              <span className="">First Practice:</span>
               {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)}
               <i className="bi bi-clock-fill"></i>
               Second Practice:

@@ -52,11 +52,19 @@ const ConstructorStandings = (props) => {
           <tbody key={indexedDB}>
             {sdata?.map((ConstructorStandings, indexedDB) => {
               return (
-                <tr key={indexedDB} className="">
-                  <td className="col text-center align-middle">
-                    {ConstructorStandings.position}
+                <tr key={indexedDB} className="align-middle">
+                  <td className="col text-center fw-bold fs-5">
+                    {ConstructorStandings.position < 4 ? (
+                      <i
+                        className={
+                          "text-info bi bi-" + ConstructorStandings.position + "-square"
+                        }
+                      ></i>
+                    ) : (
+                      ConstructorStandings.position
+                    )}
                   </td>
-                  <td className="col op fw-bold fs-5">
+                  <td className="col op fw-bold fs-5 text-warning">
                     {ConstructorStandings.Constructor.name}
                     {/* {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
                     props.season ? (
@@ -65,13 +73,13 @@ const ConstructorStandings = (props) => {
                       ""
                     )} */}
                   </td>
-                  <td className="col align-middle fst-italic fs-5">
+                  <td className="col fst-italic fs-5">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col align-middle text-center op text-warning">
+                  <td className="col text-center op text-info">
                     <b>{ConstructorStandings.points}</b>
                   </td>
-                  <td className="col align-middle text-center">
+                  <td className="col text-center fw-bold">
                     {ConstructorStandings.wins}
                   </td>
                 </tr>

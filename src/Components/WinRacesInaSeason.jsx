@@ -44,7 +44,7 @@ const WinRacesInaSeason = (props) => {
           <tbody>
             {sdata?.map((item, index) => {
               return (
-                <tr className="" key={index}>
+                <tr className="align-middle" key={index}>
                   <td
                     className="col cp"
                     onClick={() =>
@@ -53,8 +53,9 @@ const WinRacesInaSeason = (props) => {
                   >
                     <b className="fs-5">
                       {" "}
-                      #{item.round} {item.raceName}{" "}
+                      #{item.round} <span className="text-warning">{item.raceName} </span>
                     </b>
+                    <i className="bi bi-calendar3"> </i>
                     <i>
                       {item.time ? dateTime(item.date, item.time) : item.date}
                     </i>
@@ -84,9 +85,9 @@ const WinRacesInaSeason = (props) => {
 
                   <td
                     className={
-                      "text-center op col " +
-                      (item.Results[0].FastestLap?.rank === "1"
-                        ? "text-danger"
+                      " op col " +
+                      (item.Results[0].FastestLap?.rank in [1,2,3,4]
+                        ? "fw-bold"
                         : "")
                     }
                   >

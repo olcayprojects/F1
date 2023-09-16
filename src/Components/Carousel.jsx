@@ -23,19 +23,41 @@ const Carousel = () => {
   }, [url]);
 
   return (
-    <Caro
-    controls={false}
-    indicators={false}
-    fade={true}
-    
-    >
+    <Caro controls={false} indicators={false} fade={true}>
       {data.map((item, i) => {
         return (
           <Caro.Item interval={1000} key={i}>
-<h2 style={{fontFamily:"fantasy", transform:"scaleX(-1)"}} className="text-danger float-start">{item.strTeam}</h2>
-            <img style={{width:"400px", height:"100px" ,objectFit:"cover"}} className="rounded float-start p-0" src={item.strTeamJersey} srcSet="" alt="" />
-<h2 style={{fontFamily:"fantasy"}} className="text-danger float-end">{item.strTeam}</h2>
-            <img style={{width:"400px", height:"100px" ,objectFit:"cover",transform:"scaleX(-1)"}} className="rounded float-end p-0" src={item.strTeamJersey+""} srcSet="" alt="" />
+            <h2
+              style={{ fontFamily: "fantasy", transform: "scaleX(-1)" }}
+              className="text-danger float-start pe-1"
+            >
+              {item.strTeam}
+            </h2>
+            <img
+              style={{ width: "400px", height: "100px", objectFit: "cover" }}
+              className="rounded float-start p-0"
+              src={item.strTeamJersey}
+              srcSet=""
+              alt=""
+            />
+            <h2
+              style={{ fontFamily: "fantasy" }}
+              className="text-danger float-end pe-1"
+            >
+              {item.strTeam}
+            </h2>
+            <img
+              style={{
+                width: "400px",
+                height: "100px",
+                objectFit: "cover",
+                transform: "scaleX(-1)",
+              }}
+              className="rounded float-end p-0"
+              src={item.strTeamJersey + ""}
+              srcSet=""
+              alt=""
+            />
           </Caro.Item>
         );
       })}

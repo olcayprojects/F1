@@ -7,7 +7,7 @@ const RaceSchedule = (props) => {
   const navigate = useNavigate();
 
   const dateNow = new Date();
-  const dateNow_= dateNow.setDate(dateNow.getDate() + 1)
+  const dateNow_ = dateNow.setDate(dateNow.getDate() + 1);
 
   let url = "";
   if (props.season) {
@@ -54,7 +54,7 @@ const RaceSchedule = (props) => {
               return (
                 <tr
                   className={
-                    "col " +
+                    "align-middle col " +
                     ((rs.date.split("-")[1] ===
                       dateNow.toISOString().split("T")[0].split("-")[1]) &
                     (props.season === "2023")
@@ -63,7 +63,13 @@ const RaceSchedule = (props) => {
                   }
                   key={index}
                 >
-                  <td className="col text-center">{rs.round}</td>
+                  <td className="col text-center fs-5 align-middle">
+                    {rs.round < 4 ? (
+                      <i className={"text-info bi bi-" + rs.round + "-square"}></i>
+                    ) : (
+                      rs.round
+                    )}
+                  </td>
                   <td className="col text-nowrap op fw-bold fs-5 text-warning">
                     {rs.raceName}
                   </td>

@@ -84,7 +84,7 @@ const Laps = () => {
             <tbody>
               {drvTimeList.map((drvitem, index3) => {
                 return (
-                  <tr key={index3} className="bg-danger">
+                  <tr key={index3} className="bg-danger align-middle">
                     <td className="col">{index3 + 1}</td>
                     <td className="col op fs-4">
                       {drvitem?.pst < 4 ? (

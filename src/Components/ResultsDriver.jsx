@@ -92,7 +92,7 @@ const ResultsDriver = () => {
                 ?.sort((a, b) => (a["date"] < b["date"] ? 1 : -1))
                 .map((item, index) => {
                   return (
-                    <tr key={index} className="text-danger">
+                    <tr key={index} className="text-danger align-middle">
                       <td className="col text-center">{item.season}</td>
                       <td
                         className={

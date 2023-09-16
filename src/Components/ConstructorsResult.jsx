@@ -12,6 +12,8 @@ const ConstructorsResult = () => {
   const { constructors = "red_bull" } = useParams();
   const [cons, setCons] = useState(constructors);
 
+  const dateTime = (d) => new Date(d).toDateString();
+
   const { season = "2020" } = useParams();
 
   let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json`;
@@ -70,7 +72,7 @@ const ConstructorsResult = () => {
               <div className="table-responsive-sm">
                 <table className="table table-striped table-dark caption-top">
                   <caption className="text-black bg-dark text-center fs-4">
-                    <b><span className="bg-danger shadow p-2">{items.raceName + " " + items.date}</span></b>
+                    <b><span className="bg-primary p-2">{items.raceName}  <i className="bi bi-calendar3"></i>{dateTime(items.date)}<i className="bi bi-calendar3"></i></span></b>
                   </caption>
                   <thead>
                     <tr className="">
