@@ -57,7 +57,9 @@ const ConstructorStandings = (props) => {
                     {ConstructorStandings.position < 4 ? (
                       <i
                         className={
-                          "text-info bi bi-" + ConstructorStandings.position + "-square"
+                          "text-info bi bi-" +
+                          ConstructorStandings.position +
+                          "-square"
                         }
                       ></i>
                     ) : (

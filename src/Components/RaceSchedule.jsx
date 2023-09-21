@@ -42,6 +42,8 @@ const RaceSchedule = (props) => {
               <th className="text-center bg-info">Sprint Date</th>
               <th className="text-center">Qualifying</th>
               <th className="bg-danger text-center">Practice1</th>
+              <th className="text-center">Practice2</th>
+              <th className="bg-danger text-center">Practice3</th>
               <th className="text-center">Circuit</th>
             </tr>
           </thead>
@@ -64,11 +66,7 @@ const RaceSchedule = (props) => {
                   key={index}
                 >
                   <td className="col text-center fs-5 align-middle">
-                    {rs.round < 4 ? (
-                      <i className={"text-info bi bi-" + rs.round + "-square"}></i>
-                    ) : (
-                      rs.round
-                    )}
+                    {rs.round}
                   </td>
                   <td className="col text-nowrap op fw-bold fs-5 text-warning">
                     {rs.raceName}
@@ -150,6 +148,28 @@ const RaceSchedule = (props) => {
                           timeStyle: "short",
                         })
                       : rs.FirstPractice?.date}
+                  </td>
+                  <td className="col text-nowrap">
+                    {rs.SecondPractice?.time
+                      ? dateTime(
+                          rs.SecondPractice?.date,
+                          rs.SecondPractice?.time
+                        ).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
+                      : rs.SecondPractice?.date}
+                  </td>
+                  <td className="col text-nowrap op">
+                    {rs.ThirdPractice?.time
+                      ? dateTime(
+                          rs.ThirdPractice?.date,
+                          rs.ThirdPractice?.time
+                        ).toLocaleString("tr-TR", {
+                          dateStyle: "short",
+                          timeStyle: "short",
+                        })
+                      : rs.ThirdPractice?.date}
                   </td>
                   <td
                     className="col cp text-nowrap"

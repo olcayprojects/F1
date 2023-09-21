@@ -46,7 +46,9 @@ const QualifyingResults = (props) => {
                         {qualifying.position < 4 ? (
                           <i
                             className={
-                              "text-info bi bi-" + qualifying.position + "-square"
+                              "text-info bi bi-" +
+                              qualifying.position +
+                              "-square"
                             }
                           ></i>
                         ) : (
@@ -54,31 +56,30 @@ const QualifyingResults = (props) => {
                         )}
                       </td>
                       <td className="text-center op">{qualifying.number}</td>
-                      <td className="">
+                      <td className="col-4">
                         <b className="fs-5 text-info">
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
                         </b>
-                        <span className="fw-light">
+                        <span className="fw-light fs-5">
                           {" "}
                           {qualifying.Driver.nationality}{" "}
                         </span>
                         <i className="fs-5 text-warning">
                           {qualifying.Constructor.name}{" "}
                         </i>
-                        <span className="fw-light">
+                        <span className="fw-light fs-5">
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
-
-                      <td className="text-center op fw-bold text-primary">
-                        <span className="bg-black">{qualifying?.Q3}</span>
+                      <td className="col-2 text-center op fw-bold text-primary">
+                        <span className="bg-light px-2">{qualifying?.Q3}</span>
                       </td>
-                      <td className=" text-center ">
-                        <span className="bg-black">{qualifying?.Q2}</span>
+                      <td className="col-2 text-center ">
+                        <span className="bg-black px-2">{qualifying?.Q2}</span>
                       </td>
-                      <td className=" text-center op">
-                        <span className="bg-black">{qualifying?.Q1}</span>{" "}
+                      <td className="col-2 text-center op">
+                        <span className="bg-black px-2">{qualifying?.Q1}</span>
                       </td>
                     </tr>
                   );

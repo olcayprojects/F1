@@ -70,7 +70,9 @@ const DriverStandings = (props) => {
                     <td className="text-center fs-5">
                       {driver.position < 4 ? (
                         <i
-                          className={"text-info bi bi-" + driver.position + "-square"}
+                          className={
+                            "text-info bi bi-" + driver.position + "-square"
+                          }
                         ></i>
                       ) : (
                         driver.position

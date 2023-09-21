@@ -87,8 +87,10 @@ const F1Race = (props) => {
                 className="bg-black p-0 pt-1 container-fluid"
               >
                 <h2 className="text-center text-danger bg-black border border-danger border-5">
-                  {item.raceName} #{item.round} <i className="bi bi-calendar3"></i>
-                  {item.time ? dateTime(item.date, item.time) : item.date}<i className="bi bi-calendar3"></i>
+                  {item.raceName} #{item.round}{" "}
+                  <i className="bi bi-calendar3"></i>
+                  {item.time ? dateTime(item.date, item.time) : item.date}
+                  <i className="bi bi-calendar3"></i>
                 </h2>
                 <div className="table-responsive-md">
                   <table className="table table-dark table-striped">
@@ -96,17 +98,18 @@ const F1Race = (props) => {
                       <tr className="">
                         <th className="bg-danger text-center">P</th>
                         <th className="text-center">G</th>
-                        <th className="bg-danger">NO</th>
+                        <th className="text-center bg-danger">NO</th>
                         <th className="text-center">D R I V E R</th>
                         <th className="text-center bg-danger">T E A M</th>
                         <th className="text-center">LAPS</th>
                         <th className="text-center bg-danger">
-                          TIME / RETIRED
+                          TIME/RETIRED
                         </th>
-                        <th className="text-center">FASTEST</th>
-                        <th className="text-center bg-danger">ON</th>
-                        <th className="text-center">AVG SPD</th>
-                        <th className="text-center bg-danger">PTS</th>
+                        <th className="text-center">PTS</th>
+                        <th className="text-center bg-danger"></th>
+                        <th className="text-end"><span className="text-decoration-underline">FASTEST</span><br /> TIME<i className="bi bi-forward-fill"></i><span className="bg-black text-white px-1">POS</span></th>
+                        <th className="text-center bg-danger">LAP</th>
+                        <th className="text-start"><span className="text-decoration-underline">LAPS</span><br />AVG SPEED</th>
                       </tr>
                     </thead>
                     <tbody className="text-danger">
@@ -207,7 +210,7 @@ const F1Race = (props) => {
                               {result.laps}
                             </td>
                             <td className="text-wrap text-center text-warning fw-bold">
-                              <span className="bg-black">
+                              <span className="bg-black p-2">
                                 {result.Time?.time
                                   ? result.Time.time
                                   : result.status}
@@ -215,8 +218,16 @@ const F1Race = (props) => {
                             </td>
 
                             <td
+                              className="text-center fw-bold op"
+                              style={{ color: "aquamarine" }}
+                              >
+                              {result.points}
+                            </td>
+                              <td className=""></td>
+
+                            <td
                               className={
-                                "fw-bold op text-center cp " +
+                                "fw-bold op text-end cp " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
                                   ? "text-danger"
                                   : "")
@@ -240,25 +251,19 @@ const F1Race = (props) => {
                               ) : (
                                 ""
                               )}
-                              <span className="bg-black">
+                              <span className="bg-black p-2">
                                 {result.FastestLap?.rank}
                               </span>
                             </td>
                             <td className="text-center">
                               {result.FastestLap?.lap}
                             </td>
-                            <td className="op text-center">
+                            <td className="op text-start">
                               {result?.FastestLap?.AverageSpeed.speed
                                 ? result?.FastestLap?.AverageSpeed.speed +
                                   " " +
                                   result?.FastestLap?.AverageSpeed.units
                                 : ""}
-                            </td>
-                            <td
-                              className="text-center fw-bold"
-                              style={{ color: "aquamarine" }}
-                            >
-                              {result.points}
                             </td>
                           </tr>
                         );

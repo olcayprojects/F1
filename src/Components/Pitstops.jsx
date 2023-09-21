@@ -16,7 +16,7 @@ const Pitstops = (props) => {
       .then((data) => {
         const delay = setTimeout(() => {
           setData(data["MRData"].RaceTable.Races);
-        }, 5);
+        });
         return () => clearTimeout(delay);
       })
       .catch((err) => {
@@ -35,8 +35,8 @@ const Pitstops = (props) => {
               <thead className="border-dark">
                 <tr className="text-black">
                   <th className="bg-danger op">#</th>
-                  <th className="bg-danger">DRIVER NAME</th>
-                  <th className="bg-danger text-center op">STOP</th>
+                  <th className="bg-danger">DRIVER INFO</th>
+                  <th className="bg-danger text-center op">STOPS</th>
                   <th className="bg-danger text-center">LAP</th>
                   <th className="text-center bg-danger op">TIME OF DAY</th>
                   <th className="text-center bg-danger">DURATION</th>
@@ -46,19 +46,18 @@ const Pitstops = (props) => {
                 {data?.PitStops.map((ps, index) => {
                   return (
                     <tr key={index}>
-                      <td className="col op">{index + 1}</td>
+                      <td className="op">{index + 1}</td>
                       <td
-                        className="col fw-bold fst-italic"
+                        className="col-3 fw-bold text-info"
                         style={{ textTransform: "" }}
                       >
-                        <DriverId Id={ps.driverId} />
-
-                        {/* {ps.driverId}  */}
+                        <DriverId Id={ps.driverId} ls={1}></DriverId>
+                        {/* {ps.driverId} */}
                       </td>
-                      <td className="col text-center op">{ps.stop}</td>
-                      <td className="col text-center">{ps.lap}</td>
-                      <td className="col text-center op">{ps.time}</td>
-                      <td className="col text-center fw-bold">{ps.duration}</td>
+                      <td className="text-center op">{ps.stop}</td>
+                      <td className="text-center">{ps.lap}</td>
+                      <td className="text-center op">{ps.time}</td>
+                      <td className="text-center fw-bold">{ps.duration}</td>
                     </tr>
                   );
                 })}

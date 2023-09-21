@@ -36,11 +36,12 @@ const Laptimes = (props) => {
   return sdata?.length > 0 ? (
     <table className="table table-dark table-striped">
       <caption className="text-center bg-dark text-danger caption-top">
-        <b>LAP {props.lapsx}</b>
+        <b className="bg-black">LAP {props.lapsx}</b>
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
-          <th className="bg-danger">DRIVER NAME</th>
+          <th className="">#</th>
+          <th className="bg-danger">DRIVER INFO</th>
           <th className="text-center">P</th>
           <th className="bg-danger text-center">TIME</th>
         </tr>
@@ -51,11 +52,15 @@ const Laptimes = (props) => {
 
           return (
             <tr key={index} className="">
+              <td className="op">{index + 1}</td>
+
               <td key={index} className="col">
-                {<DriverId Id={LapTimes.driverId} />}
+                {<DriverId Id={LapTimes.driverId} ls={0} />}
                 {/* {LapTimes.driverId} */}
               </td>
-              <td className="col text-center op">{LapTimes.position}</td>
+              <td className="col text-center op fw-bold">
+                {LapTimes.position}
+              </td>
               <td className="col text-center">{LapTimes.time}</td>
             </tr>
           );
