@@ -23,14 +23,14 @@ const QualifyingResults = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid p-0">
+    <div className=" container p-0">
       <div className="table-responsive">
-        <table className="table table-dark table-striped">
+        <table className="table table-dark table-striped fs-5">
           <thead className="">
             <tr className="text-black">
               <th className="bg-danger text-center op">P</th>
               <th className="bg-danger text-center">NO</th>
-              <th className="bg-danger op text-center">D R I V E R</th>
+              <th className="bg-danger op">D R I V E R</th>
               <th className="text-center bg-danger">Q3</th>
               <th className="text-center bg-danger op">Q2</th>
               <th className="text-center bg-danger">Q1</th>
@@ -42,7 +42,7 @@ const QualifyingResults = (props) => {
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
                     <tr key={indexQ} className="align-middle">
-                      <td className="text-center fs-5">
+                      <td className="p-0 text-center fs-5 op">
                         {qualifying.position < 4 ? (
                           <i
                             className={
@@ -55,31 +55,52 @@ const QualifyingResults = (props) => {
                           qualifying.position
                         )}
                       </td>
-                      <td className="text-center op">{qualifying.number}</td>
-                      <td className="col-4">
-                        <b className="fs-5 text-info">
+                      <td className="text-center p-0">{qualifying.number}</td>
+                      <td className="col-5 op">
+                        <b className="fs-5 text-info bg-black px-1 p-1">
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
                         </b>
-                        <span className="fw-light fs-5">
-                          {" "}
-                          {qualifying.Driver.nationality}{" "}
+                        <span className="fw-bold text-secondary px-1 fst-italic fs-5">
+                          {qualifying.Driver.nationality}
                         </span>
-                        <i className="fs-5 text-warning">
-                          {qualifying.Constructor.name}{" "}
-                        </i>
-                        <span className="fw-light fs-5">
+                        <span className="fw-bold fs-5 text-warning px-1 p-1 bg-black">
+                          {qualifying.Constructor.name}
+                        </span>
+                        <span className="fw-bold text-secondary px-1 fst-italic fs-5">
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
-                      <td className="col-2 text-center op fw-bold text-primary">
-                        <span className="bg-light px-2">{qualifying?.Q3}</span>
-                      </td>
-                      <td className="col-2 text-center ">
-                        <span className="bg-black px-2">{qualifying?.Q2}</span>
+                      <td className="col-2 text-center fw-bold text-primary">
+                        <span
+                          className={
+                            qualifying?.Q3
+                              ? "bg-black px-5 p-2 fw-bolder align-middle"
+                              : ""
+                          }
+                        >
+                          {qualifying?.Q3}
+                        </span>
                       </td>
                       <td className="col-2 text-center op">
-                        <span className="bg-black px-2">{qualifying?.Q1}</span>
+                        <span
+                          className={
+                            qualifying?.Q2
+                              ? "bg-black px-5 p-2 fw-bolder align-middle"
+                              : ""
+                          }
+                        >
+                          {qualifying?.Q2}
+                        </span>
+                      </td>
+                      <td className="col-2 text-center fw-bolder align-middle">
+                        <span
+                          className={
+                            qualifying?.Q1 ? "bg-secondary px-5 p-2" : ""
+                          }
+                        >
+                          {qualifying?.Q1}
+                        </span>
                       </td>
                     </tr>
                   );
@@ -89,7 +110,6 @@ const QualifyingResults = (props) => {
           })}
         </table>
       </div>
-      <hr />
     </div>
   );
 };

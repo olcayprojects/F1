@@ -7,7 +7,7 @@ const RaceSchedule = (props) => {
   const navigate = useNavigate();
 
   const dateNow = new Date();
-  const dateNow_ = dateNow.setDate(dateNow.getDate() + 1);
+  const dateNow_ = dateNow.setDate(dateNow.getDate());
 
   let url = "";
   if (props.season) {
@@ -60,8 +60,8 @@ const RaceSchedule = (props) => {
                     ((rs.date.split("-")[1] ===
                       dateNow.toISOString().split("T")[0].split("-")[1]) &
                     (props.season === "2023")
-                      ? "  fw-bold fst-italic text-decoration-underline"
-                      : "")
+                      ? " text-center fw-bold "
+                      : " ")
                   }
                   key={index}
                 >
@@ -76,11 +76,11 @@ const RaceSchedule = (props) => {
                     className={
                       "col cp  text-nowrap " +
                       (dateTime(rs.date, rs.time) < dateNow
-                        ? "raceComplete fw-bold text-decoration-line-through"
+                        ? "fw-bold text-decoration-line-through"
                         : (rs.date.split("-")[1] ===
                             dateNow.toISOString().split("T")[0].split("-")[1]) &
                           (props.season === "2023")
-                        ? "  text-center fw-bold"
+                        ? "  text-center fw-bold fst-normal"
                         : "")
                     }
                     onClick={() =>
@@ -183,7 +183,6 @@ const RaceSchedule = (props) => {
           </tbody>
         </table>
       </div>
-      <hr />
     </div>
   );
 };

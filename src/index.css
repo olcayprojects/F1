@@ -17,22 +17,25 @@ body {
 }
 
 .blink {
-  animation: blinker 0.02s linear infinite;
+  animation: blinker 4s linear infinite;
   background-color: rgba(0, 0, 0);
   color: rgba(255, 0, 0, 0.9);
 
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 @keyframes blinker {
-  2% {
+  80% {
     color: rgba(255, 0, 0, 0.9);
+    background-color: black;
   }
 
-  2% {
-    color: red;
-  }
   1% {
     color: black;
+    background-color: red;
+  }
+  3% {
+    color: red;
+    background-color: black;
   }
 }
 
@@ -57,14 +60,8 @@ select {
   text-align: center;
 }
 
-.raceComplete {
-}
-
-.raceNotComplete {
-}
-
 .op {
-  opacity: 0.85;
+  opacity: 0.80;
 }
 
 .carousel img {
@@ -105,4 +102,3 @@ thead th {
   color: red !important;
   background-color: black !important;
 }
-

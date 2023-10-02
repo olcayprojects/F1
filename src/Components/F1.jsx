@@ -7,6 +7,7 @@ import Next from "./Next";
 import RaceSchedule from "./RaceSchedule";
 import F1Race from "./F1Race";
 import Carousel from "./Carousel";
+import Results from "./Results";
 
 import { Box, Tab, Tabs, TabContext, Select } from "@mui/material";
 import { blue, red, cyan, grey } from "@mui/material/colors";
@@ -46,7 +47,7 @@ const F1 = () => {
 
   return (
     <>
-      <div className="container-fluid bg-dark p-0">
+      <div className="container-fluid bg-black p-0">
         <Next />
         <Carousel />
         <F1Race />
@@ -71,6 +72,7 @@ const F1 = () => {
         </select>
         <RaceSchedule season={season2} />
         <Tabs
+          className="bg-dark"
           value={currentTabIndex}
           onChange={handleTabChange}
           centered
@@ -82,18 +84,19 @@ const F1 = () => {
             boxShadow: 4,
             p: 1,
             borderRadius: 1,
-            borderColor: "primary.main",
+            borderColor: "primary.dark",
           }}
         >
           <Tab label="[Races In a Season]" />
           <Tab label="[Driver Standings]" />
-          <Tab label="[Constructor Standings]" />
+          <Tab label="[Constructor]" />
+          <Tab label="[All Results] " />
         </Tabs>
 
         {currentTabIndex === 0 && (
           <Box
             sx={{
-              p: 0,
+              pt: 1,
             }}
           >
             <WinRacesInaSeason season={season2} />
@@ -101,14 +104,33 @@ const F1 = () => {
         )}
 
         {currentTabIndex === 1 && (
-          <Box sx={{ p: 0 }}>
+          <Box sx={{ pt: 1 }}>
             <DriverStandings season={season2} round={round} />
           </Box>
         )}
 
         {currentTabIndex === 2 && (
-          <Box sx={{ p: 0 }}>
+          <Box sx={{ pt: 1 }}>
             <ConstructorStandings season={season2} round={round} />
+          </Box>
+        )}
+        {currentTabIndex === 3 && (
+          <Box sx={{ pt: 0 }}>
+            <div className="bg-black container-fluid p-0">
+              <div className="row row-cols-1 row-cols-md-4 g-1 justify-content-md-center bg-black">
+                {(() => {
+                  const arr = [];
+                  for (let round = 1; round <= 22; round++) {
+                    arr.push(
+                      <div key={round} className="mb-0">
+                        <Results season={season2} rounds={round} />
+                      </div>
+                    );
+                  }
+                  return arr;
+                })()}
+              </div>
+            </div>
           </Box>
         )}
       </div>

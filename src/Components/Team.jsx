@@ -27,26 +27,49 @@ const Team = (props) => {
     }
 
     if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
-      return (
-        <div key={index} className="container-fluid p-0" style={{}}>
-          <img
-            className="img-responsive imgrun"
-            style={{}}
-            src={teams?.strTeamJersey + "/preview"}
-            alt=""
-            srcSet=""
-            title={teams?.strDescriptionEN}
-          />
-          <img
-            className="img-fluid"
-            style={{}}
-            src={teams?.strTeamBadge + "/preview"}
-            alt=""
-            srcSet=""
-            title=""
-          />
-        </div>
-      );
+      if (props.ls === 1) {
+        return (
+          <div className="" key={index} >
+            <img
+              className="img-responsive w-100 "
+              style={{ maxWidth: "120px" }}
+              src={teams?.strTeamBadge + "/preview"}
+              alt=""
+              srcSet=""
+              title={teams?.strDescriptionEN}
+            />
+            {/* <img
+              className="img-fluid w-100 "
+              style={{height: "100px", objectFit: "cover" }}
+              src={teams?.strTeamJersey + ""}
+              alt=""
+              srcSet=""
+              title={teams?.strDescriptionEN}
+            /> */}
+          </div>
+        );
+      } else {
+        return (
+          <div key={index} className="container-fluid p-0" style={{}}>
+            <img
+              className="img-responsive imgrun w-25"
+              style={{}}
+              src={teams?.strTeamJersey + ""}
+              alt=""
+              srcSet=""
+              title={teams?.strDescriptionEN}
+            />
+            <img
+              className="img-fluid"
+              style={{}}
+              src={teams?.strTeamBadge + "/preview"}
+              alt=""
+              srcSet=""
+              title=""
+            />
+          </div>
+        );
+      }
     } else {
       // console.log(teams);
     }

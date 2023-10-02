@@ -27,24 +27,24 @@ const ConstructorStandings = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid p-0">
+    <div className="container p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped">
-          <thead className="text-white border-dark">
+          <thead className="text-white border-dark fs-5">
             <tr className="text-black">
-              <th scope="col" className="bg-danger text-center">
-                PST
+              <th scope="" className="bg-danger text-center">
+                POS
               </th>
-              <th scope="col" className="bg-danger op">
+              <th scope="" className="bg-danger op">
                 CONSTRUCTOR
               </th>
-              <th scope="col" className="bg-danger">
+              <th scope="" className="bg-danger">
                 NATIONALITY
               </th>
-              <th scope="col" className="bg-danger text-center op">
+              <th scope="" className="bg-danger text-center op">
                 POINTS
               </th>
-              <th scope="col" className="bg-danger text-center">
+              <th scope="" className="bg-danger text-center">
                 WINS
               </th>
             </tr>
@@ -53,7 +53,7 @@ const ConstructorStandings = (props) => {
             {sdata?.map((ConstructorStandings, indexedDB) => {
               return (
                 <tr key={indexedDB} className="align-middle">
-                  <td className="col text-center fw-bold fs-5">
+                  <td className="col-1 text-center fw-bold fs-5">
                     {ConstructorStandings.position < 4 ? (
                       <i
                         className={
@@ -66,7 +66,7 @@ const ConstructorStandings = (props) => {
                       ConstructorStandings.position
                     )}
                   </td>
-                  <td className="col op fw-bold fs-5 text-warning">
+                  <td className="col op fw-bold fs-5 text-warning ">
                     {ConstructorStandings.Constructor.name}
                     {/* {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
                     props.season ? (
@@ -75,14 +75,36 @@ const ConstructorStandings = (props) => {
                       ""
                     )} */}
                   </td>
-                  <td className="col fst-italic fs-5">
+                  <td className="col-2 fst-italic fs-5">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col text-center op text-info">
-                    <b>{ConstructorStandings.points}</b>
+                  <td className="col-1 text-center op text-info">
+                    <span
+                      className={
+                        "fs-5 fw-bold bg-black px-2 p-2 " +
+                        (ConstructorStandings.points?.length === 2
+                          ? "px-3"
+                          : ConstructorStandings.points?.length === 1
+                          ? "px-4"
+                          : "px-2")
+                      }
+                    >
+                      {ConstructorStandings.points}
+                    </span>
                   </td>
-                  <td className="col text-center fw-bold">
-                    {ConstructorStandings.wins}
+                  <td className="col-1 text-center fw-bold">
+                    <span
+                      className={
+                        "bg-black fs-5  p-2 " +
+                        (ConstructorStandings.wins?.length === 2
+                          ? "px-3"
+                          : ConstructorStandings.wins?.length === 1
+                          ? "px-4"
+                          : "px-2")
+                      }
+                    >
+                      {ConstructorStandings.wins}
+                    </span>
                   </td>
                 </tr>
               );

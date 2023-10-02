@@ -72,10 +72,11 @@ const ResultsDriver = () => {
           </h2>
           {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
         </div>
+        <h4 className="text-center text-white">Latest Results</h4>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped">
             <thead>
-              <tr>
+              <tr className="fs-5">
                 <th className="bg-danger text-center">Season</th>
                 <th className="bg">Race Name</th>
                 <th className="text-center bg-danger">Pos</th>
@@ -92,7 +93,7 @@ const ResultsDriver = () => {
                 ?.sort((a, b) => (a["date"] < b["date"] ? 1 : -1))
                 .map((item, index) => {
                   return (
-                    <tr key={index} className="text-danger align-middle">
+                    <tr key={index} className="fs-5 text-danger align-middle">
                       <td className="col text-center">{item.season}</td>
                       <td
                         className={

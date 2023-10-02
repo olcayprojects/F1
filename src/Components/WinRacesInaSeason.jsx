@@ -28,23 +28,25 @@ const WinRacesInaSeason = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid p-0">
+    <div className="container-responsive p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped">
           <thead className="fs-5">
-            <tr className="text-dark">
-              <th className="bg-danger text-center">Race Name</th>
-              <th className="bg-danger text-center op">Driver</th>
+            <tr className="">
+              <th className="bg-danger op">#</th>
+              <th className="bg-danger">Race Name</th>
+              <th className="bg-danger op">Driver</th>
               <th className="bg-danger text-center">Pts</th>
               <th className="bg-danger op text-center">Laps</th>
               <th className="bg-danger text-center">Time</th>
-              <th className="bg-danger op text-center">Fastest Lap</th>
+              <th className="bg-danger op">Fastest Lap</th>
             </tr>
           </thead>
           <tbody>
             {sdata?.map((item, index) => {
               return (
                 <tr className="align-middle" key={index}>
+                  <td className="p-0 op fs-5 fw-bold">#{item.round}</td>
                   <td
                     className="col cp"
                     onClick={() =>
@@ -52,11 +54,12 @@ const WinRacesInaSeason = (props) => {
                     }
                   >
                     <b className="fs-5">
-                      {" "}
-                      #{item.round} <span className="text-warning">{item.raceName} </span>
+                      <span className="text-warning bg-black px-2 p-1">
+                        {item.raceName}
+                      </span>
                     </b>
-                    <i className="bi bi-calendar3"> </i>
-                    <i>
+                    <i className="bi bi-calendar3 fs-5 ps-1 bg-black"> </i>
+                    <i className="bg-black fs-5 fw-bold text-danger px-2 p-1">
                       {item.time ? dateTime(item.date, item.time) : item.date}
                     </i>
                   </td>
@@ -68,26 +71,30 @@ const WinRacesInaSeason = (props) => {
                       );
                     }}
                   >
-                    <b className="fs-5 text-info">
+                    <b className="fs-5 text-info bg-black px-2 p-1">
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
-                    </b>{" "}
-                    <i className="fw-light fs-5">
+                    </b>
+                    <i className="fw-light fs-5 px-1 text-secondary fw-bold">
                       {item.Results[0].Constructor.name}
                     </i>
                   </td>
-                  <td className="col text-center">{item.Results[0].points}</td>
+                  <td className="col text-center fw-bold">
+                    {item.Results[0].points}
+                  </td>
 
-                  <td className="col text-center op">{item.Results[0].laps}</td>
-                  <td className="col text-center">
+                  <td className="col text-center op fw-bold">
+                    {item.Results[0].laps}
+                  </td>
+                  <td className="col text-center fw-bold">
                     {item.Results[0].Time.time}
                   </td>
 
                   <td
                     className={
-                      " op col " +
-                      (item.Results[0].FastestLap?.rank in [1,2,3,4]
-                        ? "fw-bold"
+                      " op col fw-bold " +
+                      (item.Results[0].FastestLap?.rank in [1, 2]
+                        ? "text-danger"
                         : "")
                     }
                   >

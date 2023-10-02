@@ -41,18 +41,18 @@ const DriverStandings = (props) => {
     return <Loading />;
   } else {
     return (
-      <div className="bg-black container-fluid p-0">
+      <div className="container p-0">
         <div className="table-responsive">
           <table className="table table-dark table-striped">
-            <thead className="">
+            <thead className="fs-5">
               <tr className="text-black">
                 <th scope="col" className="bg-danger text-center">
-                  P
+                  POS
                 </th>
                 <th scope="col" className="text-center bg-danger op">
                   CODE
                 </th>
-                <th scope="col" className="bg-danger text-center">
+                <th scope="col" className="bg-danger">
                   DRIVER INFO
                 </th>
                 <th scope="col" className="bg-danger text-center op">
@@ -99,29 +99,54 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                      <b className="fs-5 text-info">
+                      <b className="fs-5 text-info bg-black px-1">
                         {driver.Driver.givenName} {driver.Driver.familyName} (
                         {driver.Driver.permanentNumber})
                       </b>{" "}
                       <span className="fw-light">
-                        {driver.Driver.nationality} /{" "}
-                        {dateTime(driver.Driver.dateOfBirth)}
+                        {dateTime(driver.Driver.dateOfBirth)} {" "}
+                       
                       </span>
-                      {" / "}
+                      <span className="fw-bold text-secondary">{driver.Driver.nationality}</span>
+                      {" "}
                       <i className="fw-light fs-5">
-                        <b className="text-warning">
+                        <b className="text-warning bg-black px-1">
                           {driver.Constructors[0].name}
                         </b>
                       </i>
-                      <i className="fw-light">
+                      <i className="fw-bold text-secondary">
                         {" "}
                         {driver.Constructors[0].nationality}
                       </i>
                     </td>
-                    <td className="text-center op text-warning">
-                      <b>{driver.points}</b>
+                    <td className="text-center op text-warning fs-5">
+                      <span
+                        className={
+                          "bg-black p-2 fw-bold   " +
+                          (driver.points?.length === 2
+                            ? "px-3"
+                            : driver.points?.length === 1
+                            ? "px-4"
+                            : "px-2")
+                        }
+                      >
+                        {driver.points}
+                      </span>
                     </td>
-                    <td className="text-center">{driver.wins}</td>
+                    <td className="text-center text-primary fs-5">
+                      <span
+                        className={
+                          "bg-black fw-bold p-2  " +
+                          (driver.wins?.length === 2
+                            ? "px-3"
+                            : driver.wins?.length === 1
+                            ? "px-4"
+                            : "px-2")
+                        }
+                      >
+                        {driver.wins}
+                      </span>
+                    </td>
                   </tr>
                 );
               })}

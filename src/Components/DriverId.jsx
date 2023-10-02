@@ -19,26 +19,26 @@ export default function DriverId(props) {
   }, [url]);
 
   if (!isLoaded) {
-    return <Loading />;
+    // return <Loading />;
+    return <span>{props.Id}</span>;
   } else {
     if (props.ls === 1) {
       return (
         <>
-          <span className="fs-5">{sdata?.givenName} </span>
-          <span className="fs-5">
-            {sdata?.familyName}({sdata?.permanentNumber}){" "}
-          </span>
-          <span>{sdata?.nationality} </span>
-          <span>{sdata?.dateOfBirth} </span>
-          <span className="fs-5">({sdata?.code})</span>
+          <span className="pe-1">({sdata?.code})</span>
+          <span className="fs-5 p-1 bg-black"> {sdata?.givenName} </span>
+          <span className="fs-5 p-1 bg-black">{sdata?.familyName} </span>
+          <span className="ps-1">({sdata?.permanentNumber})</span>
+          {/* <span>{sdata?.nationality} </span> */}
+          {/* <span>{sdata?.dateOfBirth} </span> */}
         </>
       );
     } else {
       return (
         <>
-          <span className="fw-bold">{sdata?.givenName} </span>
-          <span className="fw-bold">{sdata?.familyName}</span>
-          <span className="fw-bold"> ({sdata?.permanentNumber})</span>
+          <span className="">{sdata?.givenName.substring(0, 1)}.</span>
+          <span className="">{sdata?.familyName}</span>
+          {/* <span className=""> ({sdata?.permanentNumber})</span> */}
         </>
       );
     }

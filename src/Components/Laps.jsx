@@ -42,12 +42,14 @@ const Laps = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" 
-            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
-            >
-        <h1>
+        <Link
+          to="/"
+          className="abc btn btn-danger text-black container-fluid mb-0 p-0"
+        >
+          <h1>
             <b className="shadow">F1 Race Results</b>
-            </h1>        </Link>
+          </h1>{" "}
+        </Link>
         <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
         <h2 className="text-center text-danger">
           #{sdata.round} {sdata.season}

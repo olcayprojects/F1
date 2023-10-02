@@ -5,6 +5,8 @@ import DriverId from "./DriverId";
 const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
 
+  const initialList = [];
+
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json?limit=100`;
@@ -27,12 +29,12 @@ const Pitstops = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid p-0">
+    <div className="bg -black container p-0">
       <div className="table-responsive">
         {sdata?.map((data, index) => {
           return (
             <table key={index} className="table table-dark table-striped">
-              <thead className="border-dark">
+              <thead className="border-dark fs-5">
                 <tr className="text-black">
                   <th className="bg-danger op">#</th>
                   <th className="bg-danger">DRIVER INFO</th>
@@ -45,19 +47,21 @@ const Pitstops = (props) => {
               <tbody className="text-danger">
                 {data?.PitStops.map((ps, index) => {
                   return (
-                    <tr key={index}>
+                    <tr key={index} className="align-middle">
                       <td className="op">{index + 1}</td>
                       <td
-                        className="col-3 fw-bold text-info"
+                        className="col-5 fw-bold text-info"
                         style={{ textTransform: "" }}
                       >
                         <DriverId Id={ps.driverId} ls={1}></DriverId>
                         {/* {ps.driverId} */}
                       </td>
-                      <td className="text-center op">{ps.stop}</td>
-                      <td className="text-center">{ps.lap}</td>
-                      <td className="text-center op">{ps.time}</td>
-                      <td className="text-center fw-bold">{ps.duration}</td>
+                      <td className="col-1 text-center op">{ps.stop}</td>
+                      <td className="col-1 text-center">{ps.lap}</td>
+                      <td className="col-3 text-center op">{ps.time}</td>
+                      <td className="col-3 text-center fw-bold">
+                        {ps.duration}
+                      </td>
                     </tr>
                   );
                 })}
@@ -66,7 +70,6 @@ const Pitstops = (props) => {
           );
         })}
       </div>
-      <hr />
     </div>
   );
 };
