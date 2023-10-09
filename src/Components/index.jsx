@@ -23,7 +23,7 @@ const Components = () => {
         <Route path="/RaceInfo/:date/:name" element={<RaceInfo />} />
         <Route path="/ResultsDriver/:driver" element={<ResultsDriver />} />
         <Route path="/Circuit/:cname" element={<Circuit />} />
-        <Route path="/Sprint/:season2/:rounds" element={<Sprint />} />
+        <Route path="/Sprint/:season2/:rounds/:sprintDate" element={<Sprint />} />
         <Route path="/Laps/:drvname/:season/:rounds" element={<Laps />} />
         <Route path="/ConstructorsResult/:constructors/:season/" element={<ConstructorsResult />} />
         <Route path="/Results/:season2/:rounds" element={<Results />} />

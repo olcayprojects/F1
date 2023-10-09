@@ -74,7 +74,7 @@ const ResultsDriver = () => {
         </div>
         <h4 className="text-center text-white">Latest Results</h4>
         <div className="table-responsive-sm">
-          <table className="table table-dark table-striped">
+          <table className="table table-dark table-striped table-bordered">
             <thead>
               <tr className="fs-5">
                 <th className="bg-danger text-center">Season</th>

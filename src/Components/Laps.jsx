@@ -55,7 +55,7 @@ const Laps = () => {
           #{sdata.round} {sdata.season}
         </h2>
         <div className="table-responsive-sm">
-          <table className="table table-dark table-striped op fs-5">
+          <table className="table table-dark table-striped op fs-5 table-bordered border-black">
             <thead className="text">
               <tr>
                 <th className="">#</th>

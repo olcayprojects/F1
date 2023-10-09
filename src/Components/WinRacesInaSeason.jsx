@@ -30,16 +30,16 @@ const WinRacesInaSeason = (props) => {
   return (
     <div className="container-responsive p-0">
       <div className="table-responsive">
-        <table className="table table-dark table-striped">
+        <table className="table table-dark table-striped table-bordered">
           <thead className="fs-5">
             <tr className="">
               <th className="bg-danger op">#</th>
-              <th className="bg-danger">Race Name</th>
-              <th className="bg-danger op">Driver</th>
-              <th className="bg-danger text-center">Pts</th>
+              <th className="bg-danger text-center">Race Name</th>
+              <th className="bg-danger op text-center">Driver</th>
+              <th className="bg-danger text-center">P</th>
               <th className="bg-danger op text-center">Laps</th>
               <th className="bg-danger text-center">Time</th>
-              <th className="bg-danger op">Fastest Lap</th>
+              <th className="bg-danger op text-center">Fastest Lap</th>
             </tr>
           </thead>
           <tbody>
@@ -53,13 +53,10 @@ const WinRacesInaSeason = (props) => {
                       navigate("/F1Race/" + props.season + "/" + item.round)
                     }
                   >
-                    <b className="fs-5">
-                      <span className="text-warning bg-black px-2 p-1">
-                        {item.raceName}
-                      </span>
-                    </b>
-                    <i className="bi bi-calendar3 fs-5 ps-1 bg-black"> </i>
-                    <i className="bg-black fs-5 fw-bold text-danger px-2 p-1">
+                    <span className="text-warning bg-black px-2 p-1 fs-5 fw-bold">
+                      {item.raceName}
+                    </span>
+                    <i className="bg-warning bg-opacity-75 fw-bold fs-5 text-black px-2 p-1">
                       {item.time ? dateTime(item.date, item.time) : item.date}
                     </i>
                   </td>
@@ -71,13 +68,13 @@ const WinRacesInaSeason = (props) => {
                       );
                     }}
                   >
-                    <b className="fs-5 text-info bg-black px-2 p-1">
+                    <span className="fs-5 text-info bg-black px-2 p-1 fw-bold">
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
-                    </b>
-                    <i className="fw-light fs-5 px-1 text-secondary fw-bold">
+                    </span>
+                    <span className="fw-bold fs-5 px-1 text-black bg-info fst-italic">
                       {item.Results[0].Constructor.name}
-                    </i>
+                    </span>
                   </td>
                   <td className="col text-center fw-bold">
                     {item.Results[0].points}

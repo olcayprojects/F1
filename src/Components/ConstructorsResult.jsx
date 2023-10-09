@@ -16,7 +16,7 @@ const ConstructorsResult = () => {
 
   const { season = "2020" } = useParams();
 
-  let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json`;
+  let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json?limit=100`;
 
   useEffect(() => {
     function fetchData() {
@@ -46,7 +46,7 @@ const ConstructorsResult = () => {
             className="abc btn btn-danger text-black container-fluid mb-0 p-0"
           >
             <h1>
-            <b className="shadow rounded">F1 Race Results</b>
+              <b className="shadow rounded">F1 Race Results</b>
             </h1>
           </Link>
           <select
@@ -70,9 +70,13 @@ const ConstructorsResult = () => {
           return (
             <div className="text-danger" key={index}>
               <div className="table-responsive-sm">
-                <table className="table table-striped table-dark caption-top">
-                  <caption className="text-black bg-dark text-center fs-4">
-                    <b><span className="bg-primary p-2">{items.raceName}  <i className="bi bi-calendar3"></i>{dateTime(items.date)}<i className="bi bi-calendar3"></i></span></b>
+                <table className="table table-striped table-dark caption-top table-bordered">
+                  <caption className="text-primary bg-dark text-center fs-4">
+                    <span className="bg-black p-2 fw-bold">
+                      {items.raceName} <i className="bi bi-calendar3"></i>
+                      {dateTime(items.date)}
+                      <i className="bi bi-calendar3"></i>
+                    </span>
                   </caption>
                   <thead>
                     <tr className="">

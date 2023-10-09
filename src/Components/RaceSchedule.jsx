@@ -28,28 +28,28 @@ const RaceSchedule = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid p-0">
-      <h2 className="text-center bg-black text-danger border border-danger border-5 mb-2">
+    <div className="bg-black container-fluid table-responsive">
+      <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
         F1 Schedule {props.season}
-      </h2>
-      <div className="table-responsive-sm">
-        <table className="table table-dark table-striped">
-          <thead className="text-danger tho">
+      </h1>
+        <table className="table table-dark table-striped table-bordered">
+          <thead className="">
             <tr className="text-black fs-5">
-              <th className="text-center">Rnd</th>
+              <th className="text-center">R</th>
               <th className="bg-danger text-center">Race Name</th>
               <th className=" text-center">Race Date</th>
               <th className="text-center bg-info">Sprint Date</th>
               <th className="text-center">Qualifying</th>
-              <th className="bg-danger text-center">Practice1</th>
-              <th className="text-center">Practice2</th>
-              <th className="bg-danger text-center">Practice3</th>
-              <th className="text-center">Circuit</th>
+              <th className="bg-danger text-center">Practice 1</th>
+              <th className="text-center">Practice 2</th>
+              <th className="bg-danger text-center">Practice 3</th>
+              <th className="text-center">Circuit Name</th>
             </tr>
           </thead>
           <tbody className="text-danger">
             {sdata?.map((rs, index) => {
               const title = "Click go to " + rs.raceName + " details ";
+              const titleSprint = "Click go to " + rs.raceName + " Sprint details ";
 
               const dateTime = (d, t) => new Date(d + " " + t);
 
@@ -69,7 +69,7 @@ const RaceSchedule = (props) => {
                     {rs.round}
                   </td>
                   <td className="col text-nowrap op fw-bold fs-5 text-warning">
-                    {rs.raceName}
+                    <span className="bg-black p-1 px-2">{rs.raceName}</span>
                   </td>
                   <td
                     title={title}
@@ -103,6 +103,7 @@ const RaceSchedule = (props) => {
                       : rs.date}
                   </td>
                   <td
+                  title={titleSprint}
                     className={
                       "col text-nowrap text-info op " +
                       (rs.Sprint ? "cp" : "ch") +
@@ -113,7 +114,7 @@ const RaceSchedule = (props) => {
                     }
                     onClick={() =>
                       rs.Sprint
-                        ? navigate("/Sprint/" + props.season + "/" + rs.round)
+                        ? navigate("/Sprint/" + props.season + "/" + rs.round+"/"+dateTime(rs.Sprint?.date,rs.Sprint?.time).toLocaleString("tr-TR", {dateStyle: "short",timeStyle: "short",}))
                         : ""
                     }
                   >
@@ -183,7 +184,6 @@ const RaceSchedule = (props) => {
           </tbody>
         </table>
       </div>
-    </div>
   );
 };
 

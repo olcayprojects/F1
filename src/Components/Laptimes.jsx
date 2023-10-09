@@ -34,7 +34,7 @@ const Laptimes = (props) => {
   }, [urlx]);
 
   return sdata?.length > 0 ? (
-    <table className="table table-dark table-striped">
+    <table className="table table-dark table-striped table-bordered">
       <caption className="text-center bg-dark text-danger caption-top">
         <b className="bg-black px-2 p-1">LAP {props.lapsx}</b>
       </caption>

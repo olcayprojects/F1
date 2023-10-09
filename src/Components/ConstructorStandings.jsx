@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import Team from "./Team";
 
 const ConstructorStandings = (props) => {
-  const [sdata, setData] = useState([]);
+  const [sdata, setData] = useState();
 
-  let url = "";
+  let url;
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/constructorStandings.json`;
   }
@@ -29,7 +29,7 @@ const ConstructorStandings = (props) => {
   return (
     <div className="container p-0">
       <div className="table-responsive">
-        <table className="table table-dark table-striped">
+        <table className="table table-dark table-striped table-bordered">
           <thead className="text-white border-dark fs-5">
             <tr className="text-black">
               <th scope="" className="bg-danger text-center">
@@ -49,10 +49,13 @@ const ConstructorStandings = (props) => {
               </th>
             </tr>
           </thead>
-          <tbody key={indexedDB}>
-            {sdata?.map((ConstructorStandings, indexedDB) => {
+          <tbody>
+            {sdata?.map((ConstructorStandings, index) => {
               return (
-                <tr key={indexedDB} className="align-middle">
+                <tr
+                  key={ConstructorStandings.Constructor.constructorId}
+                  className="align-middle"
+                >
                   <td className="col-1 text-center fw-bold fs-5">
                     {ConstructorStandings.position < 4 ? (
                       <i
@@ -67,7 +70,10 @@ const ConstructorStandings = (props) => {
                     )}
                   </td>
                   <td className="col op fw-bold fs-5 text-warning ">
-                    {ConstructorStandings.Constructor.name}
+                    <span className="bg-black p-1 px-2">
+                      {ConstructorStandings.Constructor.name}
+                    </span>
+
                     {/* {(ConstructorStandings.position in ["1", "2", "3", "4"]) &
                     props.season ? (
                       <Team teamName={ConstructorStandings.Constructor.name} />

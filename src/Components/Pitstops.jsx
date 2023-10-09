@@ -33,7 +33,7 @@ const Pitstops = (props) => {
       <div className="table-responsive">
         {sdata?.map((data, index) => {
           return (
-            <table key={index} className="table table-dark table-striped">
+            <table key={index} className="table table-dark table-striped table-bordered">
               <thead className="border-dark fs-5">
                 <tr className="text-black">
                   <th className="bg-danger op">#</th>

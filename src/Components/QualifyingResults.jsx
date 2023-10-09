@@ -25,7 +25,7 @@ const QualifyingResults = (props) => {
   return (
     <div className=" container p-0">
       <div className="table-responsive">
-        <table className="table table-dark table-striped fs-5">
+        <table className="table table-dark table-striped fs-5 table-bordered">
           <thead className="">
             <tr className="text-black">
               <th className="bg-danger text-center op">P</th>
@@ -61,14 +61,9 @@ const QualifyingResults = (props) => {
                           {qualifying.Driver.givenName}{" "}
                           {qualifying.Driver.familyName}
                         </b>
-                        <span className="fw-bold text-secondary px-1 fst-italic fs-5">
-                          {qualifying.Driver.nationality}
-                        </span>
-                        <span className="fw-bold fs-5 text-warning px-1 p-1 bg-black">
+
+                        <span className="fw-bold bg-opacity-75 fst-italic fs-5 text-black px-1 p-1 bg-info">
                           {qualifying.Constructor.name}
-                        </span>
-                        <span className="fw-bold text-secondary px-1 fst-italic fs-5">
-                          {qualifying.Constructor.nationality}
                         </span>
                       </td>
                       <td className="col-2 text-center fw-bold text-primary">

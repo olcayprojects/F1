@@ -43,7 +43,7 @@ const DriverStandings = (props) => {
     return (
       <div className="container p-0">
         <div className="table-responsive">
-          <table className="table table-dark table-striped">
+          <table className="table table-dark table-striped table-bordered">
             <thead className="fs-5">
               <tr className="text-black">
                 <th scope="col" className="bg-danger text-center">
@@ -63,10 +63,10 @@ const DriverStandings = (props) => {
                 </th>
               </tr>
             </thead>
-            <tbody key={indexedDB}>
+            <tbody key={{}}>
               {sdata?.map((driver, indexedDB) => {
                 return (
-                  <tr key={indexedDB} className="align-middle">
+                  <tr key={driver.Driver.driverId} className="align-middle">
                     <td className="text-center fs-5">
                       {driver.position < 4 ? (
                         <i
@@ -100,21 +100,23 @@ const DriverStandings = (props) => {
                         ""
                       )} */}
                       <b className="fs-5 text-info bg-black px-1">
-                        {driver.Driver.givenName} {driver.Driver.familyName} (
-                        {driver.Driver.permanentNumber})
+                        {driver.Driver.givenName} {driver.Driver.familyName}
+                        {driver.Driver.permanentNumber
+                          ? "(" + driver.Driver.permanentNumber + ")"
+                          : ""}
                       </b>{" "}
-                      <span className="fw-light">
-                        {dateTime(driver.Driver.dateOfBirth)} {" "}
-                       
+                      <span className="fw-light text-info">
+                        {dateTime(driver.Driver.dateOfBirth)}{" "}
                       </span>
-                      <span className="fw-bold text-secondary">{driver.Driver.nationality}</span>
-                      {" "}
+                      <span className="text-info">
+                        {driver.Driver.nationality}
+                      </span>{" "}
                       <i className="fw-light fs-5">
                         <b className="text-warning bg-black px-1">
                           {driver.Constructors[0].name}
                         </b>
                       </i>
-                      <i className="fw-bold text-secondary">
+                      <i className="text-warning">
                         {" "}
                         {driver.Constructors[0].nationality}
                       </i>

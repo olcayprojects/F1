@@ -37,7 +37,7 @@ const Results = (props) => {
     return <Loading />;
   } else {
     return sdata?.Results?.length > 0 ? (
-      <table className="table table-dark table-striped">
+      <table className="table table-dark table-striped table-bordered">
         <caption className="text-center bg-dark text-danger caption-top">
           <b className="bg-secondary fs-5 text-light px-2 p-1">
             #{sdata.round} {sdata.raceName}
@@ -49,9 +49,9 @@ const Results = (props) => {
             {/* <th className="text-center">NO</th> */}
             <th className="bg-danger text-start">DRIVER</th>
             <th className="text-start">CAR</th>
-            <th className="bg-danger text-center">LAPS</th>
+            <th className="bg-danger text-center">LAP</th>
             <th className="text-center">TIME/RETIRED</th>
-            <th className="text-center bg-danger">PTS</th>
+            <th className="text-center bg-danger">PT</th>
           </tr>
         </thead>
         <tbody>
