@@ -26,12 +26,29 @@ export default function DriverId(props) {
       return (
         <>
           {/* <span className="pe-1">{sdata?.code}</span> */}
-          <span className="fs-5 p-0 bg-black"> {sdata?.givenName} </span>
+          <span className="fs-5 p-0 ps-1 bg-black"> {sdata?.givenName} </span>
           <span className="fs-5 p-0 bg-black">{sdata?.familyName} </span>
-          <span className="ps-1 fs-5 text-warning">({sdata?.permanentNumber})</span>
+          <span className="fs-5 bg-black pe-1 text-warning">
+            ({sdata?.permanentNumber})
+          </span>
           {/* <span>{sdata?.nationality} </span> */}
           {/* <span>{sdata?.dateOfBirth} </span> */}
         </>
+      );
+    } else if (props.ls === 2) {
+      return (
+        <div className="fw-bold">
+          <span className="bg-black text-info fs-4">{sdata?.givenName} </span>
+          <span className="bg-black text-success fs-4">
+            {sdata?.familyName}{" "}
+          </span>
+          <span className="bg-black text-success me-1 fs-4">
+            {" "}
+            ({sdata?.permanentNumber}){" "}
+          </span>
+          <span>{sdata?.nationality} </span>
+          <span>{sdata?.dateOfBirth} </span>
+        </div>
       );
     } else {
       return (

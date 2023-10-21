@@ -30,160 +30,190 @@ const RaceSchedule = (props) => {
   return (
     <div className="bg-black container-fluid table-responsive">
       <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
-        F1 Schedule {props.season}
+        Schedule {props.season}
       </h1>
-        <table className="table table-dark table-striped table-bordered">
-          <thead className="">
-            <tr className="text-black fs-5">
-              <th className="text-center">R</th>
-              <th className="bg-danger text-center">Race Name</th>
-              <th className=" text-center">Race Date</th>
-              <th className="text-center bg-info">Sprint Date</th>
-              <th className="text-center">Qualifying</th>
-              <th className="bg-danger text-center">Practice 1</th>
-              <th className="text-center">Practice 2</th>
-              <th className="bg-danger text-center">Practice 3</th>
-              <th className="text-center">Circuit Name</th>
-            </tr>
-          </thead>
-          <tbody className="text-danger">
-            {sdata?.map((rs, index) => {
-              const title = "Click go to " + rs.raceName + " details ";
-              const titleSprint = "Click go to " + rs.raceName + " Sprint details ";
+      <table className="table table-dark table-striped table-bordered">
+        <thead className="">
+          <tr className="text-black">
+            <th className="text-center">R</th>
+            <th className="bg-danger text-center">Race Name</th>
+            <th className=" text-center">Race Date</th>
+            <th className="text-center bg-info">Sprint Date</th>
+            <th className="text-center">Qualifying</th>
+            <th className="bg-danger text-center">Practice 1</th>
+            <th className="text-center">Practice 2</th>
+            <th className="bg-danger text-center">Practice 3</th>
+            <th className="text-center">Circuit Name</th>
+          </tr>
+        </thead>
+        <tbody className="text-danger">
+          {sdata?.map((rs, index) => {
+            const title = "Click go to " + rs.raceName + " details ";
+            const titleSprint =
+              "Click go to " + rs.raceName + " Sprint details ";
 
-              const dateTime = (d, t) => new Date(d + " " + t);
+            const dateTime = (d, t) => new Date(d + " " + t);
 
-              return (
-                <tr
+            return (
+              <tr
+                className={
+                  "align-middle col " +
+                  ((rs.date.split("-")[1] ===
+                    dateNow.toISOString().split("T")[0].split("-")[1]) &
+                  (props.season === "2023")
+                    ? " text-center fw-bold "
+                    : " ")
+                }
+                key={index}
+              >
+                <td className="col text-center p-0 align-middle">{rs.round}</td>
+                <td className="col text-nowrap op fw-bold text-warning">
+                  <span
+                    className="bg-black p-2"
+                    style={{ fontFamily: "Lucida Console" }}
+                  >
+                    {rs.raceName}
+                  </span>
+                </td>
+                <td
+                  title={title}
                   className={
-                    "align-middle col " +
-                    ((rs.date.split("-")[1] ===
-                      dateNow.toISOString().split("T")[0].split("-")[1]) &
-                    (props.season === "2023")
-                      ? " text-center fw-bold "
-                      : " ")
+                    "col cp  text-nowrap " +
+                    (dateTime(rs.date, rs.time) < dateNow
+                      ? "fw-bold text-decoration-line-through"
+                      : (rs.date.split("-")[1] ===
+                          dateNow.toISOString().split("T")[0].split("-")[1]) &
+                        (props.season === "2023")
+                      ? "  text-center fw-bold fst-normal"
+                      : "")
                   }
-                  key={index}
+                  onClick={() =>
+                    dateTime(rs.date, rs.time) < dateNow ||
+                    props.season !== "2023"
+                      ? navigate("/F1Race/" + props.season + "/" + rs.round)
+                      : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
+                  }
                 >
-                  <td className="col text-center fs-5 align-middle">
-                    {rs.round}
-                  </td>
-                  <td className="col text-nowrap op fw-bold fs-5 text-warning">
-                    <span className="bg-black p-1 px-2">{rs.raceName}</span>
-                  </td>
-                  <td
-                    title={title}
-                    className={
-                      "col cp  text-nowrap " +
-                      (dateTime(rs.date, rs.time) < dateNow
-                        ? "fw-bold text-decoration-line-through"
-                        : (rs.date.split("-")[1] ===
-                            dateNow.toISOString().split("T")[0].split("-")[1]) &
-                          (props.season === "2023")
-                        ? "  text-center fw-bold fst-normal"
-                        : "")
-                    }
-                    onClick={() =>
-                      dateTime(rs.date, rs.time) < dateNow ||
-                      props.season !== "2023"
-                        ? navigate("/F1Race/" + props.season + "/" + rs.round)
-                        : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
-                    }
-                  >
-                    {dateTime(rs.date, rs.time) > dateNow
-                      ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : rs.time
-                      ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : rs.date}
-                  </td>
-                  <td
+                  {dateTime(rs.date, rs.time) > dateNow
+                    ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
+                        dateStyle: "short",
+                        timeStyle: "short",
+                      })
+                    : rs.time
+                    ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
+                        dateStyle: "short",
+                        timeStyle: "short",
+                      })
+                    : rs.date}
+                </td>
+                <td
                   title={titleSprint}
-                    className={
-                      "col text-nowrap text-info op " +
-                      (rs.Sprint ? "cp" : "ch") +
-                      " " +
-                      (dateTime(rs.date, rs.time) < dateNow
-                        ? "fw-bold text-decoration-line-through"
-                        : "")
-                    }
-                    onClick={() =>
-                      rs.Sprint
-                        ? navigate("/Sprint/" + props.season + "/" + rs.round+"/"+dateTime(rs.Sprint?.date,rs.Sprint?.time).toLocaleString("tr-TR", {dateStyle: "short",timeStyle: "short",}))
-                        : ""
-                    }
-                  >
-                    {rs.Sprint?.time
-                      ? dateTime(
-                          rs.Sprint?.date,
-                          rs.Sprint?.time
-                        ).toLocaleString("tr-TR", {
+                  className={
+                    "col text-nowrap text-info op " +
+                    (rs.Sprint ? "cp" : "ch") +
+                    " " +
+                    (dateTime(rs.date, rs.time) < dateNow
+                      ? "fw-bold text-decoration-line-through"
+                      : "")
+                  }
+                  onClick={() =>
+                    rs.Sprint
+                      ? navigate(
+                          "/Sprint/" +
+                            props.season +
+                            "/" +
+                            rs.round +
+                            "/" +
+                            dateTime(
+                              rs.Sprint?.date,
+                              rs.Sprint?.time
+                            ).toLocaleString("tr-TR", {
+                              dateStyle: "short",
+                              timeStyle: "short",
+                            })
+                        )
+                      : ""
+                  }
+                >
+                  {rs.Sprint?.time
+                    ? dateTime(rs.Sprint?.date, rs.Sprint?.time).toLocaleString(
+                        "tr-TR",
+                        {
                           dateStyle: "short",
                           timeStyle: "short",
-                        })
-                      : rs.Sprint?.date}
-                  </td>
-                  <td className="col text-nowrap">
-                    {rs.Qualifying?.time
-                      ? dateTime(
-                          rs.Qualifying?.date,
-                          rs.Qualifying?.time
-                        ).toLocaleString("tr-TR", {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : rs.Qualifying?.date}
-                  </td>
-                  <td className="col text-nowrap op">
-                    {rs.FirstPractice?.time
-                      ? dateTime(
-                          rs.FirstPractice?.date,
-                          rs.FirstPractice?.time
-                        ).toLocaleString("tr-TR", {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : rs.FirstPractice?.date}
-                  </td>
-                  <td className="col text-nowrap">
-                    {rs.SecondPractice?.time
-                      ? dateTime(
-                          rs.SecondPractice?.date,
-                          rs.SecondPractice?.time
-                        ).toLocaleString("tr-TR", {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : rs.SecondPractice?.date}
-                  </td>
-                  <td className="col text-nowrap op">
-                    {rs.ThirdPractice?.time
-                      ? dateTime(
-                          rs.ThirdPractice?.date,
-                          rs.ThirdPractice?.time
-                        ).toLocaleString("tr-TR", {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : rs.ThirdPractice?.date}
-                  </td>
-                  <td
-                    className="col cp text-nowrap"
-                    onClick={() => navigate("/Circuit/" + rs.Circuit.circuitId)}
-                  >
-                    {rs.Circuit.circuitName}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+                        }
+                      )
+                    : rs.Sprint?.date}
+                </td>
+                <td className="col text-nowrap">
+                  {rs.Qualifying?.time
+                    ? dateTime(
+                        rs.Qualifying?.date,
+                        rs.Qualifying?.time
+                      ).toLocaleString("tr-TR", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour:	"2-digit",
+                        minute	:"2-digit"
+
+                      })
+                    : rs.Qualifying?.date}
+                </td>
+                <td className="col text-nowrap op">
+                  {rs.FirstPractice?.time
+                    ? dateTime(
+                        rs.FirstPractice?.date,
+                        rs.FirstPractice?.time
+                      ).toLocaleString("tr-TR", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        hourCycle: "h23",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                      })
+                    : rs.FirstPractice?.date}
+                </td>
+                <td className="col text-nowrap">
+                  {rs.SecondPractice?.time
+                    ? dateTime(
+                        rs.SecondPractice?.date,
+                        rs.SecondPractice?.time
+                      ).toLocaleString("tr-TR", {
+                        month: "2-digit",
+                        day: "2-digit",
+                        hourCycle: "h23",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                      })
+                    : rs.SecondPractice?.date}
+                </td>
+                <td className="col text-nowrap op">
+                  {rs.ThirdPractice?.time
+                    ? dateTime(
+                        rs.ThirdPractice?.date,
+                        rs.ThirdPractice?.time
+                      ).toLocaleString("tr-TR", {
+                        // weekday: "short",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hourCycle: "h23",
+                        hour: "2-digit",
+                        minute: "2-digit"
+                      })
+                    : rs.ThirdPractice?.date}
+                </td>
+                <td
+                  className="col cp text-nowrap"
+                  onClick={() => navigate("/Circuit/" + rs.Circuit.circuitId)}
+                >
+                  {rs.Circuit.circuitName}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

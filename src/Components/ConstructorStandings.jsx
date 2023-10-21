@@ -30,7 +30,7 @@ const ConstructorStandings = (props) => {
     <div className="container p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
-          <thead className="text-white border-dark fs-5">
+          <thead className="text-white border-dark">
             <tr className="text-black">
               <th scope="" className="bg-danger text-center">
                 POS
@@ -56,7 +56,7 @@ const ConstructorStandings = (props) => {
                   key={ConstructorStandings.Constructor.constructorId}
                   className="align-middle"
                 >
-                  <td className="col-1 text-center fw-bold fs-5">
+                  <td className="col-1 text-center fw-bold">
                     {ConstructorStandings.position < 4 ? (
                       <i
                         className={
@@ -69,8 +69,8 @@ const ConstructorStandings = (props) => {
                       ConstructorStandings.position
                     )}
                   </td>
-                  <td className="col op fw-bold fs-5 text-warning ">
-                    <span className="bg-black p-1 px-2">
+                  <td className="col op fw-bold text-warning ">
+                    <span className="bg-black p-2" style={{fontFamily:"Lucida Console"}}>
                       {ConstructorStandings.Constructor.name}
                     </span>
 
@@ -81,18 +81,13 @@ const ConstructorStandings = (props) => {
                       ""
                     )} */}
                   </td>
-                  <td className="col-2 fst-italic fs-5">
+                  <td className="col-2 fst-italic">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
                   <td className="col-1 text-center op text-info">
                     <span
                       className={
-                        "fs-5 fw-bold bg-black px-2 p-2 " +
-                        (ConstructorStandings.points?.length === 2
-                          ? "px-3"
-                          : ConstructorStandings.points?.length === 1
-                          ? "px-4"
-                          : "px-2")
+                        "fw-bold bg-black d-block p-1" 
                       }
                     >
                       {ConstructorStandings.points}
@@ -101,12 +96,7 @@ const ConstructorStandings = (props) => {
                   <td className="col-1 text-center fw-bold">
                     <span
                       className={
-                        "bg-black fs-5  p-2 " +
-                        (ConstructorStandings.wins?.length === 2
-                          ? "px-3"
-                          : ConstructorStandings.wins?.length === 1
-                          ? "px-4"
-                          : "px-2")
+                        "bg-black d-block p-1" 
                       }
                     >
                       {ConstructorStandings.wins}

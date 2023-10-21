@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import Nav from "./Nav";
 
 const RaceInfo = () => {
   const { date = "2023-07-02" } = useParams();
@@ -27,9 +28,8 @@ const RaceInfo = () => {
 
   return (
     <div className="container-fluid">
-        <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
-          <h1><b>F1 Race Results</b></h1>
-        </Link>
+      <Nav />
+
       <div className="row">
         {data?.map((event, index) => {
           return (

@@ -17,6 +17,8 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { TableSortLabel } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { ClassNames } from "@emotion/react";
+import Nav from "./Nav";
 
 const darkTheme = createTheme({
   palette: {
@@ -28,9 +30,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.common.white,
+    border: "3px groove gray",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
+    border: "3px groove black",
   },
 }));
 
@@ -38,9 +42,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
+  //  last border
+  "&:last-child": {
+    border: "3px groove black",
   },
 }));
 
@@ -101,9 +105,8 @@ const Circuit = (props) => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link to="/" className="btn btn-danger text-black container-fluid mb-1">
-          <h1><b>F1 Race Results</b></h1>
-        </Link>
+        <Nav />
+
         <h2 className="bg-dark text-light text-center">
           {data
             ? data[0]?.Circuit.circuitName +
@@ -120,7 +123,7 @@ const Circuit = (props) => {
             <Table aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <StyledTableCell onClick={handleSortRequest}>
+                  <StyledTableCell align="center" onClick={handleSortRequest}>
                     <TableSortLabel
                       color=""
                       active={true}
@@ -130,16 +133,24 @@ const Circuit = (props) => {
                       SEASON
                     </TableSortLabel>
                   </StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>DATE</StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>RND</StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>
+                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                    DATE
+                  </StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                    RND
+                  </StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
                     WINNER
                   </StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>
+                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
                     CONSTRUCTOR
                   </StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>GRID</StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>LAPS</StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                    GRID
+                  </StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                    LAPS
+                  </StyledTableCell>
                   <StyledTableCell sx={{ fontSize: 20 }}>TIME</StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -150,13 +161,17 @@ const Circuit = (props) => {
                     sx={{ "&:last-child td,&:last-child th": { border: 0 } }}
                   >
                     <StyledTableCell
-                    className="cp"
-                     onClick={() => {
-                      navigate("/F1/" + row.season);
-                    }}
-                    >{row.season}</StyledTableCell>
+                      className="cp text-center"
+                      onClick={() => {
+                        navigate("/F1/" + row.season);
+                      }}
+                    >
+                      {row.season}
+                    </StyledTableCell>
                     <StyledTableCell>{todate(row.date)}</StyledTableCell>
-                    <StyledTableCell>{row.round}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.round}
+                    </StyledTableCell>
                     <StyledTableCell>
                       {row.Results[0].Driver.givenName}{" "}
                       {row.Results[0].Driver.familyName}
@@ -164,8 +179,12 @@ const Circuit = (props) => {
                     <StyledTableCell>
                       {row.Results[0].Constructor.name}
                     </StyledTableCell>
-                    <StyledTableCell>{row.Results[0].grid}</StyledTableCell>
-                    <StyledTableCell>{row.Results[0].laps}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.Results[0].grid}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">
+                      {row.Results[0].laps}
+                    </StyledTableCell>
                     <StyledTableCell>
                       {row.Results[0].Time?.time}
                     </StyledTableCell>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import DriverId from "./DriverId";
 import Loading from "./Loading";
+import Nav from "./Nav";
 
 const Laps = () => {
   const [sdata, setData] = useState([]);
@@ -42,14 +43,8 @@ const Laps = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link
-          to="/"
-          className="abc btn btn-danger text-black container-fluid mb-0 p-0"
-        >
-          <h1>
-            <b className="shadow">F1 Race Results</b>
-          </h1>{" "}
-        </Link>
+        <Nav />
+
         <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
         <h2 className="text-center text-danger">
           #{sdata.round} {sdata.season}
@@ -97,7 +92,9 @@ const Laps = () => {
                         drvitem?.pst
                       )}
                     </td>
-                    <td className="col">{<DriverId Id={drvitem?.drvId} />}</td>
+                    <td className="col">
+                      {<DriverId Id={drvitem?.drvId} ls={2} />}
+                    </td>
                     <td className="col op">{drvitem?.time}</td>
                     <td className="col">{drvitem?.lap}</td>
                   </tr>

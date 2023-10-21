@@ -32,7 +32,7 @@ export const DrvInfo = (props) => {
         style={{ width: "", height: "" }}
         src={data1?.strCutout}
         alt=""
-        title={data1?.strDescriptionEN}
+        title=""
         srcSet=""
       />
     </>

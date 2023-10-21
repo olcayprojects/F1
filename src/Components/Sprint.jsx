@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+import Nav from "./Nav";
 
 const Sprint = () => {
   const { season2 = "2023" } = useParams();
@@ -36,19 +37,11 @@ const Sprint = () => {
   } else {
     return (
       <div className="container-fluid p-0">
-        <Link
-          to="/"
-          className="abc btn btn-danger text-black container-fluid mb-0 p-0"
-        >
-          <h1>
-            <b className="shadow">F1 Race Results</b>
-          </h1>{" "}
-        </Link>
+        <Nav />
+
         <h2 className="bg-info text-black text-center fw-bold mt-1">
-          {data?.raceName}|
-          {data?.Circuit?.circuitName} Sprint Results -{" "}
-          {data?.season}#{data?.round} -{" "}
-          {sprintDate}
+          {data?.raceName}|{data?.Circuit?.circuitName} Sprint Results -{" "}
+          {data?.season}#{data?.round} - {sprintDate}
         </h2>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped table-bordered">
@@ -71,23 +64,33 @@ const Sprint = () => {
                     <td className="col">{item.positionText}</td>
                     <td className="col op">{item.grid}</td>
                     <td className="col fs-5 text-info">
-                      <span className="bg-black p-1">{item.Driver.givenName} {item.Driver.familyName}</span>
-                      <span className="fst-italic fw-normal "> {item.Driver.nationality}</span>
+                      <span className="bg-black p-1">
+                        {item.Driver.givenName} {item.Driver.familyName}
+                      </span>
+                      <span className="fst-italic fw-normal ">
+                        {" "}
+                        {item.Driver.nationality}
+                      </span>
                     </td>
                     <td className="col op fs-5 fst-italic text-warning">
-                     <span className="bg-black p-1">{item.Constructor.name}</span>
-                      <span className="fst-italic fw-normal "> {item.Constructor.nationality}</span>
-
+                      <span className="bg-black p-1">
+                        {item.Constructor.name}
+                      </span>
+                      <span className="fst-italic fw-normal ">
+                        {" "}
+                        {item.Constructor.nationality}
+                      </span>
                     </td>
                     <td className="col text-center">{item.laps}</td>
                     <td className="col op">
                       {item.Time?.time ? item.Time?.time : item.status}
                     </td>
-                    <td className="col text-center text-danger fw-bolder">{item.points}</td>
+                    <td className="col text-center text-danger fw-bolder">
+                      {item.points}
+                    </td>
                     <td className="col op">
                       {item.FastestLap
-                        ? 
-                          item.FastestLap?.Time.time +
+                        ? item.FastestLap?.Time.time +
                           " | Lap: " +
                           item.FastestLap?.lap
                         : ""}

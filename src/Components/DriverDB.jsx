@@ -33,16 +33,31 @@ const DriverDB = (props) => {
         style={{ width: "", height: "" }}
         src={data?.strRender ? data?.strRender : data?.strCutout + "/preview"}
         alt=""
-        title={data?.strDescriptionEN}
+        title=""
         srcSet=""
       />
-      <p className="p-0 fs-5 ">
-        <span className="fw-bold">Team: </span>{data?.strTeam} #{data?.strNumber} <br />
-        <span className="fw-bold">Country: </span>{data?.strNationality} <br />
-        <span className="fw-bold">Date of birth: </span>{data?.dateBorn} <br />
-       <span className="fw-bold">Place of birth: </span>{data?.strBirthLocation}
-      </p>
-      <p className="text-secondary p-0 fs-5 lh-sm">{data?.strDescriptionEN}</p>
+      <div>
+        <span className="">Team: </span>
+        <span className="fw-bold">
+          {data?.strTeam} #{data?.strNumber} <br />
+        </span>
+        <span className="">Country: </span>
+        <span className="fw-bold">
+          {data?.strNationality} <br />
+        </span>
+        <span className="">Date of birth: </span>
+        <span className="fw-bold">
+          {data?.dateBorn} <br />
+        </span>
+        <span className="">Place of birth: </span>
+        <span className="fw-bold">{data?.strBirthLocation}</span>
+      </div>
+      <pre
+        className="text-start lh-sm text-secondary p-0"
+        style={{ whiteSpace: "pre-wrap" }}
+      >
+        {data?.strDescriptionEN}
+      </pre>
     </>
   );
 };

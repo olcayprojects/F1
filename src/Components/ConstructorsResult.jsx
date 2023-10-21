@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Constructor from "./Constructor";
+import Nav from "./Nav";
 
 import Loading from "./Loading";
 import Team from "./Team";
@@ -41,14 +42,8 @@ const ConstructorsResult = () => {
     return (
       <div>
         <div className="container-fluid p-0">
-          <Link
-            to="/"
-            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
-          >
-            <h1>
-              <b className="shadow rounded">F1 Race Results</b>
-            </h1>
-          </Link>
+          <Nav />
+
           <select
             className="form-select bg-black text-danger border-danger border-5 shadow-none cp mb-1"
             onChange={(e) => setCons(e.target.value)}
@@ -59,13 +54,11 @@ const ConstructorsResult = () => {
             <Constructor year={season} />
           </select>
         </div>
-        <h2 className="text-light text-center m-0">
-          {season === "2023" ? (
-            <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} />
-          ) : (
-            sdata[0]?.Results[0]?.Constructor?.name
-          )}
-        </h2>
+        {season === "2023" ? (
+          <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
+        ) : (
+          sdata[0]?.Results[0]?.Constructor?.name
+        )}
         {sdata.map((items, index) => {
           return (
             <div className="text-danger" key={index}>

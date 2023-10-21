@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Loading from "./Loading";
 import DriverDB from "./DriverDB";
+import Nav from "./Nav";
 
 import { DrvInfo } from "./DriverInfo";
 import { useNavigate } from "react-router-dom";
@@ -17,6 +18,7 @@ const ResultsDriver = () => {
   const { driver = "alonso" } = useParams();
   let drvgivenName = "";
   let drvfamilyName = "";
+  const dateTime = (d, t) => new Date(d + " " + t);
 
   // let url = `https://ergast.com/api/f1/${season2}/drivers/${driver}/results.json`;
   let url = `https://ergast.com/api/f1/drivers/${driver}/results.json?limit=400`;
@@ -59,25 +61,19 @@ const ResultsDriver = () => {
   } else {
     return (
       <div className="bg-black container-fluid p-0">
-        <Link to="/" 
-            className="abc btn btn-danger text-black container-fluid mb-0 p-0"
-            >
-          <h1>
-            <b className="shadow">F1 Race Results</b>
-          </h1>
-        </Link>
+        <Nav />
+
         <div className="container-fluid text-center text-light">
           <h2>
             {drvgivenName} {drvfamilyName}
           </h2>
           {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
         </div>
-        <h4 className="text-center text-white">Latest Results</h4>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped table-bordered">
             <thead>
-              <tr className="fs-5">
-                <th className="bg-danger text-center">Season</th>
+              <tr className="">
+                <th className="bg-danger text-center">S</th>
                 <th className="bg">Race Name</th>
                 <th className="text-center bg-danger">Pos</th>
                 <th className="text-center">Grid</th>
@@ -93,8 +89,9 @@ const ResultsDriver = () => {
                 ?.sort((a, b) => (a["date"] < b["date"] ? 1 : -1))
                 .map((item, index) => {
                   return (
-                    <tr key={index} className="fs-5 text-danger align-middle">
+                    <tr key={index} className="text-danger align-middle">
                       <td className="col text-center">{item.season}</td>
+                      {console.log(item)}
                       <td
                         className={
                           "col cp op " + (!item.Results ? "text-info" : "")
@@ -105,7 +102,18 @@ const ResultsDriver = () => {
                                 "/F1Race/" + item.season + "/" + item.round
                               )
                             : navigate(
-                                "/Sprint/" + item.season + "/" + item.round
+                                "/Sprint/" +
+                                  item.season +
+                                  "/" +
+                                  item.round +
+                                  "/" +
+                                  dateTime(
+                                    item?.date,
+                                    item?.time
+                                  ).toLocaleString("tr-TR", {
+                                    dateStyle: "short",
+                                    timeStyle: "short",
+                                  })
                               )
                         }
                       >
@@ -149,16 +157,18 @@ const ResultsDriver = () => {
                           : item?.SprintResults[0]?.grid}
                       </td>
                       <td className="col text-center">
-                        {item?.Results
-                          ? item?.Results[0]?.Constructor?.name
-                          : item?.SprintResults[0]?.Constructor?.name}
+                        <span className="text-success bg-black p-1">
+                          {item?.Results
+                            ? item?.Results[0]?.Constructor?.name
+                            : item?.SprintResults[0]?.Constructor?.name}
+                        </span>
                       </td>
                       <td className="col text-center op">
                         {item?.Results
                           ? item?.Results[0]?.laps
                           : item?.SprintResults[0]?.laps}
                       </td>
-                      <td className="text-center col">
+                      <td className="text-center text-warning col">
                         {item?.Results
                           ? item?.Results[0]?.Time?.time
                             ? item?.Results[0]?.Time?.time
@@ -173,36 +183,28 @@ const ResultsDriver = () => {
                           : item?.SprintResults[0]?.points}
                       </td>
 
-                      <td
-                        className={
-                          "col " +
-                          (item?.Results
-                            ? item?.Results[0]?.FastestLap?.rank
-                            : item?.SprintResults[0]?.FastestLap?.rank in
-                              ["1", "2", "3", "4"]
-                            ? "text-danger"
-                            : "")
-                        }
-                      >
-                        {item?.Results
-                          ? item?.Results[0]?.FastestLap
-                            ? item?.Results[0]?.FastestLap?.rank +
-                              ". | Time: " +
-                              item?.Results[0]?.FastestLap?.Time.time +
-                              " | AvgSpd: " +
-                              item?.Results[0]?.FastestLap?.AverageSpeed
-                                ?.speed +
-                              item?.Results[0]?.FastestLap?.AverageSpeed
-                                ?.units +
+                      <td className="col">
+                        <span className="bg-black p-1 fw-bold text-secondary">
+                          {item?.Results
+                            ? item?.Results[0]?.FastestLap
+                              ? item?.Results[0]?.FastestLap?.rank +
+                                ". | Time: " +
+                                item?.Results[0]?.FastestLap?.Time.time +
+                                " | AvgSpd: " +
+                                item?.Results[0]?.FastestLap?.AverageSpeed
+                                  ?.speed +
+                                item?.Results[0]?.FastestLap?.AverageSpeed
+                                  ?.units +
+                                " | Lap: " +
+                                item?.Results[0]?.FastestLap?.lap
+                              : ""
+                            : item?.SprintResults[0]?.FastestLap
+                            ? "Time: " +
+                              item?.SprintResults[0]?.FastestLap?.Time.time +
                               " | Lap: " +
-                              item?.Results[0]?.FastestLap?.lap
-                            : ""
-                          : item?.SprintResults[0]?.FastestLap
-                          ? "Time: " +
-                            item?.SprintResults[0]?.FastestLap?.Time.time +
-                            " | Lap: " +
-                            item?.SprintResults[0]?.FastestLap?.lap
-                          : ""}
+                              item?.SprintResults[0]?.FastestLap?.lap
+                            : ""}
+                        </span>
                       </td>
                     </tr>
                   );

@@ -31,7 +31,7 @@ const WinRacesInaSeason = (props) => {
     <div className="container-responsive p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
-          <thead className="fs-5">
+          <thead className="">
             <tr className="">
               <th className="bg-danger op">#</th>
               <th className="bg-danger text-center">Race Name</th>
@@ -46,17 +46,17 @@ const WinRacesInaSeason = (props) => {
             {sdata?.map((item, index) => {
               return (
                 <tr className="align-middle" key={index}>
-                  <td className="p-0 op fs-5 fw-bold">#{item.round}</td>
+                  <td className="p-0 op fw-bold">#{item.round}</td>
                   <td
                     className="col cp"
                     onClick={() =>
                       navigate("/F1Race/" + props.season + "/" + item.round)
                     }
                   >
-                    <span className="text-warning bg-black px-2 p-1 fs-5 fw-bold">
+                    <span className="text-warning bg-black px-2 p-1 fw-bold">
                       {item.raceName}
                     </span>
-                    <i className="bg-warning bg-opacity-75 fw-bold fs-5 text-black px-2 p-1">
+                    <i className="bg-warning bg-opacity-75 fw-bold text-black px-2 p-1">
                       {item.time ? dateTime(item.date, item.time) : item.date}
                     </i>
                   </td>
@@ -68,11 +68,11 @@ const WinRacesInaSeason = (props) => {
                       );
                     }}
                   >
-                    <span className="fs-5 text-info bg-black px-2 p-1 fw-bold">
+                    <span className="text-info bg-black px-2 p-1 fw-bold">
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
                     </span>
-                    <span className="fw-bold fs-5 px-1 text-black bg-info fst-italic">
+                    <span className="fw-bold px-1 text-black bg-info fst-italic">
                       {item.Results[0].Constructor.name}
                     </span>
                   </td>

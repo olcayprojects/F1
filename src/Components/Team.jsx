@@ -29,7 +29,7 @@ const Team = (props) => {
     if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
       if (props.ls === 1) {
         return (
-          <div className="" key={index} >
+          <div className="" key={index}>
             <img
               className="img-responsive w-100 "
               style={{ maxWidth: "120px" }}
@@ -51,22 +51,28 @@ const Team = (props) => {
       } else {
         return (
           <div key={index} className="container-fluid p-0" style={{}}>
-            <img
-              className="img-responsive imgrun w-25"
-              style={{}}
-              src={teams?.strTeamJersey + ""}
-              alt=""
-              srcSet=""
-              title={teams?.strDescriptionEN}
-            />
-            <img
-              className="img-fluid"
-              style={{}}
+            {/* <img
+              className="img-fluid w-25"
               src={teams?.strTeamBadge + "/preview"}
               alt=""
               srcSet=""
               title=""
+            /> */}
+
+            <img
+              className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
+              style={{ maxHeight: "210px" }}
+              src={teams?.strTeamJersey + ""}
+              alt=""
+              srcSet=""
+              title={teams?.strTeam}
             />
+            <pre
+              className="text-secondary ps-1"
+              style={{ whiteSpace: "pre-wrap" }}
+            >
+              {teams?.strDescriptionEN}
+            </pre>
           </div>
         );
       }

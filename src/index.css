@@ -93,7 +93,7 @@ thead th {
     left: 0px;
   }
 }
-.abc:hover {
+.abc1:hover {
   color: red !important;
   background-color: black !important;
 }

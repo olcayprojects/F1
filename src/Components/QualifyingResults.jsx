@@ -23,9 +23,9 @@ const QualifyingResults = (props) => {
   }, [url]);
 
   return (
-    <div className=" container p-0">
+    <div className="container p-0">
       <div className="table-responsive">
-        <table className="table table-dark table-striped fs-5 table-bordered">
+        <table className="table table-dark table-striped table-bordered">
           <thead className="">
             <tr className="text-black">
               <th className="bg-danger text-center op">P</th>
@@ -42,7 +42,7 @@ const QualifyingResults = (props) => {
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
                     <tr key={indexQ} className="align-middle">
-                      <td className="p-0 text-center fs-5 op">
+                      <td className="p-0 text-center op">
                         {qualifying.position < 4 ? (
                           <i
                             className={
@@ -57,20 +57,21 @@ const QualifyingResults = (props) => {
                       </td>
                       <td className="text-center p-0">{qualifying.number}</td>
                       <td className="col-5 op">
-                        <b className="fs-5 text-info bg-black px-1 p-1">
-                          {qualifying.Driver.givenName}{" "}
-                          {qualifying.Driver.familyName}
-                        </b>
+                        <span className="fw-bold text-info bg-black px-1 p-1">
+                          {qualifying.Driver.givenName +
+                            " " +
+                            qualifying.Driver.familyName}
+                        </span>
 
-                        <span className="fw-bold bg-opacity-75 fst-italic fs-5 text-black px-1 p-1 bg-info">
+                        <span className="fw-bold fst-italic text-black px-1 p-1 bg-info">
                           {qualifying.Constructor.name}
                         </span>
                       </td>
-                      <td className="col-2 text-center fw-bold text-primary">
+                      <td className="col-2 text-center fw-bold">
                         <span
                           className={
                             qualifying?.Q3
-                              ? "bg-black px-5 p-2 fw-bolder align-middle"
+                              ? "bg-black d-block text-success p-2 fw-bold align-middle"
                               : ""
                           }
                         >
@@ -81,7 +82,7 @@ const QualifyingResults = (props) => {
                         <span
                           className={
                             qualifying?.Q2
-                              ? "bg-black px-5 p-2 fw-bolder align-middle"
+                              ? "bg-black d-block p-2 fw-bold text-warning"
                               : ""
                           }
                         >
@@ -91,7 +92,9 @@ const QualifyingResults = (props) => {
                       <td className="col-2 text-center fw-bolder align-middle">
                         <span
                           className={
-                            qualifying?.Q1 ? "bg-secondary px-5 p-2" : ""
+                            qualifying?.Q1
+                              ? "bg-black d-block p-2 text-danger"
+                              : ""
                           }
                         >
                           {qualifying?.Q1}

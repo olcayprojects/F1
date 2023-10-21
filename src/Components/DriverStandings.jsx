@@ -44,10 +44,10 @@ const DriverStandings = (props) => {
       <div className="container p-0">
         <div className="table-responsive">
           <table className="table table-dark table-striped table-bordered">
-            <thead className="fs-5">
+            <thead className="">
               <tr className="text-black">
-                <th scope="col" className="bg-danger text-center">
-                  POS
+                <th scope="col" className="bg-danger text-center p-0">
+                  P
                 </th>
                 <th scope="col" className="text-center bg-danger op">
                   CODE
@@ -67,7 +67,7 @@ const DriverStandings = (props) => {
               {sdata?.map((driver, indexedDB) => {
                 return (
                   <tr key={driver.Driver.driverId} className="align-middle">
-                    <td className="text-center fs-5">
+                    <td className="text-center">
                       {driver.position < 4 ? (
                         <i
                           className={
@@ -78,7 +78,7 @@ const DriverStandings = (props) => {
                         driver.position
                       )}
                     </td>
-                    <td className="text-center op fw-bold text-danger fs-5">
+                    <td className="text-center op text-danger">
                       {driver.Driver.code}
                     </td>
                     <td
@@ -99,7 +99,7 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                      <b className="fs-5 text-info bg-black px-1">
+                      <b className="text-info bg-black px-1">
                         {driver.Driver.givenName} {driver.Driver.familyName}
                         {driver.Driver.permanentNumber
                           ? "(" + driver.Driver.permanentNumber + ")"
@@ -111,7 +111,7 @@ const DriverStandings = (props) => {
                       <span className="text-info">
                         {driver.Driver.nationality}
                       </span>{" "}
-                      <i className="fw-light fs-5">
+                      <i className="fw-light">
                         <b className="text-warning bg-black px-1">
                           {driver.Constructors[0].name}
                         </b>
@@ -121,31 +121,13 @@ const DriverStandings = (props) => {
                         {driver.Constructors[0].nationality}
                       </i>
                     </td>
-                    <td className="text-center op text-warning fs-5">
-                      <span
-                        className={
-                          "bg-black p-2 fw-bold   " +
-                          (driver.points?.length === 2
-                            ? "px-3"
-                            : driver.points?.length === 1
-                            ? "px-4"
-                            : "px-2")
-                        }
-                      >
+                    <td className="text-center op text-warning">
+                      <span className={"bg-black p-1 fw-bold  d-block"}>
                         {driver.points}
                       </span>
                     </td>
-                    <td className="text-center text-primary fs-5">
-                      <span
-                        className={
-                          "bg-black fw-bold p-2  " +
-                          (driver.wins?.length === 2
-                            ? "px-3"
-                            : driver.wins?.length === 1
-                            ? "px-4"
-                            : "px-2")
-                        }
-                      >
+                    <td className="text-center text-primary">
+                      <span className={"bg-black fw-bold p-1 d-block"}>
                         {driver.wins}
                       </span>
                     </td>

@@ -19,8 +19,12 @@ const Next = () => {
       {sdata?.map((data, index) => {
         const dateTime = (d, t) =>
           new Date(d + " " + t).toLocaleString("en-EN", {
-            dateStyle: "full",
-            timeStyle: "short",
+            weekday: "long",
+            month: "long",
+            day: "2-digit",
+            hourCycle: "h23",
+            hour: "2-digit",
+            minute: "2-digit",
           });
         return (
           <h1 key={index} className="nextmarque m-0">
@@ -33,11 +37,11 @@ const Next = () => {
                   dateTime(data.Sprint?.date, data.Sprint?.time) +
                   " "
                 : ""}
-                 <i className="bi bi-clock-fill"></i>
+              <i className="bi bi-clock-fill"></i>
               <span className="">First Practice: </span>
               {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)}
               <i className="bi bi-clock-fill"></i>
-              Second Practice: {" "}
+              Second Practice:{" "}
               {dateTime(data.SecondPractice?.date, data.SecondPractice?.time)}
               <i className="bi bi-clock-fill"></i>
               {data.ThirdPractice?.date

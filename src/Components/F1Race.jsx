@@ -8,6 +8,7 @@ import { DrvInfo } from "./DriverInfo";
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
 import Team from "./Team";
+import Nav from "./Nav";
 
 const F1Race = (props) => {
   const [sdata, setData] = useState([]);
@@ -51,7 +52,7 @@ const F1Race = (props) => {
         })
         .catch((err) => {
           if (!err === "Unexpected token") {
-            console.log(err.message);
+            console.log("Hata:", err.message);
           }
         });
     }
@@ -64,14 +65,7 @@ const F1Race = (props) => {
     return (
       <>
         <div className="container.fluid bg-black p-0">
-          <Link
-            to="/"
-            className="abc btn btn-danger text-black container-fluid m-0 p-0"
-          >
-            <h1 className="">
-              <span className="shadow fw-bold">F1 Race Results</span>
-            </h1>
-          </Link>
+          <Nav />
           {sdata?.map((item, indexItem) => {
             season = item.season;
             round = item.round;
@@ -100,30 +94,38 @@ const F1Race = (props) => {
                         <th className="bg-danger text-center">P</th>
                         <th className="text-center">G</th>
                         <th className="text-center bg-danger">NO</th>
-                        <th className="">D R I V E R</th>
+                        <th className="" style={{ letterSpacing: "5px" }}>
+                          DRIVER
+                        </th>
                         <th className="bg-danger">T E A M</th>
                         <th className="text-center">LAPS</th>
-                        <th className="text-center bg-danger">TIME/RETIRED</th>
+                        <th className="text-center bg-danger">
+                          TIME / RETIRED
+                        </th>
                         <th className="text-center">PTS</th>
-                        <th className="text-center bg-danger"></th>
+                        <th className="text-center bg-black"></th>
                         <th className="text-end">
-                          <span className="text-decoration-underline text-primary">
+                          <span className="text-decoration-underline text-black">
                             FASTEST
                           </span>
-                          <br />{" "}
-                          <span className="border border-black border-2 px-1">
+                          <br />
+                          <span className="bg-black text-light p-1 px-2">
+                            POS
+                          </span>
+                          <i className="bi bi-forward-fill px-1 text-light"></i>
+                          <span className="text-light bg-black p-1 px-2">
                             TIME
-                          </span>{" "}
-                          <i className="bi bi-forward-fill"></i>
-                          <span className="bg-black text-white px-1">POS</span>
+                          </span>
                         </th>
-                        <th className="text-center bg-danger">LAP</th>
+                        <th className="text-center bg-danger text-warning">
+                          LAP
+                        </th>
                         <th className="text-start">
-                          <span className="text-decoration-underline text-primary">
+                          <span className="text-decoration-underline text-black">
                             LAPS
                           </span>
                           <br />
-                          AVG SPEED
+                          <span className="text-white">SPEED</span>
                         </th>
                       </tr>
                     </thead>
@@ -147,10 +149,10 @@ const F1Race = (props) => {
                               )}
                             </td>
                             <td className="op text-center text-warning p-0">
-                              <b>{result.grid}</b>
+                              {result.grid}
                             </td>
                             <td className="text-center text-light">
-                              <b>{result.number}</b>
+                              {result.number}
                             </td>
 
                             <td
@@ -168,7 +170,7 @@ const F1Race = (props) => {
                                 " details"
                               }
                             >
-                              <span className="text-info bg-black fw-bold p-1 fs-5">
+                              <span className="text-info bg-black fw-bold p-1 ">
                                 {result.Driver?.givenName + " "}
                                 {(result.positionText in ["1", "2", "3", "4"]) &
                                 (season2 === "2023") ? (
@@ -185,7 +187,7 @@ const F1Race = (props) => {
                                 {result.Driver?.familyName}
                               </span>
 
-                              <span className="fs-5 ps-1 fst-italic text-info">
+                              <span className="ps-1 fw-bold fst-italic text-info">
                                 {result.Driver?.nationality}
                               </span>
                             </td>
@@ -209,7 +211,7 @@ const F1Race = (props) => {
                               {(result.positionText in ["1", "2", "3", "4"]) &
                               (season2 === "2023") ? (
                                 <>
-                                  <span className="bg-black text-success text-center fs-5 p-1 px-2 fw-bold">
+                                  <span className="bg-black text-success text-center p-1 px-1 fw-bold">
                                     {result.Constructor.name}
                                   </span>
                                   <span className="d-inline-block px-1">
@@ -218,16 +220,16 @@ const F1Race = (props) => {
                                       ls={1}
                                     />
                                   </span>
-                                  <span className="text-success fs-5 text-center fst-italic">
+                                  <span className="text-success fw-bold text-center fst-italic">
                                     {" " + result.Constructor.nationality}
                                   </span>
                                 </>
                               ) : (
-                                <i className="fs-5">
-                                  <span className="bg-black text-success fw-bold p-1 px-2">
+                                <i className="">
+                                  <span className="bg-black text-success fw-bold p-1 px-1">
                                     {result.Constructor.name}
                                   </span>
-                                  <span className="text-success">
+                                  <span className="text-success fw-bold">
                                     {" " + result.Constructor.nationality}
                                   </span>
                                 </i>
@@ -240,13 +242,7 @@ const F1Race = (props) => {
                               {result.laps}
                             </td>
                             <td className="text-wrap text-center text-warning fw-bold p-0">
-                              <span
-                                className="bg-black p-1"
-                                style={{
-                                  width: "150px",
-                                  display: "inline-block",
-                                }}
-                              >
+                              <span className="bg-black p-1 w-75 d-inline-block">
                                 {result.Time?.time
                                   ? result.Time.time
                                   : result.status}
@@ -263,7 +259,7 @@ const F1Race = (props) => {
                             >
                               {result.points}
                             </td>
-                            <td className=""></td>
+                            <td className="bg-black"></td>
 
                             <td
                               className={
@@ -283,6 +279,14 @@ const F1Race = (props) => {
                                 );
                               }}
                             >
+                              <span className="bg-black p-1 me-1 d-inline-block w-25 text-center">
+                                {result.FastestLap?.rank}
+                              </span>
+                              {result.FastestLap ? (
+                                <i className="bi bi-forward-fill fs-5 px-1"></i>
+                              ) : (
+                                ""
+                              )}
                               {result.FastestLap ? (
                                 <span className="border p-1 border-black border-4 bg-black">
                                   {result.FastestLap?.Time.time}
@@ -290,26 +294,8 @@ const F1Race = (props) => {
                               ) : (
                                 ""
                               )}
-                              {result.FastestLap ? (
-                                <i className="bi bi-forward-fill fs-5 px-1"></i>
-                              ) : (
-                                ""
-                              )}
-                              <span
-                                className="bg-black p-2 text-center"
-                                style={
-                                  result.FastestLap?.rank
-                                    ? {
-                                        width: "35px",
-                                        display: "inline-block",
-                                      }
-                                    : { display: "none" }
-                                }
-                              >
-                                {result.FastestLap?.rank}
-                              </span>
                             </td>
-                            <td className="text-center text-warning">
+                            <td className="text-center fw-bold text-warning">
                               {result.FastestLap?.lap}
                             </td>
                             <td className="op text-start p-0">
@@ -376,7 +362,7 @@ const F1Race = (props) => {
           {currentTabIndex === 2 && (
             <Box sx={{ p: 0 }}>
               <div className="bg-black container-fluid p-0">
-                <div className="row row-cols-1 row-cols-md-5 g-1 justify-content-sm-center bg-black">
+                <div className="row row-cols-1 row-cols-md-auto g-1 justify-content-sm-center bg-black">
                   {(() => {
                     const arr = [];
                     for (let i = laps - 11; i <= laps; i++) {
