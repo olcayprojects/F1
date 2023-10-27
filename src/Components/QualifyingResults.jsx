@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import Loading from "./Loading";
 
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  let navigate = useNavigate();
 
   let url = "";
   if (props.season) {
@@ -13,14 +17,20 @@ const QualifyingResults = (props) => {
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
+        setIsLoaded(true);
         // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
           console.log(err.message);
+          setIsLoaded(true);
         }
       });
   }, [url]);
+
+  if (!isLoaded) {
+    return <Loading />;
+  }
 
   return (
     <div className="container p-0">
@@ -57,13 +67,30 @@ const QualifyingResults = (props) => {
                       </td>
                       <td className="text-center p-0">{qualifying.number}</td>
                       <td className="col-5 op">
-                        <span className="fw-bold text-info bg-black px-1 p-1">
+                        <span
+                          className="fw-bold text-info bg-black px-1 p-1 cp"
+                          onClick={() => {
+                            navigate(
+                              "/ResultsDriver/" + qualifying.Driver.driverId
+                            );
+                          }}
+                        >
                           {qualifying.Driver.givenName +
                             " " +
                             qualifying.Driver.familyName}
                         </span>
 
-                        <span className="fw-bold fst-italic text-black px-1 p-1 bg-info">
+                        <span
+                          className="fw-bold fst-italic text-black px-1 p-1 bg-info cp"
+                          onClick={() => {
+                            navigate(
+                              "/ConstructorsResult/" +
+                                qualifying?.Constructor?.constructorId +
+                                "/" +
+                                2023
+                            );
+                          }}
+                        >
                           {qualifying.Constructor.name}
                         </span>
                       </td>
@@ -72,7 +99,7 @@ const QualifyingResults = (props) => {
                           className={
                             qualifying?.Q3
                               ? "bg-black d-block text-success p-2 fw-bold align-middle"
-                              : ""
+                              : null
                           }
                         >
                           {qualifying?.Q3}
@@ -83,7 +110,7 @@ const QualifyingResults = (props) => {
                           className={
                             qualifying?.Q2
                               ? "bg-black d-block p-2 fw-bold text-warning"
-                              : ""
+                              : null
                           }
                         >
                           {qualifying?.Q2}
@@ -94,7 +121,7 @@ const QualifyingResults = (props) => {
                           className={
                             qualifying?.Q1
                               ? "bg-black d-block p-2 text-danger"
-                              : ""
+                              : null
                           }
                         >
                           {qualifying?.Q1}

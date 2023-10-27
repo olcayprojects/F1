@@ -1,9 +1,13 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import DriverId from "./DriverId";
+import Loading from "./Loading";
 
 const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  let navigate = useNavigate();
 
   let url = "";
   if (props.season) {
@@ -14,10 +18,8 @@ const Pitstops = (props) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const delay = setTimeout(() => {
-          setData(data["MRData"].RaceTable.Races);
-        });
-        return () => clearTimeout(delay);
+        setData(data["MRData"].RaceTable.Races);
+        setIsLoaded(true);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -26,6 +28,7 @@ const Pitstops = (props) => {
       });
   }, [url]);
 
+  if (!isLoaded) return <Loading />;
   return (
     <div className="container p-0">
       <div className="table-responsive">
@@ -51,8 +54,11 @@ const Pitstops = (props) => {
                     <tr key={index} className="align-middle">
                       <td className="col-1 op">{index + 1}</td>
                       <td
-                        className="col-4 fw-bold text-info"
+                        className="col-4 text-info cp"
                         style={{ textTransform: "" }}
+                        onClick={() => {
+                          navigate("/ResultsDriver/" + ps.driverId);
+                        }}
                       >
                         <DriverId Id={ps.driverId} ls={1}></DriverId>
                         {/* {ps.driverId} */}

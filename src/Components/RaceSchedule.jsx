@@ -7,7 +7,6 @@ const RaceSchedule = (props) => {
   const navigate = useNavigate();
 
   const dateNow = new Date();
-  const dateNow_ = dateNow.setDate(dateNow.getDate());
 
   let url = "";
   if (props.season) {
@@ -85,7 +84,7 @@ const RaceSchedule = (props) => {
                           dateNow.toISOString().split("T")[0].split("-")[1]) &
                         (props.season === "2023")
                       ? "  text-center fw-bold fst-normal"
-                      : "")
+                      : null)
                   }
                   onClick={() =>
                     dateTime(rs.date, rs.time) < dateNow ||
@@ -114,7 +113,7 @@ const RaceSchedule = (props) => {
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
                       ? "fw-bold text-decoration-line-through"
-                      : "")
+                      : null)
                   }
                   onClick={() =>
                     rs.Sprint
@@ -132,7 +131,7 @@ const RaceSchedule = (props) => {
                               timeStyle: "short",
                             })
                         )
-                      : ""
+                      : null
                   }
                 >
                   {rs.Sprint?.time
@@ -153,9 +152,8 @@ const RaceSchedule = (props) => {
                       ).toLocaleString("tr-TR", {
                         month: "2-digit",
                         day: "2-digit",
-                        hour:	"2-digit",
-                        minute	:"2-digit"
-
+                        hour: "2-digit",
+                        minute: "2-digit",
                       })
                     : rs.Qualifying?.date}
                 </td>
@@ -169,7 +167,7 @@ const RaceSchedule = (props) => {
                         day: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
-                        minute: "2-digit"
+                        minute: "2-digit",
                       })
                     : rs.FirstPractice?.date}
                 </td>
@@ -183,7 +181,7 @@ const RaceSchedule = (props) => {
                         day: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
-                        minute: "2-digit"
+                        minute: "2-digit",
                       })
                     : rs.SecondPractice?.date}
                 </td>
@@ -198,7 +196,7 @@ const RaceSchedule = (props) => {
                         day: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
-                        minute: "2-digit"
+                        minute: "2-digit",
                       })
                     : rs.ThirdPractice?.date}
                 </td>

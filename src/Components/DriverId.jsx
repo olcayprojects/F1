@@ -47,7 +47,7 @@ export default function DriverId(props) {
             ({sdata?.permanentNumber}){" "}
           </span>
           <span>{sdata?.nationality} </span>
-          <span>{sdata?.dateOfBirth} </span>
+          <span>{new Date(sdata?.dateOfBirth).toDateString()} </span>
         </div>
       );
     } else {

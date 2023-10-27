@@ -60,19 +60,29 @@ const WinRacesInaSeason = (props) => {
                       {item.time ? dateTime(item.date, item.time) : item.date}
                     </i>
                   </td>
-                  <td
-                    className="col cp op"
-                    onClick={() => {
-                      navigate(
-                        "/ResultsDriver/" + item.Results[0].Driver.driverId
-                      );
-                    }}
-                  >
-                    <span className="text-info bg-black px-2 p-1 fw-bold">
+                  <td className="col op">
+                    <span
+                      className="text-info bg-black px-2 p-1 fw-bold cp"
+                      onClick={() => {
+                        navigate(
+                          "/ResultsDriver/" + item.Results[0].Driver.driverId
+                        );
+                      }}
+                    >
                       {item.Results[0].Driver.givenName}{" "}
                       {item.Results[0].Driver.familyName}
                     </span>
-                    <span className="fw-bold px-1 text-black bg-info fst-italic">
+                    <span
+                      className="fw-bold px-1 text-black bg-info fst-italic cp"
+                      onClick={() => {
+                        navigate(
+                          "/ConstructorsResult/" +
+                            item.Results[0].Constructor?.constructorId +
+                            "/" +
+                            season2
+                        );
+                      }}
+                    >
                       {item.Results[0].Constructor.name}
                     </span>
                   </td>
@@ -90,9 +100,9 @@ const WinRacesInaSeason = (props) => {
                   <td
                     className={
                       " op col fw-bold " +
-                      (item.Results[0].FastestLap?.rank in [1, 2]
+                      (item.Results[0].FastestLap?.rank in [1, 2, 3, 4]
                         ? "text-danger"
-                        : "")
+                        : null)
                     }
                   >
                     {item.Results[0].FastestLap
@@ -104,7 +114,7 @@ const WinRacesInaSeason = (props) => {
                         item.Results[0].FastestLap?.AverageSpeed?.speed +
                         " kph | Lap: " +
                         item.Results[0].FastestLap.lap
-                      : ""}
+                      : null}
                   </td>
                 </tr>
               );

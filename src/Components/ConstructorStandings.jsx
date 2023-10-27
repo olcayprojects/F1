@@ -1,9 +1,10 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import Team from "./Team";
+import { useNavigate } from "react-router-dom";
 
 const ConstructorStandings = (props) => {
   const [sdata, setData] = useState();
+  let navigate = useNavigate();
 
   let url;
   if (props.season) {
@@ -17,7 +18,7 @@ const ConstructorStandings = (props) => {
         setData(
           data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings
         );
-        //console.log(data["MRData"]);
+        // console.log(data["MRData"].StandingsTable.season);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -69,8 +70,19 @@ const ConstructorStandings = (props) => {
                       ConstructorStandings.position
                     )}
                   </td>
-                  <td className="col op fw-bold text-warning ">
-                    <span className="bg-black p-2" style={{fontFamily:"Lucida Console"}}>
+                  <td className="col op fw-bold text-warning cp">
+                    <span
+                      className="bg-black p-2"
+                      style={{ fontFamily: "Lucida Console" }}
+                      onClick={() => {
+                        navigate(
+                          "/ConstructorsResult/" +
+                            ConstructorStandings?.Constructor?.constructorId +
+                            "/" +
+                            props.season
+                        );
+                      }}
+                    >
                       {ConstructorStandings.Constructor.name}
                     </span>
 
@@ -78,27 +90,19 @@ const ConstructorStandings = (props) => {
                     props.season ? (
                       <Team teamName={ConstructorStandings.Constructor.name} />
                     ) : (
-                      ""
+                      null
                     )} */}
                   </td>
                   <td className="col-2 fst-italic">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
                   <td className="col-1 text-center op text-info">
-                    <span
-                      className={
-                        "fw-bold bg-black d-block p-1" 
-                      }
-                    >
+                    <span className={"fw-bold bg-black d-block p-1"}>
                       {ConstructorStandings.points}
                     </span>
                   </td>
                   <td className="col-1 text-center fw-bold">
-                    <span
-                      className={
-                        "bg-black d-block p-1" 
-                      }
-                    >
+                    <span className={"bg-black d-block p-1"}>
                       {ConstructorStandings.wins}
                     </span>
                   </td>

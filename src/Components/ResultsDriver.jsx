@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import DriverDB from "./DriverDB";
 import Nav from "./Nav";
-
-import { DrvInfo } from "./DriverInfo";
 import { useNavigate } from "react-router-dom";
 
 const ResultsDriver = () => {
@@ -13,8 +11,6 @@ const ResultsDriver = () => {
   const [sdata, setData] = useState([]);
   //const { season2 = "2023" } = useParams();
 
-  const todate = (d) =>
-    new Date(d).toLocaleString("en-EN", { dateStyle: "long" });
   const { driver = "alonso" } = useParams();
   let drvgivenName = "";
   let drvfamilyName = "";
@@ -91,10 +87,9 @@ const ResultsDriver = () => {
                   return (
                     <tr key={index} className="text-danger align-middle">
                       <td className="col text-center">{item.season}</td>
-                      {console.log(item)}
                       <td
                         className={
-                          "col cp op " + (!item.Results ? "text-info" : "")
+                          "col cp op " + (!item.Results ? "text-info" : null)
                         }
                         onClick={() =>
                           item.Results
@@ -123,7 +118,7 @@ const ResultsDriver = () => {
                             ? item.raceName
                             : item.raceName + " Sprint"}
                         </b>{" "}
-                        ({todate(item.date)})
+                        ({new Date(item.date).toDateString()})
                       </td>
 
                       <td className={"col text-center "}>
@@ -203,7 +198,7 @@ const ResultsDriver = () => {
                               item?.SprintResults[0]?.FastestLap?.Time.time +
                               " | Lap: " +
                               item?.SprintResults[0]?.FastestLap?.lap
-                            : ""}
+                            : null}
                         </span>
                       </td>
                     </tr>

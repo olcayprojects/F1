@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
 import Pitstops from "./Pitstops";
 import Laptimes from "./Laptimes";
@@ -47,8 +47,6 @@ const F1Race = (props) => {
           setIsLoaded(true);
 
           setData(data["MRData"].RaceTable.Races);
-
-          //  console.log(sdata);
         })
         .catch((err) => {
           if (!err === "Unexpected token") {
@@ -141,9 +139,7 @@ const F1Race = (props) => {
                                   <b className="text-info bg-black p-2">2</b>
                                 ) : result.positionText === "3" ? (
                                   <b className="text-info bg-black p-2">3</b>
-                                ) : (
-                                  ""
-                                )
+                                ) : null
                               ) : (
                                 <b>{result.positionText}</b>
                               )}
@@ -181,9 +177,7 @@ const F1Race = (props) => {
                                       result.Driver?.familyName
                                     }
                                   />
-                                ) : (
-                                  ""
-                                )}
+                                ) : null}
                                 {result.Driver?.familyName}
                               </span>
 
@@ -193,7 +187,7 @@ const F1Race = (props) => {
                             </td>
 
                             <td
-                              className="col-3 cp p-0 ps-1"
+                              className="col-2 cp p-0 ps-1"
                               title={
                                 "Click go to " +
                                 result.Constructor.name +
@@ -242,7 +236,7 @@ const F1Race = (props) => {
                               {result.laps}
                             </td>
                             <td className="text-wrap text-center text-warning fw-bold p-0">
-                              <span className="bg-black p-1 w-75 d-inline-block">
+                              <span className="bg-black p-0 w-75 d-inline-block">
                                 {result.Time?.time
                                   ? result.Time.time
                                   : result.status}
@@ -266,7 +260,7 @@ const F1Race = (props) => {
                                 "fw-bold op text-end cp p-0 " +
                                 (result.FastestLap?.rank in ["1", "2", "3", "4"]
                                   ? "text-danger"
-                                  : "")
+                                  : null)
                               }
                               onClick={() => {
                                 navigate(
@@ -279,21 +273,17 @@ const F1Race = (props) => {
                                 );
                               }}
                             >
-                              <span className="bg-black p-1 me-1 d-inline-block w-25 text-center">
+                              <span className="bg-black p-0 me-1 d-inline-block w-25 text-center">
                                 {result.FastestLap?.rank}
                               </span>
                               {result.FastestLap ? (
                                 <i className="bi bi-forward-fill fs-5 px-1"></i>
-                              ) : (
-                                ""
-                              )}
+                              ) : null}
                               {result.FastestLap ? (
-                                <span className="border p-1 border-black border-4 bg-black">
+                                <span className="border p-0 border-black border-4 bg-black">
                                   {result.FastestLap?.Time.time}
                                 </span>
-                              ) : (
-                                ""
-                              )}
+                              ) : null}
                             </td>
                             <td className="text-center fw-bold text-warning">
                               {result.FastestLap?.lap}
@@ -308,9 +298,7 @@ const F1Race = (props) => {
                                     {result?.FastestLap?.AverageSpeed.units}
                                   </span>
                                 </>
-                              ) : (
-                                ""
-                              )}
+                              ) : null}
                             </td>
                           </tr>
                         );

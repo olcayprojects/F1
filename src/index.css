@@ -17,20 +17,17 @@ body {
 }
 
 .blink {
-  animation: blinker 5s reverse infinite;
-  background-color: rgba(0, 0, 0);
-  color: rgba(255, 0, 0, 0.9);
+  /* animation: blinker .1s alternate infinite; */
+  color: red;
 
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 @keyframes blinker {
-  1% {
-    color: black;
-    background-color: red;
+  50% {
+    opacity: 0.9;
   }
-  2% {
-    color: red;
-    background-color: black;
+  50% {
+    color: black;
   }
 }
 
@@ -59,40 +56,11 @@ select {
   opacity: 0.9;
 }
 
-.carousel img {
-}
-/* 
-img:hover {
-  transform: scaleX(-1);
-} */
-
 thead th {
   background-color: red !important;
   color: black !important;
 }
 
-.imgrun {
-  position: relative;
-  /* animation-name: example; */
-  animation-duration: 6s;
-  animation-delay: 2s;
-}
-
-@keyframes example {
-  0% {
-    left: -600px;
-  }
-  25% {
-    left: 20px;
-  }
-  75% {
-    transform: scaleX(-1);
-    left: -20px;
-  }
-  100% {
-    left: 0px;
-  }
-}
 .abc1:hover {
   color: red !important;
   background-color: black !important;

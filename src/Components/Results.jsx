@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 
 import axios from "axios";
@@ -7,8 +6,6 @@ import axios from "axios";
 const Results = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [sdata, setData] = useState([]);
-
-  let navigate = useNavigate();
 
   // const timeMS = (d) => new Date(d);
   //const { season2 = "2023" } = useParams();
@@ -39,9 +36,9 @@ const Results = (props) => {
     return sdata?.Results?.length > 0 ? (
       <table className="table table-dark table-striped table-bordered">
         <caption className="text-center bg-dark text-danger caption-top">
-          <b className="bg-secondary fs-5 text-light px-2 p-1">
+          <span className="bg-black text-secondary fs-5 p-1 fw-bold">
             #{sdata.round} {sdata.raceName}
-          </b>
+          </span>
         </caption>
         <thead className="text-white border-dark">
           <tr className="text-black ">
@@ -77,9 +74,7 @@ const Results = (props) => {
           })}
         </tbody>
       </table>
-    ) : (
-      ""
-    );
+    ) : null;
   }
 };
 

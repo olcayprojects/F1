@@ -63,7 +63,7 @@ const Laptimes = (props) => {
       </tbody>
     </table>
   ) : (
-    ""
+    null
   );
 };
 

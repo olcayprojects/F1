@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import Nav from "./Nav";
@@ -8,10 +8,11 @@ const Sprint = () => {
   const { season2 = "2023" } = useParams();
   const { rounds = "1" } = useParams();
   const { sprintDate = null } = useParams();
-  const dateTime = (d, t) => new Date(d + " " + t);
+  // const dateTime = (d, t) => new Date(d + " " + t);
 
   const [data, setData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
+  let navigate = useNavigate();
 
   let url = `https://ergast.com/api/f1/${season2}/${rounds}/sprint.json`;
 
@@ -63,7 +64,12 @@ const Sprint = () => {
                   <tr key={index} className="align-middle">
                     <td className="col">{item.positionText}</td>
                     <td className="col op">{item.grid}</td>
-                    <td className="col fs-5 text-info">
+                    <td
+                      className="col fs-5 text-info cp"
+                      onClick={() => {
+                        navigate("/ResultsDriver/" + item.Driver.driverId);
+                      }}
+                    >
                       <span className="bg-black p-1">
                         {item.Driver.givenName} {item.Driver.familyName}
                       </span>
@@ -93,7 +99,7 @@ const Sprint = () => {
                         ? item.FastestLap?.Time.time +
                           " | Lap: " +
                           item.FastestLap?.lap
-                        : ""}
+                        : null}
                     </td>
                   </tr>
                 );

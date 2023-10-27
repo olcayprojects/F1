@@ -4,8 +4,6 @@ import axios from "axios";
 //import ResultsDriver from "./ResultsDriver";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
-import { DrvInfo } from "./DriverInfo";
-import Team from "./Team";
 
 const DriverStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -41,12 +39,12 @@ const DriverStandings = (props) => {
     return <Loading />;
   } else {
     return (
-      <div className="container p-0">
+      <div className="container-fluid p-0">
         <div className="table-responsive">
           <table className="table table-dark table-striped table-bordered">
             <thead className="">
               <tr className="text-black">
-                <th scope="col" className="bg-danger text-center p-0">
+                <th scope="col" className="bg-danger text-center">
                   P
                 </th>
                 <th scope="col" className="text-center bg-danger op">
@@ -78,7 +76,7 @@ const DriverStandings = (props) => {
                         driver.position
                       )}
                     </td>
-                    <td className="text-center op text-danger">
+                    <td className="text-center op text-danger fw-bold">
                       {driver.Driver.code}
                     </td>
                     <td
@@ -103,7 +101,7 @@ const DriverStandings = (props) => {
                         {driver.Driver.givenName} {driver.Driver.familyName}
                         {driver.Driver.permanentNumber
                           ? "(" + driver.Driver.permanentNumber + ")"
-                          : ""}
+                          : null}
                       </b>{" "}
                       <span className="fw-light text-info">
                         {dateTime(driver.Driver.dateOfBirth)}{" "}

@@ -47,7 +47,7 @@ const DriverDB = (props) => {
         </span>
         <span className="">Date of birth: </span>
         <span className="fw-bold">
-          {data?.dateBorn} <br />
+          {new Date(data?.dateBorn).toDateString()} <br />
         </span>
         <span className="">Place of birth: </span>
         <span className="fw-bold">{data?.strBirthLocation}</span>

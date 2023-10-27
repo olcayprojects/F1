@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Constructor from "./Constructor";
 import Nav from "./Nav";
 
@@ -9,6 +9,8 @@ import Team from "./Team";
 const ConstructorsResult = () => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  let navigate = useNavigate();
 
   const { constructors = "red_bull" } = useParams();
   const [cons, setCons] = useState(constructors);
@@ -88,7 +90,14 @@ const ConstructorsResult = () => {
                       return (
                         <tr key={index} className="">
                           <td className="op">{item.positionText}</td>
-                          <td>
+                          <td
+                            className="cp"
+                            onClick={() => {
+                              navigate(
+                                "/ResultsDriver/" + item.Driver.driverId
+                              );
+                            }}
+                          >
                             {item.Driver.givenName +
                               " " +
                               item.Driver.familyName}
@@ -107,7 +116,7 @@ const ConstructorsResult = () => {
                                 item?.FastestLap?.AverageSpeed?.units +
                                 " - Lap: " +
                                 item?.FastestLap?.lap
-                              : ""}
+                              : null}
                           </td>
                           <td className="text-center op">{item.laps}</td>
                           <td className="text-center">{item.grid}</td>
