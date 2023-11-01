@@ -39,6 +39,7 @@ const Next = () => {
                 <>
                   <span>Sprint: </span>
                   <span>{dateTime(data.Sprint?.date, data.Sprint?.time)}</span>
+                  <i className="bi bi-clock-fill text-info"></i>
                 </>
               ) : null}
               <span className="text-success">First Practice: </span>

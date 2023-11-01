@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import DriverId from "./DriverId";
 import Loading from "./Loading";
 
@@ -8,10 +8,14 @@ const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
+  const { season2 = "2023" } = useParams();
+  const { rounds = 0 } = useParams();
 
   let url = "";
-  if (props.season) {
+  if (props.season !== undefined) {
     url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json?limit=100`;
+  } else {
+    url = `https://ergast.com/api/f1/${season2}/${rounds}/pitstops.json?limit=100`;
   }
 
   useEffect(() => {

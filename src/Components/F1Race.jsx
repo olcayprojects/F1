@@ -49,9 +49,7 @@ const F1Race = (props) => {
           setData(data["MRData"].RaceTable.Races);
         })
         .catch((err) => {
-          if (!err === "Unexpected token") {
-            console.log("Hata:", err.message);
-          }
+          console.log("Hata:", err.message);
         });
     }
     fetchData();
@@ -80,10 +78,13 @@ const F1Race = (props) => {
                 className="bg-black p-0 pt-1 container-fluid"
               >
                 <h1 className="text-center text-warning font-monospace fst-italic fw-bold bg-black border border-danger border-5">
-                  {item.raceName} #{item.round}{" "}
-                  <i className="text-info bi bi-calendar3"></i>{" "}
-                  {item.time ? dateTime(item.date, item.time) : item.date}{" "}
-                  <i className="text-primary bi bi-calendar3"></i>
+                  <span>
+                    {item.raceName} #{item.round}
+                  </span>
+                  <i className="text-info bi bi-calendar3">
+                    {item.time ? dateTime(item.date, item.time) : item.date}
+                  </i>
+                  <i className="text-info bi bi-calendar3"></i>
                 </h1>
                 <div className="table-responsive-sm">
                   <table className="table table-dark table-striped table-bordered border-black">

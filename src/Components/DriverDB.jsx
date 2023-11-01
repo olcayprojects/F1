@@ -4,6 +4,7 @@ import Carousel from "react-bootstrap/Carousel";
 
 const DriverDB = (props) => {
   const [data, setData] = useState();
+  const [err, setErr] = useState(true);
 
   let url = "";
   if (props.drv === "Carlos Sainz") {
@@ -21,13 +22,15 @@ const DriverDB = (props) => {
         })
         .catch((err) => {
           console.log(err.message);
+          setErr(false)
         });
     }
     fetchData();
   }, [url]);
 
   return (
-    <>
+    err?
+        <>
       <img
         className="img-fluid w-25 "
         style={{ width: "", height: "" }}
@@ -59,6 +62,7 @@ const DriverDB = (props) => {
         {data?.strDescriptionEN}
       </pre>
     </>
+    :null
   );
 };
 

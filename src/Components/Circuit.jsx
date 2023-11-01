@@ -10,14 +10,14 @@ import {
   TableRow,
   TableCell,
   Paper,
-  TablePagination,
+  // TablePagination,
 } from "@mui/material";
 import { tableCellClasses } from "@mui/material/TableCell";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { TableSortLabel } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { ClassNames } from "@emotion/react";
+// import { ClassNames } from "@emotion/react";
 import Nav from "./Nav";
 
 const darkTheme = createTheme({
@@ -50,7 +50,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const Circuit = (props) => {
   const navigate = useNavigate();
-
   const { cname = "Austrian Grand Prix" } = useParams();
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

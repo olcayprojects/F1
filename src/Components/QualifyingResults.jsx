@@ -1,23 +1,28 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
   let navigate = useNavigate();
 
+  const { season2 = "2023" } = useParams();
+  const { rounds = 0 } = useParams();
+
   let url = "";
-  if (props.season) {
+  if (props.season !== undefined) {
     url = `https://ergast.com/api/f1/${props.season}/${props.round}/qualifying.json`;
+  } else {
+    url = `https://ergast.com/api/f1/${season2}/${rounds}/qualifying.json`;
   }
 
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
+        setIsLoaded(false);
         setData(data["MRData"].RaceTable.Races);
-        setIsLoaded(true);
         // console.log(data["MRData"].RaceTable.Races[0].raceName);
       })
       .catch((err) => {
@@ -28,7 +33,7 @@ const QualifyingResults = (props) => {
       });
   }, [url]);
 
-  if (!isLoaded) {
+  if (isLoaded) {
     return <Loading />;
   }
 
@@ -87,7 +92,7 @@ const QualifyingResults = (props) => {
                               "/ConstructorsResult/" +
                                 qualifying?.Constructor?.constructorId +
                                 "/" +
-                                2023
+                                item.season
                             );
                           }}
                         >

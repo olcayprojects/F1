@@ -1,13 +1,21 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import DriverId from "./DriverId";
+import { useParams } from "react-router-dom";
 
 const Laptimes = (props) => {
   const [sdata, setData] = useState([]);
+  const [number, setNumber] = useState([]);
+
+  const { season2 = "2023" } = useParams();
+  const { rounds = 0 } = useParams();
 
   let urlx = "";
   if (props.season) {
     urlx = `https://ergast.com/api/f1/${props.season}/${props.round}/laps/${props.lapsx}.json`;
+  } else {
+    urlx = `https://ergast.com/api/f1/${season2}/18/laps.json?limit=100&offset=1000`;
+    // urlx = `https://ergast.com/api/f1/${season2}/${rounds}/laps.json`;
   }
 
   const fetchData = async (url) => {
@@ -19,8 +27,7 @@ const Laptimes = (props) => {
             a["time"] > b["time"] ? 1 : -1
           )
         );
-
-        // console.log(data["MRData"].RaceTable.Races[0].Laps);
+        setNumber(data["MRData"].RaceTable.Races[0].Laps[0].number);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -33,10 +40,12 @@ const Laptimes = (props) => {
     fetchData(urlx);
   }, [urlx]);
 
-  return sdata?.length > 0 ? (
+  return sdata ? (
     <table className="table table-dark table-striped table-bordered">
       <caption className="text-center bg-dark text-danger caption-top">
-        <b className="bg-black px-2 p-1">LAP {props.lapsx}</b>
+        <span className="fw-bold bg-black px-2 p-1">
+          LAP <span className="text-warning">{number}</span>
+        </span>
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
@@ -62,9 +71,7 @@ const Laptimes = (props) => {
         })}
       </tbody>
     </table>
-  ) : (
-    null
-  );
+  ) : null;
 };
 
 export default Laptimes;
