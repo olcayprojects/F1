@@ -35,8 +35,8 @@ const Results = (props) => {
   } else {
     return sdata?.Results?.length > 0 ? (
       <table className="table table-dark table-striped table-bordered">
-        <caption className="text-center bg-dark text-danger caption-top">
-          <span className="bg-black text-secondary fs-5 p-1 fw-bold">
+        <caption className="text-center border border-danger border-5 text-danger caption-top">
+          <span className="bg-dark text-light px-3 fs-5 fw-bold">
             #{sdata.round} {sdata.raceName}
           </span>
         </caption>

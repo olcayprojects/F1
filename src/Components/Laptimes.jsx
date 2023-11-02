@@ -42,16 +42,22 @@ const Laptimes = (props) => {
 
   return sdata ? (
     <table className="table table-dark table-striped table-bordered">
-      <caption className="text-center bg-dark text-danger caption-top">
+      <caption className="text-center bg-dark text-danger border border-black border-5 caption-top">
         <span className="fw-bold bg-black px-2 p-1">
           LAP <span className="text-warning">{number}</span>
         </span>
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
-          <th className="bg-danger">DRIVER</th>
-          <th className="text-center">P</th>
-          <th className="bg-danger text-center">TIME</th>
+          <th className="bg-danger text-center">
+            <span className="bg-black text-danger px-1">DRIVER</span>
+          </th>
+          <th className="text-center">
+            <span className="bg-black text-danger px-1">P</span>
+          </th>
+          <th className="bg-danger text-center">
+            <span className="bg-black text-danger px-1">TIME</span>
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -61,11 +67,19 @@ const Laptimes = (props) => {
           return (
             <tr key={index} className="">
               <td key={index} className="op text-warning fw-bold">
-                {<DriverId Id={LapTimes.driverId} ls={0} />}
-                {/* {LapTimes.driverId} */}
+                <span className="bg-black d-block px-1 text-center">
+                  {<DriverId Id={LapTimes.driverId} ls={0} />}
+                  {/* {LapTimes.driverId} */}
+                </span>
               </td>
-              <td className="text-center fw-bold">{LapTimes.position}</td>
-              <td className="text-center op">{LapTimes.time}</td>
+              <td className="text-center text-primary fw-bold">
+                <span className="bg-black d-block px-1">
+                  {LapTimes.position}
+                </span>
+              </td>
+              <td className="text-center op text-success fw-bold">
+                <span className="bg-black px-1">{LapTimes.time}</span>
+              </td>
             </tr>
           );
         })}
