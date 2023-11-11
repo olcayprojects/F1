@@ -53,7 +53,7 @@ const Sprint = () => {
                 <th className="">DRIVER</th>
                 <th className="bg-danger">CONSTRUCTOR</th>
                 <th className="text-center">LAPS</th>
-                <th className="bg-danger">TIME</th>
+                <th className="bg-danger text-center">TIME</th>
                 <th className="text-center">PTS</th>
                 <th className="bg-danger">FASTEST LAP</th>
               </tr>
@@ -88,8 +88,10 @@ const Sprint = () => {
                       </span>
                     </td>
                     <td className="col text-center">{item.laps}</td>
-                    <td className="col op">
-                      {item.Time?.time ? item.Time?.time : item.status}
+                    <td className="col op text-center">
+                      <span className="bg-black d-block">
+                        {item.Time?.time ? item.Time?.time : item.status}
+                      </span>
                     </td>
                     <td className="col text-center text-danger fw-bolder">
                       {item.points}

@@ -281,7 +281,7 @@ const F1Race = (props) => {
                                 <i className="bi bi-forward-fill fs-5 px-1"></i>
                               ) : null}
                               {result.FastestLap ? (
-                                <span className="border p-0 border-black border-4 bg-black">
+                                <span className="border me-1 p-0 border-black border-4 bg-black">
                                   {result.FastestLap?.Time.time}
                                 </span>
                               ) : null}
@@ -292,7 +292,7 @@ const F1Race = (props) => {
                             <td className="op text-start p-0">
                               {result?.FastestLap?.AverageSpeed.speed ? (
                                 <>
-                                  <span className="fw-bold">
+                                  <span className="ms-1 fw-bold">
                                     {result?.FastestLap?.AverageSpeed.speed}{" "}
                                   </span>
                                   <span className="fst-italic text-secondary">

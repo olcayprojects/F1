@@ -99,11 +99,11 @@ const QualifyingResults = (props) => {
                           {qualifying.Constructor.name}
                         </span>
                       </td>
-                      <td className="col-2 text-center fw-bold">
+                      <td className="col-2 text-center ">
                         <span
                           className={
                             qualifying?.Q3
-                              ? "bg-black d-block text-success p-2 fw-bold align-middle"
+                              ? "bg-black d-block text-success fw-bold p-2 align-middle"
                               : null
                           }
                         >

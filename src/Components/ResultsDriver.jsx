@@ -112,15 +112,16 @@ const ResultsDriver = () => {
                               )
                         }
                       >
-                        Round#{item.round}{" "}
-                        <b>
+                        <span className="">Round#{item.round} </span>
+                        <span className="fw-bold text-decoration-underline">
                           {item.Results
                             ? item.raceName
                             : item.raceName + " Sprint"}
-                        </b>{" "}
-                        ({new Date(item.date).toDateString()})
+                        </span>{" "}
+                        <span className="fst-italic">
+                          ({new Date(item.date).toDateString()})
+                        </span>
                       </td>
-
                       <td className={"col text-center "}>
                         {item.Results ? (
                           item?.Results[0]?.positionText < 4 ? (

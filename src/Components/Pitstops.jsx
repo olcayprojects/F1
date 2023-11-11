@@ -58,7 +58,7 @@ const Pitstops = (props) => {
                     <tr key={index} className="align-middle">
                       <td className="col-1 op">{index + 1}</td>
                       <td
-                        className="col-4 text-info cp"
+                        className="col-4 fw-bold text-info cp"
                         style={{ textTransform: "" }}
                         onClick={() => {
                           navigate("/ResultsDriver/" + ps.driverId);
