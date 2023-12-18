@@ -124,7 +124,7 @@ const F1Race = (props) => {
                             LAPS
                           </span>
                           <br />
-                          <span className="text-white">SPEED</span>
+                          <span className="text-white">AVGSPEED</span>
                         </th>
                       </tr>
                     </thead>

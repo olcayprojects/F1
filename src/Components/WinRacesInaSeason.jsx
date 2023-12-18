@@ -69,11 +69,12 @@ const WinRacesInaSeason = (props) => {
                         );
                       }}
                     >
-                      {item.Results[0].Driver.givenName}{" "}
-                      {item.Results[0].Driver.familyName}
+                      {item.Results[0].Driver.givenName +
+                        " " +
+                        item.Results[0].Driver.familyName}
                     </span>
                     <span
-                      className="fw-bold px-1 text-black bg-info fst-italic cp"
+                      className="fw-bold px-2 p-1 text-black bg-info fst-italic cp"
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +
@@ -87,14 +88,20 @@ const WinRacesInaSeason = (props) => {
                     </span>
                   </td>
                   <td className="col text-center fw-bold">
-                    {item.Results[0].points}
+                    <span className="bg-black px-1 p-1 d-block">
+                      {item.Results[0].points}
+                    </span>
                   </td>
 
                   <td className="col text-center op fw-bold">
-                    {item.Results[0].laps}
+                    <span className="bg-black px-1 p-1 d-block">
+                      {item.Results[0].laps}
+                    </span>
                   </td>
                   <td className="col text-center fw-bold">
-                    {item.Results[0].Time.time}
+                    <span className="bg-black px-1 p-1 d-block">
+                      {item.Results[0].Time.time}
+                    </span>
                   </td>
 
                   <td
@@ -105,16 +112,20 @@ const WinRacesInaSeason = (props) => {
                         : null)
                     }
                   >
-                    {item.Results[0].FastestLap
-                      ? item.Results[0].FastestLap?.rank +
-                        " | " +
-                        "Time: " +
-                        item.Results[0].FastestLap?.Time?.time +
-                        " | AvgSpd: " +
-                        item.Results[0].FastestLap?.AverageSpeed?.speed +
-                        " kph | Lap: " +
-                        item.Results[0].FastestLap.lap
-                      : null}
+                    {item.Results[0].FastestLap ? (
+                      <span className="bg-black px-2 p-1">
+                        {item.Results[0].FastestLap
+                          ? item.Results[0].FastestLap?.rank +
+                            ". | " +
+                            "Time: " +
+                            item.Results[0].FastestLap?.Time?.time +
+                            " | AvgSpd: " +
+                            item.Results[0].FastestLap?.AverageSpeed?.speed +
+                            " kph | Lap: " +
+                            item.Results[0].FastestLap.lap
+                          : null}
+                      </span>
+                    ) : null}
                   </td>
                 </tr>
               );

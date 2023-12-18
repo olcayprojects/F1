@@ -79,16 +79,17 @@ const RaceSchedule = (props) => {
                   className={
                     "col cp  text-nowrap " +
                     (dateTime(rs.date, rs.time) < dateNow
-                      ? "fw-bold text-decoration-line-through"
-                      : (rs.date.split("-")[1] ===
+                      ? "fw-bold"
+                      : // ? "fw-bold text-decoration-line-through"
+                      (rs.date.split("-")[1] ===
                           dateNow.toISOString().split("T")[0].split("-")[1]) &
-                        (props.season === "2023")
+                        (props.season === new Date().getFullYear())
                       ? "  text-center fw-bold fst-normal"
                       : null)
                   }
                   onClick={() =>
                     dateTime(rs.date, rs.time) < dateNow ||
-                    props.season !== "2023"
+                    props.season !== new Date().getFullYear()
                       ? navigate("/F1Race/" + props.season + "/" + rs.round)
                       : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
                   }
@@ -112,8 +113,9 @@ const RaceSchedule = (props) => {
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
-                      ? "fw-bold text-decoration-line-through"
-                      : null)
+                      ? "fw-bold"
+                      : //  ? "fw-bold text-decoration-line-through"
+                        null)
                   }
                   onClick={() =>
                     rs.Sprint

@@ -39,7 +39,7 @@ const DriverStandings = (props) => {
     return <Loading />;
   } else {
     return (
-      <div className="container-fluid p-0">
+      <div className="container p-0">
         <div className="table-responsive">
           <table className="table table-dark table-striped table-bordered">
             <thead className="">
@@ -65,7 +65,7 @@ const DriverStandings = (props) => {
               {sdata?.map((driver, indexedDB) => {
                 return (
                   <tr key={driver.Driver.driverId} className="align-middle">
-                    <td className="text-center">
+                    <td className="text-center fs-5">
                       {driver.position < 4 ? (
                         <i
                           className={
@@ -77,7 +77,11 @@ const DriverStandings = (props) => {
                       )}
                     </td>
                     <td className="text-center op text-danger fw-bold">
-                      {driver.Driver.code}
+                      {driver.Driver.code ? (
+                        <span className="bg-black p-1 d-block">
+                          {driver.Driver.code}
+                        </span>
+                      ) : null}
                     </td>
                     <td
                       className="cp"
@@ -97,35 +101,32 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                      <b className="text-info bg-black px-1">
+                      <b className="text-info bg-black px-1 p-1 fs-5">
                         {driver.Driver.givenName} {driver.Driver.familyName}
                         {driver.Driver.permanentNumber
                           ? "(" + driver.Driver.permanentNumber + ")"
                           : null}
                       </b>{" "}
-                      <span className="fw-light text-info">
-                        {dateTime(driver.Driver.dateOfBirth)}{" "}
+                      <span className="fw-light text-secondary fw-bold">
+                        {dateTime(driver.Driver.dateOfBirth)}(
+                        {driver.Driver.nationality})
                       </span>
-                      <span className="text-info">
-                        {driver.Driver.nationality}
-                      </span>{" "}
                       <i className="fw-light">
-                        <b className="text-warning bg-black px-1">
+                        <b className="text-warning bg-black px-1 p-1 mx-1">
                           {driver.Constructors[0].name}
                         </b>
                       </i>
                       <i className="text-warning">
-                        {" "}
                         {driver.Constructors[0].nationality}
                       </i>
                     </td>
                     <td className="text-center op text-warning">
-                      <span className={"bg-black p-1 fw-bold  d-block"}>
+                      <span className={"bg-black p-1 fw-bold d-block fs-5"}>
                         {driver.points}
                       </span>
                     </td>
                     <td className="text-center text-primary">
-                      <span className={"bg-black fw-bold p-1 d-block"}>
+                      <span className={"bg-black fw-bold p-1 d-block fs-5"}>
                         {driver.wins}
                       </span>
                     </td>
