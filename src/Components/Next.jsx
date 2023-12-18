@@ -33,32 +33,58 @@ const Next = () => {
               <i className="bi bi-calendar3 text-warning"></i>
               <span className="text-success">{data.raceName}</span>
               <i className="bi bi-calendar3 text-warning"></i>
-              <span>{dateTime(data?.date, data.time)}</span>
-              <i className="bi bi-clock-fill text-info"></i>
+              <span>
+                {data.time ? dateTime(data?.date, data.time) : data.date}
+              </span>
               {data.Sprint ? (
                 <>
+                  <i className="bi bi-clock-fill text-info"></i>
                   <span>Sprint: </span>
                   <span>{dateTime(data.Sprint?.date, data.Sprint?.time)}</span>
                   <i className="bi bi-clock-fill text-info"></i>
                 </>
               ) : null}
-              <span className="text-success">First Practice: </span>
-              <span>
-                {dateTime(data.FirstPractice?.date, data.FirstPractice?.time)}
-              </span>
-              <i className="bi bi-clock-fill text-info"></i>
-              <span className="text-success">Second Practice: </span>
-              {dateTime(data.SecondPractice?.date, data.SecondPractice?.time)}
-              {data.ThirdPractice?.date ? (
+              {data.FirstPractice?.date ? (
                 <>
+                  <span className="text-success">First Practice: </span>
+                  <span>
+                    {dateTime(
+                      data.FirstPractice?.date,
+                      data.FirstPractice?.time
+                    )}
+                  </span>
                   <i className="bi bi-clock-fill text-info"></i>
-                  <span className="text-success">Third Practice: </span>
-                  {dateTime(data.ThirdPractice?.date, data.ThirdPractice?.time)}
+                  <span className="text-success">Second Practice: </span>
+                  {dateTime(
+                    data.SecondPractice?.date,
+                    data.SecondPractice?.time
+                  )}
+                  {data.ThirdPractice?.date ? (
+                    <>
+                      <i className="bi bi-clock-fill text-info"></i>
+                      <span className="text-success">Third Practice: </span>
+                      {dateTime(
+                        data.ThirdPractice?.date,
+                        data.ThirdPractice?.time
+                      )}
+                    </>
+                  ) : null}
+                  <i className="bi bi-clock-fill text-info"></i>
+                  <span className="text-success">Qualifying: </span>
+                  {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
                 </>
-              ) : null}
-              <i className="bi bi-clock-fill text-info"></i>
-              <span className="text-success">Qualifying: </span>
-              {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
+              ) : (
+                <>
+                  <span className="text-warning">
+                    {" "}
+                    | Season: {data.season} Round: {data.round}
+                  </span>
+                  <span className="text-info">
+                    {" "}
+                    | {data.Circuit.circuitName}
+                  </span>
+                </>
+              )}
             </marquee>
           </h1>
         );
