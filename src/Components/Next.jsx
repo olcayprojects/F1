@@ -32,7 +32,7 @@ const Next = () => {
               <span className="text-primary">Next Race </span>
               <i className="bi bi-calendar3 text-warning"></i>
               <span className="text-success">{data.raceName}</span>
-              <i className="bi bi-calendar3 text-warning"></i>
+              <i className="bi bi-calendar3 text-warning"> </i>
               <span>
                 {data.time ? dateTime(data?.date, data.time) : data.date}
               </span>
