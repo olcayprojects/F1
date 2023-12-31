@@ -237,10 +237,16 @@ const F1Race = (props) => {
                               {result.laps}
                             </td>
                             <td className="text-wrap text-center text-warning fw-bold p-0">
-                              <span className="bg-black p-0 w-75 d-inline-block">
-                                {result.Time?.time
-                                  ? result.Time.time
-                                  : result.status}
+                              <span className="bg-black py-1 w-75 d-inline-block">
+                                {result.Time?.time ? (
+                                  result.Time.time
+                                ) : result.status[0] === "+" ? (
+                                  <span className="text-secondary">{result.status}</span>
+                                ) : (
+                                  <span className="text-danger">
+                                    {result.status.toUpperCase()}
+                                  </span>
+                                )}
                               </span>
                             </td>
 

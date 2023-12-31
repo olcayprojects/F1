@@ -168,10 +168,10 @@ const ResultsDriver = () => {
                         {item?.Results
                           ? item?.Results[0]?.Time?.time
                             ? item?.Results[0]?.Time?.time
-                            : item?.Results[0]?.status
+                            : <span className="text-danger">{item?.Results[0]?.status}</span>
                           : item?.SprintResults[0]?.Time?.time
                           ? item?.SprintResults[0]?.Time?.time
-                          : item?.SprintResults[0]?.status}
+                          : <span className="text-danger">{item?.SprintResults[0]?.status}</span>}
                       </td>
                       <td className=" text-center col op">
                         {item?.Results

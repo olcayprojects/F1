@@ -66,10 +66,17 @@ const Results = (props) => {
                 <td className="p-0 ps-1 op">{Results.Constructor.name}</td>
                 <td className="p-0 text-center">{Results.laps}</td>
                 <td className="text-center p-0 op">
-                  {Results?.Time?.time ? Results?.Time.time : Results?.status}
+                  {Results?.Time?.time ? (
+                    Results?.Time.time
+                  ) : Results?.status[0] === "+" ? (
+                    <span className="text-secondary">{Results?.status}</span>
+                  ) : (
+                    <span className="text-danger text-uppercase">{Results?.status}</span>
+                  )}
                 </td>
                 <td className="text-center p-0">{Results?.points}</td>
               </tr>
+
             );
           })}
         </tbody>
