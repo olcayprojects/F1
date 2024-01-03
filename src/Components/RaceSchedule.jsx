@@ -59,7 +59,7 @@ const RaceSchedule = (props) => {
                   "align-middle col " +
                   ((rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1]) &
-                  (props.season === "2023")
+                  (props.season === "2024")
                     ? " text-center fw-bold "
                     : " ")
                 }
@@ -104,7 +104,7 @@ const RaceSchedule = (props) => {
                         dateStyle: "short",
                         timeStyle: "short",
                       })
-                    : rs.date}
+                    : new Date(rs.date).toLocaleDateString('tr-TR')}
                 </td>
                 <td
                   title={titleSprint}
