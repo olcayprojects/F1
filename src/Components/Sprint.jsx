@@ -5,7 +5,7 @@ import Loading from "./Loading";
 import Nav from "./Nav";
 
 const Sprint = () => {
-  const { season2 = "2023" } = useParams();
+  const { season2 = "2024" } = useParams();
   const { rounds = "1" } = useParams();
   const { sprintDate = null } = useParams();
   // const dateTime = (d, t) => new Date(d + " " + t);
@@ -78,7 +78,17 @@ const Sprint = () => {
                         {item.Driver.nationality}
                       </span>
                     </td>
-                    <td className="col op fs-5 fst-italic text-warning">
+                    <td
+                      className="col op fs-5 fst-italic text-warning cp"
+                      onClick={() => {
+                        navigate(
+                          "/ConstructorsResult/" +
+                            item?.Constructor?.constructorId +
+                            "/" +
+                            season2
+                        );
+                      }}
+                    >
                       <span className="bg-black p-1">
                         {item.Constructor.name}
                       </span>
