@@ -60,9 +60,14 @@ const ResultsDriver = () => {
         <Nav />
 
         <div className="container-fluid text-center text-light">
-          <h2>
-            {drvgivenName} {drvfamilyName}
-          </h2>
+          <h4 className="">
+            <span className="text-black bg-info px-2  fw-bold">
+              {drvgivenName}
+            </span>
+            <span className="text-black bg-danger px-2  fw-bold">
+              {drvfamilyName}
+            </span>
+          </h4>
           {<DriverDB drv={drvgivenName + " " + drvfamilyName} />}
         </div>
         <div className="table-responsive-sm">
@@ -165,13 +170,21 @@ const ResultsDriver = () => {
                           : item?.SprintResults[0]?.laps}
                       </td>
                       <td className="text-center text-warning col">
-                        {item?.Results
-                          ? item?.Results[0]?.Time?.time
-                            ? item?.Results[0]?.Time?.time
-                            : <span className="text-danger">{item?.Results[0]?.status}</span>
-                          : item?.SprintResults[0]?.Time?.time
-                          ? item?.SprintResults[0]?.Time?.time
-                          : <span className="text-danger">{item?.SprintResults[0]?.status}</span>}
+                        {item?.Results ? (
+                          item?.Results[0]?.Time?.time ? (
+                            item?.Results[0]?.Time?.time
+                          ) : (
+                            <span className="text-danger">
+                              {item?.Results[0]?.status}
+                            </span>
+                          )
+                        ) : item?.SprintResults[0]?.Time?.time ? (
+                          item?.SprintResults[0]?.Time?.time
+                        ) : (
+                          <span className="text-danger">
+                            {item?.SprintResults[0]?.status}
+                          </span>
+                        )}
                       </td>
                       <td className=" text-center col op">
                         {item?.Results
