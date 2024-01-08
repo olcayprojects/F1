@@ -17,7 +17,7 @@ const ConstructorsResult = () => {
 
   const dateTime = (d) => new Date(d).toDateString();
 
-  const { season = "2020" } = useParams();
+  const { season = "2024" } = useParams();
 
   let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json?limit=100`;
 
@@ -51,7 +51,7 @@ const ConstructorsResult = () => {
             onChange={(e) => setCons(e.target.value)}
           >
             <option value="" hidden>
-              Select Constructors
+              {sdata[0]?.Results[0]?.Constructor?.name}
             </option>
             <Constructor year={season} />
           </select>
