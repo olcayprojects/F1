@@ -15,19 +15,32 @@ body {
 .tableColumnFixed {
   table-layout: fixed;
 }
-
-.blink {
-  /* animation: blinker .1s alternate infinite; */
-  color: red;
-
+.mar {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
+
+.blink {
+  animation: blinker 1.8s alternate infinite;
+}
+.blink2 {
+  animation: blinker2 2s alternate infinite;
+}
 @keyframes blinker {
-  50% {
-    opacity: 0.9;
+  6% {
+    background-color: black;
   }
-  50% {
-    color: black;
+  5% {
+    background-color: cyan;
+    color: red !important;
+  }
+}
+@keyframes blinker2 {
+  6% {
+    background-color: black;
+  }
+  5% {
+    background-color: red;
+    color: red !important;
   }
 }
 

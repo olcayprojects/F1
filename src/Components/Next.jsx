@@ -28,13 +28,15 @@ const Next = () => {
           });
         return (
           <h1 key={index} className="bg-black mt-1 m-0" style={{}}>
-            <marquee className="blink bg-dark" behavior="" scrollamount="6">
+            <marquee className="" behavior="" scrollamount="8">
               <span className="text-primary">Next Race </span>
-              <i className="bi bi-calendar3 text-warning">{" "}</i>
-              <span className="text-success">{data.raceName}{" "}</span>
               <i className="bi bi-calendar3 text-warning"></i>
-              <span>
-                {data.time ? dateTime(data?.date, data.time) : new Date(data.date).toLocaleDateString('tr-TR')}
+              <span className="text-info">{data.raceName} </span>
+              <i className="bi bi-calendar3 text-warning"> </i>
+              <span className="text-danger">
+                {data.time
+                  ? dateTime(data?.date, data.time)
+                  : new Date(data.date).toLocaleDateString("tr-TR")}
               </span>
               {data.Sprint ? (
                 <>
