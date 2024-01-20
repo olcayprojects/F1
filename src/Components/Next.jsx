@@ -15,7 +15,7 @@ const Next = () => {
       });
   }, []);
   return (
-    <div className="container-fluid bg-dark p-0 ">
+    <div className="container-fluid bg-dark p-0">
       {sdata?.map((data, index) => {
         const dateTime = (d, t) =>
           new Date(d + " " + t).toLocaleString("en-EN", {
@@ -27,7 +27,7 @@ const Next = () => {
             minute: "2-digit",
           });
         return (
-          <h1 key={index} className="bg-black mt-1 m-0" style={{}}>
+          <h2 key={index} className="bg-black mt-1 m-0" style={{fontFamily:"monospace"}}>
             <marquee className="" behavior="" scrollamount="8">
               <span className="text-primary">Next Race </span>
               <i className="bi bi-calendar3 text-warning"></i>
@@ -88,7 +88,7 @@ const Next = () => {
                 </>
               )}
             </marquee>
-          </h1>
+          </h2>
         );
       })}
     </div>
