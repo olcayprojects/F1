@@ -27,11 +27,11 @@ const Next = () => {
             minute: "2-digit",
           });
         return (
-          <h2 key={index} className="bg-black mt-1 m-0" style={{fontFamily:"monospace"}}>
+          <h2 key={index} className="bg-black mt-1 m-0" style={{fontFamily:"fantasy"}}>
             <marquee className="" behavior="" scrollamount="8">
               <span className="text-primary">Next Race </span>
               <i className="bi bi-calendar3 text-warning"></i>
-              <span className="text-info">{data.raceName} </span>
+              <span className="text-info ">{data.raceName}</span>
               <i className="bi bi-calendar3 text-warning"> </i>
               <span className="text-danger">
                 {data.time
