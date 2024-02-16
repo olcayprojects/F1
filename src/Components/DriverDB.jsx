@@ -22,15 +22,14 @@ const DriverDB = (props) => {
         })
         .catch((err) => {
           console.log(err.message);
-          setErr(false)
+          setErr(false);
         });
     }
     fetchData();
   }, [url]);
 
-  return (
-    err?
-        <>
+  return err ? (
+    <>
       <img
         className="img-fluid w-25 "
         style={{ width: "", height: "" }}
@@ -59,11 +58,33 @@ const DriverDB = (props) => {
         className="text-start lh-sm text-secondary p-0"
         style={{ whiteSpace: "pre-wrap" }}
       >
-        {data?.strDescriptionEN}
+        {data?.strDescriptionEN ? (
+          <>
+            <h6 className="text-info bg-dark text-center">English</h6>
+            {data?.strDescriptionEN}
+          </>
+        ) : (
+          ""
+        )}
+        {data?.strDescriptionDE ? (
+          <>
+            <h6 className="text-info bg-dark text-center">Deutsch</h6>
+            {data?.strDescriptionDE}
+          </>
+        ) : (
+          ""
+        )}
+        {data?.strDescriptionFR ? (
+          <>
+            <h6 className="text-info bg-dark text-center">Français</h6>
+            {data?.strDescriptionFR}
+          </>
+        ) : (
+          ""
+        )}
       </pre>
     </>
-    :null
-  );
+  ) : null;
 };
 
 export default DriverDB;

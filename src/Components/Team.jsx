@@ -31,7 +31,7 @@ const Team = (props) => {
         return (
           <div className="" key={index}>
             <img
-              className="img-responsive w-100 "
+              className="img-responsive w-100"
               style={{ maxWidth: "120px" }}
               src={teams?.strTeamBadge + "/preview"}
               alt=""
@@ -71,7 +71,30 @@ const Team = (props) => {
               className="text-secondary ps-1"
               style={{ whiteSpace: "pre-wrap" }}
             >
-              {teams?.strDescriptionEN}
+              {teams?.strDescriptionEN ? (
+                <>
+                  <h6 className="text-info bg-dark text-center">English</h6>
+                  {teams?.strDescriptionEN}
+                </>
+              ) : (
+                ""
+              )}
+              {teams?.strDescriptionDE ? (
+                <>
+                  <h6 className="text-info bg-dark text-center">Deutsch</h6>
+                  {teams?.strDescriptionDE}{" "}
+                </>
+              ) : (
+                ""
+              )}
+              {teams?.strDescriptionFR ? (
+                <>
+                  <h6 className="text-info bg-dark text-center">Français</h6>
+                  {teams?.strDescriptionFR}{" "}
+                </>
+              ) : (
+                ""
+              )}
             </pre>
           </div>
         );

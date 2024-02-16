@@ -23,7 +23,7 @@ body {
   animation: blinker 1s alternate infinite;
 }
 .blink2 {
-  animation: blinker2 .8s alternate infinite;
+  animation: blinker2 0.8s alternate infinite;
 }
 @keyframes blinker {
   6% {

@@ -31,7 +31,7 @@ const Next = () => {
             <marquee className="" behavior="" scrollamount="8">
               <span className="text-primary">Next Race </span>
               <i className="bi bi-calendar3 text-warning"></i>
-              <span className="text-info ">{data.raceName}</span>
+              <span className="text-info "> {data.raceName} </span>
               <i className="bi bi-calendar3 text-warning"> </i>
               <span className="text-danger">
                 {data.time
