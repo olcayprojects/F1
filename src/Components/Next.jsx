@@ -27,7 +27,11 @@ const Next = () => {
             minute: "2-digit",
           });
         return (
-          <h2 key={index} className="bg-black mt-1 m-0" style={{fontFamily:"fantasy"}}>
+          <h2
+            key={index}
+            className="bg-black text-warning mt-1 m-0"
+            style={{ fontFamily: "fantasy" }}
+          >
             <marquee className="" behavior="" scrollamount="8">
               <span className="text-primary">Next Race </span>
               <i className="bi bi-calendar3 text-warning"></i>
@@ -48,6 +52,8 @@ const Next = () => {
               ) : null}
               {data.FirstPractice?.date ? (
                 <>
+                  <i className="bi bi-clock-fill text-info"></i>
+
                   <span className="text-success">First Practice: </span>
                   <span>
                     {dateTime(
