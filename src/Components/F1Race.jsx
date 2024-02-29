@@ -77,7 +77,9 @@ const F1Race = (props) => {
                 key={indexItem}
                 className="bg-black p-0 pt-1 container-fluid"
               >
-                <h1 className="text-center text-warning font-monospace fst-italic fw-bold bg-black border border-danger border-5">
+                <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
+                  Last Race
+                  <i class="bi bi-arrow-right-square"> </i>
                   <span>
                     {item.raceName} #{item.round}
                   </span>
@@ -241,7 +243,9 @@ const F1Race = (props) => {
                                 {result.Time?.time ? (
                                   result.Time.time
                                 ) : result.status[0] === "+" ? (
-                                  <span className="text-secondary">{result.status}</span>
+                                  <span className="text-secondary">
+                                    {result.status}
+                                  </span>
                                 ) : (
                                   <span className="text-danger">
                                     {result.status.toUpperCase()}

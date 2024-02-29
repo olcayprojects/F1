@@ -7,10 +7,10 @@ const WinRacesInaSeason = (props) => {
 
   let navigate = useNavigate();
 
-  const { season2 = "2024" } = useParams();
+  const { season2 = "2023" } = useParams();
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${season2}/results/1.json`;
+    url = `https://ergast.com/api/f1/${props.season}/results/1.json`;
   }
 
   useEffect(() => {

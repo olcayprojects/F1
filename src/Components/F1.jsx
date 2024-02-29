@@ -41,7 +41,7 @@ const F1 = () => {
   let d = new Date();
 
   let navigate = useNavigate();
-  const { season2 = "2024" } = useParams();
+  const { season2 = "2023" } = useParams();
   const year = new Date().getFullYear();
   const years = Array.from(new Array(74), (val, index) => year - index);
 
@@ -52,7 +52,7 @@ const F1 = () => {
         <Carousel />
         <F1Race />
         <select
-          className="form-select bg-black text-danger border-danger border-5 shadow-none cp mb-1"
+          className="form-select bg-black text-danger shadow-none cp mb-1"
           onChange={(e) => {
             navigate(`/F1/${e.target.value}`);
             navigate(0);
