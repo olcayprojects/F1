@@ -78,8 +78,13 @@ const F1Race = (props) => {
                 className="bg-black p-0 pt-1 container-fluid"
               >
                 <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
-                  Last Race
-                  <i class="bi bi-arrow-right-square"> </i>
+                  {rounds === 0 ? (
+                    <>
+                      Last Race <i class="bi bi-arrow-right-square"> </i>
+                    </>
+                  ) : (
+                    ""
+                  )}
                   <span>
                     {item.raceName} #{item.round}
                   </span>
