@@ -88,8 +88,7 @@ const RaceSchedule = (props) => {
                       : null)
                   }
                   onClick={() =>
-                    dateTime(rs.date, rs.time) < dateNow ||
-                    props.season !== new Date().getFullYear()
+                    dateTime(rs.date, rs.time ? rs.time : "00:00:00Z") < dateNow
                       ? navigate("/F1Race/" + props.season + "/" + rs.round)
                       : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
                   }
@@ -104,7 +103,7 @@ const RaceSchedule = (props) => {
                         dateStyle: "short",
                         timeStyle: "short",
                       })
-                    : new Date(rs.date).toLocaleDateString('tr-TR')}
+                    : new Date(rs.date).toLocaleDateString("tr-TR")}
                 </td>
                 <td
                   title={titleSprint}
