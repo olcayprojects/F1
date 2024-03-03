@@ -3,13 +3,44 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <Link to="/" className="text-center text-decoration-none">
-      <h1 className="fw-bold" style={{ textShadow: "1px 1px 4px cyan" }}>
-        <span className="blink2 rounded-top">.::'</span>
-        <span className="blink rounded-top">|F1 RACE RESULTS|</span>
-        <span className="blink2 rounded-top">'::.</span>
-      </h1>
-    </Link>
+    <>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+        <div className="container-fluid">
+          <Link to="/" className="text-center text-decoration-none">
+            <h1 className="fw-bold" style={{ textShadow: "1px 1px 4px cyan" }}>
+              <span className="blink2 rounded-top">.::'</span>
+              <span className="blink rounded-top">|F1 RACE RESULTS|</span>
+              <span className="blink2 rounded-top">'::.</span>
+            </h1>
+          </Link>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              <li className="nav-item">
+                <a className="nav-link" href="#/DriverStandings">
+                  Driver Standings
+                </a>
+              </li>
+              <li className="nav-item">
+              <a className="nav-link" href="#/ConstructorStandings">
+              Constructor Standings
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
 

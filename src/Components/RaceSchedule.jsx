@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { RaceThumb } from "./RaceInfo";
 
 const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
   const navigate = useNavigate();
 
   const dateNow = new Date();
+  dateNow.setDate(dateNow.getDate() + 1);
 
   let url = "";
   if (props.season) {
@@ -42,7 +44,6 @@ const RaceSchedule = (props) => {
             <th className="bg-danger text-center">Practice 1</th>
             <th className="text-center">Practice 2</th>
             <th className="bg-danger text-center">Practice 3</th>
-            <th className="text-center">Circuit Name</th>
           </tr>
         </thead>
         <tbody className="text-danger">
@@ -66,13 +67,32 @@ const RaceSchedule = (props) => {
                 key={index}
               >
                 <td className="col text-center p-0 align-middle">{rs.round}</td>
-                <td className="col text-nowrap op fw-bold text-warning">
-                  <span
-                    className="bg-black p-2"
-                    style={{ fontFamily: "Lucida Console" }}
-                  >
-                    {rs.raceName}
-                  </span>
+                <td className="col-2 text-nowrap op fw-bold text-warning p-0">
+                  {props.season === "2024" ? (
+                    <>
+                      <RaceThumb date={rs.date} name={rs.raceName} />
+                      <h6 className="m-0">{rs.raceName}</h6>
+                      <h6
+                        className="m-0 cp text-info"
+                        onClick={() =>
+                          navigate("/Circuit/" + rs.Circuit.circuitId)
+                        }
+                      >
+                        {rs.Circuit.circuitName}
+                      </h6>
+                    </>
+                  ) : (
+                    <>
+                      <h6 className="m-0">{rs.raceName}</h6>
+                      <h6
+                        className="m-0 cp text-info"
+                        onClick={() =>
+                          navigate("/Circuit/" + rs.Circuit.circuitId)
+                        }
+                      >
+                        {rs.Circuit.circuitName}
+                      </h6>                    </>
+                  )}
                 </td>
                 <td
                   title={title}
@@ -200,12 +220,6 @@ const RaceSchedule = (props) => {
                         minute: "2-digit",
                       })
                     : rs.ThirdPractice?.date}
-                </td>
-                <td
-                  className="col cp text-nowrap"
-                  onClick={() => navigate("/Circuit/" + rs.Circuit.circuitId)}
-                >
-                  {rs.Circuit.circuitName}
                 </td>
               </tr>
             );

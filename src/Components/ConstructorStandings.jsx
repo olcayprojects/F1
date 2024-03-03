@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Nav from "./Nav";
 
 const ConstructorStandings = (props) => {
   const [sdata, setData] = useState();
@@ -9,6 +10,8 @@ const ConstructorStandings = (props) => {
   let url;
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/constructorStandings.json`;
+  } else {
+    url = `https://ergast.com/api/f1/2024/constructorStandings.json`;
   }
 
   useEffect(() => {
@@ -30,6 +33,14 @@ const ConstructorStandings = (props) => {
   return (
     <div className="container p-0">
       <div className="table-responsive">
+        {props.season ? (
+          ""
+        ) : (
+          <>
+            <Nav />
+            <h1 className="text-warning text-center">Constructor Standings</h1>
+          </>
+        )}
         <table className="table table-dark table-striped table-bordered">
           <thead className="text-white border-dark">
             <tr className="text-black">
@@ -79,7 +90,7 @@ const ConstructorStandings = (props) => {
                           "/ConstructorsResult/" +
                             ConstructorStandings?.Constructor?.constructorId +
                             "/" +
-                            props.season
+                            (props.season ? props.season : "2024")
                         );
                       }}
                     >

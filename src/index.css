@@ -58,8 +58,8 @@ tr {
 }
 .cp:hover {
   cursor: pointer;
-  border: 3px solid;
-  border-color:lightseagreen;
+  border: 2px solid orange;
+  box-sizing: border-box;
 }
 .ch {
   cursor: help;

@@ -10,6 +10,9 @@ import Sprint from "./Sprint";
 import Laps from "./Laps";
 import ConstructorsResult from "./ConstructorsResult";
 import Results from "./Results";
+import DriverStandings from "./DriverStandings";
+import ConstructorStandings from "./ConstructorStandings";
+
 
 const Components = () => {
   return (
@@ -31,6 +34,8 @@ const Components = () => {
           element={<ConstructorsResult />}
         />
         <Route path="/Results/:season2/:rounds" element={<Results />} />
+        <Route path="/DriverStandings" element={<DriverStandings />} />
+        <Route path="/ConstructorStandings" element={<ConstructorStandings />} />
       </Routes>
     </HashRouter>
   );

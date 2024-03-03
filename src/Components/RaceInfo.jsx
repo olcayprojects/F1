@@ -2,6 +2,38 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 
+export function RaceThumb(props) {
+  const [data, setData] = useState([]);
+
+  let url = "";
+  url = `https://www.thesportsdb.com/api/v1/json/3/searchfilename.php?e=Formula 1 ${props.date} ${props.name}`;
+
+  useEffect(() => {
+    function fetchData() {
+      fetch(url)
+        .then((response) => response.json())
+        .then((items) => {
+          setData(items["event"]);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+    fetchData();
+  }, [url]);
+
+  return data ? (
+    <img
+      className="img-thumbnail m-0 p-0"
+      src={data[0]?.strThumb + "/preview"}
+      alt=""
+      srcSet=""
+    />
+  ) : 
+    null
+  
+}
+
 const RaceInfo = () => {
   const { date = "2023-07-02" } = useParams();
   const { name = "Austrian Grand Prix" } = useParams();

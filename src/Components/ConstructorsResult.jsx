@@ -56,7 +56,7 @@ const ConstructorsResult = () => {
             <Constructor year={season} />
           </select>
         </div>
-        {season === "2023" ? (
+        {season === "2024" ? (
           <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
         ) : (
           sdata[0]?.Results[0]?.Constructor?.name

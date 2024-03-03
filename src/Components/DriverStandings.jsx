@@ -4,6 +4,7 @@ import axios from "axios";
 //import ResultsDriver from "./ResultsDriver";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import Nav from "./Nav";
 
 const DriverStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -16,6 +17,8 @@ const DriverStandings = (props) => {
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/driverStandings.json`;
+  } else {
+    url = `https://ergast.com/api/f1/2024/driverStandings.json`;
   }
 
   const fetchDriverStandings = useCallback(() => {
@@ -40,6 +43,14 @@ const DriverStandings = (props) => {
   } else {
     return (
       <div className="container p-0">
+        {props.season ? (
+          ""
+        ) : (
+          <>
+            <Nav />
+            <h1 className="text-warning text-center">Driver Standings</h1>
+          </>
+        )}
         <div className="table-responsive">
           <table className="table table-dark table-striped table-bordered">
             <thead className="">
@@ -51,7 +62,7 @@ const DriverStandings = (props) => {
                   CODE
                 </th>
                 <th scope="col" className="bg-danger">
-                  DRIVER INFO
+                  DRIVER
                 </th>
                 <th scope="col" className="bg-danger text-center op">
                   POINTS

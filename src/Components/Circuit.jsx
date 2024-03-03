@@ -106,7 +106,7 @@ const Circuit = (props) => {
       <div className="container-fluid p-0">
         <Nav />
 
-        <h2 className="bg-dark text-light text-center">
+        <h2 className="bg-dark text-light text-center mt-1">
           {data
             ? data[0]?.Circuit.circuitName +
               " |" +
