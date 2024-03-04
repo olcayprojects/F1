@@ -51,7 +51,31 @@ const F1 = () => {
         <Next />
         <Carousel />
         <F1Race />
-        <hr style={{height:"50px",backgroundColor:"GrayText"}} className="text-danger" />
+        <hr
+          style={{ height: "50px", backgroundColor: "GrayText" }}
+          className="text-danger"
+        />
+
+        <select
+          className="form-select bg-black text-danger shadow-none cp mb-1"
+          onChange={(e) => {
+            navigate(`/F1/${e.target.value}`);
+            navigate(0);
+          }}
+        >
+          <option value="" hidden>
+            Select Year for Drivers and Constructors Winning Races In a Season
+            1950 - {d.getFullYear()}
+          </option>
+          {years.map((year, index) => {
+            return (
+              <option key={`year${index}`} value={year}>
+                {year}
+              </option>
+            );
+          })}
+        </select>
+        <RaceSchedule season={season2} />
 
         <Tabs
           className="bg-dark"
@@ -115,26 +139,6 @@ const F1 = () => {
             </div>
           </Box>
         )}
-        <select
-          className="form-select bg-black text-danger shadow-none cp mb-1"
-          onChange={(e) => {
-            navigate(`/F1/${e.target.value}`);
-            navigate(0);
-          }}
-        >
-          <option value="" hidden>
-            Select Year for Drivers and Constructors Winning Races In a Season
-            1950 - {d.getFullYear()}
-          </option>
-          {years.map((year, index) => {
-            return (
-              <option key={`year${index}`} value={year}>
-                {year}
-              </option>
-            );
-          })}
-        </select>
-        <RaceSchedule season={season2} />
       </div>
     </>
   );

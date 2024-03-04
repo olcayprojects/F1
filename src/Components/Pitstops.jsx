@@ -93,6 +93,7 @@ const Pitstops = (props) => {
           );
         })}
       </div>
+      {/* {console.log(dur)} */}
     </div>
   );
 };

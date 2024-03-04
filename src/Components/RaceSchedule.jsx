@@ -69,18 +69,33 @@ const RaceSchedule = (props) => {
                 <td className="col text-center p-0 align-middle">{rs.round}</td>
                 <td className="col-2 text-nowrap op fw-bold text-warning p-0">
                   {props.season === "2024" ? (
-                    <>
-                      <RaceThumb date={rs.date} name={rs.raceName} />
-                      <h6 className="m-0">{rs.raceName}</h6>
-                      <h6
-                        className="m-0 cp text-info"
-                        onClick={() =>
-                          navigate("/Circuit/" + rs.Circuit.circuitId)
-                        }
-                      >
-                        {rs.Circuit.circuitName}
-                      </h6>
-                    </>
+                    rs.date.split("-")[1] ===
+                    dateNow.toISOString().split("T")[0].split("-")[1] ? (
+                      <>
+                        <RaceThumb date={rs.date} name={rs.raceName} />
+                        <h6 className="m-0">{rs.raceName}</h6>
+                        <h6
+                          className="m-0 cp text-info"
+                          onClick={() =>
+                            navigate("/Circuit/" + rs.Circuit.circuitId)
+                          }
+                        >
+                          {rs.Circuit.circuitName}
+                        </h6>
+                      </>
+                    ) : (
+                      <>
+                        <h6 className="m-0">{rs.raceName}</h6>
+                        <h6
+                          className="m-0 cp text-info"
+                          onClick={() =>
+                            navigate("/Circuit/" + rs.Circuit.circuitId)
+                          }
+                        >
+                          {rs.Circuit.circuitName}
+                        </h6>
+                      </>
+                    )
                   ) : (
                     <>
                       <h6 className="m-0">{rs.raceName}</h6>
@@ -91,7 +106,8 @@ const RaceSchedule = (props) => {
                         }
                       >
                         {rs.Circuit.circuitName}
-                      </h6>                    </>
+                      </h6>
+                    </>
                   )}
                 </td>
                 <td
