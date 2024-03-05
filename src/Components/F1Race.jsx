@@ -191,7 +191,7 @@ const F1Race = (props) => {
                                   {result.Driver?.familyName}
                                 </span>
 
-                                <span className="ps-1 fw-bold fst-italic text-info">
+                                <span className="fw-bold p-1 fst-italic text-black bg-info px-2">
                                   {result.Driver?.nationality}
                                 </span>
                               </td>
@@ -224,19 +224,19 @@ const F1Race = (props) => {
                                         ls={1}
                                       />
                                     </span>
-                                    <span className="text-success fw-bold text-center fst-italic">
+                                    <span className="bg-success text-black p-1 fw-bold text-center fst-italic">
                                       {" " + result.Constructor.nationality}
                                     </span>
                                   </>
                                 ) : (
-                                  <i className="">
+                                  <>
                                     <span className="bg-black text-success fw-bold p-1 px-1">
                                       {result.Constructor.name}
                                     </span>
-                                    <span className="text-success fw-bold">
+                                    <span className="bg-success text-black p-1 fw-bold fst-italic">
                                       {" " + result.Constructor.nationality}
                                     </span>
-                                  </i>
+                                  </>
                                 )}
                               </td>
                               <td
