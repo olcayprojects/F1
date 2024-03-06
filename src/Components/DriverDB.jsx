@@ -33,10 +33,9 @@ const DriverDB = (props) => {
       <img
         className="img-fluid w-25 "
         style={{ width: "", height: "" }}
-        src={data?.strRender ? data?.strRender : data?.strCutout + "/preview"}
+        src={data?.strRender ? data?.strRender : data?.strCutout}
         alt=""
         title=""
-        srcSet=""
       />
       <div>
         <span className="">Team: </span>

@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RaceThumb } from "./RaceInfo";
+import { Event } from "./Event";
 
 const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
@@ -181,7 +182,12 @@ const RaceSchedule = (props) => {
                       )
                     : rs.Sprint?.date}
                 </td>
-                <td className="col text-nowrap">
+                <td
+                  className="col text-nowrap cp"
+                  onClick={() =>
+                    navigate("/Event/" + rs.raceName + " Qualifying/2024")
+                  }
+                >
                   {rs.Qualifying?.time
                     ? dateTime(
                         rs.Qualifying?.date,

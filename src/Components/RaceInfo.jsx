@@ -25,7 +25,7 @@ export function RaceThumb(props) {
   return data ? (
     <img
       className="img-thumbnail m-0 p-0"
-      src={data[0]?.strThumb + "/preview"}
+      src={data[0]?.strThumb}
       alt=""
       srcSet=""
     />
@@ -69,13 +69,13 @@ const RaceInfo = () => {
               <h1 className="text-light">{event.strFilename}</h1>
               <img
                 className="img-fluid"
-                src={event?.strThumb + "/preview"}
+                src={event?.strThumb}
                 alt=""
                 srcSet=""
               />
               <img
                 className="img-fluid"
-                src={event?.strMap + "/preview"}
+                src={event?.strMap}
                 alt=""
                 srcSet=""
               />

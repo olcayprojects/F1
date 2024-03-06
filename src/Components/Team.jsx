@@ -33,7 +33,7 @@ const Team = (props) => {
             <img
               className="img-responsive w-100"
               style={{ maxWidth: "120px" }}
-              src={teams?.strTeamBadge + "/preview"}
+              src={teams?.strTeamBadge}
               alt=""
               srcSet=""
               title={teams?.strDescriptionEN}
