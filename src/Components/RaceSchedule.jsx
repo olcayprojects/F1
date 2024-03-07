@@ -185,7 +185,12 @@ const RaceSchedule = (props) => {
                 <td
                   className="col text-nowrap cp"
                   onClick={() =>
-                    navigate("/Event/" + rs.raceName + " Qualifying/2024")
+                    navigate(
+                      "/Event/" +
+                        rs.raceName.replace(/ /g, "_") +
+                        "_Qualifying/" +
+                        props.season
+                    )
                   }
                 >
                   {rs.Qualifying?.time
