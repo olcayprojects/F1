@@ -36,7 +36,7 @@ const Pitstops = (props) => {
 
   if (!isLoaded) return <Loading />;
   return (
-    <div className="container p-0">
+    <div className="container p-0 border border-dark border-5">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="border-dark">
@@ -47,7 +47,7 @@ const Pitstops = (props) => {
               <th className="bg-danger text-center">LAP</th>
               <th className="text-center bg-danger op">TIME OF DAY</th>
               <th className="text-center bg-danger">DURATION</th>
-              <th className="text-center bg-danger">TOTAL DURATION</th>
+              <th className="text-center bg-danger op">TOTAL DURATION</th>
             </tr>
           </thead>
           <tbody className="text-danger">
@@ -56,7 +56,7 @@ const Pitstops = (props) => {
                 <tr key={index} className="align-middle">
                   <td className="op text-center">{index + 1}</td>
                   <td
-                    className="col-3 fw-bold text-info cp"
+                    className="fw-bold text-info cp"
                     style={{ textTransform: "" }}
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
@@ -80,7 +80,7 @@ const Pitstops = (props) => {
                     <span className="bg-black d-block p-1">{ps.duration}</span>
                   </td>
                   <td
-                    className="text-center fw-bold"
+                    className="text-center fw-bold op"
                     style={{ fontFamily: "Lucida Console" }}
                   >
                     <span className="bg-black d-block p-1">

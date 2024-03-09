@@ -38,17 +38,17 @@ const QualifyingResults = (props) => {
   }
 
   return (
-    <div className="container p-0">
+    <div className="container p-0 border border-dark border-5">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
-            <tr className="text-black">
-              <th className="bg-danger text-center op">P</th>
-              <th className="bg-danger text-center">NO</th>
-              <th className="bg-danger op">D R I V E R</th>
-              <th className="text-center bg-danger">Q3</th>
-              <th className="text-center bg-danger op">Q2</th>
-              <th className="text-center bg-danger">Q1</th>
+            <tr className="text-black text-center">
+              <th className="bg-danger">P</th>
+              <th className="">NO</th>
+              <th className="bg-danger text-start">D R I V E R</th>
+              <th className="">Q3</th>
+              <th className="bg-danger">Q2</th>
+              <th className="">Q1</th>
             </tr>
           </thead>
           {sdata?.map((item, index) => {
@@ -84,7 +84,9 @@ const QualifyingResults = (props) => {
                             " " +
                             qualifying.Driver.familyName}
                         </span>
-
+                        <span className="bg-secondary text-info fw-bold px-1 p-1">
+                          {qualifying.Driver.permanentNumber}
+                        </span>
                         <span
                           className="fw-bold fst-italic text-black px-1 p-1 bg-info cp"
                           onClick={() => {
@@ -97,6 +99,9 @@ const QualifyingResults = (props) => {
                           }}
                         >
                           {qualifying.Constructor.name}
+                        </span>
+                        <span className="text-secondary ps-1 fst-italic fw-light">
+                          {qualifying.Constructor.nationality}
                         </span>
                       </td>
                       <td className="col-2 text-center ">

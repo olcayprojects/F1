@@ -32,7 +32,10 @@ export default function DriverId(props) {
           <span className="bg-info p-1 px-2 text-black">
             {sdata?.permanentNumber}
           </span>
-          {/* <span>{sdata?.nationality} </span> */}
+          <span className="bg-black p-1 px-2 text-info">{sdata?.code}</span>
+          <span className="ps-1 fw-light fst-italic text-secondary">
+            {sdata?.nationality}{" "}
+          </span>
           {/* <span>{sdata?.dateOfBirth} </span> */}
         </>
       );
