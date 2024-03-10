@@ -36,6 +36,11 @@ const Nav = () => {
               Constructor Standings
                 </a>
               </li>
+              <li className="nav-item">
+              <a className="nav-link" href="#/RaceHistoryChart">
+              Race History Chart
+                </a>
+              </li>
             </ul>
           </div>
         </div>

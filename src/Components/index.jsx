@@ -13,6 +13,7 @@ import Results from "./Results";
 import DriverStandings from "./DriverStandings";
 import ConstructorStandings from "./ConstructorStandings";
 import Event from "./Event";
+import  RaceHistoryChart  from "./RaceHistoryChart";
 
 const Components = () => {
   return (
@@ -40,6 +41,7 @@ const Components = () => {
           element={<ConstructorStandings />}
         />
         <Route path="/Event/:name/:date" element={<Event />} />
+        <Route path="/RaceHistoryChart" element={<RaceHistoryChart />} />
       </Routes>
     </HashRouter>
   );
