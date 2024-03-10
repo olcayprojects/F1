@@ -12,7 +12,7 @@ export default function DriverId(props) {
 
   useEffect(() => {
     axios.get(url).then((response) => {
-      //console.log(response.data["MRData"]);
+      // console.log(response.data["MRData"]);
       setData(response.data["MRData"].DriverTable.Drivers[0]);
       setIsLoaded(true);
     });
@@ -32,7 +32,11 @@ export default function DriverId(props) {
           <span className="bg-info p-1 px-2 text-black">
             {sdata?.permanentNumber}
           </span>
-          <span className="bg-black p-1 px-2 text-info">{sdata?.code}</span>
+          <span className="bg-black p-1 px-2 text-info">
+            {sdata?.code
+              ? sdata?.code
+              : sdata?.familyName.substring(0, 3).toUpperCase()}
+          </span>
           <span className="ps-1 fw-light fst-italic text-secondary">
             {sdata?.nationality}{" "}
           </span>

@@ -156,8 +156,33 @@ const F1Race = (props) => {
                               <td className="op text-center text-warning p-0">
                                 {result.grid}
                               </td>
-                              <td className="text-center text-light">
-                                {result.number}
+                              <td className="text-center text-warning">
+                                {result.number < 10 ? (
+                                  <i
+                                    className={
+                                      "fs-5 bi bi-" +
+                                      result.number +
+                                      "-square-fill"
+                                    }
+                                  ></i>
+                                ) : (
+                                  <>
+                                    <i
+                                      className={
+                                        "fs-5 bi bi-" +
+                                        result.number[0] +
+                                        "-square-fill"
+                                      }
+                                    ></i>
+                                    <i
+                                      className={
+                                        "fs-5 bi bi-" +
+                                        result.number[1] +
+                                        "-square-fill"
+                                      }
+                                    ></i>
+                                  </>
+                                )}
                               </td>
 
                               <td

@@ -83,7 +83,7 @@ const ConstructorStandings = (props) => {
                   </td>
                   <td className="col op fw-bold text-warning cp">
                     <span
-                      className="bg-black p-1 fs-5"
+                      className="bg-black p-1"
                       style={{ fontFamily: "Lucida Console" }}
                       onClick={() => {
                         navigate(

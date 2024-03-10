@@ -23,7 +23,7 @@ const QualifyingResults = (props) => {
       .then((data) => {
         setIsLoaded(false);
         setData(data["MRData"].RaceTable.Races);
-        // console.log(data["MRData"].RaceTable.Races[0].raceName);
+        //  console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
@@ -85,7 +85,7 @@ const QualifyingResults = (props) => {
                             qualifying.Driver.familyName}
                         </span>
                         <span className="bg-secondary text-info fw-bold px-1 p-1">
-                          {qualifying.Driver.permanentNumber}
+                          {qualifying.number}
                         </span>
                         <span
                           className="fw-bold fst-italic text-black px-1 p-1 bg-info cp"
