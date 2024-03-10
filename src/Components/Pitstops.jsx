@@ -41,22 +41,22 @@ const Pitstops = (props) => {
         <table className="table table-dark table-striped table-bordered">
           <thead className="border-dark">
             <tr className="text-black">
-              <th className="bg-danger op text-center">#</th>
-              <th className="bg-danger">DRIVER INFO</th>
-              <th className="bg-danger text-center op">STOPS</th>
-              <th className="bg-danger text-center">LAP</th>
-              <th className="text-center bg-danger op">TIME OF DAY</th>
-              <th className="text-center bg-danger">DURATION</th>
-              <th className="text-center bg-danger op">TOTAL DURATION</th>
+              <th className="bg-danger op text-center py-0">#</th>
+              <th className="bg-danger py-0">DRIVER INFO</th>
+              <th className="bg-danger text-center op py-0">STOPS</th>
+              <th className="bg-danger text-center py-0">LAP</th>
+              <th className="text-center bg-danger op py-0">TIME OF DAY</th>
+              <th className="text-center bg-danger py-0">DURATION</th>
+              <th className="text-center bg-danger op py-0">TOTAL DURATION</th>
             </tr>
           </thead>
           <tbody className="text-danger">
             {sdata[0]?.PitStops.map((ps, index) => {
               return (
                 <tr key={index} className="align-middle">
-                  <td className="op text-center">{index + 1}</td>
+                  <td className="op text-center px-1 py-0">{index + 1}</td>
                   <td
-                    className="fw-bold text-info cp"
+                    className="fw-bold text-info cp py-0"
                     style={{ textTransform: "" }}
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
@@ -65,25 +65,25 @@ const Pitstops = (props) => {
                     <DriverId Id={ps.driverId} ls={1}></DriverId>
                     {/* {ps.driverId} */}
                   </td>
-                  <td className="text-center op fw-bold">{ps.stop}</td>
-                  <td className="text-center fw-bold">{ps.lap}</td>
+                  <td className="text-center op fw-bold py-0">{ps.stop}</td>
+                  <td className="text-center fw-bold py-0">{ps.lap}</td>
                   <td
-                    className="text-center op fw-bold"
+                    className="text-center op fw-bold py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="bg-black d-block p-1">{ps.time}</span>
+                    <span className="bg-black d-block">{ps.time}</span>
                   </td>
                   <td
-                    className="text-center fw-bold"
+                    className="text-center fw-bold py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="bg-black d-block p-1">{ps.duration}</span>
+                    <span className="bg-black d-block">{ps.duration}</span>
                   </td>
                   <td
-                    className="text-center fw-bold op"
+                    className="text-center fw-bold op py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="bg-black d-block p-1">
+                    <span className="bg-black d-block">
                       <Duration data={sdata} driverid={ps.driverId} />
                     </span>
                   </td>

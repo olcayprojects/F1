@@ -26,18 +26,18 @@ export default function DriverId(props) {
       return (
         <>
           {/* <span className="pe-1">{sdata?.code}</span> */}
-          <span className="p-1 bg-black">
+          <span className="px-2 bg-black">
             {sdata?.givenName} {sdata?.familyName}
           </span>
-          <span className="bg-info p-1 px-2 text-black">
+          <span className="bg-info px-2 text-black">
             {sdata?.permanentNumber}
           </span>
-          <span className="bg-black p-1 px-2 text-info">
+          <span className="bg-black px-2 text-info">
             {sdata?.code
               ? sdata?.code
               : sdata?.familyName.substring(0, 3).toUpperCase()}
           </span>
-          <span className="ps-1 fw-light fst-italic text-secondary">
+          <span className="fw-light px-2 fst-italic text-secondary">
             {sdata?.nationality}{" "}
           </span>
           {/* <span>{sdata?.dateOfBirth} </span> */}

@@ -44,19 +44,19 @@ const ConstructorStandings = (props) => {
         <table className="table table-dark table-striped table-bordered">
           <thead className="text-white border-dark">
             <tr className="text-black">
-              <th scope="" className="bg-danger text-center">
+              <th scope="" className="bg-danger text-center py-0">
                 POS
               </th>
-              <th scope="" className="bg-danger op">
+              <th scope="" className="bg-danger op py-0">
                 CONSTRUCTOR
               </th>
-              <th scope="" className="bg-danger">
+              <th scope="" className="bg-danger py-0">
                 NATIONALITY
               </th>
-              <th scope="" className="bg-danger text-center op">
+              <th scope="" className="bg-danger text-center op py-0">
                 POINTS
               </th>
-              <th scope="" className="bg-danger text-center">
+              <th scope="" className="bg-danger text-center py-0">
                 WINS
               </th>
             </tr>
@@ -68,7 +68,7 @@ const ConstructorStandings = (props) => {
                   key={ConstructorStandings.Constructor.constructorId}
                   className="align-middle"
                 >
-                  <td className="col-1 text-center fw-bold">
+                  <td className="col-1 text-center fw-bold py-0">
                     {ConstructorStandings.position < 4 ? (
                       <i
                         className={
@@ -81,9 +81,9 @@ const ConstructorStandings = (props) => {
                       ConstructorStandings.position
                     )}
                   </td>
-                  <td className="col op fw-bold text-warning cp">
+                  <td className="col op fw-bold text-warning cp py-0">
                     <span
-                      className="bg-black p-1"
+                      className="bg-black p-0 px-1"
                       style={{ fontFamily: "Lucida Console" }}
                       onClick={() => {
                         navigate(
@@ -104,16 +104,16 @@ const ConstructorStandings = (props) => {
                       null
                     )} */}
                   </td>
-                  <td className="col-2 fst-italic">
+                  <td className="col-2 fst-italic py-0">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
-                  <td className="col-1 text-center op text-info">
-                    <span className={"fw-bold bg-black d-block p-1"}>
+                  <td className="col-1 text-center op text-info py-0">
+                    <span className={"fw-bold bg-black d-block"}>
                       {ConstructorStandings.points}
                     </span>
                   </td>
-                  <td className="col-1 text-center fw-bold">
-                    <span className={"bg-black d-block p-1"}>
+                  <td className="col-1 text-center fw-bold py-0">
+                    <span className={"bg-black d-block"}>
                       {ConstructorStandings.wins}
                     </span>
                   </td>

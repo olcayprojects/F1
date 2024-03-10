@@ -55,19 +55,19 @@ const DriverStandings = (props) => {
           <table className="table table-dark table-striped table-bordered">
             <thead className="">
               <tr className="text-black">
-                <th scope="col" className="bg-danger text-center">
+                <th scope="col" className="bg-danger text-center py-0">
                   P
                 </th>
-                <th scope="col" className="text-center bg-danger op">
+                <th scope="col" className="text-center bg-danger op py-0">
                   CODE
                 </th>
-                <th scope="col" className="bg-danger">
+                <th scope="col" className="bg-danger py-0">
                   DRIVER
                 </th>
-                <th scope="col" className="bg-danger text-center op">
+                <th scope="col" className="bg-danger text-center op py-0">
                   POINTS
                 </th>
-                <th scope="col" className="bg-danger text-center">
+                <th scope="col" className="bg-danger text-center py-0">
                   WINS
                 </th>
               </tr>
@@ -76,7 +76,7 @@ const DriverStandings = (props) => {
               {sdata?.map((driver, indexedDB) => {
                 return (
                   <tr key={driver.Driver.driverId} className="align-middle">
-                    <td className="text-center fs-5">
+                    <td className="text-center py-0">
                       {driver.position < 4 ? (
                         <i
                           className={
@@ -87,15 +87,15 @@ const DriverStandings = (props) => {
                         driver.position
                       )}
                     </td>
-                    <td className="text-center op text-danger fw-bold">
+                    <td className="text-center op text-danger py-0">
                       {driver.Driver.code ? (
-                        <span className="bg-black p-1 d-block">
+                        <span className="bg-black d-block">
                           {driver.Driver.code}
                         </span>
                       ) : null}
                     </td>
                     <td
-                      className="cp"
+                      className="cp py-0"
                       onClick={() => {
                         navigate("/ResultsDriver/" + driver.Driver.driverId);
                       }}
@@ -112,7 +112,7 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                      <b className="text-info bg-black px-1 p-1 fs-5">
+                      <b className="text-info bg-black px-1">
                         {driver.Driver.givenName} {driver.Driver.familyName}
                         {driver.Driver.permanentNumber
                           ? "(" + driver.Driver.permanentNumber + ")"
@@ -123,7 +123,7 @@ const DriverStandings = (props) => {
                         {driver.Driver.nationality})
                       </span>
                       <i className="fw-light">
-                        <b className="text-warning bg-black px-1 p-1 mx-1">
+                        <b className="text-warning bg-black px-1 mx-1">
                           {driver.Constructors[0].name}
                         </b>
                       </i>
@@ -131,13 +131,13 @@ const DriverStandings = (props) => {
                         {driver.Constructors[0].nationality}
                       </i>
                     </td>
-                    <td className="text-center op text-warning">
-                      <span className={"bg-black p-1 fw-bold d-block fs-5"}>
+                    <td className="text-center op text-warning py-0">
+                      <span className={"bg-black fw-bold d-block"}>
                         {driver.points}
                       </span>
                     </td>
-                    <td className="text-center text-primary">
-                      <span className={"bg-black fw-bold p-1 d-block fs-5"}>
+                    <td className="text-center text-primary py-0">
+                      <span className={"bg-black fw-bold d-block"}>
                         {driver.wins}
                       </span>
                     </td>

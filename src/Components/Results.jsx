@@ -42,13 +42,13 @@ const Results = (props) => {
         </caption>
         <thead className="text-white border-dark">
           <tr className="text-black ">
-            <th className="">P</th>
+            <th className="py-0">P</th>
             {/* <th className="text-center">NO</th> */}
-            <th className="bg-danger text-start">DRIVER</th>
-            <th className="text-start">CAR</th>
-            <th className="bg-danger text-center">LAP</th>
-            <th className="text-center">TIME</th>
-            <th className="text-center bg-danger">PT</th>
+            <th className="bg-danger text-start py-0">DRIVER</th>
+            <th className="text-start py-0">CAR</th>
+            <th className="bg-danger text-center py-0">LAP</th>
+            <th className="text-center py-0">TIME</th>
+            <th className="text-center bg-danger py-0">PT</th>
           </tr>
         </thead>
         <tbody>

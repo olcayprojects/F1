@@ -33,36 +33,36 @@ const WinRacesInaSeason = (props) => {
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
             <tr className="">
-              <th className="bg-danger op">#</th>
-              <th className="bg-danger text-center">Race Name</th>
-              <th className="bg-danger op text-center">Driver</th>
-              <th className="bg-danger text-center">P</th>
-              <th className="bg-danger op text-center">Laps</th>
-              <th className="bg-danger text-center">Time</th>
-              <th className="bg-danger op text-center">Fastest Lap</th>
+              <th className="bg-danger op py-0">#</th>
+              <th className="bg-danger text-center py-0">Race Name</th>
+              <th className="bg-danger op text-center py-0">Driver</th>
+              <th className="bg-danger text-center py-0">P</th>
+              <th className="bg-danger op text-center py-0">Laps</th>
+              <th className="bg-danger text-center py-0">Time</th>
+              <th className="bg-danger op text-center py-0">Fastest Lap</th>
             </tr>
           </thead>
           <tbody>
             {sdata?.map((item, index) => {
               return (
                 <tr className="align-middle" key={index}>
-                  <td className="p-0 op fw-bold">#{item.round}</td>
+                  <td className="op fw-bold py-0">#{item.round}</td>
                   <td
-                    className="col cp"
+                    className="col cp py-0"
                     onClick={() =>
                       navigate("/F1Race/" + props.season + "/" + item.round)
                     }
                   >
-                    <span className="text-warning bg-black px-2 p-1 fw-bold">
+                    <span className="text-warning bg-black px-2 fw-bold">
                       {item.raceName}
                     </span>
-                    <i className="bg-warning bg-opacity-75 fw-bold text-black px-2 p-1">
+                    <i className="bg-warning bg-opacity-75 fw-bold text-black px-2">
                       {item.time ? dateTime(item.date, item.time) : item.date}
                     </i>
                   </td>
-                  <td className="col op">
+                  <td className="col op py-0">
                     <span
-                      className="text-info bg-black px-2 p-1 fw-bold cp"
+                      className="text-info bg-black px-2 fw-bold cp"
                       onClick={() => {
                         navigate(
                           "/ResultsDriver/" + item.Results[0].Driver.driverId
@@ -74,7 +74,7 @@ const WinRacesInaSeason = (props) => {
                         item.Results[0].Driver.familyName}
                     </span>
                     <span
-                      className="fw-bold px-2 p-1 text-black bg-info fst-italic cp"
+                      className="fw-bold px-2 text-black bg-info fst-italic cp"
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +
@@ -87,33 +87,33 @@ const WinRacesInaSeason = (props) => {
                       {item.Results[0].Constructor.name}
                     </span>
                   </td>
-                  <td className="col text-center fw-bold">
-                    <span className="bg-black px-1 p-1 d-block">
+                  <td className="col text-center fw-bold py-0">
+                    <span className="bg-black px-1 d-block">
                       {item.Results[0].points}
                     </span>
                   </td>
 
-                  <td className="col text-center op fw-bold">
-                    <span className="bg-black px-1 p-1 d-block">
+                  <td className="col text-center op fw-bold py-0">
+                    <span className="bg-black px-1 d-block">
                       {item.Results[0].laps}
                     </span>
                   </td>
-                  <td className="col text-center fw-bold">
-                    <span className="bg-black px-1 p-1 d-block">
+                  <td className="col text-center fw-bold py-0">
+                    <span className="bg-black px-1 d-block">
                       {item.Results[0].Time.time}
                     </span>
                   </td>
 
                   <td
                     className={
-                      " op col fw-bold " +
+                      " op col fw-bold py-0 " +
                       (item.Results[0].FastestLap?.rank in [1, 2, 3, 4]
                         ? "text-danger"
                         : null)
                     }
                   >
                     {item.Results[0].FastestLap ? (
-                      <span className="bg-black px-2 p-1">
+                      <span className="bg-black px-2">
                         {item.Results[0].FastestLap
                           ? item.Results[0].FastestLap?.rank +
                             ". | " +

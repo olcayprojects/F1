@@ -43,12 +43,12 @@ const QualifyingResults = (props) => {
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
             <tr className="text-black text-center">
-              <th className="bg-danger">P</th>
-              <th className="">NO</th>
-              <th className="bg-danger text-start">D R I V E R</th>
-              <th className="">Q3</th>
-              <th className="bg-danger">Q2</th>
-              <th className="">Q1</th>
+              <th className="bg-danger py-0">P</th>
+              <th className="py-0">NO</th>
+              <th className="bg-danger text-start py-0">D R I V E R</th>
+              <th className="py-0">Q3</th>
+              <th className="bg-danger py-0">Q2</th>
+              <th className="py-0">Q1</th>
             </tr>
           </thead>
           {sdata?.map((item, index) => {
@@ -57,7 +57,7 @@ const QualifyingResults = (props) => {
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
                     <tr key={indexQ} className="align-middle">
-                      <td className="p-0 text-center op">
+                      <td className="py-0 text-center op">
                         {qualifying.position < 4 ? (
                           <i
                             className={
@@ -70,10 +70,10 @@ const QualifyingResults = (props) => {
                           qualifying.position
                         )}
                       </td>
-                      <td className="text-center p-0">{qualifying.number}</td>
-                      <td className="col-5 op">
+                      <td className="text-center py-0">{qualifying.number}</td>
+                      <td className="col-5 op py-0">
                         <span
-                          className="fw-bold text-info bg-black px-1 p-1 cp"
+                          className="fw-bold text-info bg-black px-1 cp"
                           onClick={() => {
                             navigate(
                               "/ResultsDriver/" + qualifying.Driver.driverId
@@ -84,11 +84,11 @@ const QualifyingResults = (props) => {
                             " " +
                             qualifying.Driver.familyName}
                         </span>
-                        <span className="bg-secondary text-info fw-bold px-1 p-1">
+                        <span className="bg-secondary text-info fw-bold px-1">
                           {qualifying.number}
                         </span>
                         <span
-                          className="fw-bold fst-italic text-black px-1 p-1 bg-info cp"
+                          className="fw-bold fst-italic text-black px-1 bg-info cp"
                           onClick={() => {
                             navigate(
                               "/ConstructorsResult/" +
@@ -104,33 +104,33 @@ const QualifyingResults = (props) => {
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
-                      <td className="col-2 text-center ">
+                      <td className="col-2 text-center py-0">
                         <span
                           className={
                             qualifying?.Q3
-                              ? "bg-black d-block text-success fw-bold p-2 align-middle"
+                              ? "bg-black d-block text-success fw-bold align-middle"
                               : null
                           }
                         >
                           {qualifying?.Q3}
                         </span>
                       </td>
-                      <td className="col-2 text-center op">
+                      <td className="col-2 text-center op py-0">
                         <span
                           className={
                             qualifying?.Q2
-                              ? "bg-black d-block p-2 fw-bold text-warning"
+                              ? "bg-black d-block fw-bold text-warning"
                               : null
                           }
                         >
                           {qualifying?.Q2}
                         </span>
                       </td>
-                      <td className="col-2 text-center fw-bolder align-middle">
+                      <td className="col-2 text-center fw-bolder align-middle py-0">
                         <span
                           className={
                             qualifying?.Q1
-                              ? "bg-black d-block p-2 text-danger"
+                              ? "bg-black d-block text-danger"
                               : null
                           }
                         >

@@ -49,13 +49,13 @@ const Laptimes = (props) => {
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
-          <th className="bg-danger text-center">
+          <th className="bg-danger text-center py-0">
             <span className="bg-black text-danger px-1">DRIVER</span>
           </th>
-          <th className="text-center">
+          <th className="text-center py-0">
             <span className="bg-black text-danger px-1">P</span>
           </th>
-          <th className="bg-danger text-center">
+          <th className="bg-danger text-center py-0">
             <span className="bg-black text-danger px-1">TIME</span>
           </th>
         </tr>
@@ -66,18 +66,18 @@ const Laptimes = (props) => {
 
           return (
             <tr key={index} className="">
-              <td key={index} className="op text-warning fw-bold">
+              <td key={index} className="op text-warning fw-bold py-0">
                 <span className="bg-black d-block px-1 text-center">
                   {<DriverId Id={LapTimes.driverId} ls={0} />}
                   {/* {LapTimes.driverId} */}
                 </span>
               </td>
-              <td className="text-center text-primary fw-bold">
+              <td className="text-center text-primary fw-bold py-0">
                 <span className="bg-black d-block px-1">
                   {LapTimes.position}
                 </span>
               </td>
-              <td className="text-center op text-success fw-bold">
+              <td className="text-center op text-success fw-bold py-0">
                 <span className="bg-black px-1">{LapTimes.time}</span>
               </td>
             </tr>

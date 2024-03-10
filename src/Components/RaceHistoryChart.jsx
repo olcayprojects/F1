@@ -65,13 +65,13 @@ export const RaceHistoryChart = () => {
                   </caption>
                   <thead className="">
                     <tr className="">
-                      <th className="">
+                      <th className="py-0">
                         <span className="px-1">DRIVER</span>
                       </th>
-                      <th className="text-center">
+                      <th className="text-center py-0">
                         <span className="px-1">P</span>
                       </th>
-                      <th className="text-center">
+                      <th className="text-center py-0">
                         <span className="px-1">
                           TIME <i className="bi bi-arrow-down-circle-fill"></i>
                         </span>
@@ -87,13 +87,13 @@ export const RaceHistoryChart = () => {
                           <td
                             key={index}
                             className={
-                              lap.position < 4 ? "text-danger fw-bold" : null
+                              lap.position < 4 ? "text-danger fw-bold py-0" : "py-0"
                             }
                           >
                             {<DriverId Id={lap.driverId} ls={0} />}
                             {/* {LapTimes.driverId} */}
                           </td>
-                          <td className="text-center bg-light">
+                          <td className="text-center bg-light py-0">
                             {lap.position > 3 ? (
                               lap.position
                             ) : (
@@ -106,7 +106,7 @@ export const RaceHistoryChart = () => {
                               ></i>
                             )}
                           </td>
-                          <td className="text-center">{lap.time}</td>
+                          <td className="text-center py-0">{lap.time}</td>
                         </tr>
                       );
                     })}
