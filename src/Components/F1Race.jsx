@@ -76,7 +76,7 @@ const F1Race = (props) => {
               return (
                 <div
                   key={indexItem}
-                  className="bg-black p-0 pt-1 container-fluid"
+                  className="bg-black p-0 pt-1"
                 >
                   <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
                     {rounds === 0 ? (
@@ -156,7 +156,7 @@ const F1Race = (props) => {
                               <td className="op text-center text-warning p-0">
                                 {result.grid}
                               </td>
-                              <td className="text-center text-warning">
+                              <td className="text-center text-warning p-0">
                                 {result.number < 10 ? (
                                   <i
                                     className={
@@ -186,7 +186,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="col-3 cp p-0 op px-1"
+                                className="cp op pe-4 p-0"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + result.Driver.driverId
@@ -222,7 +222,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="col-2 cp p-0 ps-1"
+                                className="cp p-0 ps-1"
                                 title={
                                   "Click go to " +
                                   result.Constructor.name +
@@ -265,13 +265,13 @@ const F1Race = (props) => {
                                 )}
                               </td>
                               <td
-                                className="op text-center fw-bold"
+                                className="op text-center fw-bold p-0"
                                 style={{ color: "pink" }}
                               >
                                 {result.laps}
                               </td>
                               <td className="text-wrap text-center text-warning fw-bold p-0">
-                                <span className="bg-black py-1 w-75 d-inline-block">
+                                <span className="bg-black w-75 d-inline-block">
                                   {result.Time?.time ? (
                                     result.Time.time
                                   ) : result.status[0] === "+" ? (
@@ -287,7 +287,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="text-center fw-bold op"
+                                className="text-center fw-bold op p-0"
                                 style={
                                   result.points > 0
                                     ? { color: "aquamarine" }
@@ -329,7 +329,7 @@ const F1Race = (props) => {
                                   </span>
                                 ) : null}
                               </td>
-                              <td className="text-center fw-bold text-warning">
+                              <td className="text-center fw-bold text-warning p-0">
                                 {result.FastestLap?.lap}
                               </td>
                               <td className="op text-start p-0">
