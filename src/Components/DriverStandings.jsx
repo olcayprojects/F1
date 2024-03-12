@@ -9,10 +9,12 @@ import Nav from "./Nav";
 const DriverStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [sdata, setData] = useState([]);
+  const [driverStandings, setDriverStandings] = useState([]);
   const navigate = useNavigate();
 
-  const dateTime = (d) => new Date(d).toDateString();
+  const dateTime = (d) => {
+    return d ? new Date(d).toDateString() : "? ";
+  };
 
   let url = "";
   if (props.season) {
@@ -26,7 +28,7 @@ const DriverStandings = (props) => {
     axios
       .get(url)
       .then((res) => {
-        setData(
+        setDriverStandings(
           res.data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
         );
       })
@@ -73,7 +75,7 @@ const DriverStandings = (props) => {
               </tr>
             </thead>
             <tbody key={{}}>
-              {sdata?.map((driver, indexedDB) => {
+              {driverStandings?.map((driver, indexedDB) => {
                 return (
                   <tr key={driver.Driver.driverId} className="align-middle">
                     <td className="text-center py-0">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 const WinRacesInaSeason = (props) => {
-  const [sdata, setData] = useState([]);
+  const [seasonResults, setSeasonResults] = useState([]);
   const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
 
   let navigate = useNavigate();
@@ -17,7 +17,7 @@ const WinRacesInaSeason = (props) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setData(data["MRData"].RaceTable.Races);
+        setSeasonResults(data["MRData"].RaceTable.Races);
         // console.log(data["MRData"].RaceTable);
       })
       .catch((err) => {
@@ -43,7 +43,7 @@ const WinRacesInaSeason = (props) => {
             </tr>
           </thead>
           <tbody>
-            {sdata?.map((item, index) => {
+            {seasonResults?.map((item, index) => {
               return (
                 <tr className="align-middle" key={index}>
                   <td className="op fw-bold py-0">#{item.round}</td>

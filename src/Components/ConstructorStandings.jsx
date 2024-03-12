@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 
 const ConstructorStandings = (props) => {
-  const [sdata, setData] = useState();
+  const [constructorStandings, setConstructorStandings] = useState();
   let navigate = useNavigate();
 
   let url;
@@ -18,7 +18,7 @@ const ConstructorStandings = (props) => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setData(
+        setConstructorStandings(
           data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings
         );
         // console.log(data["MRData"].StandingsTable.season);
@@ -62,7 +62,7 @@ const ConstructorStandings = (props) => {
             </tr>
           </thead>
           <tbody>
-            {sdata?.map((ConstructorStandings, index) => {
+            {constructorStandings?.map((ConstructorStandings, index) => {
               return (
                 <tr
                   key={ConstructorStandings.Constructor.constructorId}
