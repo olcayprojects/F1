@@ -74,10 +74,7 @@ const F1Race = (props) => {
                 });
 
               return (
-                <div
-                  key={indexItem}
-                  className="bg-black p-0 pt-1"
-                >
+                <div key={indexItem} className="bg-black p-0 pt-1">
                   <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
                     {rounds === 0 ? (
                       <>
@@ -186,7 +183,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="cp op pe-4 p-0"
+                                className="cp op p-0"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + result.Driver.driverId
@@ -200,19 +197,19 @@ const F1Race = (props) => {
                                   " details"
                                 }
                               >
+                                {(result.positionText in ["1", "2", "3", "4"]) &
+                                (season2 === "2024") ? (
+                                  <DrvInfo
+                                    drv={
+                                      result.Driver?.givenName +
+                                      " " +
+                                      result.Driver?.familyName
+                                    }
+                                  />
+                                ) : null}
                                 <span className="text-info bg-black fw-bold p-1 ">
                                   {result.Driver?.givenName + " "}
-                                  {(result.positionText in
-                                    ["1", "2", "3", "4"]) &
-                                  (season2 === "2024") ? (
-                                    <DrvInfo
-                                      drv={
-                                        result.Driver?.givenName +
-                                        " " +
-                                        result.Driver?.familyName
-                                      }
-                                    />
-                                  ) : null}
+
                                   {result.Driver?.familyName}
                                 </span>
 

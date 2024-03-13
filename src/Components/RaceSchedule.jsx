@@ -68,7 +68,7 @@ const RaceSchedule = (props) => {
                 key={index}
               >
                 <td className="col text-center p-0 align-middle">{rs.round}</td>
-                <td className="col-2 text-nowrap op fw-bold text-warning p-0">
+                <td className="col-2 text-nowrap op fw-bold text-warning py-0">
                   {props.season === "2024" ? (
                     rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1] ? (
@@ -86,35 +86,26 @@ const RaceSchedule = (props) => {
                       </>
                     ) : (
                       <>
-                        <h6 className="m-0">{rs.raceName}</h6>
-                        <h6
-                          className="m-0 cp text-info"
+                        <span className="">{rs.raceName}</span>
+                        <i class="text-danger bi bi-slash-lg"></i>
+                        <span
+                          className="cp text-info"
                           onClick={() =>
                             navigate("/Circuit/" + rs.Circuit.circuitId)
                           }
                         >
                           {rs.Circuit.circuitName}
-                        </h6>
+                        </span>
                       </>
                     )
                   ) : (
-                    <>
-                      <h6 className="m-0">{rs.raceName}</h6>
-                      <h6
-                        className="m-0 cp text-info"
-                        onClick={() =>
-                          navigate("/Circuit/" + rs.Circuit.circuitId)
-                        }
-                      >
-                        {rs.Circuit.circuitName}
-                      </h6>
-                    </>
+                    ""
                   )}
                 </td>
                 <td
                   title={title}
                   className={
-                    "col cp  text-nowrap " +
+                    "col cp py-0 text-nowrap " +
                     (dateTime(rs.date, rs.time) < dateNow
                       ? "fw-bold"
                       : // ? "fw-bold text-decoration-line-through"
@@ -131,13 +122,13 @@ const RaceSchedule = (props) => {
                   }
                 >
                   {dateTime(rs.date, rs.time) > dateNow
-                    ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
-                        dateStyle: "short",
+                    ? dateTime(rs.date, rs.time).toLocaleString("en", {
+                        dateStyle: "long",
                         timeStyle: "short",
                       })
                     : rs.time
-                    ? dateTime(rs.date, rs.time).toLocaleString("tr-TR", {
-                        dateStyle: "short",
+                    ? dateTime(rs.date, rs.time).toLocaleString("en", {
+                        dateStyle: "long",
                         timeStyle: "short",
                       })
                     : new Date(rs.date).toLocaleDateString("tr-TR")}
@@ -145,7 +136,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={titleSprint}
                   className={
-                    "col text-nowrap text-info op " +
+                    "col text-nowrap py-0 text-info op " +
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
@@ -164,7 +155,7 @@ const RaceSchedule = (props) => {
                             dateTime(
                               rs.Sprint?.date,
                               rs.Sprint?.time
-                            ).toLocaleString("tr-TR", {
+                            ).toLocaleString("en", {
                               dateStyle: "short",
                               timeStyle: "short",
                             })
@@ -174,16 +165,16 @@ const RaceSchedule = (props) => {
                 >
                   {rs.Sprint?.time
                     ? dateTime(rs.Sprint?.date, rs.Sprint?.time).toLocaleString(
-                        "tr-TR",
+                        "en",
                         {
-                          dateStyle: "short",
+                          dateStyle: "long",
                           timeStyle: "short",
                         }
                       )
                     : rs.Sprint?.date}
                 </td>
                 <td
-                  className="col text-nowrap cp"
+                  className="col text-nowrap cp py-0"
                   onClick={() =>
                     navigate(
                       "/Event/" +
@@ -197,51 +188,52 @@ const RaceSchedule = (props) => {
                     ? dateTime(
                         rs.Qualifying?.date,
                         rs.Qualifying?.time
-                      ).toLocaleString("tr-TR", {
-                        month: "2-digit",
-                        day: "2-digit",
-                        hour: "2-digit",
-                        minute: "2-digit",
+                      ).toLocaleString("en", {
+                        dateStyle: "long",
+                        timeStyle: "short",
                       })
                     : rs.Qualifying?.date}
                 </td>
-                <td className="col text-nowrap op">
+                <td className="col text-nowrap op py-0">
                   {rs.FirstPractice?.time
                     ? dateTime(
                         rs.FirstPractice?.date,
                         rs.FirstPractice?.time
-                      ).toLocaleString("tr-TR", {
+                      ).toLocaleString("en-EN", {
                         month: "2-digit",
                         day: "2-digit",
+                        year: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
                         minute: "2-digit",
                       })
                     : rs.FirstPractice?.date}
                 </td>
-                <td className="col text-nowrap">
+                <td className="col text-nowrap py-0">
                   {rs.SecondPractice?.time
                     ? dateTime(
                         rs.SecondPractice?.date,
                         rs.SecondPractice?.time
-                      ).toLocaleString("tr-TR", {
+                      ).toLocaleString("en", {
                         month: "2-digit",
                         day: "2-digit",
+                        year: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
                         minute: "2-digit",
                       })
                     : rs.SecondPractice?.date}
                 </td>
-                <td className="col text-nowrap op">
+                <td className="col text-nowrap op py-0">
                   {rs.ThirdPractice?.time
                     ? dateTime(
                         rs.ThirdPractice?.date,
                         rs.ThirdPractice?.time
-                      ).toLocaleString("tr-TR", {
+                      ).toLocaleString("en", {
                         // weekday: "short",
                         month: "2-digit",
                         day: "2-digit",
+                        year: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
                         minute: "2-digit",

@@ -6,11 +6,27 @@ const Nav = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-0">
         <div className="container-fluid">
-          <Link to="/" className="text-center text-decoration-none">
-            <h1 className="fw-bold" style={{ textShadow: "1px 1px 4px cyan" }}>
-              <span className="blink2 rounded-top">.::'</span>
-              <span className="blink rounded-top">|F1 RACE RESULTS|</span>
-              <span className="blink2 rounded-top">'::.</span>
+          <Link to="/" className="text-center text-info text-decoration-none">
+            <h1 className="fw-bold">
+              <span
+                className="blink2 rounded-top"
+                style={{ textShadow: "1px 1px 4px yellow" }}
+              >
+                .::'|
+              </span>
+              <span
+                className="blink rounded-top"
+                style={{ textShadow: "2px 3px 3px cyan" }}
+              >
+                {" "}
+                F1 RACE RESULTS{" "}
+              </span>
+              <span
+                className="blink2 rounded-top"
+                style={{ textShadow: "1px 1px 4px yellow" }}
+              >
+                |'::.
+              </span>
             </h1>
           </Link>
           <button
@@ -32,13 +48,13 @@ const Nav = () => {
                 </a>
               </li>
               <li className="nav-item">
-              <a className="nav-link" href="#/ConstructorStandings">
-              Constructor Standings
+                <a className="nav-link" href="#/ConstructorStandings">
+                  Constructor Standings
                 </a>
               </li>
               <li className="nav-item">
-              <a className="nav-link" href="#/RaceHistoryChart">
-              Race History Chart
+                <a className="nav-link" href="#/RaceHistoryChart">
+                  Race History Chart
                 </a>
               </li>
             </ul>

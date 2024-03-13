@@ -20,27 +20,39 @@ body {
 }
 
 .blink {
-  animation: blinker 1s alternate infinite;
+  animation: blinker 2.9s alternate infinite;
 }
 .blink2 {
-  animation: blinker2 0.8s alternate infinite;
+  animation: blinker2 0.2s alternate infinite;
 }
 @keyframes blinker {
-  6% {
-    background-color: black;
+  15% {
+    color: black;
   }
-  5% {
-    background-color: cyan;
-    color: yellow !important;
+  30% {
+    color: cyan;
+    text-shadow: none;
+  }
+  55% {
+    text-shadow: 2px 2px 5px cyan;
+  }
+  100% {
+    color: black;
+    opacity: 0.3;
   }
 }
 @keyframes blinker2 {
   6% {
-    background-color: black;
+    color: yellow;
   }
-  5% {
-    background-color: yellow;
-    color: cyan !important;
+  30% {
+    color: black;
+  }
+  75% {
+    color: yellow;
+  }
+  50% {
+    color: yellow;
   }
 }
 
