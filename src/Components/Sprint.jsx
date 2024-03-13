@@ -40,37 +40,43 @@ const Sprint = () => {
       <div className="container-fluid p-0">
         <Nav />
 
-        <h2 className="bg-info text-black text-center fw-bold mt-1">
-          {data?.raceName}|{data?.Circuit?.circuitName} Sprint Results -{" "}
-          {data?.season}#{data?.round} - {sprintDate}
-        </h2>
+        <h3 className="text-black text-center fw-bold mt-2 m-0">
+          <span className="bg-info px-1">
+            {data?.raceName}|{data?.Circuit?.circuitName} Sprint Results
+          </span>
+        </h3>
+        <h5 className="text-center fw-bold mt-1">
+          <span className="bg-info text-black px-1">
+            {data?.season}#{data?.round} - {sprintDate}
+          </span>
+        </h5>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped table-bordered">
-            <thead className="fw-bold">
-              <tr className="fs-5">
+            <thead className="fw-bold text-center">
+              <tr className="align-middle">
                 <th className="">P</th>
                 <th className="bg-danger">G</th>
-                <th className="">DRIVER</th>
-                <th className="bg-danger">CONSTRUCTOR</th>
-                <th className="text-center">LAPS</th>
-                <th className="bg-danger text-center">TIME</th>
-                <th className="text-center">PTS</th>
-                <th className="bg-danger">FASTEST LAP</th>
+                <th className="text-start">DRIVER</th>
+                <th className="text-start bg-danger">CONSTRUCTOR</th>
+                <th className="p-0">LAPS</th>
+                <th className="bg-danger text-end">TIME</th>
+                <th className="p-0">PTS</th>
+                <th className="bg-danger text-start">FASTEST LAP</th>
               </tr>
             </thead>
             <tbody className="fw-bold">
               {data?.SprintResults.map((item, index) => {
                 return (
                   <tr key={index} className="align-middle">
-                    <td className="col">{item.positionText}</td>
-                    <td className="col op">{item.grid}</td>
+                    <td className="p-0 text-center">{item.positionText}</td>
+                    <td className="op text-center p-0">{item.grid}</td>
                     <td
-                      className="col fs-5 text-info cp"
+                      className="text-info cp py-0"
                       onClick={() => {
                         navigate("/ResultsDriver/" + item.Driver.driverId);
                       }}
                     >
-                      <span className="bg-black p-1">
+                      <span className="bg-black px-1">
                         {item.Driver.givenName} {item.Driver.familyName}
                       </span>
                       <span className="fst-italic fw-normal ">
@@ -79,7 +85,7 @@ const Sprint = () => {
                       </span>
                     </td>
                     <td
-                      className="col op fs-5 fst-italic text-warning cp"
+                      className="op fst-italic text-warning cp py-0"
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +
@@ -89,7 +95,7 @@ const Sprint = () => {
                         );
                       }}
                     >
-                      <span className="bg-black p-1">
+                      <span className="bg-black px-1">
                         {item.Constructor.name}
                       </span>
                       <span className="fst-italic fw-normal ">
@@ -97,21 +103,23 @@ const Sprint = () => {
                         {item.Constructor.nationality}
                       </span>
                     </td>
-                    <td className="col text-center">{item.laps}</td>
-                    <td className="col op text-center">
-                      <span className="bg-black d-block">
+                    <td className="text-center p-0">{item.laps}</td>
+                    <td className="op text-end py-0">
+                      <span className="">
                         {item.Time?.time ? item.Time?.time : item.status}
                       </span>
                     </td>
-                    <td className="col text-center text-danger fw-bolder">
+                    <td className="text-center text-danger fw-bolder p-0 py-0">
                       {item.points}
                     </td>
-                    <td className="col op">
-                      {item.FastestLap
-                        ? item.FastestLap?.Time.time +
-                          " | Lap: " +
-                          item.FastestLap?.lap
-                        : null}
+                    <td className="op py-0 text-start">
+                      <span className="">
+                        {item.FastestLap
+                          ? item.FastestLap?.Time.time +
+                            " | Lap: " +
+                            item.FastestLap?.lap
+                          : null}
+                      </span>
                     </td>
                   </tr>
                 );
