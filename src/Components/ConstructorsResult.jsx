@@ -15,7 +15,15 @@ const ConstructorsResult = () => {
   const { constructors = "red_bull" } = useParams();
   const [cons, setCons] = useState(constructors);
 
-  const dateTime = (d) => new Date(d).toDateString();
+  const dateTime = (d, t) =>
+    new Date().toLocaleString("en", {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
   const { season = "2024" } = useParams();
 
@@ -56,11 +64,7 @@ const ConstructorsResult = () => {
             <Constructor year={season} />
           </select>
         </div>
-        {season === "2024" ? (
-          <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
-        ) : (
-          sdata[0]?.Results[0]?.Constructor?.name
-        )}
+
         {sdata.map((items, index) => {
           return (
             <div className="text-danger" key={index}>
@@ -69,15 +73,15 @@ const ConstructorsResult = () => {
                   <caption className="text-primary bg-dark text-center fs-4">
                     <span className="bg-black p-2 fw-bold">
                       {items.raceName} <i className="bi bi-calendar3"></i>
-                      {dateTime(items.date)}
+                      {dateTime(items.date, items.time)}
                       <i className="bi bi-calendar3"></i>
                     </span>
                   </caption>
                   <thead>
                     <tr className="">
-                      <th className="">P</th>
+                      <th className="text-center">P</th>
                       <th className="bg-danger">DRIVER</th>
-                      <th>TIME</th>
+                      <th className=" text-center">TIME</th>
                       <th className="bg-danger text-center">STATUS</th>
                       <th className="text-center">PTS</th>
                       <th className="bg-danger">FASTEST LAP</th>
@@ -89,7 +93,9 @@ const ConstructorsResult = () => {
                     {items?.Results.map((item, index) => {
                       return (
                         <tr key={index} className="">
-                          <td className="op">{item.positionText}</td>
+                          <td className="op text-center">
+                            {item.positionText}
+                          </td>
                           <td
                             className="cp"
                             onClick={() => {
@@ -102,14 +108,13 @@ const ConstructorsResult = () => {
                               " " +
                               item.Driver.familyName}
                           </td>
-                          <td className="op">{item.Time?.time}</td>
+                          <td className="op text-center">{item.Time?.time}</td>
                           <td className="text-center">{item.status}</td>
                           <td className="text-center op">{item.points}</td>
                           <td>
                             {item?.FastestLap
-                              ? "#" +
-                                item?.FastestLap?.rank +
-                                "# Time: " +
+                              ? item?.FastestLap?.rank +
+                                ". Time: " +
                                 item.FastestLap?.Time?.time +
                                 " - AvgSpd: " +
                                 item?.FastestLap?.AverageSpeed?.speed +
@@ -129,6 +134,12 @@ const ConstructorsResult = () => {
             </div>
           );
         })}
+
+        {season === "2024" ? (
+          <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
+        ) : (
+          sdata[0]?.Results[0]?.Constructor?.name
+        )}
       </div>
     );
   }

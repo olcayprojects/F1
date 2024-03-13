@@ -91,10 +91,10 @@ const ResultsDriver = () => {
                 .map((item, index) => {
                   return (
                     <tr key={index} className="text-danger align-middle">
-                      <td className="col text-center">{item.season}</td>
+                      <td className="text-center py-0">{item.season}</td>
                       <td
                         className={
-                          "col cp op " + (!item.Results ? "text-info" : null)
+                          "py-0 cp op " + (!item.Results ? "text-info" : null)
                         }
                         onClick={() =>
                           item.Results
@@ -117,17 +117,19 @@ const ResultsDriver = () => {
                               )
                         }
                       >
-                        <span className="">Round#{item.round} </span>
-                        <span className="fw-bold text-decoration-underline">
-                          {item.Results
-                            ? item.raceName
-                            : item.raceName + " Sprint"}
-                        </span>{" "}
-                        <span className="fst-italic">
-                          ({new Date(item.date).toDateString()})
+                        <span className="bg-black px-1 d-inline-block w-100">
+                          <span className="">Round#{item.round} </span>
+                          <span className="fw-bold text-decoration-underline">
+                            {item.Results
+                              ? item.raceName
+                              : item.raceName + " Sprint"}
+                          </span>{" "}
+                          <span className="fst-italic">
+                            ({new Date(item.date).toDateString()})
+                          </span>
                         </span>
                       </td>
-                      <td className={"col text-center "}>
+                      <td className={"py-0 text-center "}>
                         {item.Results ? (
                           item?.Results[0]?.positionText < 4 ? (
                             <i
@@ -152,24 +154,24 @@ const ResultsDriver = () => {
                           item?.SprintResults[0]?.positionText
                         )}
                       </td>
-                      <td className="col text-center op">
+                      <td className="text-center op py-0">
                         {item.Results
                           ? item?.Results[0]?.grid
                           : item?.SprintResults[0]?.grid}
                       </td>
-                      <td className="col text-center">
-                        <span className="text-success bg-black p-1">
+                      <td className="py-0 text-center">
+                        <span className="bg-black p-0 d-inline-block w-100 text-center text-success">
                           {item?.Results
                             ? item?.Results[0]?.Constructor?.name
                             : item?.SprintResults[0]?.Constructor?.name}
                         </span>
                       </td>
-                      <td className="col text-center op">
+                      <td className="py-0 text-center op">
                         {item?.Results
                           ? item?.Results[0]?.laps
                           : item?.SprintResults[0]?.laps}
                       </td>
-                      <td className="text-center text-warning col">
+                      <td className="py-0 text-center text-warning">
                         {item?.Results ? (
                           item?.Results[0]?.Time?.time ? (
                             item?.Results[0]?.Time?.time
@@ -186,14 +188,14 @@ const ResultsDriver = () => {
                           </span>
                         )}
                       </td>
-                      <td className=" text-center col op">
+                      <td className="py-0 text-center op">
                         {item?.Results
                           ? item?.Results[0]?.points
                           : item?.SprintResults[0]?.points}
                       </td>
 
-                      <td className="col">
-                        <span className="bg-black p-1 fw-bold text-secondary">
+                      <td className="py-0">
+                        <span className="bg-black px-1 fw-bold text-secondary d-block w-100">
                           {item?.Results
                             ? item?.Results[0]?.FastestLap
                               ? item?.Results[0]?.FastestLap?.rank +

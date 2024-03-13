@@ -87,7 +87,7 @@ const RaceSchedule = (props) => {
                     ) : (
                       <>
                         <span className="">{rs.raceName}</span>
-                        <i class="text-danger bi bi-slash-lg"></i>
+                        <i className="text-danger bi bi-slash-lg"></i>
                         <span
                           className="cp text-info"
                           onClick={() =>
@@ -99,7 +99,18 @@ const RaceSchedule = (props) => {
                       </>
                     )
                   ) : (
-                    ""
+                    <>
+                      <span className="">{rs.raceName}</span>
+                      <i className="text-danger bi bi-slash-lg"></i>
+                      <span
+                        className="cp text-info"
+                        onClick={() =>
+                          navigate("/Circuit/" + rs.Circuit.circuitId)
+                        }
+                      >
+                        {rs.Circuit.circuitName}
+                      </span>
+                    </>
                   )}
                 </td>
                 <td
@@ -136,7 +147,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={titleSprint}
                   className={
-                    "col text-nowrap py-0 text-info op " +
+                    "col text-nowrap pe-0 py-0 text-info op " +
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
@@ -174,7 +185,7 @@ const RaceSchedule = (props) => {
                     : rs.Sprint?.date}
                 </td>
                 <td
-                  className="col text-nowrap cp py-0"
+                  className="col text-nowrap pe-0 cp py-0"
                   onClick={() =>
                     navigate(
                       "/Event/" +
@@ -189,17 +200,23 @@ const RaceSchedule = (props) => {
                         rs.Qualifying?.date,
                         rs.Qualifying?.time
                       ).toLocaleString("en", {
-                        dateStyle: "long",
-                        timeStyle: "short",
+                        weekday: 'short',
+                        month: "2-digit",
+                        day: "2-digit",
+                        year: "2-digit",
+                        hourCycle: "h11",
+                        hour: "2-digit",
+                        minute: "2-digit",
                       })
                     : rs.Qualifying?.date}
                 </td>
-                <td className="col text-nowrap op py-0">
+                <td className="col text-nowrap op pe-0 py-0">
                   {rs.FirstPractice?.time
                     ? dateTime(
                         rs.FirstPractice?.date,
                         rs.FirstPractice?.time
                       ).toLocaleString("en-EN", {
+                        weekday: 'short',
                         month: "2-digit",
                         day: "2-digit",
                         year: "2-digit",
@@ -209,12 +226,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.FirstPractice?.date}
                 </td>
-                <td className="col text-nowrap py-0">
+                <td className="col text-nowrap pe-0 py-0">
                   {rs.SecondPractice?.time
                     ? dateTime(
                         rs.SecondPractice?.date,
                         rs.SecondPractice?.time
                       ).toLocaleString("en", {
+                        weekday: 'short',
                         month: "2-digit",
                         day: "2-digit",
                         year: "2-digit",
@@ -224,13 +242,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.SecondPractice?.date}
                 </td>
-                <td className="col text-nowrap op py-0">
+                <td className="col text-nowrap op pe-0 py-0">
                   {rs.ThirdPractice?.time
                     ? dateTime(
                         rs.ThirdPractice?.date,
                         rs.ThirdPractice?.time
                       ).toLocaleString("en", {
-                        // weekday: "short",
+                        weekday: "short",
                         month: "2-digit",
                         day: "2-digit",
                         year: "2-digit",

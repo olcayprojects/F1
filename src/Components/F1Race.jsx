@@ -140,11 +140,11 @@ const F1Race = (props) => {
                               <td className="text-center text-success p-0">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
-                                    <b className="text-info bg-black p-2">1</b>
+                                    <b className="text-info bg-black px-2">1</b>
                                   ) : result.positionText === "2" ? (
-                                    <b className="text-info bg-black p-2">2</b>
+                                    <b className="text-info bg-black px-2">2</b>
                                   ) : result.positionText === "3" ? (
-                                    <b className="text-info bg-black p-2">3</b>
+                                    <b className="text-info bg-black px-2">3</b>
                                   ) : null
                                 ) : (
                                   <b>{result.positionText}</b>
@@ -267,8 +267,8 @@ const F1Race = (props) => {
                               >
                                 {result.laps}
                               </td>
-                              <td className="text-wrap text-center text-warning fw-bold p-0">
-                                <span className="bg-black w-75 d-inline-block">
+                              <td className="text-wrap text-center text-warning fw-bold p-0 px-1">
+                                <span className="bg-black w-100 d-inline-block">
                                   {result.Time?.time ? (
                                     result.Time.time
                                   ) : result.status[0] === "+" ? (
@@ -297,7 +297,7 @@ const F1Race = (props) => {
 
                               <td
                                 className={
-                                  "fw-bold op text-end cp p-0 " +
+                                  "fw-bold op text-end pe-1 cp p-0 " +
                                   (result.FastestLap?.rank in
                                   ["1", "2", "3", "4"]
                                     ? "text-danger"
@@ -314,14 +314,14 @@ const F1Race = (props) => {
                                   );
                                 }}
                               >
-                                <span className="bg-black p-0 me-1 d-inline-block w-25 text-center">
+                                <span className="bg-black p-0 d-inline-block w-25 text-center">
                                   {result.FastestLap?.rank}
                                 </span>
                                 {result.FastestLap ? (
                                   <i className="bi bi-forward-fill fs-5 px-1"></i>
                                 ) : null}
                                 {result.FastestLap ? (
-                                  <span className="border me-1 p-0 border-black border-4 bg-black">
+                                  <span className="px-3 p-0 bg-black">
                                     {result.FastestLap?.Time.time}
                                   </span>
                                 ) : null}
