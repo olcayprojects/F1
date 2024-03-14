@@ -86,8 +86,12 @@ const F1Race = (props) => {
                     <span>
                       {item.raceName} #{item.round}
                     </span>
-                    <i className="text-info bi bi-calendar3">
-                      {item.time ? dateTime(item.date, item.time) : item.date}
+                    <i className="text-info bi bi-calendar3 ms-2">
+                      <span className="px-2">
+                        {item.time
+                          ? dateTime(item.date, item.time)
+                          : new Date(item.date).toDateString()}
+                      </span>
                     </i>
                     <i className="text-info bi bi-calendar3"></i>
                   </h1>

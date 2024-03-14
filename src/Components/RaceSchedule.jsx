@@ -150,14 +150,7 @@ const RaceSchedule = (props) => {
                         hour: "2-digit",
                         minute: "2-digit",
                       })
-                    : new Date(rs.date).toLocaleDateString("en", {
-                        month: "2-digit",
-                        day: "2-digit",
-                        year: "numeric",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
+                    : new Date(rs.date).toDateString()}
                 </td>
                 <td
                   title={titleSprint}

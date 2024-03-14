@@ -72,8 +72,14 @@ const ConstructorsResult = () => {
                 <table className="table table-striped table-dark caption-top table-bordered">
                   <caption className="text-primary bg-dark text-center fs-4">
                     <span className="bg-black p-2 fw-bold">
-                      {items.raceName} <i className="bi bi-calendar3"></i>
-                      {dateTime(items.date, items.time)}
+                      {items.raceName}
+                      <i className="bi bi-calendar3 ms-1">
+                        <span className="px-2 text-info">
+                          {items.time
+                            ? dateTime(items.date, items.time)
+                            : items.date}
+                        </span>
+                      </i>
                       <i className="bi bi-calendar3"></i>
                     </span>
                   </caption>
