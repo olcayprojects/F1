@@ -45,21 +45,21 @@ const Laps = () => {
       <div className="container-fluid p-0">
         <Nav />
 
-        <h1 className="text-center text-danger">{sdata.raceName} Lap Time</h1>
+        <h1 className="text-center text-danger">{sdata?.raceName} Lap Time</h1>
         <h2 className="text-center text-danger">
-          #{sdata.round} {sdata.season}
+          #{sdata?.round} {sdata?.season}
         </h2>
         <div className="table-responsive-sm">
-          <table className="table table-dark table-striped op fs-5 table-bordered border-black">
-            <thead className="text">
+          <table className="table table-dark table-striped op table-bordered border-black">
+            <thead className="">
               <tr>
-                <th className="">#</th>
-                <th className="bg-danger">Race PST</th>
-                <th className="">Driver</th>
-                <th className="bg-danger">
+                <th className="text-center px-0">#</th>
+                <th className="bg-danger text-center px-0">P</th>
+                <th className="">Driver Info</th>
+                <th className="bg-danger text-center px-0">
                   Time <i className="bi bi-sort-down-alt fs-4"></i>
                 </th>
-                <th className="">Lap</th>
+                <th className=" text-center px-0">Lap</th>
               </tr>
             </thead>
 
@@ -82,21 +82,23 @@ const Laps = () => {
               {drvTimeList.map((drvitem, index3) => {
                 return (
                   <tr key={index3} className="bg-danger align-middle">
-                    <td className="col">{index3 + 1}</td>
-                    <td className="col op fs-4">
+                    <td className="p-0 text-center">{index3 + 1}</td>
+                    <td className="p-0 op text-center">
                       {drvitem?.pst < 4 ? (
                         <i
-                          className={"bi bi-" + drvitem?.pst + "-circle-fill"}
+                          className={
+                            "bi bi-" + drvitem?.pst + "-circle-fill fs-5"
+                          }
                         ></i>
                       ) : (
                         drvitem?.pst
                       )}
                     </td>
-                    <td className="col">
+                    <td className="py-0">
                       {<DriverId Id={drvitem?.drvId} ls={2} />}
                     </td>
-                    <td className="col op">{drvitem?.time}</td>
-                    <td className="col">{drvitem?.lap}</td>
+                    <td className="py-0 op text-center">{drvitem?.time}</td>
+                    <td className="py-0 text-center">{drvitem?.lap}</td>
                   </tr>
                 );
               })}
