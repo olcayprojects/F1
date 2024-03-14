@@ -6,7 +6,7 @@ const Nav = () => {
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark p-0">
         <div className="container-fluid">
-          <Link to="/" className="text-center text-info text-decoration-none">
+          <Link to="/" className="text-center text-black text-decoration-none">
             <h1 className="fw-bold">
               <span
                 className="blink2 rounded-top"
@@ -16,7 +16,7 @@ const Nav = () => {
               </span>
               <span
                 className="blink rounded-top"
-                style={{ textShadow: "2px 3px 3px cyan" }}
+                style={{ textShadow: "2px 3px 1px cyan" }}
               >
                 {" "}
                 F1 RACE RESULTS{" "}

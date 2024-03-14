@@ -23,7 +23,7 @@ body {
   animation: blinker 2.9s alternate infinite;
 }
 .blink2 {
-  animation: blinker2 0.2s alternate infinite;
+  animation: blinker2 0.4s alternate infinite;
 }
 @keyframes blinker {
   15% {
@@ -31,7 +31,7 @@ body {
   }
   30% {
     color: cyan;
-    text-shadow: none;
+    text-shadow: 2px 2px 4px black;
   }
   55% {
     text-shadow: 2px 2px 5px cyan;
@@ -52,7 +52,7 @@ body {
     color: yellow;
   }
   50% {
-    color: yellow;
+    color: black;
   }
 }
 
