@@ -60,11 +60,13 @@ export default function DriverId(props) {
       );
     } else {
       return (
-        <>
-          <span className="">{sdata?.givenName.substring(0, 1)}.</span>
-          <span className="">{sdata?.familyName}</span>
+        <td
+          className="op text-black text-center fw-bold py-0"
+          title={sdata.givenName + " " + sdata.familyName}
+        >
+          {sdata?.code}
           {/* <span className=""> ({sdata?.permanentNumber})</span> */}
-        </>
+        </td>
       );
     }
   }
