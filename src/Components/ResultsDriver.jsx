@@ -160,7 +160,7 @@ const ResultsDriver = () => {
                           : item?.SprintResults[0]?.grid}
                       </td>
                       <td className="py-0 text-center">
-                        <span className="bg-black p-0 d-inline-block w-100 text-center text-success">
+                        <span className="bg-black p-0 d-inline-block fw-bold w-100 text-center text-success">
                           {item?.Results
                             ? item?.Results[0]?.Constructor?.name
                             : item?.SprintResults[0]?.Constructor?.name}

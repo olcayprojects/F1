@@ -70,7 +70,7 @@ tr {
 }
 .cp:hover {
   cursor: pointer;
-  border: 2px solid orange;
+  border: 5px ridge gray;
   box-sizing: border-box;
 }
 .ch {

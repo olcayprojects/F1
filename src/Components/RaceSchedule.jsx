@@ -42,7 +42,7 @@ const RaceSchedule = (props) => {
             <th className=" text-center">Race Date</th>
             <th className="text-center bg-info">Sprint Date</th>
             <th className="text-center">Qualifying</th>
-            <th className="bg-danger text-center">Practice 1</th>
+            <th className="bg-danger text-center">Practice1</th>
             <th className="text-center">Practice 2</th>
             <th className="bg-danger text-center">Practice 3</th>
           </tr>
@@ -58,7 +58,7 @@ const RaceSchedule = (props) => {
             return (
               <tr
                 className={
-                  "align-middle col " +
+                  "align-middle " +
                   ((rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1]) &
                   (props.season === "2024")
@@ -67,8 +67,13 @@ const RaceSchedule = (props) => {
                 }
                 key={index}
               >
-                <td className="col text-center p-0 align-middle">{rs.round}</td>
-                <td className="col-2 text-nowrap op fw-bold text-warning py-0">
+                <td className="text-center p-0 align-middle">{rs.round}</td>
+                <td
+                  className={
+                    "text-nowrap op fw-bold text-warning py-0 " +
+                    (props.season === "2024" ? "col-2" : "")
+                  }
+                >
                   {props.season === "2024" ? (
                     rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1] ? (
@@ -116,7 +121,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={title}
                   className={
-                    "col cp py-0 text-nowrap " +
+                    "cp pe-0 py-0 text-nowrap " +
                     (dateTime(rs.date, rs.time) < dateNow
                       ? "fw-bold"
                       : // ? "fw-bold text-decoration-line-through"
@@ -146,6 +151,7 @@ const RaceSchedule = (props) => {
                         weekday: "short",
                         month: "2-digit",
                         day: "2-digit",
+                        year: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
                         minute: "2-digit",
@@ -155,7 +161,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={titleSprint}
                   className={
-                    "col text-nowrap py-0 text-info op " +
+                    "text-nowrap text-center p-0 text-info op " +
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
@@ -186,9 +192,9 @@ const RaceSchedule = (props) => {
                     ? dateTime(rs.Sprint?.date, rs.Sprint?.time).toLocaleString(
                         "en",
                         {
-                          weekday: "short",
-                          month: "short",
+                          month: "2-digit",
                           day: "2-digit",
+                          year: "2-digit",
                           hourCycle: "h23",
                           hour: "2-digit",
                           minute: "2-digit",
@@ -197,7 +203,7 @@ const RaceSchedule = (props) => {
                     : rs.Sprint?.date}
                 </td>
                 <td
-                  className="col text-nowrap pe-0 cp py-0"
+                  className="text-nowrap pe-0 cp py-0"
                   onClick={() =>
                     navigate(
                       "/Event/" +
@@ -221,7 +227,7 @@ const RaceSchedule = (props) => {
                       })
                     : rs.Qualifying?.date}
                 </td>
-                <td className="col text-nowrap op pe-0 py-0">
+                <td className="text-nowrap text-center op p-0">
                   {rs.FirstPractice?.time
                     ? dateTime(
                         rs.FirstPractice?.date,
@@ -235,7 +241,7 @@ const RaceSchedule = (props) => {
                       })
                     : rs.FirstPractice?.date}
                 </td>
-                <td className="col text-nowrap pe-0 py-0">
+                <td className="text-nowrap text-center p-0">
                   {rs.SecondPractice?.time
                     ? dateTime(
                         rs.SecondPractice?.date,
@@ -249,7 +255,7 @@ const RaceSchedule = (props) => {
                       })
                     : rs.SecondPractice?.date}
                 </td>
-                <td className="col text-nowrap op pe-0 py-0">
+                <td className="text-nowrap text-center op p-0">
                   {rs.ThirdPractice?.time
                     ? dateTime(
                         rs.ThirdPractice?.date,
