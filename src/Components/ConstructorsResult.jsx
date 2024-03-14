@@ -67,7 +67,7 @@ const ConstructorsResult = () => {
 
         {sdata.map((items, index) => {
           return (
-            <div className="text-danger" key={index}>
+            <div className="text-danger container" key={index}>
               <div className="table-responsive-sm">
                 <table className="table table-striped table-dark caption-top table-bordered">
                   <caption className="text-primary bg-dark text-center fs-4">
@@ -86,24 +86,25 @@ const ConstructorsResult = () => {
                   <thead>
                     <tr className="">
                       <th className="text-center">P</th>
-                      <th className="bg-danger">DRIVER</th>
-                      <th className=" text-center">TIME</th>
-                      <th className="bg-danger text-center">STATUS</th>
-                      <th className="text-center">PTS</th>
-                      <th className="bg-danger">FASTEST LAP</th>
+                      <th className="bg-danger text-center">G</th>
+                      <th className="">DRIVER</th>
+                      <th className="bg-danger  text-center">TIME</th>
+                      <th className="text-center">STATUS</th>
+                      <th className="bg-danger text-center">PTS</th>
                       <th className="text-center">LAPS</th>
-                      <th className="bg-danger text-center">GRID</th>
+                      <th className="bg-danger text-center">FASTEST LAP</th>
                     </tr>
                   </thead>
                   <tbody>
                     {items?.Results.map((item, index) => {
                       return (
                         <tr key={index} className="">
-                          <td className="op text-center">
+                          <td className="op text-center p-0">
                             {item.positionText}
                           </td>
+                          <td className="text-center p-0">{item.grid}</td>
                           <td
-                            className="cp"
+                            className="cp op p-0 fw-bold"
                             onClick={() => {
                               navigate(
                                 "/ResultsDriver/" + item.Driver.driverId
@@ -112,12 +113,16 @@ const ConstructorsResult = () => {
                           >
                             {item.Driver.givenName +
                               " " +
-                              item.Driver.familyName}
+                              item.Driver.familyName }
+                              <span className="px-1 fst-italic fw-normal text-white-50">({new Date(item.Driver.dateOfBirth).toDateString()})</span>
+                              <span className=" fw-normal text-white-50">{item.Driver.nationality}</span>
+
                           </td>
-                          <td className="op text-center">{item.Time?.time}</td>
-                          <td className="text-center">{item.status}</td>
-                          <td className="text-center op">{item.points}</td>
-                          <td>
+                          <td className="text-center p-0">{item.Time?.time}</td>
+                          <td className="op text-center p-0">{item.status}</td>
+                          <td className="text-center p-0">{item.points}</td>
+                          <td className="text-center op p-0">{item.laps}</td>
+                          <td className="p-0 text-center">
                             {item?.FastestLap
                               ? item?.FastestLap?.rank +
                                 ". Time: " +
@@ -129,8 +134,6 @@ const ConstructorsResult = () => {
                                 item?.FastestLap?.lap
                               : null}
                           </td>
-                          <td className="text-center op">{item.laps}</td>
-                          <td className="text-center">{item.grid}</td>
                         </tr>
                       );
                     })}
