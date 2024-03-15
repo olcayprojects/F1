@@ -158,36 +158,38 @@ const F1Race = (props) => {
                                 {result.grid}
                               </td>
                               <td className="text-center text-warning p-0">
-                                {result.number < 10 ? (
-                                  <i
-                                    className={
-                                      "fs-5 bi bi-" +
-                                      result.number +
-                                      "-square-fill"
-                                    }
-                                  ></i>
-                                ) : (
-                                  <>
+                                <span className="bg-black px-1">
+                                  {result.number < 10 ? (
                                     <i
                                       className={
                                         "fs-5 bi bi-" +
-                                        result.number[0] +
+                                        result.number +
                                         "-square-fill"
                                       }
                                     ></i>
-                                    <i
-                                      className={
-                                        "fs-5 bi bi-" +
-                                        result.number[1] +
-                                        "-square-fill"
-                                      }
-                                    ></i>
-                                  </>
-                                )}
+                                  ) : (
+                                    <>
+                                      <i
+                                        className={
+                                          "fs-5 bi bi-" +
+                                          result.number[0] +
+                                          "-square-fill pe-1"
+                                        }
+                                      ></i>
+                                      <i
+                                        className={
+                                          "fs-5 bi bi-" +
+                                          result.number[1] +
+                                          "-square-fill"
+                                        }
+                                      ></i>
+                                    </>
+                                  )}
+                                </span>
                               </td>
 
                               <td
-                                className="cp op p-0"
+                                className="cp op p-0 p-1"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + result.Driver.driverId
@@ -211,13 +213,13 @@ const F1Race = (props) => {
                                     }
                                   />
                                 ) : null}
-                                <span className="text-info bg-black fw-bold p-1 ">
+                                <span className="text-info bg-black fw-bold px-1 p-1 ">
                                   {result.Driver?.givenName + " "}
 
                                   {result.Driver?.familyName}
                                 </span>
 
-                                <span className="fw-bold p-1 fst-italic text-black bg-info px-2">
+                                <span className="fw-bold p-1 fst-italic text-black bg-info px-1">
                                   {result.Driver?.nationality}
                                 </span>
                               </td>

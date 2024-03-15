@@ -34,7 +34,7 @@ const Carousel = () => {
               {item.strTeam}
             </h1>
             <img
-              style={{ width: "400px", height: "100px", objectFit: "cover" }}
+              style={{ width: "330px", height: "100px", objectFit: "cover" }}
               className="rounded float-start p-0"
               src={item.strTeamJersey}
               srcSet=""
@@ -48,7 +48,7 @@ const Carousel = () => {
             </h1>
             <img
               style={{
-                width: "400px",
+                width: "330px",
                 height: "100px",
                 objectFit: "cover",
                 transform: "scaleX(-1)",

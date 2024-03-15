@@ -18,8 +18,7 @@ const Nav = () => {
                 className="blink rounded-top"
                 style={{ textShadow: "2px 3px 1px cyan" }}
               >
-                {" "}
-                F1 RACE RESULTS{" "}
+                F1 RACE RESULTS
               </span>
               <span
                 className="blink2 rounded-top"
