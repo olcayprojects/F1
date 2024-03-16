@@ -84,8 +84,8 @@ const QualifyingResults = (props) => {
                             " " +
                             qualifying.Driver.familyName}
                         </span>
-                        <span className="bg-secondary text-info fw-bold px-1">
-                          {qualifying.number}
+                        <span className="text-secondary px-1 fst-italic fw-light">
+                          {qualifying.Driver.nationality}
                         </span>
                         <span
                           className="fw-bold fst-italic text-black px-1 bg-info cp"

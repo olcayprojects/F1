@@ -34,9 +34,8 @@ const Next = () => {
           >
             <marquee className="" behavior="" scrollamount="8">
               <span className="text-primary">Next Race </span>
-              <i className="bi bi-calendar3 text-warning"></i>
-              <span className="text-info "> {data.raceName} </span>
-              <i className="bi bi-calendar3 text-warning"> </i>
+              <span className="text-info ">{data.raceName}</span>
+              <i className="bi bi-calendar3 text-warning px-1"></i>
               <span className="text-danger">
                 {data.time
                   ? dateTime(data?.date, data.time)
@@ -52,7 +51,7 @@ const Next = () => {
               ) : null}
               {data.FirstPractice?.date ? (
                 <>
-                  <i className="bi bi-clock-fill text-info"></i>
+                  <i className="bi bi-clock-fill text-info px-1"></i>
 
                   <span className="text-success">First Practice: </span>
                   <span>
@@ -61,7 +60,7 @@ const Next = () => {
                       data.FirstPractice?.time
                     )}
                   </span>
-                  <i className="bi bi-clock-fill text-info"></i>
+                  <i className="bi bi-clock-fill text-info px-1"></i>
                   <span className="text-success">Second Practice: </span>
                   {dateTime(
                     data.SecondPractice?.date,
@@ -69,7 +68,7 @@ const Next = () => {
                   )}
                   {data.ThirdPractice?.date ? (
                     <>
-                      <i className="bi bi-clock-fill text-info"></i>
+                      <i className="bi bi-clock-fill text-info px-1"></i>
                       <span className="text-success">Third Practice: </span>
                       {dateTime(
                         data.ThirdPractice?.date,
@@ -77,7 +76,7 @@ const Next = () => {
                       )}
                     </>
                   ) : null}
-                  <i className="bi bi-clock-fill text-info"></i>
+                  <i className="bi bi-clock-fill text-info px-1"></i>
                   <span className="text-success">Qualifying: </span>
                   {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
                 </>

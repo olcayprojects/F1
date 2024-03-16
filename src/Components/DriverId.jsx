@@ -26,19 +26,19 @@ export default function DriverId(props) {
       return (
         <>
           {/* <span className="pe-1">{sdata?.code}</span> */}
-          <span className="px-2 bg-black">
+          <span className="px-1 bg-black">
             {sdata?.givenName} {sdata?.familyName}
           </span>
-          <span className="bg-info px-2 text-black">
+          <span className="bg-secondary px-1 text-black">
             {sdata?.permanentNumber}
           </span>
-          <span className="bg-black px-2 text-info">
+          <span className="bg-black px-1 text-info">
             {sdata?.code
               ? sdata?.code
               : sdata?.familyName.substring(0, 3).toUpperCase()}
           </span>
-          <span className="fw-light px-2 fst-italic text-secondary">
-            {sdata?.nationality}{" "}
+          <span className="fw-light px-1 fst-italic text-secondary">
+            {sdata?.nationality}
           </span>
           {/* <span>{sdata?.dateOfBirth} </span> */}
         </>
@@ -48,11 +48,13 @@ export default function DriverId(props) {
         <div className="fw-bold">
           <span className="bg-black text-info px-2">{sdata?.givenName}</span>
           <span className="bg-black text-success">{sdata?.familyName}</span>
-          <span className="bg-black text-success  px-2">
+          <span className="bg-black text-success  px-1">
             ({sdata?.permanentNumber})
           </span>
           <span className="px-1 fw-normal">{sdata?.nationality}</span>
-          <span className="fw-normal">{new Date(sdata?.dateOfBirth).toDateString()}</span>
+          <span className="fw-normal">
+            {new Date(sdata?.dateOfBirth).toDateString()}
+          </span>
         </div>
       );
     } else {

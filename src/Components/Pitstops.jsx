@@ -71,13 +71,13 @@ const Pitstops = (props) => {
                     className="text-center op fw-bold py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="bg-black d-block">{ps.time}</span>
+                    <span className="">{ps.time}</span>
                   </td>
                   <td
                     className="text-center fw-bold py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="bg-black d-block">{ps.duration}</span>
+                    <span className="">{ps.duration}</span>
                   </td>
                   <td
                     className="text-center fw-bold op py-0"
