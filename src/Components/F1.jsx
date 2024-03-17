@@ -57,7 +57,7 @@ const F1 = () => {
         />
 
         <select
-          className="form-select bg-black text-danger shadow-none cp mb-1"
+          className="form-select bg-black text-danger fs-3 text-center shadow-none cp mb-1"
           onChange={(e) => {
             navigate(`/F1/${e.target.value}`);
             navigate(0);
