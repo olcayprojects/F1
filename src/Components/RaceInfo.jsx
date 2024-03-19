@@ -24,14 +24,12 @@ export function RaceThumb(props) {
 
   return data ? (
     <img
-      className="img-thumbnail m-0 p-0"
+      className="img-thumbnail w-50 m-0 p-0"
       src={data[0]?.strThumb}
       alt=""
       srcSet=""
     />
-  ) : 
-    null
-  
+  ) : null;
 }
 
 const RaceInfo = () => {
@@ -73,12 +71,7 @@ const RaceInfo = () => {
                 alt=""
                 srcSet=""
               />
-              <img
-                className="img-fluid"
-                src={event?.strMap}
-                alt=""
-                srcSet=""
-              />
+              <img className="img-fluid" src={event?.strMap} alt="" srcSet="" />
               {/* <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" /> */}
               <h5 className="text-light">{event?.strVenue}</h5>
               <h5 className="text-light">{event?.strCountry}</h5>

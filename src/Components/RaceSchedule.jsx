@@ -121,7 +121,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={title}
                   className={
-                    "cp pe-0 py-0 text-nowrap " +
+                    "cp p-0 px-1 py-0 text-center text-nowrap " +
                     (dateTime(rs.date, rs.time) < dateNow
                       ? "fw-bold"
                       : // ? "fw-bold text-decoration-line-through"
@@ -140,7 +140,7 @@ const RaceSchedule = (props) => {
                   {dateTime(rs.date, rs.time) > dateNow
                     ? dateTime(rs.date, rs.time).toLocaleString("en", {
                         weekday: "short",
-                        month: "long",
+                        month: "2-digit",
                         day: "2-digit",
                         hourCycle: "h23",
                         hour: "2-digit",
@@ -148,20 +148,15 @@ const RaceSchedule = (props) => {
                       })
                     : rs.time
                     ? dateTime(rs.date, rs.time).toLocaleString("en", {
-                        weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        year: "2-digit",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
+                        dateStyle: "long",
+                        timeStyle: "short",
                       })
                     : new Date(rs.date).toDateString()}
                 </td>
                 <td
                   title={titleSprint}
                   className={
-                    "text-nowrap text-center p-0 text-info op " +
+                    "text-nowrap text-center p-0 px-1 text-info op " +
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
@@ -192,9 +187,9 @@ const RaceSchedule = (props) => {
                     ? dateTime(rs.Sprint?.date, rs.Sprint?.time).toLocaleString(
                         "en",
                         {
+                          weekday: "short",
                           month: "2-digit",
                           day: "2-digit",
-                          year: "2-digit",
                           hourCycle: "h23",
                           hour: "2-digit",
                           minute: "2-digit",
@@ -203,7 +198,7 @@ const RaceSchedule = (props) => {
                     : rs.Sprint?.date}
                 </td>
                 <td
-                  className="text-nowrap pe-0 cp py-0"
+                  className="text-nowrap text-center cp px-1 p-0"
                   onClick={() =>
                     navigate(
                       "/Event/" +
@@ -227,12 +222,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.Qualifying?.date}
                 </td>
-                <td className="text-nowrap text-center op p-0">
+                <td className="text-nowrap text-center op px-1 p-0">
                   {rs.FirstPractice?.time
                     ? dateTime(
                         rs.FirstPractice?.date,
                         rs.FirstPractice?.time
                       ).toLocaleString("en-EN", {
+                        weekday: "short",
                         month: "2-digit",
                         day: "2-digit",
                         hourCycle: "h23",
@@ -241,12 +237,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.FirstPractice?.date}
                 </td>
-                <td className="text-nowrap text-center p-0">
+                <td className="text-nowrap text-center px-1 p-0">
                   {rs.SecondPractice?.time
                     ? dateTime(
                         rs.SecondPractice?.date,
                         rs.SecondPractice?.time
                       ).toLocaleString("en", {
+                        weekday: "short",
                         month: "2-digit",
                         day: "2-digit",
                         hourCycle: "h23",
@@ -255,12 +252,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.SecondPractice?.date}
                 </td>
-                <td className="text-nowrap text-center op p-0">
+                <td className="text-nowrap text-center op px-1">
                   {rs.ThirdPractice?.time
                     ? dateTime(
                         rs.ThirdPractice?.date,
                         rs.ThirdPractice?.time
                       ).toLocaleString("en", {
+                        weekday: "short",
                         month: "2-digit",
                         day: "2-digit",
                         hourCycle: "h23",
