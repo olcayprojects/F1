@@ -108,7 +108,7 @@ const QualifyingResults = (props) => {
                         <span
                           className={
                             qualifying?.Q3
-                              ? "bg-black d-block text-success fw-bold align-middle"
+                              ? "bg-black px-2 text-success fw-bold align-middle"
                               : null
                           }
                         >
@@ -119,7 +119,7 @@ const QualifyingResults = (props) => {
                         <span
                           className={
                             qualifying?.Q2
-                              ? "bg-black d-block fw-bold text-warning"
+                              ? "bg-black px-2 fw-bold text-warning"
                               : null
                           }
                         >
@@ -130,7 +130,7 @@ const QualifyingResults = (props) => {
                         <span
                           className={
                             qualifying?.Q1
-                              ? "bg-black d-block text-danger"
+                              ? "bg-black px-2 text-danger"
                               : null
                           }
                         >

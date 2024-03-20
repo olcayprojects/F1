@@ -75,14 +75,15 @@ const ResultsDriver = () => {
             <thead>
               <tr className="">
                 <th className="bg-danger text-center">S</th>
-                <th className="bg">Race Name</th>
-                <th className="text-center bg-danger">Pos</th>
-                <th className="text-center">Grid</th>
-                <th className="text-center bg-danger">Constructor</th>
-                <th className="text-center">Laps</th>
-                <th className="text-center bg-danger">Time</th>
-                <th className="text-center">Pts</th>
-                <th className="text-center bg-danger">Fastest Lap</th>
+                <th className="text-center">R</th>
+                <th className="bg-danger">Race Name</th>
+                <th className="text-center">Pos</th>
+                <th className="text-center bg-danger">Grid</th>
+                <th className="text-center">Constructor</th>
+                <th className="text-center bg-danger">Laps</th>
+                <th className="text-center">Time</th>
+                <th className="text-center bg-danger">Pts</th>
+                <th className="text-center">Fastest Lap</th>
               </tr>
             </thead>
             <tbody>
@@ -91,7 +92,8 @@ const ResultsDriver = () => {
                 .map((item, index) => {
                   return (
                     <tr key={index} className="text-danger align-middle">
-                      <td className="text-center py-0">{item.season}</td>
+                      <td className="text-center p-0 op">{item.season}</td>
+                      <td className="text-center p-0">{item.round}</td>
                       <td
                         className={
                           "py-0 cp op " + (!item.Results ? "text-info" : null)
@@ -117,8 +119,7 @@ const ResultsDriver = () => {
                               )
                         }
                       >
-                        <span className="bg-black px-1 d-inline-block w-100">
-                          <span className="">Round#{item.round} </span>
+                        <span className="px-1 d-inline-block w-100">
                           <span className="fw-bold text-decoration-underline">
                             {item.Results
                               ? item.raceName
@@ -129,7 +130,7 @@ const ResultsDriver = () => {
                           </span>
                         </span>
                       </td>
-                      <td className={"py-0 text-center "}>
+                      <td className={"py-0  text-center "}>
                         {item.Results ? (
                           item?.Results[0]?.positionText < 4 ? (
                             <i
@@ -160,7 +161,7 @@ const ResultsDriver = () => {
                           : item?.SprintResults[0]?.grid}
                       </td>
                       <td className="py-0 text-center">
-                        <span className="bg-black p-0 d-inline-block fw-bold w-100 text-center text-success">
+                        <span className="p-0 d-inline-block fw-bold w-100 text-center text-success">
                           {item?.Results
                             ? item?.Results[0]?.Constructor?.name
                             : item?.SprintResults[0]?.Constructor?.name}
@@ -195,7 +196,7 @@ const ResultsDriver = () => {
                       </td>
 
                       <td className="py-0">
-                        <span className="bg-black px-1 fw-bold text-secondary d-block w-100">
+                        <span className="px-1 fw-bold text-secondary d-block w-100">
                           {item?.Results
                             ? item?.Results[0]?.FastestLap
                               ? item?.Results[0]?.FastestLap?.rank +
