@@ -57,7 +57,7 @@ export const RaceHistoryChart = () => {
           {sdata.Laps?.map((LapTimes, index) => {
             return (
               <div key={index}>
-                <table className="table table-striped m-0 mb-3">
+                <table className="table table-bordered table-striped m-0 mb-3">
                   <caption className="text-center bg-dark p-0 text-secondary caption-top">
                     <span className="fw-bold px-2 p-1 text-info">
                       LAP <span className="">{LapTimes.number}</span>
@@ -86,13 +86,12 @@ export const RaceHistoryChart = () => {
                         <tr key={index} className="">
                           <td
                             key={index}
-                            className={
-                              lap.position < 4
-                                ? "text-danger fw-bold py-0"
-                                : "py-0"
-                            }
+                            className={lap.position < 4 ? "py-0" : "py-0"}
                           >
-                            {<DriverId Id={lap.driverId} ls={0} />}
+                            <span className="d-block text-center">
+                              {<DriverId Id={lap.driverId} ls={0} />}
+                            </span>
+
                             {/* {LapTimes.driverId} */}
                           </td>
                           <td className="text-center bg-light py-0">

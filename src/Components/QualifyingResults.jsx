@@ -4,7 +4,7 @@ import Loading from "./Loading";
 
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
 
   const { season2 = "2023" } = useParams();
@@ -18,17 +18,18 @@ const QualifyingResults = (props) => {
   }
 
   useEffect(() => {
+    setIsLoaded(true)
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setIsLoaded(false);
         setData(data["MRData"].RaceTable.Races);
+        setIsLoaded(false);
         //  console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
           console.log(err.message);
-          setIsLoaded(true);
+          setIsLoaded(false);
         }
       });
   }, [url]);

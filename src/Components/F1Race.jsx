@@ -12,7 +12,7 @@ import Nav from "./Nav";
 
 const F1Race = (props) => {
   const [sdata, setData] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   // const randomNumber = (min, max) =>
@@ -41,6 +41,7 @@ const F1Race = (props) => {
 
   useEffect(() => {
     function fetchData() {
+      setIsLoaded(false)
       fetch(urlx)
         .then((response) => response.json())
         .then((data) => {
@@ -50,6 +51,7 @@ const F1Race = (props) => {
         })
         .catch((err) => {
           console.log("Hata:", err.message);
+          setIsLoaded(true);
         });
     }
     fetchData();

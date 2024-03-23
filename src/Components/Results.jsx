@@ -22,7 +22,7 @@ const Results = (props) => {
       .then((res) => {
         setData(res?.data["MRData"]?.RaceTable?.Races[0]);
       })
-      .catch((e) => console.log(e))
+      .catch((e) => console.log(e),setIsLoaded(true))
       .finally(() => setIsLoaded(true));
   }, [url]);
 

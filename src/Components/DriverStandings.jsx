@@ -7,7 +7,7 @@ import Loading from "./Loading";
 import Nav from "./Nav";
 
 const DriverStandings = (props) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const [driverStandings, setDriverStandings] = useState([]);
   const navigate = useNavigate();
@@ -78,11 +78,11 @@ const DriverStandings = (props) => {
               {driverStandings?.map((driver, indexedDB) => {
                 return (
                   <tr key={driver.Driver.driverId} className="align-middle">
-                    <td className="text-center py-0">
+                    <td className="text-center fw-bold py-0">
                       {driver.position < 4 ? (
                         <i
                           className={
-                            "text-info bi bi-" + driver.position + "-square"
+                            "fs-5 bi bi-" + driver.position + "-square-fill"
                           }
                         ></i>
                       ) : (
@@ -91,9 +91,7 @@ const DriverStandings = (props) => {
                     </td>
                     <td className="text-center op text-danger py-0">
                       {driver.Driver.code ? (
-                        <span className="bg-black d-block">
-                          {driver.Driver.code}
-                        </span>
+                        <span className="fw-bold">{driver.Driver.code}</span>
                       ) : null}
                     </td>
                     <td
@@ -134,14 +132,10 @@ const DriverStandings = (props) => {
                       </i>
                     </td>
                     <td className="text-center op text-warning py-0">
-                      <span className={"bg-black fw-bold d-block"}>
-                        {driver.points}
-                      </span>
+                      <span className={"fw-bold d-block"}>{driver.points}</span>
                     </td>
                     <td className="text-center text-primary py-0">
-                      <span className={"bg-black fw-bold d-block"}>
-                        {driver.wins}
-                      </span>
+                      <span className={"fw-bold d-block"}>{driver.wins}</span>
                     </td>
                   </tr>
                 );

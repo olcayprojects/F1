@@ -60,7 +60,7 @@ export default function DriverId(props) {
     } else {
       return (
         <td
-          className="op text-black text-center fw-bold py-0"
+          className="op fw-bold py-0"
           title={sdata.givenName + " " + sdata.familyName}
         >
           {sdata?.code}

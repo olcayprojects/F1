@@ -16,7 +16,7 @@ const ConstructorsResult = () => {
   const [cons, setCons] = useState(constructors);
 
   const dateTime = (d, t) =>
-    new Date().toLocaleString("en", {
+    new Date(d + " " + t).toLocaleString("en", {
       weekday: "short",
       year: "numeric",
       month: "short",
@@ -55,7 +55,7 @@ const ConstructorsResult = () => {
           <Nav />
 
           <select
-            className="form-select bg-black text-danger border-danger border-5 shadow-none cp mb-1"
+            className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
             onChange={(e) => setCons(e.target.value)}
           >
             <option value="" hidden>
@@ -113,10 +113,15 @@ const ConstructorsResult = () => {
                           >
                             {item.Driver.givenName +
                               " " +
-                              item.Driver.familyName }
-                              <span className="px-1 fst-italic fw-normal text-white-50">({new Date(item.Driver.dateOfBirth).toDateString()})</span>
-                              <span className=" fw-normal text-white-50">{item.Driver.nationality}</span>
-
+                              item.Driver.familyName}
+                            <span className="px-1 fst-italic fw-normal text-white-50">
+                              (
+                              {new Date(item.Driver.dateOfBirth).toDateString()}
+                              )
+                            </span>
+                            <span className=" fw-normal text-white-50">
+                              {item.Driver.nationality}
+                            </span>
                           </td>
                           <td className="text-center p-0">{item.Time?.time}</td>
                           <td className="op text-center p-0">{item.status}</td>

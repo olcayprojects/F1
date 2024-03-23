@@ -8,7 +8,7 @@ import Duration from "./Duration";
 const Pitstops = (props) => {
   const [sdata, setData] = useState([]);
   const [dur, setDur] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
@@ -21,20 +21,22 @@ const Pitstops = (props) => {
   }
 
   useEffect(() => {
+    setIsLoaded(true)
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
-        setIsLoaded(true);
+        setIsLoaded(false);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
+          setIsLoaded(false);
           console.log(err.message);
         }
       });
   }, [url]);
 
-  if (!isLoaded) return <Loading />;
+  if (isLoaded) return <Loading />;
   return (
     <div className="container p-0 border border-dark border-5">
       <div className="table-responsive">

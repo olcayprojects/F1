@@ -7,7 +7,7 @@ const WinRacesInaSeason = (props) => {
 
   let navigate = useNavigate();
 
-  const { season2 = "2023" } = useParams();
+  const { season2 = "2024" } = useParams();
   let url = "";
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/results/1.json`;
@@ -88,35 +88,29 @@ const WinRacesInaSeason = (props) => {
                     </span>
                   </td>
                   <td className="col text-center fw-bold py-0">
-                    <span className="bg-black px-1 d-block">
-                      {item.Results[0].points}
-                    </span>
+                    <span className="px-1">{item.Results[0].points}</span>
                   </td>
 
                   <td className="col text-center op fw-bold py-0">
-                    <span className="bg-black px-1 d-block">
-                      {item.Results[0].laps}
-                    </span>
+                    <span className="px-1">{item.Results[0].laps}</span>
                   </td>
                   <td className="col text-center fw-bold py-0">
-                    <span className="bg-black px-1 d-block">
-                      {item.Results[0].Time.time}
-                    </span>
+                    <span className="px-1">{item.Results[0].Time.time}</span>
                   </td>
 
                   <td
                     className={
-                      " op col fw-bold py-0 " +
+                      "text-center op col fw-bold py-0 " +
                       (item.Results[0].FastestLap?.rank in [1, 2, 3, 4]
-                        ? "text-danger"
+                        ? "text-success"
                         : null)
                     }
                   >
                     {item.Results[0].FastestLap ? (
-                      <span className="bg-black px-2">
+                      <span className="px-2">
                         {item.Results[0].FastestLap
                           ? item.Results[0].FastestLap?.rank +
-                            ". | " +
+                            " => " +
                             "Time: " +
                             item.Results[0].FastestLap?.Time?.time +
                             " | AvgSpd: " +
