@@ -37,7 +37,7 @@ const Team = (props) => {
               alt=""
               srcSet=""
               title={teams?.strDescriptionEN}
-              />
+            />
             {/* <img
               className="img-fluid w-100 "
               style={{height: "100px", objectFit: "cover" }}
@@ -59,23 +59,25 @@ const Team = (props) => {
               title=""
             /> */}
 
-<img
-  className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
-  style={{ maxHeight: "210px" }}
-  src={teams?.strTeamJersey + ""}
-  alt=""
-  srcSet=""
-  title={teams?.strTeam}
-  />
             <img
               className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
-              style={{ maxHeight: "210px" }}
+              style={{ maxHeight: "190px" }}
+              src={teams?.strTeamJersey + ""}
+              alt=""
+              srcSet=""
+              title={teams?.strTeam}
+            />
+            <img
+              className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
+              style={{ maxHeight: "220px" }}
               src={teams?.strTeamLogo + ""}
               alt=""
               srcSet=""
               title={teams?.strTeam}
-              />
-              <h5 className="text-center">{teams?.intFormedYear} {teams?.strCountry}</h5>
+            />
+            <h5 className="text-center">
+              {teams?.intFormedYear} {teams?.strCountry}
+            </h5>
             <pre
               className="text-secondary ps-1"
               style={{ whiteSpace: "pre-wrap" }}

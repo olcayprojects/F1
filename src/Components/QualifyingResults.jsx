@@ -7,7 +7,7 @@ const QualifyingResults = (props) => {
   const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
 
-  const { season2 = "2023" } = useParams();
+  const { season2 = new Date().getFullYear() } = useParams();
   const { rounds = 0 } = useParams();
 
   let url = "";
@@ -18,7 +18,7 @@ const QualifyingResults = (props) => {
   }
 
   useEffect(() => {
-    setIsLoaded(true)
+    setIsLoaded(true);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -45,8 +45,8 @@ const QualifyingResults = (props) => {
           <thead className="">
             <tr className="text-black text-center">
               <th className="bg-danger py-0">P</th>
-              <th className="py-0">NO</th>
-              <th className="bg-danger text-start py-0">D R I V E R</th>
+              <th className="py-0">No</th>
+              <th className="bg-danger text-start py-0">DRIVER INFO</th>
               <th className="py-0">Q3</th>
               <th className="bg-danger py-0">Q2</th>
               <th className="py-0">Q1</th>
@@ -58,13 +58,13 @@ const QualifyingResults = (props) => {
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
                     <tr key={indexQ} className="align-middle">
-                      <td className="py-0 text-center op">
+                      <td className="p-0 text-center op">
                         {qualifying.position < 4 ? (
                           <i
                             className={
-                              "text-info bi bi-" +
+                              "fs-5 bg-info text-black bi bi-" +
                               qualifying.position +
-                              "-square"
+                              "-square-fill"
                             }
                           ></i>
                         ) : (
@@ -130,9 +130,7 @@ const QualifyingResults = (props) => {
                       <td className="col-2 text-center fw-bolder align-middle py-0">
                         <span
                           className={
-                            qualifying?.Q1
-                              ? "bg-black px-2 text-danger"
-                              : null
+                            qualifying?.Q1 ? "bg-black px-2 text-danger" : null
                           }
                         >
                           {qualifying?.Q1}

@@ -77,11 +77,11 @@ const ResultsDriver = () => {
                 <th className="bg-danger text-center">S</th>
                 <th className="text-center">R</th>
                 <th className="bg-danger">Race Name</th>
-                <th className="text-center">Pos</th>
-                <th className="text-center bg-danger">Grid</th>
+                <th className="text-center">P</th>
+                <th className="text-center bg-danger">G</th>
                 <th className="text-center">Constructor</th>
                 <th className="text-center bg-danger">Laps</th>
-                <th className="text-center">Time</th>
+                <th className="text-center">Time / Status</th>
                 <th className="text-center bg-danger">Pts</th>
                 <th className="text-center">Fastest Lap</th>
               </tr>
@@ -200,7 +200,7 @@ const ResultsDriver = () => {
                           {item?.Results
                             ? item?.Results[0]?.FastestLap
                               ? item?.Results[0]?.FastestLap?.rank +
-                                ". | Time: " +
+                                ". Time: " +
                                 item?.Results[0]?.FastestLap?.Time.time +
                                 " | AvgSpd: " +
                                 item?.Results[0]?.FastestLap?.AverageSpeed

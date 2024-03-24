@@ -32,6 +32,18 @@ const Event = (props) => {
       {sdata?.map((events, index) => {
         return (
           <div className="text-light" key={index}>
+            <h2 className="text-center">{events.strEvent}</h2>
+            <h5 className="text-center">{events.strVenue}</h5>
+            <h6 className="text-center">
+              {events.strCity} {events.strCountry}
+            </h6>
+            <h6 className="text-center">
+              {events.dateEvent + " " + events.strTime}
+            </h6>
+            <QualifyingResults
+              season={events.strSeason}
+              round={events.intRound}
+            />
             <div
               id="carouselEvent"
               className="carousel slide"
@@ -105,19 +117,6 @@ const Event = (props) => {
                 <span className="visually-hidden">Next</span>
               </button>
             </div>
-
-            <h1 className="text-center">{events.strEvent}</h1>
-            <h5 className="text-center">{events.strVenue}</h5>
-            <h6 className="text-center">
-              {events.strCity} {events.strCountry}
-            </h6>
-            <h6 className="text-center">
-              {events.dateEvent + " " + events.strTime}
-            </h6>
-            <QualifyingResults
-              season={events.strSeason}
-              round={events.intRound}
-            />
           </div>
         );
       })}

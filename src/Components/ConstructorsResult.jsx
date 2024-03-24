@@ -16,14 +16,9 @@ const ConstructorsResult = () => {
   const [cons, setCons] = useState(constructors);
 
   const dateTime = (d, t) =>
-    new Date(d + " " + t).toLocaleString("en", {
-      weekday: "short",
-      year: "numeric",
-      month: "short",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+    new Date(d + " " + t).toDateString() +
+    " " +
+    new Date(d + " " + t).toLocaleTimeString();
 
   const { season = "2024" } = useParams();
 
@@ -72,12 +67,14 @@ const ConstructorsResult = () => {
                 <table className="table table-striped table-dark caption-top table-bordered">
                   <caption className="text-primary bg-dark text-center fs-4">
                     <span className="bg-black p-2 fw-bold">
-                      {items.raceName}
+                      {items.raceName}/{items.Circuit?.Location?.locality}
+                      {" Round#"}
+                      {items.round}
                       <i className="bi bi-calendar3 ms-1">
                         <span className="px-2 text-info">
                           {items.time
                             ? dateTime(items.date, items.time)
-                            : items.date}
+                            : new Date(items.date).toDateString()}
                         </span>
                       </i>
                       <i className="bi bi-calendar3"></i>
@@ -127,18 +124,22 @@ const ConstructorsResult = () => {
                           <td className="op text-center p-0">{item.status}</td>
                           <td className="text-center p-0">{item.points}</td>
                           <td className="text-center op p-0">{item.laps}</td>
-                          <td className="p-0 text-center">
-                            {item?.FastestLap
-                              ? item?.FastestLap?.rank +
-                                ". Time: " +
+
+                          {item?.FastestLap ? (
+                            <td className="p-0 text-center">
+                              {item?.FastestLap?.rank +
+                                " => [ Time: " +
                                 item.FastestLap?.Time?.time +
                                 " - AvgSpd: " +
                                 item?.FastestLap?.AverageSpeed?.speed +
                                 item?.FastestLap?.AverageSpeed?.units +
                                 " - Lap: " +
-                                item?.FastestLap?.lap
-                              : null}
-                          </td>
+                                item?.FastestLap?.lap}{" "}
+                              ]
+                            </td>
+                          ) : (
+                            <td></td>
+                          )}
                         </tr>
                       );
                     })}
@@ -149,7 +150,7 @@ const ConstructorsResult = () => {
           );
         })}
 
-        {season === "2024" ? (
+        {season === new Date().getFullYear().toString() ? (
           <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
         ) : (
           sdata[0]?.Results[0]?.Constructor?.name
