@@ -252,7 +252,7 @@ const RaceSchedule = (props) => {
                       })
                     : rs.SecondPractice?.date}
                 </td>
-                <td className="text-nowrap text-center op px-1">
+                <td className="text-nowrap text-center p-0 op px-1">
                   {rs.ThirdPractice?.time
                     ? dateTime(
                         rs.ThirdPractice?.date,
