@@ -148,8 +148,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.time
                     ? dateTime(rs.date, rs.time).toLocaleString("en", {
-                        dateStyle: "long",
-                        timeStyle: "short",
+                      weekday: "short",
+                      month: "short",
+                      day: "2-digit",
+                      year:"numeric",
+                      hourCycle: "h23",
+                      hour: "2-digit",
+                      minute: "2-digit",
                       })
                     : new Date(rs.date).toDateString()}
                 </td>
