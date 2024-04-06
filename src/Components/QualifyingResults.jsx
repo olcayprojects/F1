@@ -62,7 +62,7 @@ const QualifyingResults = (props) => {
                         {qualifying.position < 4 ? (
                           <i
                             className={
-                              "fs-5 bg-info text-black bi bi-" +
+                              "fs-5 bi bi-" +
                               qualifying.position +
                               "-square-fill"
                             }

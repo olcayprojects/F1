@@ -38,7 +38,8 @@ const ConstructorStandings = (props) => {
         ) : (
           <>
             <Nav />
-            <h1 className="text-warning text-center">Constructor Standings</h1>
+            <h4 className="text-center py-1 fw-bold m-0">
+              <span className="text-dark bg-warning px-2 rounded bg-opacity-75">Constructor Standings</span></h4>
           </>
         )}
         <table className="table table-dark table-striped table-bordered">
@@ -50,7 +51,10 @@ const ConstructorStandings = (props) => {
               <th scope="" className="bg-danger op py-0">
                 CONSTRUCTOR
               </th>
-              <th scope="" className="bg-danger py-0">
+              <th scope="" className="bg-danger py-0 text-center">
+                WIKIPEDIA
+              </th>
+              <th scope="" className="bg-danger py-0 text-center">
                 NATIONALITY
               </th>
               <th scope="" className="bg-danger text-center op py-0">
@@ -72,19 +76,19 @@ const ConstructorStandings = (props) => {
                     {ConstructorStandings.position < 4 ? (
                       <i
                         className={
-                          "text-info bi bi-" +
+                          "fs-5 bi bi-" +
                           ConstructorStandings.position +
-                          "-square"
+                          "-square-fill"
                         }
                       ></i>
                     ) : (
                       ConstructorStandings.position
                     )}
                   </td>
-                  <td className="col op fw-bold text-warning cp py-0">
+                  <td className="col op fw-bold text-warning py-0">
                     <span
-                      className="bg-black p-0 px-1"
-                      style={{ fontFamily: "Lucida Console" }}
+                      className="bg-black p-0 px-1 cp"
+                      style={{ fontFamily: "" }}
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +
@@ -104,7 +108,10 @@ const ConstructorStandings = (props) => {
                       null
                     )} */}
                   </td>
-                  <td className="col-2 fst-italic py-0">
+                  <td className="fw-normal text-success p-0 ps-1">
+                      {ConstructorStandings.Constructor.url}
+                  </td>
+                  <td className="col-2 text-center fst-italic py-0">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
                   <td className="col-1 text-center op text-info py-0">

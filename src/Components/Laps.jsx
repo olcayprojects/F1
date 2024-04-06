@@ -87,7 +87,7 @@ const Laps = () => {
                       {drvitem?.pst < 4 ? (
                         <i
                           className={
-                            "bi bi-" + drvitem?.pst + "-circle-fill fs-5"
+                            "bi bi-" + drvitem?.pst + "-square-fill fs-5"
                           }
                         ></i>
                       ) : (

@@ -51,8 +51,8 @@ export default function DriverId(props) {
           <span className="bg-black text-success  px-1">
             ({sdata?.permanentNumber})
           </span>
-          <span className="px-1 fw-normal">{sdata?.nationality}</span>
-          <span className="fw-normal">
+          <span className="px-1 fw-normal text-warning">{sdata?.nationality}</span>
+          <span className="fw-normal text-warning">
             {new Date(sdata?.dateOfBirth).toDateString()}
           </span>
         </div>

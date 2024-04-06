@@ -50,7 +50,11 @@ const DriverStandings = (props) => {
         ) : (
           <>
             <Nav />
-            <h1 className="text-warning text-center">Driver Standings</h1>
+            <h4 className="text-center py-1 fw-bold m-0">
+              <span className="text-dark bg-warning bg-opacity-75 px-2 rounded">
+                Driver Standings
+              </span>
+            </h4>
           </>
         )}
         <div className="table-responsive">

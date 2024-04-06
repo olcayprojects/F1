@@ -143,14 +143,14 @@ const F1Race = (props) => {
                         {item?.Results?.map((result, indexResult) => {
                           return (
                             <tr key={indexResult} className="align-middle">
-                              <td className="text-center text-success p-0">
+                              <td className="text-center p-0">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
-                                    <b className="text-info bg-black px-2">1</b>
+                                    <b className="text-black bg-light px-2">1</b>
                                   ) : result.positionText === "2" ? (
-                                    <b className="text-info bg-black px-2">2</b>
+                                    <b className="text-black bg-light px-2">2</b>
                                   ) : result.positionText === "3" ? (
-                                    <b className="text-info bg-black px-2">3</b>
+                                    <b className="text-black bg-light px-2">3</b>
                                   ) : null
                                 ) : (
                                   <b>{result.positionText}</b>

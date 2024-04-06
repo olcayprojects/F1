@@ -59,7 +59,7 @@ const ResultsDriver = () => {
       <div className="bg-black container-fluid p-0">
         <Nav />
 
-        <div className="container-fluid text-center text-light">
+        <div className="container-fluid text-center text-light mt-1">
           <h4 className="">
             <span className="text-black bg-info px-2  fw-bold">
               {drvgivenName}
