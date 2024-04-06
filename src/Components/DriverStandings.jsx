@@ -136,10 +136,26 @@ const DriverStandings = (props) => {
                       </i>
                     </td>
                     <td className="text-center op text-warning py-0">
-                      <span className={"fw-bold d-block"}>{driver.points}</span>
+                      <span
+                        className={
+                          "fw-bold d-block " +
+                          (driver?.points === "0" ? "text-secondary" : null)
+                        }
+                      >
+                        {driver.points}
+                      </span>
                     </td>
                     <td className="text-center text-primary py-0">
-                      <span className={"fw-bold d-block"}>{driver.wins}</span>
+                      <span
+                        className={
+                          "fw-bold d-block " +
+                          (driver?.wins === "0"
+                            ? "text-secondary"
+                            : null)
+                        }
+                      >
+                        {driver.wins}
+                      </span>
                     </td>
                   </tr>
                 );

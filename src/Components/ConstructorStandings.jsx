@@ -115,12 +115,12 @@ const ConstructorStandings = (props) => {
                     {ConstructorStandings.Constructor.nationality}
                   </td>
                   <td className="col-1 text-center op text-info py-0">
-                    <span className={"fw-bold py-0"}>
+                    <span className={"fw-bold py-0 "+(ConstructorStandings.points==="0"?"text-secondary":null)}>
                       {ConstructorStandings.points}
                     </span>
                   </td>
                   <td className="col-1 text-center text-success fw-bold py-0">
-                    <span className={""}>{ConstructorStandings.wins}</span>
+                    <span className={""+(ConstructorStandings.wins==="0"?"text-secondary":null)}>{ConstructorStandings.wins}</span>
                   </td>
                 </tr>
               );
