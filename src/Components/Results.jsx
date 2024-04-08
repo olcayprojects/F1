@@ -61,7 +61,7 @@ const Results = (props) => {
                 {/* <td className="p-0 ps-3">{Results.number}</td> */}
                 <td className="p-0 fw-bold text-warning">
                   {Results.Driver.givenName?.substring(0, 1)}.{""}
-                  {Results.Driver.familyName}
+                  {Results.Driver.familyName.toUpperCase()}
                 </td>
                 <td className="p-0 ps-1 op">{Results.Constructor.name}</td>
                 <td className="p-0 text-center">{Results.laps}</td>

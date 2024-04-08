@@ -25,7 +25,25 @@ export const DrvInfo = (props) => {
     fetchData();
   }, [url]);
 
-  return (
+  return props.s === "1" ? (
+    <>
+      <div class="card bg-black text-warning">
+        <img
+          className="img-responsive object-fit-cover"
+          style={{ width: "", height: "" }}
+          src={data1?.strCutout + ""}
+          alt=""
+          title=""
+          srcSet=""
+        />
+        <div class="card-img-overlay d-flex">
+          <h1 class="card-title align-self-end mx-auto text-center">
+            {data1?.strPlayer}
+          </h1>
+        </div>
+      </div>
+    </>
+  ) : (
     <>
       <img
         className="img-fluid object-fit-cover"

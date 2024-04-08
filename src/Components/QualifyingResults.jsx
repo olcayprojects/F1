@@ -83,7 +83,7 @@ const QualifyingResults = (props) => {
                         >
                           {qualifying.Driver.givenName +
                             " " +
-                            qualifying.Driver.familyName}
+                            qualifying.Driver.familyName.toUpperCase()}
                         </span>
                         <span className="text-secondary px-1 fst-italic fw-light">
                           {qualifying.Driver.nationality}
@@ -99,7 +99,7 @@ const QualifyingResults = (props) => {
                             );
                           }}
                         >
-                          {qualifying.Constructor.name}
+                          {qualifying.Constructor.name.toUpperCase()}
                         </span>
                         <span className="text-secondary ps-1 fst-italic fw-light">
                           {qualifying.Constructor.nationality}

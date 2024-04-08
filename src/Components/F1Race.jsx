@@ -218,7 +218,7 @@ const F1Race = (props) => {
                                 <span className="text-info bg-black fw-bold px-1 p-1 ">
                                   {result.Driver?.givenName + " "}
 
-                                  {result.Driver?.familyName}
+                                  {result.Driver?.familyName.toUpperCase()}
                                 </span>
 
                                 <span className="fw-bold p-1 fst-italic text-black bg-info px-1">
@@ -246,7 +246,7 @@ const F1Race = (props) => {
                                 (season2 === "2024") ? (
                                   <>
                                     <span className="bg-black text-success text-center p-1 px-1 fw-bold">
-                                      {result.Constructor.name}
+                                      {result.Constructor.name.toUpperCase()}
                                     </span>
                                     <span className="d-inline-block px-1">
                                       <Team
@@ -261,7 +261,7 @@ const F1Race = (props) => {
                                 ) : (
                                   <>
                                     <span className="bg-black text-success fw-bold p-1 px-1">
-                                      {result.Constructor.name}
+                                      {result.Constructor.name.toUpperCase()}
                                     </span>
                                     <span className="bg-success text-black p-1 fw-bold fst-italic">
                                       {" " + result.Constructor.nationality}

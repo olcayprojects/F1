@@ -71,7 +71,7 @@ const WinRacesInaSeason = (props) => {
                     >
                       {item.Results[0].Driver.givenName +
                         " " +
-                        item.Results[0].Driver.familyName}
+                        item.Results[0].Driver.familyName.toUpperCase()}
                     </span>
                     <span
                       className="fw-bold px-2 text-black bg-info fst-italic cp"
@@ -84,7 +84,7 @@ const WinRacesInaSeason = (props) => {
                         );
                       }}
                     >
-                      {item.Results[0].Constructor.name}
+                      {item.Results[0].Constructor.name.toUpperCase()}
                     </span>
                   </td>
                   <td className="col text-center fw-bold py-0">

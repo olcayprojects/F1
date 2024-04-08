@@ -5,6 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import Nav from "./Nav";
+import { DrvInfo } from "./DriverInfo";
 
 const DriverStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
@@ -57,54 +58,68 @@ const DriverStandings = (props) => {
             </h4>
           </>
         )}
-        <div className="table-responsive">
-          <table className="table table-dark table-striped table-bordered">
-            <thead className="">
-              <tr className="text-black">
-                <th scope="col" className="bg-danger text-center py-0">
-                  P
-                </th>
-                <th scope="col" className="text-center bg-danger op py-0">
-                  CODE
-                </th>
-                <th scope="col" className="bg-danger py-0">
-                  DRIVER
-                </th>
-                <th scope="col" className="bg-danger text-center op py-0">
-                  POINTS
-                </th>
-                <th scope="col" className="bg-danger text-center py-0">
-                  WINS
-                </th>
-              </tr>
-            </thead>
-            <tbody key={{}}>
-              {driverStandings?.map((driver, indexedDB) => {
-                return (
-                  <tr key={driver.Driver.driverId} className="align-middle">
-                    <td className="text-center fw-bold py-0">
-                      {driver.position < 4 ? (
-                        <i
-                          className={
-                            "fs-5 bi bi-" + driver.position + "-square-fill"
-                          }
-                        ></i>
-                      ) : (
-                        driver.position
-                      )}
-                    </td>
-                    <td className="text-center op text-danger py-0">
-                      {driver.Driver.code ? (
-                        <span className="fw-bold">{driver.Driver.code}</span>
-                      ) : null}
-                    </td>
-                    <td
-                      className="cp py-0"
-                      onClick={() => {
-                        navigate("/ResultsDriver/" + driver.Driver.driverId);
-                      }}
-                    >
-                      {/* {(driver.position in ["1", "2", "3", "4"]) &
+        <div className="d-flex flex-row  align-items-center">
+          <div className="">
+            {driverStandings?.map((driver, indexedDB) => {
+              return driver.positionText === "1" ? (
+                <DrvInfo
+                  drv={
+                    driver.Driver?.givenName + " " + driver.Driver?.familyName
+                  }
+                  s="1"
+                />
+              ) : null;
+            })}
+          </div>
+
+          <div className="table-responsive">
+            <table className="table table-dark table-striped table-bordered">
+              <thead className="">
+                <tr className="text-black">
+                  <th scope="col" className="bg-danger text-center py-0">
+                    P
+                  </th>
+                  <th scope="col" className="text-center bg-danger op py-0">
+                    CODE
+                  </th>
+                  <th scope="col" className="bg-danger py-0">
+                    DRIVER
+                  </th>
+                  <th scope="col" className="bg-danger text-center op py-0">
+                    POINTS
+                  </th>
+                  <th scope="col" className="bg-danger text-center py-0">
+                    WINS
+                  </th>
+                </tr>
+              </thead>
+              <tbody key={{}}>
+                {driverStandings?.map((driver, indexedDB) => {
+                  return (
+                    <tr key={driver.Driver.driverId} className="align-middle">
+                      <td className="text-center fw-bold py-0">
+                        {driver.position < 4 ? (
+                          <i
+                            className={
+                              "fs-5 bi bi-" + driver.position + "-square-fill"
+                            }
+                          ></i>
+                        ) : (
+                          driver.position
+                        )}
+                      </td>
+                      <td className="text-center op text-danger py-0">
+                        {driver.Driver.code ? (
+                          <span className="fw-bold">{driver.Driver.code}</span>
+                        ) : null}
+                      </td>
+                      <td
+                        className="cp py-0"
+                        onClick={() => {
+                          navigate("/ResultsDriver/" + driver.Driver.driverId);
+                        }}
+                      >
+                        {/* {(driver.position in ["1", "2", "3", "4"]) &
                       (props.season === "2023") ? (
                         <DrvInfo
                           drv={
@@ -116,52 +131,54 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                      <b className="text-info bg-black px-1">
-                        {driver.Driver.givenName} {driver.Driver.familyName}
-                        {driver.Driver.permanentNumber
-                          ? "(" + driver.Driver.permanentNumber + ")"
-                          : null}
-                      </b>{" "}
-                      <span className="fw-light text-secondary fw-bold">
-                        {dateTime(driver.Driver.dateOfBirth)}(
-                        {driver.Driver.nationality})
-                      </span>
-                      <i className="fw-light">
-                        <b className="text-warning bg-black px-1 mx-1">
-                          {driver.Constructors[0].name}
-                        </b>
-                      </i>
-                      <i className="text-warning">
-                        {driver.Constructors[0].nationality}
-                      </i>
-                    </td>
-                    <td className="text-center op text-warning py-0">
-                      <span
-                        className={
-                          "fw-bold d-block " +
-                          (driver?.points === "0" ? "text-secondary" : null)
-                        }
-                      >
-                        {driver.points}
-                      </span>
-                    </td>
-                    <td className="text-center text-primary py-0">
-                      <span
-                        className={
-                          "fw-bold d-block " +
-                          (driver?.wins === "0"
-                            ? "text-secondary"
-                            : null)
-                        }
-                      >
-                        {driver.wins}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                        <b className="text-info bg-black px-1">
+                          {driver.Driver.givenName} {driver.Driver.familyName.toUpperCase()}
+                          {driver.Driver.permanentNumber
+                            ? "(" +
+                              driver.Driver.permanentNumber +
+                              ") " +
+                              driver.Driver.nationality
+                            : null}
+                        </b>{" "}
+                        {/* <span className="fw-light text-secondary fw-bold">
+                          {dateTime(driver.Driver.dateOfBirth)}(
+                          {driver.Driver.nationality})
+                        </span> */}
+                        <i className="fw-light">
+                          <b className="text-warning bg-black px-1 mx-1">
+                            {driver.Constructors[0].name.toUpperCase()}
+                          </b>
+                        </i>
+                        <i className="text-warning">
+                          {driver.Constructors[0].nationality}
+                        </i>
+                      </td>
+                      <td className="text-center op text-warning py-0">
+                        <span
+                          className={
+                            "fw-bold d-block " +
+                            (driver?.points === "0" ? "text-secondary" : null)
+                          }
+                        >
+                          {driver.points}
+                        </span>
+                      </td>
+                      <td className="text-center text-primary py-0">
+                        <span
+                          className={
+                            "fw-bold d-block " +
+                            (driver?.wins === "0" ? "text-secondary" : null)
+                          }
+                        >
+                          {driver.wins}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );

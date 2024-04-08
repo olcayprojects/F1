@@ -98,7 +98,7 @@ const ConstructorStandings = (props) => {
                         );
                       }}
                     >
-                      {ConstructorStandings.Constructor.name}
+                      {ConstructorStandings.Constructor.name.toUpperCase()}
                     </span>
 
                     {/* {(ConstructorStandings.position in ["1", "2", "3", "4"]) &

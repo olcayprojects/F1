@@ -27,7 +27,7 @@ export default function DriverId(props) {
         <>
           {/* <span className="pe-1">{sdata?.code}</span> */}
           <span className="px-1 bg-black">
-            {sdata?.givenName} {sdata?.familyName}
+            {sdata?.givenName} {sdata?.familyName.toUpperCase()}
           </span>
           <span className="bg-secondary px-1 text-black">
             {sdata?.permanentNumber}
