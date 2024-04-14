@@ -127,30 +127,35 @@ const Circuit = (props) => {
                       color=""
                       active={true}
                       direction={orderDirection}
-                      sx={{ fontSize: 20 }}
+                      sx={{ fontSize: 18 }}
                     >
                       SEASON
                     </TableSortLabel>
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                    R
+                  </StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     DATE
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
-                    RND
-                  </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     WINNER
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     CONSTRUCTOR
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
-                    GRID
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                    G
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 20 }}>
-                    LAPS
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                    L
                   </StyledTableCell>
-                  <StyledTableCell sx={{ fontSize: 20 }}>TIME</StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                    TIME
+                  </StyledTableCell>
+                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                    Fastest Lap
+                  </StyledTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -167,16 +172,16 @@ const Circuit = (props) => {
                     >
                       {row.season}
                     </StyledTableCell>
-                    <StyledTableCell>{todate(row.date)}</StyledTableCell>
                     <StyledTableCell align="center">
                       {row.round}
                     </StyledTableCell>
+                    <StyledTableCell>{todate(row.date)}</StyledTableCell>
                     <StyledTableCell>
                       {row.Results[0].Driver.givenName}{" "}
-                      {row.Results[0].Driver.familyName}
+                      {row.Results[0].Driver.familyName.toUpperCase()}
                     </StyledTableCell>
                     <StyledTableCell>
-                      {row.Results[0].Constructor.name}
+                      {row.Results[0].Constructor.name.toUpperCase()}
                     </StyledTableCell>
                     <StyledTableCell align="center">
                       {row.Results[0].grid}
@@ -186,6 +191,12 @@ const Circuit = (props) => {
                     </StyledTableCell>
                     <StyledTableCell>
                       {row.Results[0].Time?.time}
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      #{row.Results[0].FastestLap?.rank}__
+                      {row.Results[0].FastestLap?.Time?.time}__
+                      {row.Results[0].FastestLap?.AverageSpeed?.speed}
+                      {row.Results[0].FastestLap?.AverageSpeed?.units}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}

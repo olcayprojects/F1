@@ -33,8 +33,13 @@ const DriverStandings = (props) => {
           res.data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
         );
       })
-      .catch((e) => console.log(e))
-      .finally(() => setIsLoaded(true));
+      .catch((e) => {
+        console.log(e);
+        return alert("Error: " + e.message);
+      })
+      .finally((e) => {
+        setIsLoaded(true);
+      });
   }, [url]);
 
   useEffect(() => {
@@ -45,20 +50,20 @@ const DriverStandings = (props) => {
     return <Loading />;
   } else {
     return (
-      <div className="container p-0">
+      <div className="container-fluid p-0">
         {props.season ? (
           ""
         ) : (
           <>
             <Nav />
-            <h4 className="text-center py-1 fw-bold m-0">
+            <h3 className="text-center py-1 fw-bold m-0">
               <span className="text-dark bg-warning bg-opacity-75 px-2 rounded">
                 Driver Standings
               </span>
-            </h4>
+            </h3>
           </>
         )}
-        <div className="d-flex flex-row  align-items-center">
+        <div className="d-md-flex flex-row align-items-center">
           <div className="">
             {driverStandings?.map((driver, indexedDB) => {
               return driver.positionText === "1" ? (
@@ -132,7 +137,8 @@ const DriverStandings = (props) => {
                         ""
                       )} */}
                         <b className="text-info bg-black px-1">
-                          {driver.Driver.givenName} {driver.Driver.familyName.toUpperCase()}
+                          {driver.Driver.givenName}{" "}
+                          {driver.Driver.familyName.toUpperCase()}
                           {driver.Driver.permanentNumber
                             ? "(" +
                               driver.Driver.permanentNumber +

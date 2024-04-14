@@ -36,8 +36,8 @@ export const DrvInfo = (props) => {
           title=""
           srcSet=""
         />
-        <div class="card-img-overlay d-flex">
-          <h1 class="card-title align-self-end mx-auto text-center">
+        <div className="card-img-overlay d-flex">
+          <h1 className="card-title align-self-end mx-auto text-center">
             {data1?.strPlayer}
           </h1>
         </div>
