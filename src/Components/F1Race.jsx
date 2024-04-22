@@ -41,7 +41,7 @@ const F1Race = (props) => {
 
   useEffect(() => {
     function fetchData() {
-      setIsLoaded(false)
+      setIsLoaded(false);
       fetch(urlx)
         .then((response) => response.json())
         .then((data) => {
@@ -146,18 +146,35 @@ const F1Race = (props) => {
                               <td className="text-center p-0">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
-                                    <b className="text-black bg-light px-2">1</b>
+                                    <b className="text-black bg-light px-2">
+                                      1
+                                    </b>
                                   ) : result.positionText === "2" ? (
-                                    <b className="text-black bg-light px-2">2</b>
+                                    <b className="text-black bg-light px-2">
+                                      2
+                                    </b>
                                   ) : result.positionText === "3" ? (
-                                    <b className="text-black bg-light px-2">3</b>
+                                    <b className="text-black bg-light px-2">
+                                      3
+                                    </b>
                                   ) : null
                                 ) : (
                                   <b>{result.positionText}</b>
                                 )}
                               </td>
                               <td className="op text-center text-warning p-0">
-                                {result.grid}
+                                <span>
+                                  {result.grid - result.position === 0 ? (
+                                    <i class="bi bi-arrow-left"></i>
+                                  ) : result.grid - result.position > 0 ? (
+                                    <i class="bi bi-arrow-up"></i>
+                                  ) : (
+                                    <i class="bi bi-arrow-down"></i>
+                                  )}
+                                  {/* {result.grid - result.position} */}
+
+                                  {"( " + result.grid + " )"}
+                                </span>
                               </td>
                               <td className="text-center text-warning p-0">
                                 <span className="bg-black px-1">
@@ -323,7 +340,7 @@ const F1Race = (props) => {
                                 }}
                               >
                                 <span className="bg-black p-0 d-inline-block w-25 text-center">
-                                  {result.FastestLap?.rank}
+                                  {result.FastestLap?.rank}.
                                 </span>
                                 {result.FastestLap ? (
                                   <i className="bi bi-forward-fill fs-5 px-1"></i>

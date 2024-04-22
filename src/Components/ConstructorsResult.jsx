@@ -62,7 +62,7 @@ const ConstructorsResult = () => {
 
         {sdata.map((items, index) => {
           return (
-            <div className="text-danger container" key={index}>
+            <div className="text-danger container-fluid" key={index}>
               <div className="table-responsive-sm">
                 <table className="table table-striped table-dark caption-top table-bordered">
                   <caption className="text-primary bg-dark text-center fs-4">
@@ -128,7 +128,7 @@ const ConstructorsResult = () => {
                           {item?.FastestLap ? (
                             <td className="p-0 text-center">
                               {item?.FastestLap?.rank +
-                                " => [ Time: " +
+                                ". => [ Time: " +
                                 item.FastestLap?.Time?.time +
                                 " - AvgSpd: " +
                                 item?.FastestLap?.AverageSpeed?.speed +

@@ -18,23 +18,22 @@ const QualifyingResults = (props) => {
   }
 
   useEffect(() => {
-    setIsLoaded(true);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
-        setIsLoaded(false);
+        setIsLoaded(true);
         //  console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
           console.log(err.message);
-          setIsLoaded(false);
         }
+        setIsLoaded(true);
       });
   }, [url]);
 
-  if (isLoaded) {
+  if (!isLoaded) {
     return <Loading />;
   }
 

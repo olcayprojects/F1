@@ -31,7 +31,7 @@ const ConstructorStandings = (props) => {
   }, [url]);
 
   return (
-    <div className="container p-0">
+    <div className="container-fluid p-0">
       <div className="table-responsive">
         {props.season ? (
           ""
@@ -39,7 +39,10 @@ const ConstructorStandings = (props) => {
           <>
             <Nav />
             <h4 className="text-center py-1 fw-bold m-0">
-              <span className="text-dark bg-warning px-2 rounded bg-opacity-75">Constructor Standings</span></h4>
+              <span className="text-dark bg-warning px-2 rounded bg-opacity-75">
+                Constructor Standings
+              </span>
+            </h4>
           </>
         )}
         <table className="table table-dark table-striped table-bordered">
@@ -109,18 +112,34 @@ const ConstructorStandings = (props) => {
                     )} */}
                   </td>
                   <td className="fw-normal text-success p-0 ps-1">
-                      {ConstructorStandings.Constructor.url}
+                    {ConstructorStandings.Constructor.url}
                   </td>
                   <td className="col-2 text-center fst-italic py-0">
                     {ConstructorStandings.Constructor.nationality}
                   </td>
                   <td className="col-1 text-center op text-info py-0">
-                    <span className={"fw-bold py-0 "+(ConstructorStandings.points==="0"?"text-secondary":null)}>
+                    <span
+                      className={
+                        "fw-bold py-0 " +
+                        (ConstructorStandings.points === "0"
+                          ? "text-secondary"
+                          : null)
+                      }
+                    >
                       {ConstructorStandings.points}
                     </span>
                   </td>
                   <td className="col-1 text-center text-success fw-bold py-0">
-                    <span className={""+(ConstructorStandings.wins==="0"?"text-secondary":null)}>{ConstructorStandings.wins}</span>
+                    <span
+                      className={
+                        "" +
+                        (ConstructorStandings.wins === "0"
+                          ? "text-secondary"
+                          : null)
+                      }
+                    >
+                      {ConstructorStandings.wins}
+                    </span>
                   </td>
                 </tr>
               );
