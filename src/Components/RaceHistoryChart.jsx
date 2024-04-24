@@ -26,7 +26,7 @@ export const RaceHistoryChart = () => {
       console.log(err);
     });
 
-  urlx = `https://ergast.com/api/f1/${season}/${round}/laps.json?limit=1000`;
+  urlx = `https://ergast.com/api/f1/${season}/${round}/laps.json?limit=1200`;
   const fetchData = async (url) => {
     await fetch(url)
       .then((response) => response.json())
