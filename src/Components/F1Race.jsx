@@ -9,6 +9,7 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
 import Team from "./Team";
 import Nav from "./Nav";
+import Events from "./Events";
 
 const F1Race = (props) => {
   const [sdata, setData] = useState([]);
@@ -165,11 +166,11 @@ const F1Race = (props) => {
                               <td className="op text-center text-warning p-0">
                                 <span>
                                   {result.grid - result.position === 0 ? (
-                                    <i class="bi bi-arrow-left"></i>
+                                    <i className="bi bi-arrow-left"></i>
                                   ) : result.grid - result.position > 0 ? (
-                                    <i class="bi bi-arrow-up"></i>
+                                    <i className="bi bi-arrow-up"></i>
                                   ) : (
-                                    <i class="bi bi-arrow-down"></i>
+                                    <i className="bi bi-arrow-down"></i>
                                   )}
                                   {/* {result.grid - result.position} */}
 
@@ -437,6 +438,7 @@ const F1Race = (props) => {
               </div>
             </Box>
           )}
+        <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
         </div>
       </>
     );
