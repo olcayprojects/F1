@@ -27,7 +27,7 @@ export const DrvInfo = (props) => {
 
   return props.s === "1" ? (
     <>
-      <div class="card bg-black text-warning">
+      <div className="card bg-black text-warning">
         <img
           className="img-responsive object-fit-cover"
           style={{ width: "", height: "" }}
