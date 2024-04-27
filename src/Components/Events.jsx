@@ -23,25 +23,31 @@ const Events = (props) => {
   }, [url]);
 
   return (
-    <div className="container-fluid my-2">
+    <div className="container-fluid p-0">
       {data?.map((event, index) => {
         return event.strDescriptionEN ? (
           <div key={index}>
-            <div className="border border-5 border-dark mb-1">
-              <h3 className="text-center text-light">Description</h3>
+            <div className="border border-5 border-dark mb-1 d-flex">
               <pre
-                className="text-light overflow-hidden px-4"
+                className="text-secondary overflow-hidden p-2 border border-dark border-3 m-1"
                 style={{ whiteSpace: "pre-wrap" }}
               >
+                <h6 className="fw-bold">Description: </h6>
+
                 {event?.strDescriptionEN}
               </pre>
-            </div>
-            <div className="border border-5 border-dark">
-              <h3 className="text-center text-light">Result</h3>
+              <img
+                className="img-responsive pt-1 ps-1"
+                src={event?.strPoster + "/preview"}
+                alt=""
+                title={event?.strFilename}
+                srcSet=""
+              />
               <pre
-                className="text-light overflow-hidden px-4"
+                className="text-secondary overflow-hidden p-2 border border-dark border-3 m-1"
                 style={{ whiteSpace: "pre-wrap" }}
               >
+                <h6 className="fw-bold">Result: </h6>
                 {event?.strResult}
               </pre>
             </div>

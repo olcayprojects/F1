@@ -438,7 +438,7 @@ const F1Race = (props) => {
               </div>
             </Box>
           )}
-        <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
+          <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
         </div>
       </>
     );
