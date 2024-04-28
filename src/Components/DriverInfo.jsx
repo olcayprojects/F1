@@ -26,23 +26,23 @@ export const DrvInfo = (props) => {
   }, [url]);
 
   return props.s === "1" ? (
-    <>
-      <div className="card bg-black text-warning">
-        <img
-          className="img-responsive object-fit-cover"
-          style={{ width: "", height: "" }}
-          src={data1?.strCutout + ""}
-          alt=""
-          title=""
-          srcSet=""
-        />
-        <div className="card-img-overlay d-flex">
-          <h1 className="card-title align-self-end mx-auto text-center">
-            {data1?.strPlayer}
-          </h1>
-        </div>
-      </div>
-    </>
+    <div className="card bg-black text-warning">
+      <img
+        className="img-responsive object-fit-cover"
+        style={{ width: "", height: "" }}
+        src={
+          data1?.strCutout
+            ? data1?.strCutout + "/preview"
+            : data1?.strThumb + "/preview"
+        }
+        alt=""
+        title=""
+        srcSet=""
+      />
+      <h5 className="card-title align-self-end mx-auto text-center">
+        {data1?.strPlayer}
+      </h5>
+    </div>
   ) : (
     <>
       <img

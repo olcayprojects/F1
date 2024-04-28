@@ -8,6 +8,7 @@ import RaceSchedule from "./RaceSchedule";
 import F1Race from "./F1Race";
 import Carousel from "./Carousel";
 import Results from "./Results";
+import Nav from "./Nav";
 
 import { Box, Tab, Tabs, TabContext, Select } from "@mui/material";
 import { blue, red, cyan, grey } from "@mui/material/colors";
@@ -50,11 +51,7 @@ const F1 = () => {
       <div className="container-fluid bg-black p-0">
         <Next />
         <Carousel />
-        <F1Race />
-        <hr
-          style={{ height: "50px", backgroundColor: "GrayText" }}
-          className="text-danger"
-        />
+        {season2 === "2024" ? <F1Race /> : <Nav />}
 
         <select
           className="form-select bg-black text-danger fs-3 text-center shadow-none cp mb-1"

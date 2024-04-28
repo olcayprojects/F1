@@ -44,7 +44,7 @@ const Next = () => {
               {data.Sprint ? (
                 <>
                   <i className="bi bi-clock-fill text-info"></i>
-                  <span>Sprint: </span>
+                  <span className="text-success"> Sprint: </span>
                   <span>{dateTime(data.Sprint?.date, data.Sprint?.time)}</span>
                   <i className="bi bi-clock-fill text-info"></i>
                 </>
