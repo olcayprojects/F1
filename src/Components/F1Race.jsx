@@ -98,6 +98,10 @@ const F1Race = (props) => {
                     </i>
                     <i className="text-info bi bi-calendar3"></i>
                   </h1>
+                  {season2 === "2024" ? (
+                    <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
+                  ) : null}
+
                   <div className="table-responsive-sm">
                     <table className="table table-dark table-striped table-bordered border-black">
                       <thead className="">
@@ -438,7 +442,6 @@ const F1Race = (props) => {
               </div>
             </Box>
           )}
-          <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
         </div>
       </>
     );
