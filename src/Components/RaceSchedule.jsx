@@ -23,9 +23,7 @@ const RaceSchedule = (props) => {
         setData(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
-        if (!err === "Unexpected token") {
-          console.log(err.message);
-        }
+        console.log(err);
       });
   }, [url]);
 
@@ -148,13 +146,13 @@ const RaceSchedule = (props) => {
                       })
                     : rs.time
                     ? dateTime(rs.date, rs.time).toLocaleString("en", {
-                      weekday: "short",
-                      month: "short",
-                      day: "2-digit",
-                      year:"numeric",
-                      hourCycle: "h23",
-                      hour: "2-digit",
-                      minute: "2-digit",
+                        weekday: "short",
+                        month: "short",
+                        day: "2-digit",
+                        year: "numeric",
+                        hourCycle: "h23",
+                        hour: "2-digit",
+                        minute: "2-digit",
                       })
                     : new Date(rs.date).toDateString()}
                 </td>

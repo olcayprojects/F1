@@ -51,7 +51,7 @@ const F1Race = (props) => {
           setData(data["MRData"].RaceTable.Races);
         })
         .catch((err) => {
-          console.log("Hata:", err.message);
+          console.log(err);
           setIsLoaded(true);
         });
     }
@@ -98,6 +98,105 @@ const F1Race = (props) => {
                     </i>
                     <i className="text-info bi bi-calendar3"></i>
                   </h1>
+
+                  {season2 === "2024" ? (
+                    <div className="d-flex justify-content-center">
+                      <div className="row align-items-end">
+                        {item?.Results?.map((result, indexResult) => {
+                          return result.positionText === "3" ? (
+                            <div className="col">
+                              <div
+                                className="row justify-content-center"
+                                style={{ width: "200px" }}
+                              >
+                                <DrvInfo
+                                  drv={
+                                    result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName
+                                  }
+                                />
+                                <Team
+                                  teamName={result.Constructor.name}
+                                  ls={1}
+                                />
+                              </div>
+                              <div
+                                className="row text-light border border-secondary bg-dark align-self-end"
+                                style={{ width: "200px", height: "30px" }}
+                              >
+                                <span className="text-center">
+                                  {result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName}
+                                </span>
+                              </div>
+                            </div>
+                          ) : result.positionText === "1" ? (
+                            <div className="col">
+                              <div
+                                className="row justify-content-center"
+                                style={{ width: "200px" }}
+                              >
+                                <DrvInfo
+                                  drv={
+                                    result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName
+                                  }
+                                />
+                                <Team
+                                  teamName={result.Constructor.name}
+                                  ls={1}
+                                />
+                              </div>
+                              <div
+                                className="row border border-secondary bg-dark align-self-end"
+                                style={{ width: "200px", height: "50px" }}
+                              >
+                                <span className="text-light text-center">
+                                  {result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName}
+                                </span>
+                              </div>
+                            </div>
+                          ) : result.positionText === "2" ? (
+                            <div className="col">
+                              <div
+                                className="row justify-content-center"
+                                style={{ width: "200px" }}
+                              >
+                                <DrvInfo
+                                  drv={
+                                    result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName
+                                  }
+                                />
+                                <Team
+                                  teamName={result.Constructor.name}
+                                  ls={1}
+                                />
+                              </div>
+
+                              <div
+                                className="row border border-secondary bg-dark align-self-end"
+                                style={{ width: "200px", height: "40px" }}
+                              >
+                                <span className="text-light text-center">
+                                  {result.Driver?.givenName +
+                                    " " +
+                                    result.Driver?.familyName}
+                                </span>
+                              </div>
+                            </div>
+                          ) : null;
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
+
                   {season2 === "2024" ? (
                     <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
                   ) : null}
@@ -227,16 +326,6 @@ const F1Race = (props) => {
                                   " details"
                                 }
                               >
-                                {(result.positionText in ["1", "2", "3", "4"]) &
-                                (season2 === "2024") ? (
-                                  <DrvInfo
-                                    drv={
-                                      result.Driver?.givenName +
-                                      " " +
-                                      result.Driver?.familyName
-                                    }
-                                  />
-                                ) : null}
                                 <span className="text-info bg-black fw-bold px-1 p-1 ">
                                   {result.Driver?.givenName + " "}
 
@@ -264,32 +353,14 @@ const F1Race = (props) => {
                                   );
                                 }}
                               >
-                                {(result.positionText in ["1", "2", "3", "4"]) &
-                                (season2 === "2024") ? (
-                                  <>
-                                    <span className="bg-black text-success text-center p-1 px-1 fw-bold">
-                                      {result.Constructor.name.toUpperCase()}
-                                    </span>
-                                    <span className="d-inline-block px-1">
-                                      <Team
-                                        teamName={result.Constructor.name}
-                                        ls={1}
-                                      />
-                                    </span>
-                                    <span className="bg-success text-black p-1 fw-bold text-center fst-italic">
-                                      {" " + result.Constructor.nationality}
-                                    </span>
-                                  </>
-                                ) : (
-                                  <>
-                                    <span className="bg-black text-success fw-bold p-1 px-1">
-                                      {result.Constructor.name.toUpperCase()}
-                                    </span>
-                                    <span className="bg-success text-black p-1 fw-bold fst-italic">
-                                      {" " + result.Constructor.nationality}
-                                    </span>
-                                  </>
-                                )}
+                                <>
+                                  <span className="bg-black text-success fw-bold p-1 px-1">
+                                    {result.Constructor.name.toUpperCase()}
+                                  </span>
+                                  <span className="bg-success text-black p-1 fw-bold fst-italic">
+                                    {" " + result.Constructor.nationality}
+                                  </span>
+                                </>
                               </td>
                               <td
                                 className="op text-center fw-bold p-0"

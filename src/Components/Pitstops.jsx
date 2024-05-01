@@ -21,7 +21,7 @@ const Pitstops = (props) => {
   }
 
   useEffect(() => {
-    setIsLoaded(true)
+    setIsLoaded(true);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -29,10 +29,8 @@ const Pitstops = (props) => {
         setIsLoaded(false);
       })
       .catch((err) => {
-        if (!err === "Unexpected token") {
-          setIsLoaded(false);
-          console.log(err.message);
-        }
+        setIsLoaded(false);
+        console.log(err.message);
       });
   }, [url]);
 

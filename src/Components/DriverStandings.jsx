@@ -64,18 +64,18 @@ const DriverStandings = (props) => {
           </>
         )}
         <div className="d-md-flex flex-row align-items-center">
-          <div className="">
-            {driverStandings?.map((driver, indexedDB) => {
-              return driver.positionText === "1" ? (
+          {driverStandings?.map((driver, indexedDB) => {
+            return driver.positionText === "1" ? (
+              <div key={indexedDB}>
                 <DrvInfo
                   drv={
                     driver.Driver?.givenName + " " + driver.Driver?.familyName
                   }
                   s="1"
                 />
-              ) : null;
-            })}
-          </div>
+              </div>
+            ) : null;
+          })}
 
           <div className="table-responsive">
             <table className="table table-dark table-striped table-bordered">

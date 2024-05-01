@@ -26,9 +26,7 @@ const WinRacesInaSeason = (props) => {
         setIsLoaded(true);
       })
       .catch((err) => {
-        if (!err === "Unexpected token") {
-          console.log(err.message);
-        }
+        console.log(err);
       })
       .finally((e) => {
         setIsLoaded(true);

@@ -26,9 +26,7 @@ const QualifyingResults = (props) => {
         //  console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
-        if (!err === "Unexpected token") {
-          console.log(err.message);
-        }
+        console.log(err);
         setIsLoaded(true);
       });
   }, [url]);

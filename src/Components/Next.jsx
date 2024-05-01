@@ -11,7 +11,7 @@ const Next = () => {
         setData(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
-        console.log(err.message);
+        console.log(err);
       });
   }, []);
   return (
