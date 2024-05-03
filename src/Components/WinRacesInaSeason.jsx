@@ -110,8 +110,8 @@ const WinRacesInaSeason = (props) => {
                       className={
                         "text-center op col fw-bold py-0 " +
                         (item.Results[0].FastestLap?.rank in [1, 2, 3, 4]
-                          ? "text-success"
-                          : null)
+                          ? "text-danger"
+                          : "text-info")
                       }
                     >
                       {item.Results[0].FastestLap ? (
