@@ -79,8 +79,8 @@ const Team = (props) => {
               {teams?.intFormedYear} {teams?.strCountry}
             </h5>
             <pre
-              className="text-secondary ps-1"
-              style={{ whiteSpace: "pre-wrap" }}
+              className="ps-1"
+              style={{ whiteSpace: "pre-wrap", color: "#62b6a5",lineHeight:"26px"}}
             >
               {teams?.strDescriptionEN ? (
                 <>

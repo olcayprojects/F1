@@ -37,29 +37,32 @@ const DriverDB = (props) => {
         alt=""
         title=""
       />
-      <div>
-        <span className="">Team: </span>
-        <span className="fw-bold">
+      <div
+        className="fw-bold border-bottom border-info border-3 rounded-pill"
+        style={{ color: "#62c6a5" }}
+      >
+        <span className="">TEAM: </span>
+        <span className="">
           {data?.strTeam} #{data?.strNumber} <br />
         </span>
-        <span className="">Country: </span>
-        <span className="fw-bold">
+        <span className="">COUNTRY: </span>
+        <span className="">
           {data?.strNationality} <br />
         </span>
-        <span className="">Date of birth: </span>
-        <span className="fw-bold">
+        <span className="">Date of Birth: </span>
+        <span className="">
           {new Date(data?.dateBorn).toDateString()} <br />
         </span>
-        <span className="">Place of birth: </span>
-        <span className="fw-bold">{data?.strBirthLocation}</span>
+        <span className="">Place of Birth: </span>
+        <span className="">{data?.strBirthLocation}</span>
       </div>
       <pre
-        className="text-start lh-sm text-secondary p-0"
-        style={{ whiteSpace: "pre-wrap" }}
+        className="text-start lh-md p-0 fw-bold"
+        style={{ whiteSpace: "pre-wrap", color: "#62b6a5" }}
       >
         {data?.strDescriptionEN ? (
           <>
-            <h6 className="text-info bg-dark text-center">English</h6>
+            <h5 className="text-info bg-dark text-center">English</h5>
             {data?.strDescriptionEN}
           </>
         ) : (
@@ -67,7 +70,7 @@ const DriverDB = (props) => {
         )}
         {data?.strDescriptionDE ? (
           <>
-            <h6 className="text-info bg-dark text-center">Deutsch</h6>
+            <h5 className="text-info bg-dark text-center">Deutsch</h5>
             {data?.strDescriptionDE}
           </>
         ) : (
@@ -75,7 +78,7 @@ const DriverDB = (props) => {
         )}
         {data?.strDescriptionFR ? (
           <>
-            <h6 className="text-info bg-dark text-center">Français</h6>
+            <h5 className="text-info bg-dark text-center">Français</h5>
             {data?.strDescriptionFR}
           </>
         ) : (
