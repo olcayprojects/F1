@@ -23,7 +23,9 @@ const Team = (props) => {
 
   return data?.map((teams, index) => {
     if (teams.strTeam === "Scuderia AlphaTauri") {
-      teams.strTeam = "AlphaTauri";
+      teams.strTeam = "RB F1 Team";
+    } else if (teams.strTeam === "Alfa Romeo Racing") {
+      teams.strTeam = "Sauber";
     }
 
     if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
@@ -61,26 +63,30 @@ const Team = (props) => {
 
             <img
               className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
-              style={{ maxHeight: "190px" }}
+              style={{ maxHeight: "220px" }}
               src={teams?.strTeamJersey + ""}
               alt=""
               srcSet=""
               title={teams?.strTeam}
             />
             <img
-              className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
-              style={{ maxHeight: "220px" }}
-              src={teams?.strTeamLogo + ""}
+              className="img-fluid mx-auto d-block w-50 object-fit-contain imgrun"
+              style={{ maxHeight: "380px" }}
+              src={teams?.strTeamBadge + ""}
               alt=""
               srcSet=""
               title={teams?.strTeam}
             />
-            <h5 className="text-center">
+            <h5 className="text-center text-light fw-bold">
               {teams?.intFormedYear} {teams?.strCountry}
             </h5>
             <pre
               className="ps-1"
-              style={{ whiteSpace: "pre-wrap", color: "#62b6a5",lineHeight:"26px"}}
+              style={{
+                whiteSpace: "pre-wrap",
+                color: "#62b6a5",
+                lineHeight: "26px",
+              }}
             >
               {teams?.strDescriptionEN ? (
                 <>
