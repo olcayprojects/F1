@@ -47,7 +47,7 @@ export const DrvInfo = (props) => {
     <>
       <img
         className="img-fluid object-fit-cover"
-        style={{ width: "100px", height: "250px" }}
+        style={{ width: "120px", height: "250px" }}
         src={data1?.strRender + "/preview"}
         alt=""
         title=""

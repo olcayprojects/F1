@@ -101,14 +101,11 @@ const F1Race = (props) => {
 
                   {season2 === "2024" ? (
                     <div className="d-flex justify-content-center">
-                      <div className="row align-items-end">
-                        {item?.Results?.map((result, indexResult) => {
-                          return result.positionText === "3" ? (
-                            <div className="col">
-                              <div
-                                className="row justify-content-center"
-                                style={{ width: "200px" }}
-                              >
+                      {item?.Results?.map((result, indexResult) => {
+                        return result.positionText in [1, 2, 3, 4] ? (
+                          <div className="row ">
+                            <div className="col align-self-end">
+                              <div className="" style={{}}>
                                 <DrvInfo
                                   drv={
                                     result.Driver?.givenName +
@@ -116,84 +113,33 @@ const F1Race = (props) => {
                                     result.Driver?.familyName
                                   }
                                 />
-                                <Team
-                                  teamName={result.Constructor.name}
-                                  ls={1}
-                                />
-                              </div>
-                              <div
-                                className="row text-light border border-secondary bg-dark align-self-end"
-                                style={{ width: "200px", height: "30px" }}
-                              >
-                                <span className="text-center">
-                                  {result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName}
-                                </span>
+                                <div className="" style={{}}>
+                                  <Team
+                                    teamName={result.Constructor.name}
+                                    ls={1}
+                                  />
+                                </div>
                               </div>
                             </div>
-                          ) : result.positionText === "1" ? (
-                            <div className="col">
-                              <div
-                                className="row justify-content-center"
-                                style={{ width: "200px" }}
-                              >
-                                <DrvInfo
-                                  drv={
-                                    result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName
-                                  }
-                                />
-                                <Team
-                                  teamName={result.Constructor.name}
-                                  ls={1}
-                                />
-                              </div>
-                              <div
-                                className="row border border-secondary bg-dark align-self-end"
-                                style={{ width: "200px", height: "50px" }}
-                              >
-                                <span className="text-light text-center">
-                                  {result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName}
-                                </span>
-                              </div>
+                            <div
+                              className=" border border-secondary bg-dark align-self-end"
+                              style={
+                                result.positionText === "1"
+                                  ? { height: "80px" }
+                                  : result.positionText === "2"
+                                  ? { height: "40px" }
+                                  : { height: "20px" }
+                              }
+                            >
+                              <span className="text-light text-center">
+                                {result.Driver?.givenName +
+                                  " " +
+                                  result.Driver?.familyName}
+                              </span>
                             </div>
-                          ) : result.positionText === "2" ? (
-                            <div className="col">
-                              <div
-                                className="row justify-content-center"
-                                style={{ width: "200px" }}
-                              >
-                                <DrvInfo
-                                  drv={
-                                    result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName
-                                  }
-                                />
-                                <Team
-                                  teamName={result.Constructor.name}
-                                  ls={1}
-                                />
-                              </div>
-
-                              <div
-                                className="row border border-secondary bg-dark align-self-end"
-                                style={{ width: "200px", height: "40px" }}
-                              >
-                                <span className="text-light text-center">
-                                  {result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName}
-                                </span>
-                              </div>
-                            </div>
-                          ) : null;
-                        })}
-                      </div>
+                          </div>
+                        ) : null;
+                      })}
                     </div>
                   ) : null}
 
