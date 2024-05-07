@@ -25,32 +25,16 @@ const Events = (props) => {
   return (
     <div className="container-fluid p-0">
       {data?.map((event, index) => {
-        return event.strDescriptionEN || event?.strResult ? (
+        return event?.strPoster ? (
           <div key={index}>
-            <div className="border border-5 border-dark mb-1 d-flex">
-              {event?.strResult ? (
-                <pre
-                  className="text-secondary overflow-hidden p-2 border border-dark border-3 m-1 col-4"
-                  style={{ whiteSpace: "pre-wrap" }}
-                >
-                  <h6 className="fw-bold">Result: </h6>
-                  {event?.strResult}
-                </pre>
-              ) : null}
+            <div className="">
               <img
-                className="img-responsive object-fit-contain"
-                src={event?.strThumb + "/preview"}
+                className="img-responsive pt-1 ps-1 mx-auto d-block"
+                src={event?.strPoster + "/preview"}
                 alt=""
                 title={event?.strFilename}
                 srcSet=""
               />
-              <pre
-                className="text-secondary overflow-hidden p-2 border border-dark border-3 m-1"
-                style={{ whiteSpace: "pre-wrap" }}
-              >
-                <h6 className="fw-bold">Description: </h6>
-                {event?.strDescriptionEN}
-              </pre>
             </div>
           </div>
         ) : (

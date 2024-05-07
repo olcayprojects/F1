@@ -100,42 +100,28 @@ const F1Race = (props) => {
                   </h1>
 
                   {season2 === "2024" ? (
-                    <div className="d-flex justify-content-center">
+                    <div className="" style={{}}>
                       {item?.Results?.map((result, indexResult) => {
                         return result.positionText in [1, 2, 3, 4] ? (
-                          <div className="row ">
-                            <div className="col align-self-end">
-                              <div className="" style={{}}>
-                                <DrvInfo
-                                  drv={
-                                    result.Driver?.givenName +
-                                    " " +
-                                    result.Driver?.familyName
-                                  }
-                                />
-                                <div className="" style={{}}>
-                                  <Team
-                                    teamName={result.Constructor.name}
-                                    ls={1}
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div
-                              className=" border border-secondary bg-dark align-self-end"
-                              style={
-                                result.positionText === "1"
-                                  ? { height: "80px" }
-                                  : result.positionText === "2"
-                                  ? { height: "40px" }
-                                  : { height: "20px" }
-                              }
-                            >
-                              <span className="text-light text-center">
-                                {result.Driver?.givenName +
+                          <div
+                            className={
+                              "  " +
+                              (result.positionText === "1"
+                                ? "d-flex justify-content-center"
+                                : result.positionText === "2"
+                                ? "float-start ps-5"
+                                : "float-end pe-5")
+                            }
+                          >
+                            <div className="" style={{}}>
+                              <DrvInfo
+                                drv={
+                                  result.Driver?.givenName +
                                   " " +
-                                  result.Driver?.familyName}
-                              </span>
+                                  result.Driver?.familyName
+                                }
+                              />
+                              <Team teamName={result.Constructor.name} ls={1} />
                             </div>
                           </div>
                         ) : null;
