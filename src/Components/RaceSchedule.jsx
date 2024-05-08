@@ -60,7 +60,7 @@ const RaceSchedule = (props) => {
                   ((rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1]) &
                   (props.season === "2024")
-                    ? " text-center fw-bold "
+                    ? " text-center fw-bold bg-success border border-2 border-success"
                     : " ")
                 }
                 key={index}
@@ -73,8 +73,10 @@ const RaceSchedule = (props) => {
                   }
                 >
                   {props.season === "2024" ? (
-                    rs.date.split("-")[1] ===
-                    dateNow.toISOString().split("T")[0].split("-")[1] ? (
+                    (rs.date.split("-")[1] ===
+                      dateNow.toISOString().split("T")[0].split("-")[1]) &
+                    (rs.date.split("-")[2] >
+                      dateNow.toISOString().split("T")[0].split("-")[2]) ? (
                       <>
                         <RaceThumb date={rs.date} name={rs.raceName} />
                         <h6 className="m-0">{rs.raceName}</h6>
