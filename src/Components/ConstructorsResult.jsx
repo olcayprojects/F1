@@ -97,7 +97,9 @@ const ConstructorsResult = () => {
                       return (
                         <tr key={index} className="">
                           <td className="op text-center p-0">
-                            {item.positionText}
+                            {!isNaN(+item.positionText)
+                              ? item.positionText
+                              : item.position + " (" + item.positionText + ")"}
                           </td>
                           <td className="text-center p-0">{item.grid}</td>
                           <td

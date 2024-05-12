@@ -194,8 +194,19 @@ const F1Race = (props) => {
                                       3
                                     </b>
                                   ) : null
+                                ) : !isNaN(+result.positionText) ? (
+                                  <span className="fw-bold">
+                                    {result.positionText}
+                                  </span>
                                 ) : (
-                                  <b>{result.positionText}</b>
+                                  <>
+                                    <span className="fw-bold">
+                                      {result.position}
+                                    </span>
+                                    <span className="text-danger">
+                                      ({result.positionText})
+                                    </span>
+                                  </>
                                 )}
                               </td>
                               <td className="op text-center text-warning p-0">
@@ -296,7 +307,7 @@ const F1Race = (props) => {
                               </td>
                               <td
                                 className="op text-center fw-bold p-0"
-                                style={{ color: "pink" }}
+                                style={{ color: "Fuchsia" }}
                               >
                                 {result.laps}
                               </td>
@@ -305,7 +316,7 @@ const F1Race = (props) => {
                                   {result.Time?.time ? (
                                     result.Time.time
                                   ) : result.status[0] === "+" ? (
-                                    <span className="text-secondary">
+                                    <span className="text-primary">
                                       {result.status}
                                     </span>
                                   ) : (
