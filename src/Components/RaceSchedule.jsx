@@ -9,7 +9,7 @@ const RaceSchedule = (props) => {
   const navigate = useNavigate();
 
   const dateNow = new Date();
-  dateNow.setDate(dateNow.getDate() + 1);
+  dateNow.setDate(dateNow.getDate());
 
   let url = "";
   if (props.season) {
@@ -75,7 +75,7 @@ const RaceSchedule = (props) => {
                   {props.season === "2024" ? (
                     (rs.date.split("-")[1] ===
                       dateNow.toISOString().split("T")[0].split("-")[1]) &
-                    (rs.date.split("-")[2] >
+                    (rs.date.split("-")[2] >=
                       dateNow.toISOString().split("T")[0].split("-")[2]) ? (
                       <>
                         <RaceThumb date={rs.date} name={rs.raceName} />
