@@ -212,15 +212,15 @@ const F1Race = (props) => {
                               <td className="op text-center text-warning p-0">
                                 <span>
                                   {result.grid - result.position === 0 ? (
-                                    <i className="bi bi-arrow-left"></i>
+                                    <i className="bi bi-dash"></i>
                                   ) : result.grid - result.position > 0 ? (
-                                    <i className="bi bi-arrow-up"></i>
+                                    <i className="bi bi-chevron-up"></i>
                                   ) : (
-                                    <i className="bi bi-arrow-down"></i>
+                                    <i className="bi bi-chevron-down"></i>
                                   )}
                                   {/* {result.grid - result.position} */}
 
-                                  {"( " + result.grid + " )"}
+                                  {" " + result.grid + ""}
                                 </span>
                               </td>
                               <td className="text-center text-warning p-0">

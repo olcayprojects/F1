@@ -57,8 +57,8 @@ const DriverStandings = (props) => {
           <>
             <Nav />
             <h3 className="text-center py-1 fw-bold m-0">
-              <span className="text-dark bg-warning bg-opacity-75 px-2 rounded">
-                Driver Standings
+              <span className="text-light px-2 rounded">
+                DRIVER STANDINGS
               </span>
             </h3>
           </>
@@ -81,21 +81,12 @@ const DriverStandings = (props) => {
             <table className="table table-dark table-striped table-bordered">
               <thead className="">
                 <tr className="text-black">
-                  <th scope="col" className="bg-danger text-center py-0">
-                    P
-                  </th>
-                  <th scope="col" className="text-center bg-danger op py-0">
-                    CODE
-                  </th>
-                  <th scope="col" className="bg-danger py-0">
-                    DRIVER
-                  </th>
-                  <th scope="col" className="bg-danger text-center op py-0">
-                    POINTS
-                  </th>
-                  <th scope="col" className="bg-danger text-center py-0">
-                    WINS
-                  </th>
+                  <th className="bg-danger text-center py-0">P</th>
+                  <th className="bg-danger py-0">DRIVER</th>
+                  <th className="bg-danger py-0"></th>
+                  <th className="bg-danger py-0">CONSTRUCTOR</th>
+                  <th className="bg-danger text-center op py-0">POINTS</th>
+                  <th className="bg-danger text-center py-0">WINS</th>
                 </tr>
               </thead>
               <tbody key={{}}>
@@ -103,7 +94,7 @@ const DriverStandings = (props) => {
                   return (
                     <tr key={driver.Driver.driverId} className="align-middle">
                       <td className="text-center fw-bold py-0">
-                        {driver.position < 4 ? (
+                        {driver.position < 2 ? (
                           <i
                             className={
                               "fs-5 bi bi-" + driver.position + "-square-fill"
@@ -112,11 +103,6 @@ const DriverStandings = (props) => {
                         ) : (
                           driver.position
                         )}
-                      </td>
-                      <td className="text-center op text-danger py-0">
-                        {driver.Driver.code ? (
-                          <span className="fw-bold">{driver.Driver.code}</span>
-                        ) : null}
                       </td>
                       <td
                         className="cp py-0"
@@ -136,30 +122,25 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                        <b className="text-info bg-black px-1">
+                        <b className="text-info px-1">
                           {driver.Driver.givenName}{" "}
-                          {driver.Driver.familyName.toUpperCase()}
-                          {driver.Driver.permanentNumber
-                            ? "(" +
-                              driver.Driver.permanentNumber +
-                              ") " +
-                              driver.Driver.nationality
-                            : null}
-                        </b>{" "}
+                          {driver.Driver.familyName.toUpperCase()}{" "}
+                        </b>
+                        {driver.Driver.nationality}
                         {/* <span className="fw-light text-secondary fw-bold">
                           {dateTime(driver.Driver.dateOfBirth)}(
                           {driver.Driver.nationality})
                         </span> */}
-                        <i className="fw-light">
-                          <b className="text-warning bg-black px-1 mx-1">
+                      </td>
+                      <td className=""></td>
+                      <td>
+                        <i className="fw-bold">
+                          <b className="text-warning px-1 mx-1">
                             {driver.Constructors[0].name.toUpperCase()}
                           </b>
                         </i>
-                        <i className="text-warning">
-                          {driver.Constructors[0].nationality}
-                        </i>
                       </td>
-                      <td className="text-center op text-warning py-0">
+                      <td className="text-center op text-light py-0">
                         <span
                           className={
                             "fw-bold d-block " +
