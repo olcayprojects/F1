@@ -150,7 +150,7 @@ const F1Race = (props) => {
                           </th>
                           <th className="text-center">PTS</th>
                           <th className="text-center bg-black"></th>
-                          <th className="text-end">
+                          <th className="text-end bg-success">
                             <span className="text-decoration-underline text-black">
                               FASTEST
                             </span>
@@ -163,10 +163,10 @@ const F1Race = (props) => {
                               TIME
                             </span>
                           </th>
-                          <th className="text-center bg-danger text-warning">
+                          <th className="text-center bg-success bg-opacity-75 text-warning">
                             LAP
                           </th>
-                          <th className="text-start">
+                          <th className="text-start bg-success">
                             <span className="text-decoration-underline text-black">
                               LAPS
                             </span>

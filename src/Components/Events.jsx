@@ -25,12 +25,12 @@ const Events = (props) => {
   return (
     <div className="container-fluid p-0">
       {data?.map((event, index) => {
-        return event?.strPoster ? (
+        return event?.strThumb ? (
           <div key={index}>
             <div className="">
               <img
                 className="img-responsive pt-1 ps-1 mx-auto d-block"
-                src={event?.strPoster + "/preview"}
+                src={event?.strThumb + "/preview"}
                 alt=""
                 title={event?.strFilename}
                 srcSet=""
