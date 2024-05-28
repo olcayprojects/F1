@@ -57,9 +57,7 @@ const DriverStandings = (props) => {
           <>
             <Nav />
             <h3 className="text-center py-1 fw-bold m-0">
-              <span className="text-light px-2 rounded">
-                DRIVER STANDINGS
-              </span>
+              <span className="text-light px-2 rounded">DRIVER STANDINGS</span>
             </h3>
           </>
         )}
@@ -92,7 +90,19 @@ const DriverStandings = (props) => {
               <tbody key={{}}>
                 {driverStandings?.map((driver, indexedDB) => {
                   return (
-                    <tr key={driver.Driver.driverId} className="align-middle">
+                    <tr
+                      key={driver.Driver.driverId}
+                      className={
+                        "align-middle " +
+                        (driver.position === "1"
+                          ? "fs-3"
+                          : driver.position === "2"
+                          ? "fs-4"
+                          : driver.position === "3"
+                          ? "fs-5"
+                          : null)
+                      }
+                    >
                       <td className="text-center fw-bold py-0">
                         {driver.position < 2 ? (
                           <i
@@ -122,15 +132,19 @@ const DriverStandings = (props) => {
                       ) : (
                         ""
                       )} */}
-                        <b className="text-info px-1">
-                          {driver.Driver.givenName}{" "}
-                          {driver.Driver.familyName.toUpperCase()}{" "}
-                        </b>
-                        {driver.Driver.nationality}
-                        {/* <span className="fw-light text-secondary fw-bold">
-                          {dateTime(driver.Driver.dateOfBirth)}(
-                          {driver.Driver.nationality})
-                        </span> */}
+                        <span className="text-info px-1">
+                          {driver.Driver.givenName}
+                          <b className="ps-1">
+                            {driver.Driver.familyName.toUpperCase()}
+                          </b>
+                        </span>
+                        <span className="fw-light text-secondary pe-1">
+                          {new Date(
+                            driver.Driver.dateOfBirth
+                          ).toLocaleDateString() +
+                            " " +
+                            driver.Driver.nationality}
+                        </span>
                       </td>
                       <td className=""></td>
                       <td>

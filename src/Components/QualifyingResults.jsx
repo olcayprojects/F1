@@ -36,7 +36,7 @@ const QualifyingResults = (props) => {
   }
 
   return (
-    <div className="container p-0 border border-dark border-5">
+    <div className="container">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
