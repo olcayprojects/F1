@@ -314,7 +314,13 @@ const F1Race = (props) => {
                               <td className="text-wrap text-center text-warning fw-bold p-0 px-1">
                                 <span className="bg-black w-100 d-inline-block">
                                   {result.Time?.time ? (
-                                    result.Time.time
+                                    result.Time.time[0] === "+" ? (
+                                      <span className="text-success">
+                                        {result.Time.time}
+                                      </span>
+                                    ) : (
+                                      result.Time.time
+                                    )
                                   ) : result.status[0] === "+" ? (
                                     <span className="text-primary">
                                       {result.status}

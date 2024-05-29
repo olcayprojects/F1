@@ -79,12 +79,11 @@ const DriverStandings = (props) => {
             <table className="table table-dark table-striped table-bordered">
               <thead className="">
                 <tr className="text-black">
-                  <th className="bg-danger text-center py-0">P</th>
-                  <th className="bg-danger py-0">DRIVER</th>
-                  <th className="bg-danger py-0"></th>
-                  <th className="bg-danger py-0">CONSTRUCTOR</th>
-                  <th className="bg-danger text-center op py-0">POINTS</th>
-                  <th className="bg-danger text-center py-0">WINS</th>
+                  <th className="bg-black text-danger text-center py-0">P</th>
+                  <th className="bg-black text-danger py-0">DRIVER</th>
+                  <th className="bg-black text-danger py-0">CONSTRUCTOR</th>
+                  <th className="bg-black text-danger text-center op py-0">POINTS</th>
+                  <th className="bg-black text-danger text-center py-0">WINS</th>
                 </tr>
               </thead>
               <tbody key={{}}>
@@ -107,7 +106,7 @@ const DriverStandings = (props) => {
                         {driver.position < 2 ? (
                           <i
                             className={
-                              "fs-5 bi bi-" + driver.position + "-square-fill"
+                              "bi bi-" + driver.position + "-square-fill"
                             }
                           ></i>
                         ) : (
@@ -146,7 +145,6 @@ const DriverStandings = (props) => {
                             driver.Driver.nationality}
                         </span>
                       </td>
-                      <td className=""></td>
                       <td>
                         <i className="fw-bold">
                           <b className="text-warning px-1 mx-1">
