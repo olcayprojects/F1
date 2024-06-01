@@ -182,15 +182,15 @@ const F1Race = (props) => {
                               <td className="text-center p-0">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
-                                    <b className="text-black bg-light px-2">
+                                    <b className="text-black bg-danger px-2">
                                       1
                                     </b>
                                   ) : result.positionText === "2" ? (
-                                    <b className="text-black bg-light px-2">
+                                    <b className="text-black bg-danger px-2">
                                       2
                                     </b>
                                   ) : result.positionText === "3" ? (
-                                    <b className="text-black bg-light px-2">
+                                    <b className="text-black bg-danger px-2">
                                       3
                                     </b>
                                   ) : null

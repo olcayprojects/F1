@@ -57,7 +57,7 @@ const DriverStandings = (props) => {
           <>
             <Nav />
             <h3 className="text-center py-1 fw-bold m-0">
-              <span className="text-light px-2 rounded">DRIVER STANDINGS</span>
+              <span className="text-black bg-danger px-2 rounded bg-opacity-75">DRIVER STANDINGS</span>
             </h3>
           </>
         )}
@@ -77,13 +77,13 @@ const DriverStandings = (props) => {
 
           <div className="table-responsive">
             <table className="table table-dark table-striped table-bordered">
-              <thead className="">
+              <thead className="border-danger border-5">
                 <tr className="text-black">
-                  <th className="bg-black text-danger text-center py-0">P</th>
-                  <th className="bg-black text-danger py-0">DRIVER</th>
-                  <th className="bg-black text-danger py-0">CONSTRUCTOR</th>
-                  <th className="bg-black text-danger text-center op py-0">POINTS</th>
-                  <th className="bg-black text-danger text-center py-0">WINS</th>
+                  <th className="bg-dark text-danger text-center py-0">POS</th>
+                  <th className="bg-dark text-danger py-0">DRIVER</th>
+                  <th className="bg-dark text-danger py-0">CONSTRUCTOR</th>
+                  <th className="bg-dark text-danger text-center op py-0">POINTS</th>
+                  <th className="bg-dark text-danger text-center py-0">WINS</th>
                 </tr>
               </thead>
               <tbody key={{}}>
@@ -106,7 +106,7 @@ const DriverStandings = (props) => {
                         {driver.position < 2 ? (
                           <i
                             className={
-                              "bi bi-" + driver.position + "-square-fill"
+                              "bi bi-" + driver.position + "-square-fill text-danger"
                             }
                           ></i>
                         ) : (
@@ -137,7 +137,7 @@ const DriverStandings = (props) => {
                             {driver.Driver.familyName.toUpperCase()}
                           </b>
                         </span>
-                        <span className="fw-light text-secondary pe-1">
+                        <span className="fw-light fst-italic text-secondary pe-1">
                           {new Date(
                             driver.Driver.dateOfBirth
                           ).toLocaleDateString() +

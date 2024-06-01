@@ -31,34 +31,37 @@ const ConstructorStandings = (props) => {
   }, [url]);
 
   return (
-    <div className="container p-0">
+    <div className="container-fluid p-0">
       <div className="table-responsive">
         {props.season ? (
           ""
         ) : (
           <>
             <Nav />
-            <h2 className="text-center py-1 fw-bold m-0">
-              <span className="text-light px-2 rounded bg-opacity-75">
-                Constructor Standings
+            <h3 className="text-center py-1 fw-bold m-0">
+              <span className="text-black bg-danger px-2 rounded bg-opacity-75">
+                CONSTRUCTOR STANDINGS
               </span>
-            </h2>
+            </h3>
           </>
         )}
         <div className="row justify-content-center m-0">
           <table className="table table-dark table-striped table-bordered w-auto">
-            <thead className="text-white border-dark">
-              <tr className="text-black">
-                <th scope="" className="bg-danger text-center py-0">
+            <thead className="border-danger border-5">
+              <tr className="">
+                <th scope="" className="text-danger bg-dark text-center py-0">
                   POS
                 </th>
-                <th scope="" className="bg-danger op py-0">
+                <th scope="" className="text-danger bg-dark op py-0">
                   CONSTRUCTOR
                 </th>
-                <th scope="" className="bg-danger text-center op py-0">
+                <th
+                  scope=""
+                  className="text-danger bg-dark text-center op py-0"
+                >
                   POINTS
                 </th>
-                <th scope="" className="bg-danger text-center py-0">
+                <th scope="" className="text-danger bg-dark text-center py-0">
                   WINS
                 </th>
               </tr>
@@ -80,12 +83,12 @@ const ConstructorStandings = (props) => {
                     }
                   >
                     <td className="text-center fw-bold py-0">
-                      {ConstructorStandings.position < 4 ? (
+                      {ConstructorStandings.position < 2 ? (
                         <i
                           className={
-                            "fs-5 bi bi-" +
+                            "fs-3 bi bi-" +
                             ConstructorStandings.position +
-                            "-square-fill"
+                            "-square-fill text-danger"
                           }
                         ></i>
                       ) : (
@@ -107,7 +110,7 @@ const ConstructorStandings = (props) => {
                       >
                         {ConstructorStandings.Constructor.name.toUpperCase()}
                       </span>
-                      <span className="ps-2 text-center text-light fw-normal fst-italic py-0">
+                      <span className="ps-2 text-center text-secondary fw-light fst-italic py-0">
                         {ConstructorStandings.Constructor.nationality}
                       </span>
                     </td>
