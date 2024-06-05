@@ -39,7 +39,7 @@ const ConstructorStandings = (props) => {
           <>
             <Nav />
             <h3 className="text-center py-1 fw-bold m-0">
-              <span className="text-black bg-danger px-2 rounded bg-opacity-75">
+              <span className="text-black bg-danger px-2 rounded bg-opacity-50">
                 CONSTRUCTOR STANDINGS
               </span>
             </h3>

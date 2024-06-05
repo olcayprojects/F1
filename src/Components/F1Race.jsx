@@ -364,20 +364,26 @@ const F1Race = (props) => {
                                   );
                                 }}
                               >
-                                <span className="bg-black p-0 d-inline-block w-25 text-center">
-                                  {result.FastestLap?.rank}.
-                                </span>
                                 {result.FastestLap ? (
-                                  <i className="bi bi-forward-fill fs-5 px-1"></i>
-                                ) : null}
-                                {result.FastestLap ? (
-                                  <span className="px-3 p-0 bg-black">
-                                    {result.FastestLap?.Time.time}
-                                  </span>
-                                ) : null}
+                                  <>
+                                    <span className="bg-black p-0 d-inline-block w-25 text-center">
+                                      {result.FastestLap?.rank}.
+                                    </span>
+                                    <i className="bi bi-forward-fill fs-5 px-1"></i>
+                                    <span className="px-3 p-0 bg-black">
+                                      {result.FastestLap?.Time.time}
+                                    </span>
+                                  </>
+                                ) : (
+                                  <h3 className="text-center">-</h3>
+                                )}
                               </td>
                               <td className="text-center fw-bold text-warning p-0">
-                                {result.FastestLap?.lap}
+                                {result.FastestLap?.lap ? (
+                                  result.FastestLap?.lap
+                                ) : (
+                                  <h3>-</h3>
+                                )}
                               </td>
                               <td className="op text-start p-0">
                                 {result?.FastestLap?.AverageSpeed.speed ? (
@@ -389,7 +395,9 @@ const F1Race = (props) => {
                                       {result?.FastestLap?.AverageSpeed.units}
                                     </span>
                                   </>
-                                ) : null}
+                                ) : (
+                                  <h3 className="text-center">-</h3>
+                                )}
                               </td>
                             </tr>
                           );

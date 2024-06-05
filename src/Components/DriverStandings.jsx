@@ -57,7 +57,9 @@ const DriverStandings = (props) => {
           <>
             <Nav />
             <h3 className="text-center py-1 fw-bold m-0">
-              <span className="text-black bg-danger px-2 rounded bg-opacity-75">DRIVER STANDINGS</span>
+              <span className="text-black bg-danger px-2 rounded bg-opacity-50">
+                DRIVER STANDINGS
+              </span>
             </h3>
           </>
         )}
@@ -82,7 +84,9 @@ const DriverStandings = (props) => {
                   <th className="bg-dark text-danger text-center py-0">POS</th>
                   <th className="bg-dark text-danger py-0">DRIVER</th>
                   <th className="bg-dark text-danger py-0">CONSTRUCTOR</th>
-                  <th className="bg-dark text-danger text-center op py-0">POINTS</th>
+                  <th className="bg-dark text-danger text-center op py-0">
+                    POINTS
+                  </th>
                   <th className="bg-dark text-danger text-center py-0">WINS</th>
                 </tr>
               </thead>
@@ -106,7 +110,9 @@ const DriverStandings = (props) => {
                         {driver.position < 2 ? (
                           <i
                             className={
-                              "bi bi-" + driver.position + "-square-fill text-danger"
+                              "bi bi-" +
+                              driver.position +
+                              "-square-fill text-danger"
                             }
                           ></i>
                         ) : (

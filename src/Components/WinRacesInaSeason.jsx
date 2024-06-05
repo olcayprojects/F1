@@ -127,7 +127,7 @@ const WinRacesInaSeason = (props) => {
                               item.Results[0].FastestLap.lap
                             : null}
                         </span>
-                      ) : null}
+                      ) : "-"}
                     </td>
                   </tr>
                 );

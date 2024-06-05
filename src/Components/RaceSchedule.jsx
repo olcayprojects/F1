@@ -121,15 +121,15 @@ const RaceSchedule = (props) => {
                 <td
                   title={title}
                   className={
-                    "cp p-0 px-1 py-0 text-center text-nowrap " +
-                    (dateTime(rs.date, rs.time) < dateNow
-                      ? "fw-bold"
-                      : // ? "fw-bold text-decoration-line-through"
-                      (rs.date.split("-")[1] ===
-                          dateNow.toISOString().split("T")[0].split("-")[1]) &
-                        (props.season === new Date().getFullYear())
-                      ? "  text-center fw-bold fst-normal"
-                      : null)
+                    "p-0 py-0 text-center text-nowrap cp " +
+                    ((rs.date.split("-")[1] ===
+                      dateNow.toISOString().split("T")[0].split("-")[1]) &
+                    (props.season === new Date().getFullYear())
+                      ? "text-center fw-bold fst-normal"
+                      : (dateTime(rs.date, rs.time) < dateNow) |
+                        (new Date(rs.date) < dateNow)
+                      ? "fw-bold text-center p-0"
+                      : "text-center")
                   }
                   onClick={() =>
                     dateTime(rs.date, rs.time ? rs.time : "00:00:00Z") < dateNow
@@ -188,19 +188,21 @@ const RaceSchedule = (props) => {
                       : null
                   }
                 >
-                  {rs.Sprint?.time
-                    ? dateTime(rs.Sprint?.date, rs.Sprint?.time).toLocaleString(
-                        "en",
-                        {
+                  {rs.Sprint
+                    ? rs.Sprint?.time
+                      ? dateTime(
+                          rs.Sprint?.date,
+                          rs.Sprint?.time
+                        ).toLocaleString("en", {
                           weekday: "short",
                           month: "2-digit",
                           day: "2-digit",
                           hourCycle: "h23",
                           hour: "2-digit",
                           minute: "2-digit",
-                        }
-                      )
-                    : rs.Sprint?.date}
+                        })
+                      : rs.Sprint?.date
+                    : "-"}
                 </td>
                 <td
                   className="text-nowrap text-center cp px-1 p-0"
@@ -213,64 +215,72 @@ const RaceSchedule = (props) => {
                     )
                   }
                 >
-                  {rs.Qualifying?.time
-                    ? dateTime(
-                        rs.Qualifying?.date,
-                        rs.Qualifying?.time
-                      ).toLocaleString("en", {
-                        weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                    : rs.Qualifying?.date}
+                  {rs.Qualifying
+                    ? rs.Qualifying?.time
+                      ? dateTime(
+                          rs.Qualifying?.date,
+                          rs.Qualifying?.time
+                        ).toLocaleString("en", {
+                          weekday: "short",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hourCycle: "h23",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : rs.Qualifying?.date
+                    : "-"}
                 </td>
                 <td className="text-nowrap text-center op px-1 p-0">
-                  {rs.FirstPractice?.time
-                    ? dateTime(
-                        rs.FirstPractice?.date,
-                        rs.FirstPractice?.time
-                      ).toLocaleString("en-EN", {
-                        weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                    : rs.FirstPractice?.date}
+                  {rs.FirstPractice
+                    ? rs.FirstPractice?.time
+                      ? dateTime(
+                          rs.FirstPractice?.date,
+                          rs.FirstPractice?.time
+                        ).toLocaleString("en-EN", {
+                          weekday: "short",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hourCycle: "h23",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : rs.FirstPractice?.date
+                    : "-"}
                 </td>
                 <td className="text-nowrap text-center px-1 p-0">
-                  {rs.SecondPractice?.time
-                    ? dateTime(
-                        rs.SecondPractice?.date,
-                        rs.SecondPractice?.time
-                      ).toLocaleString("en", {
-                        weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                    : rs.SecondPractice?.date}
+                  {rs.SecondPractice
+                    ? rs.SecondPractice?.time
+                      ? dateTime(
+                          rs.SecondPractice?.date,
+                          rs.SecondPractice?.time
+                        ).toLocaleString("en", {
+                          weekday: "short",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hourCycle: "h23",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : rs.SecondPractice?.date
+                    : "-"}
                 </td>
                 <td className="text-nowrap text-center p-0 op px-1">
-                  {rs.ThirdPractice?.time
-                    ? dateTime(
-                        rs.ThirdPractice?.date,
-                        rs.ThirdPractice?.time
-                      ).toLocaleString("en", {
-                        weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                    : rs.ThirdPractice?.date}
+                  {rs.ThirdPractice
+                    ? rs.ThirdPractice?.time
+                      ? dateTime(
+                          rs.ThirdPractice?.date,
+                          rs.ThirdPractice?.time
+                        ).toLocaleString("en", {
+                          weekday: "short",
+                          month: "2-digit",
+                          day: "2-digit",
+                          hourCycle: "h23",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })
+                      : rs.ThirdPractice?.date
+                    : "-"}
                 </td>
               </tr>
             );
