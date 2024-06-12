@@ -213,7 +213,9 @@ const F1Race = (props) => {
                                 <span>
                                   {result.grid - result.position === 0 ? (
                                     <i className="bi bi-dash"></i>
-                                  ) : result.grid - result.position > 0 ? (
+                                  ) : (result.grid === "0" ? 20 : result.grid) -
+                                      result.position >
+                                    0 ? (
                                     <i className="bi bi-chevron-up"></i>
                                   ) : (
                                     <i className="bi bi-chevron-down"></i>
