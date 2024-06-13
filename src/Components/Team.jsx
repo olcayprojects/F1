@@ -35,7 +35,7 @@ const Team = (props) => {
             <img
               className="img-responsive w-100"
               style={{ maxWidth: "120px" }}
-              src={teams?.strTeamBadge}
+              src={teams?.strBadge}
               alt=""
               srcSet=""
               title={teams?.strDescriptionEN}
@@ -64,7 +64,7 @@ const Team = (props) => {
             <img
               className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
               style={{ maxHeight: "220px" }}
-              src={teams?.strTeamJersey + ""}
+              src={teams?.strKit + ""}
               alt=""
               srcSet=""
               title={teams?.strTeam}
@@ -72,7 +72,7 @@ const Team = (props) => {
             <img
               className="img-fluid mx-auto d-block w-50 object-fit-contain imgrun"
               style={{ maxHeight: "380px" }}
-              src={teams?.strTeamBadge + ""}
+              src={teams?.strBadge + ""}
               alt=""
               srcSet=""
               title={teams?.strTeam}
