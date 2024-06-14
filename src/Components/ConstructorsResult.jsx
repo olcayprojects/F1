@@ -96,7 +96,7 @@ const ConstructorsResult = () => {
                     {items?.Results.map((item, index) => {
                       return (
                         <tr key={index} className="">
-                          <td className="op text-center p-0">
+                          <td className="op text-center p-0 fw-bold">
                             {!isNaN(+item.positionText)
                               ? item.positionText
                               : item.position + " (" + item.positionText + ")"}

@@ -64,7 +64,7 @@ const ResultsDriver = () => {
             <span className="text-black bg-info px-2  fw-bold">
               {drvgivenName}
             </span>
-            <span className="text-black bg-danger px-2  fw-bold">
+            <span className="text-black bg-warning px-2 fw-bold text-uppercase">
               {drvfamilyName}
             </span>
           </h4>
@@ -77,8 +77,8 @@ const ResultsDriver = () => {
                 <th className="bg-danger text-center">S</th>
                 <th className="text-center">R</th>
                 <th className="bg-danger">Race Name</th>
-                <th className="text-center">G</th>
-                <th className="text-center bg-danger">P</th>
+                <th className="text-center">P</th>
+                <th className="text-center bg-danger">G</th>
                 <th className="text-center">Constructor</th>
                 <th className="text-center bg-danger">Laps</th>
                 <th className="text-center">Time / Status</th>
@@ -130,14 +130,9 @@ const ResultsDriver = () => {
                           </span>
                         </span>
                       </td>
-                      <td className="text-center op py-0">
-                        {item.Results
-                          ? item?.Results[0]?.grid
-                          : item?.SprintResults[0]?.grid}
-                      </td>
                       <td
                         className={
-                          "py-0 text-center " +
+                          "py-0 text-center fw-bold " +
                           (item.Results
                             ? isNaN(parseInt(item?.Results[0]?.positionText))
                               ? " text-danger"
@@ -175,7 +170,12 @@ const ResultsDriver = () => {
                           item?.SprintResults[0]?.positionText
                         )}
                       </td>
-                      <td className="py-0 text-center">
+                      <td className="text-center op py-0">
+                        {item.Results
+                          ? item?.Results[0]?.grid
+                          : item?.SprintResults[0]?.grid}
+                      </td>
+                      <td className="py-0 text-center text-uppercase">
                         <span className="p-0 d-inline-block fw-bold w-100 text-center text-success">
                           {item?.Results
                             ? item?.Results[0]?.Constructor?.name

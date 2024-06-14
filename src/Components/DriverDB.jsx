@@ -41,20 +41,20 @@ const DriverDB = (props) => {
         className="fw-bold border-bottom border-info border-3 rounded-pill"
         style={{ color: "#62c6a5" }}
       >
-        <span className="">TEAM: </span>
-        <span className="">
+        <span className="">Team: </span>
+        <span className="text-uppercase bg-success text-black px-1">
           {data?.strTeam} #{data?.strNumber} <br />
         </span>
-        <span className="">COUNTRY: </span>
-        <span className="">
+        <span className="">Country: </span>
+        <span className="text-uppercase bg-success text-black px-1">
           {data?.strNationality} <br />
         </span>
         <span className="">Date of Birth: </span>
-        <span className="">
+        <span className="bg-success text-black px-1">
           {new Date(data?.dateBorn).toDateString()} <br />
         </span>
         <span className="">Place of Birth: </span>
-        <span className="">{data?.strBirthLocation}</span>
+        <span className="bg-success text-black px-1">{data?.strBirthLocation}</span>
       </div>
       <pre
         className="text-start lh-md p-0 fw-bold"
