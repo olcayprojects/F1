@@ -9,10 +9,10 @@ const Nav = () => {
           <Link to="/" className="text-center text-black text-decoration-none">
             <h1 className="fw-bold">
               <span
-                className="blink2 rounded-top"
+                className="blink2 rounded-top pe-1"
                 style={{ textShadow: "1px 1px 4px yellow" }}
               >
-                .::'|
+                <i className="spinner-grow"></i>
               </span>
               <span
                 className="blink rounded-top"
@@ -21,10 +21,10 @@ const Nav = () => {
                 F1 RACE RESULTS
               </span>
               <span
-                className="blink2 rounded-top"
+                className="blink2 rounded-top ps-1"
                 style={{ textShadow: "1px 1px 4px yellow" }}
               >
-                |'::.
+                <i className="spinner-grow"></i>
               </span>
             </h1>
           </Link>
