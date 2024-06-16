@@ -299,19 +299,22 @@ const F1Race = (props) => {
                                 }}
                               >
                                 <>
-                                  <span className="bg-black text-success fw-bold p-1 px-1">
+                                  <span className="bg-black text-primary fw-bold p-1 px-1">
                                     {result.Constructor.name.toUpperCase()}
                                   </span>
-                                  <span className="bg-success text-black p-1 fw-bold fst-italic">
+                                  <span className="bg-primary text-black p-1 fw-bold fst-italic">
                                     {" " + result.Constructor.nationality}
                                   </span>
                                 </>
                               </td>
                               <td
-                                className="op text-center fw-bold p-0"
+                                className="op text-center fw-bold"
                                 style={{ color: "Fuchsia" }}
                               >
+                                <span className="bg-black px-2">
+
                                 {result.laps}
+                                </span>
                               </td>
                               <td className="text-wrap text-center text-warning fw-bold p-0 px-1">
                                 <span className="bg-black w-100 d-inline-block">

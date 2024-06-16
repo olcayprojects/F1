@@ -15,9 +15,11 @@ body {
 .blink {
   animation: blinker 3.9s alternate infinite;
 }
+
 .blink2 {
   animation: blinker2 0.4s alternate infinite;
 }
+
 @keyframes blinker {
   15% {
     color: black;
@@ -34,6 +36,7 @@ body {
     opacity: 0.3;
   }
 }
+
 @keyframes blinker2 {
   6% {
     color: yellow;
@@ -61,18 +64,15 @@ tr {
 .cp {
   cursor: pointer;
 }
+
 .cp:hover {
   cursor: pointer;
-  border: 5px ridge gray;
+  border: 4px dashed teal;
   box-sizing: border-box;
 }
+
 .ch {
   cursor: help;
-}
-
- {
-  font-size: 30px !important;
-  text-align: center;
 }
 
 .op {
@@ -90,6 +90,7 @@ thead th {
   transition: transform 0.6s ease, -webkit-transform 0.6s ease;
   text-align: center;
 }
+
 .bg-gradient {
   background-image: var(--bs-gradient);
 }
