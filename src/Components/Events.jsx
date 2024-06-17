@@ -29,7 +29,7 @@ const Events = (props) => {
           <div key={index}>
             <div className="">
               <img
-                className="img-responsive pt-1 ps-1 mx-auto d-block"
+                className="img-fluid pt-1 ps-1 mx-auto d-block"
                 src={event?.strThumb + "/preview"}
                 alt=""
                 title={event?.strFilename}
@@ -39,7 +39,7 @@ const Events = (props) => {
           </div>
         ) : (
           <img
-            className="img-responsive pt-1 ps-1 mx-auto d-block"
+            className="img-fluid pt-1 ps-1 mx-auto d-block"
             key={index}
             src={event?.strBanner + "/preview"}
             alt=""

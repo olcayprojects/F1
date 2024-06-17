@@ -28,7 +28,7 @@ export const DrvInfo = (props) => {
   return props.s === "1" ? (
     <div className="card bg-black text-warning">
       <img
-        className="img-responsive object-fit-cover"
+        className="img-fluid object-fit-cover"
         style={{ width: "", height: "" }}
         src={
           data1?.strCutout
@@ -50,7 +50,7 @@ export const DrvInfo = (props) => {
         style={{ width: "120px", height: "250px" }}
         src={data1?.strRender + "/preview"}
         alt=""
-        title=""
+        title={data1?.strPlayer + " / " + data1?.strNationality}
         srcSet=""
       />
     </>

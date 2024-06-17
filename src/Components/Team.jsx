@@ -33,7 +33,7 @@ const Team = (props) => {
         return (
           <div className="" key={index}>
             <img
-              className="img-responsive w-100"
+              className="img-fluid w-100"
               style={{ maxWidth: "120px" }}
               src={teams?.strBadge}
               alt=""
