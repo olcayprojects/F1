@@ -44,11 +44,14 @@ const Laps = () => {
     return (
       <div className="container-fluid p-0">
         <Nav />
-
-        <h1 className="text-center text-danger">{sdata?.raceName} Lap Time</h1>
-        <h2 className="text-center text-danger">
-          #{sdata?.round} {sdata?.season}
-        </h2>
+        <div className="border border-danger border-5 fs-2 text-center fw-bold m-1">
+          <span className="text-center text-danger pe-2">
+            {sdata?.raceName} Lap Time
+          </span>
+          <span className="text-center text-danger">
+            #{sdata?.round} {sdata?.season}
+          </span>
+        </div>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped op table-bordered border-black">
             <thead className="">

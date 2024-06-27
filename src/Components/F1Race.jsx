@@ -77,7 +77,7 @@ const F1Race = (props) => {
                 });
 
               return (
-                <div key={indexItem} className="bg-black p-0 pt-1">
+                <div key={indexItem} className="bg-black p-0 m-1">
                   <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
                     {rounds === 0 ? (
                       <>
