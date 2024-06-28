@@ -13,16 +13,19 @@ const ConstructorsResult = () => {
   let navigate = useNavigate();
 
   const { constructors = "red_bull" } = useParams();
+  const { season = "2024" } = useParams();
   const [cons, setCons] = useState(constructors);
+  const [seas, setSeas] = useState(season);
+
+  const year = new Date().getFullYear();
+  const years = Array.from(new Array(74), (val, index) => year - index);
 
   const dateTime = (d, t) =>
     new Date(d + " " + t).toDateString() +
     " " +
     new Date(d + " " + t).toLocaleTimeString();
 
-  const { season = "2024" } = useParams();
-
-  let url = `https://ergast.com/api/f1/${season}/constructors/${cons}/results.json?limit=100`;
+  let url = `https://ergast.com/api/f1/${seas}/constructors/${cons}/results.json?limit=100`;
 
   useEffect(() => {
     function fetchData() {
@@ -48,16 +51,36 @@ const ConstructorsResult = () => {
       <div>
         <div className="container-fluid p-0">
           <Nav />
+          <div>
+
 
           <select
             className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
             onChange={(e) => setCons(e.target.value)}
-          >
+            >
             <option value="" hidden>
               {sdata[0]?.Results[0]?.Constructor?.name}
             </option>
             <Constructor year={season} />
           </select>
+          
+
+          <select
+            className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
+            onChange={(e) => setSeas(e.target.value)}
+            >
+            <option value="" hidden>
+              2024
+            </option>
+            {years.map((year, index) => {
+              return (
+                <option key={`year${index}`} value={year}>
+                  {year}
+                </option>
+              );
+            })}
+          </select>
+            </div>
         </div>
 
         {sdata.map((items, index) => {
