@@ -5,13 +5,12 @@ const Next = () => {
   const [sdata, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://ergast.com/api/f1/current/next.json")
+    fetch("https://ergast.com/api/f1/current/next.json",{signal:AbortSignal.timeout(5000)})
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
-        console.log(err);
       });
   }, []);
   return (
