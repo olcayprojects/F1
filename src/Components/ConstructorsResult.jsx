@@ -12,13 +12,13 @@ const ConstructorsResult = () => {
 
   let navigate = useNavigate();
 
-  const { constructors = "red_bull" } = useParams();
+  const { constructors = "ferrari" } = useParams();
   const { season = "2024" } = useParams();
   const [cons, setCons] = useState(constructors);
   const [seas, setSeas] = useState(season);
 
   const year = new Date().getFullYear();
-  const years = Array.from(new Array(74), (val, index) => year - index);
+  const years = Array.from(new Array(75), (val, index) => year - index);
 
   const dateTime = (d, t) =>
     new Date(d + " " + t).toDateString() +
@@ -29,6 +29,7 @@ const ConstructorsResult = () => {
 
   useEffect(() => {
     function fetchData() {
+      setIsLoaded(false);
       fetch(url)
         .then((response) => response.json())
         .then((items) => {
@@ -44,31 +45,17 @@ const ConstructorsResult = () => {
     fetchData();
   }, [url]);
 
-  if (!isLoaded) {
-    return <Loading />;
-  } else {
-    return (
-      <div>
-        <div className="container-fluid p-0">
-          <Nav />
-          <div>
-
-
+  return (
+    <div>
+      <div className="container-fluid p-0">
+        <Nav />
+        <div>
           <select
             className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
-            onChange={(e) => setCons(e.target.value)}
-            >
-            <option value="" hidden>
-              {sdata[0]?.Results[0]?.Constructor?.name}
-            </option>
-            <Constructor year={season} />
-          </select>
-          
-
-          <select
-            className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
-            onChange={(e) => setSeas(e.target.value)}
-            >
+            onChange={(e) => {
+              setSeas(e.target.value);
+            }}
+          >
             <option value="" hidden>
               2024
             </option>
@@ -80,10 +67,20 @@ const ConstructorsResult = () => {
               );
             })}
           </select>
-            </div>
+          <select
+            className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
+            onChange={(e) => setCons(e.target.value)}
+          >
+            <option value="" hidden>
+              {sdata[0]?.Results[0]?.Constructor?.name}
+            </option>
+            <Constructor year={seas} />
+          </select>
         </div>
+      </div>
 
-        {sdata.map((items, index) => {
+      {sdata.length ? (
+        sdata.map((items, index) => {
           return (
             <div className="text-danger container-fluid" key={index}>
               <div className="table-responsive-sm">
@@ -116,73 +113,86 @@ const ConstructorsResult = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {items?.Results.map((item, index) => {
-                      return (
-                        <tr key={index} className="">
-                          <td className="op text-center p-0 fw-bold">
-                            {!isNaN(+item.positionText)
-                              ? item.positionText
-                              : item.position + " (" + item.positionText + ")"}
-                          </td>
-                          <td className="text-center p-0">{item.grid}</td>
-                          <td
-                            className="cp op p-0 fw-bold"
-                            onClick={() => {
-                              navigate(
-                                "/ResultsDriver/" + item.Driver.driverId
-                              );
-                            }}
-                          >
-                            {item.Driver.givenName +
-                              " " +
-                              item.Driver.familyName}
-                            <span className="px-1 fst-italic fw-normal text-white-50">
-                              (
-                              {new Date(item.Driver.dateOfBirth).toDateString()}
-                              )
-                            </span>
-                            <span className=" fw-normal text-white-50">
-                              {item.Driver.nationality}
-                            </span>
-                          </td>
-                          <td className="text-center p-0">{item.Time?.time}</td>
-                          <td className="op text-center p-0">{item.status}</td>
-                          <td className="text-center p-0">{item.points}</td>
-                          <td className="text-center op p-0">{item.laps}</td>
-
-                          {item?.FastestLap ? (
-                            <td className="p-0 text-center">
-                              {item?.FastestLap?.rank +
-                                ". => [ Time: " +
-                                item.FastestLap?.Time?.time +
-                                " - AvgSpd: " +
-                                item?.FastestLap?.AverageSpeed?.speed +
-                                item?.FastestLap?.AverageSpeed?.units +
-                                " - Lap: " +
-                                item?.FastestLap?.lap}{" "}
-                              ]
+                    {!isLoaded ? (
+                      <Loading />
+                    ) : (
+                      items?.Results.map((item, index) => {
+                        return (
+                          <tr key={index} className="">
+                            <td className="op text-center p-0 fw-bold">
+                              {!isNaN(+item.positionText)
+                                ? item.positionText
+                                : item.position +
+                                  " (" +
+                                  item.positionText +
+                                  ")"}
                             </td>
-                          ) : (
-                            <td></td>
-                          )}
-                        </tr>
-                      );
-                    })}
+                            <td className="text-center p-0">{item.grid}</td>
+                            <td
+                              className="cp op p-0 fw-bold"
+                              onClick={() => {
+                                navigate(
+                                  "/ResultsDriver/" + item.Driver.driverId
+                                );
+                              }}
+                            >
+                              {item.Driver.givenName +
+                                " " +
+                                item.Driver.familyName}
+                              <span className="px-1 fst-italic fw-normal text-white-50">
+                                (
+                                {new Date(
+                                  item.Driver.dateOfBirth
+                                ).toDateString()}
+                                )
+                              </span>
+                              <span className=" fw-normal text-white-50">
+                                {item.Driver.nationality}
+                              </span>
+                            </td>
+                            <td className="text-center p-0">
+                              {item.Time?.time}
+                            </td>
+                            <td className="op text-center p-0">
+                              {item.status}
+                            </td>
+                            <td className="text-center p-0">{item.points}</td>
+                            <td className="text-center op p-0">{item.laps}</td>
+
+                            {item?.FastestLap ? (
+                              <td className="p-0 text-center">
+                                {item?.FastestLap?.rank +
+                                  ". => [ Time: " +
+                                  item.FastestLap?.Time?.time +
+                                  " - AvgSpd: " +
+                                  item?.FastestLap?.AverageSpeed?.speed +
+                                  item?.FastestLap?.AverageSpeed?.units +
+                                  " - Lap: " +
+                                  item?.FastestLap?.lap}{" "}
+                                ]
+                              </td>
+                            ) : (
+                              <td></td>
+                            )}
+                          </tr>
+                        );
+                      })
+                    )}
                   </tbody>
                 </table>
               </div>
             </div>
           );
-        })}
+        })
+      ) : null}
 
-        {season === new Date().getFullYear().toString() ? (
-          <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
-        ) : (
-          sdata[0]?.Results[0]?.Constructor?.name
-        )}
-      </div>
-    );
-  }
+      {season === new Date().getFullYear().toString() ? (
+        <Team teamName={sdata[0]?.Results[0]?.Constructor?.name} ls="5" />
+      ) : (
+        sdata[0]?.Results[0]?.Constructor?.name
+      )}
+    </div>
+  );
 };
 
 export default ConstructorsResult;

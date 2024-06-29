@@ -40,7 +40,7 @@ const Laptimes = (props) => {
     fetchData(urlx);
   }, [urlx]);
 
-  return sdata ? (
+  return sdata.length ? (
     <table className="table table-dark table-striped table-bordered">
       <caption className="text-center bg-dark text-danger border border-black border-5 caption-top">
         <span className="fw-bold bg-black px-2 p-1">
@@ -82,7 +82,7 @@ const Laptimes = (props) => {
         })}
       </tbody>
     </table>
-  ) : null;
+  ) : <h5>Data not found!</h5>;
 };
 
 export default Laptimes;

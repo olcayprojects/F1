@@ -35,8 +35,10 @@ const QualifyingResults = (props) => {
     return <Loading />;
   }
 
-  return (
-    <div className="container">
+  
+return (
+  sdata.length?
+    (<div className="container">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
@@ -110,7 +112,7 @@ const QualifyingResults = (props) => {
                               : null
                           }
                         >
-                          {qualifying?.Q3}
+                          {qualifying?.Q3 ?qualifying?.Q3: "-"}
                         </span>
                       </td>
                       <td className="col-2 text-center op py-0">
@@ -121,7 +123,7 @@ const QualifyingResults = (props) => {
                               : null
                           }
                         >
-                          {qualifying?.Q2}
+                          {qualifying?.Q2?qualifying?.Q2 :"-"}
                         </span>
                       </td>
                       <td className="col-2 text-center fw-bolder align-middle py-0">
@@ -141,8 +143,9 @@ const QualifyingResults = (props) => {
           })}
         </table>
       </div>
-    </div>
-  );
+    </div>)
+  :(<h4 className="text-center">Data not found!</h4>)
+)
 };
 
 export default QualifyingResults;

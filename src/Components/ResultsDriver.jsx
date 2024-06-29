@@ -211,7 +211,7 @@ const ResultsDriver = () => {
                       </td>
 
                       <td className="py-0">
-                        <span className="px-1 fw-bold text-secondary d-block w-100">
+                        <span className="px-1 fw-bold text-secondary text-center">
                           {item?.Results
                             ? item?.Results[0]?.FastestLap
                               ? item?.Results[0]?.FastestLap?.rank +
@@ -224,13 +224,13 @@ const ResultsDriver = () => {
                                   ?.units +
                                 " | Lap: " +
                                 item?.Results[0]?.FastestLap?.lap
-                              : ""
+                              : <span className="text-danger">-</span>
                             : item?.SprintResults[0]?.FastestLap
                             ? "Time: " +
                               item?.SprintResults[0]?.FastestLap?.Time.time +
                               " | Lap: " +
                               item?.SprintResults[0]?.FastestLap?.lap
-                            : null}
+                            : <span className="text-danger">-</span>}
                         </span>
                       </td>
                     </tr>

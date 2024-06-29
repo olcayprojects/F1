@@ -36,6 +36,7 @@ const Pitstops = (props) => {
 
   if (isLoaded) return <Loading />;
   return (
+    sdata.length ?
     <div className="container p-0 border border-dark border-5">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
@@ -94,6 +95,7 @@ const Pitstops = (props) => {
         </table>
       </div>
     </div>
+    :(<h4 className="text-center">Data Not Found!</h4>)
   );
 };
 
