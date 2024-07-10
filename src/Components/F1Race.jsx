@@ -465,7 +465,7 @@ const F1Race = (props) => {
                     for (let i = laps - 11; i <= laps; i++) {
                       arr.push(
                         <div key={i} className="mb-0">
-                          <Laptimes season={season} round={round} lapsx={i} />
+                          <Laptimes season={season} round={round} laps={laps} lapsx={i} />
                         </div>
                       );
                     }

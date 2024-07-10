@@ -7,7 +7,7 @@ const Laptimes = (props) => {
   const [sdata, setData] = useState([]);
   const [number, setNumber] = useState([]);
 
-  const { season2 = "2023" } = useParams();
+  const { season2 = "2024" } = useParams();
   const { rounds = 0 } = useParams();
 
   let urlx = "";
@@ -82,7 +82,9 @@ const Laptimes = (props) => {
         })}
       </tbody>
     </table>
-  ) : <h5>Data not found!</h5>;
+  ) : props.lapsx == props.laps ? (
+    <h4>Lap Times data not found!</h4>
+  ) : null;
 };
 
 export default Laptimes;
