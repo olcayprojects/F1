@@ -14,6 +14,7 @@ const Carousel = () => {
         .then((response) => response.json())
         .then((item) => {
           setData(item.teams);
+          console.log(item);
         })
         .catch((err) => {
           console.log(err.message);
@@ -37,7 +38,8 @@ const Carousel = () => {
               style={{ width: "330px", height: "100px", objectFit: "cover" }}
               className="rounded float-start p-0"
               // src={item.strTeamJersey}
-              src={item.strKit}
+              // src={item.strKit}
+              src={item.strEquipment}
               srcSet=""
               alt=""
             />
@@ -55,7 +57,8 @@ const Carousel = () => {
                 transform: "scaleX(-1)",
               }}
               className="rounded float-end p-0"
-              src={item.strKit + ""}
+              // src={item.strKit + ""}
+              src={item.strEquipment + ""}
               srcSet=""
               alt=""
             />
