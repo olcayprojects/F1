@@ -22,7 +22,7 @@ const Results = (props) => {
       .then((res) => {
         setData(res?.data["MRData"]?.RaceTable?.Races[0]);
       })
-      .catch((e) => console.log(e),setIsLoaded(true))
+      .catch((e) => console.log(e), setIsLoaded(true))
       .finally(() => setIsLoaded(true));
   }, [url]);
 
@@ -56,7 +56,14 @@ const Results = (props) => {
             return (
               <tr key={index} className="">
                 <td className="p-0 ps-2 op text-danger fw-bold pe-1">
-                  {Results.positionText}
+                  {!isNaN(Results.positionText) ? (
+                    Results.positionText
+                  ) : (
+                    <>
+                      <span>{Results.position}</span>{"-"}
+                      <span className="fw-light">{Results.positionText}</span>
+                    </>
+                  )}
                 </td>
                 {/* <td className="p-0 ps-3">{Results.number}</td> */}
                 <td className="p-0 fw-bold text-warning">
@@ -71,12 +78,13 @@ const Results = (props) => {
                   ) : Results?.status[0] === "+" ? (
                     <span className="text-secondary">{Results?.status}</span>
                   ) : (
-                    <span className="text-danger text-uppercase">{Results?.status}</span>
+                    <span className="text-danger text-uppercase">
+                      {Results?.status}
+                    </span>
                   )}
                 </td>
                 <td className="text-center p-0">{Results?.points}</td>
               </tr>
-
             );
           })}
         </tbody>

@@ -14,7 +14,6 @@ const Carousel = () => {
         .then((response) => response.json())
         .then((item) => {
           setData(item.teams);
-          console.log(item);
         })
         .catch((err) => {
           console.log(err.message);
