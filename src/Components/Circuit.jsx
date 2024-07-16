@@ -193,10 +193,24 @@ const Circuit = (props) => {
                       {row.Results[0].Time?.time}
                     </StyledTableCell>
                     <StyledTableCell>
-                      #{row.Results[0].FastestLap?.rank}__
-                      {row.Results[0].FastestLap?.Time?.time}__
-                      {row.Results[0].FastestLap?.AverageSpeed?.speed}
-                      {row.Results[0].FastestLap?.AverageSpeed?.units}
+                      {row.Results[0].FastestLap ? (
+                        <h6 className="text-center">
+                          <span className="text-danger">
+                            {row.Results[0].FastestLap?.rank}
+                            {". "}
+                          </span>
+                          [{row.Results[0].FastestLap?.Time?.time}] [
+                          {row.Results[0].FastestLap?.AverageSpeed?.speed}{" "}
+                          <span className="text-secondary pe-1">
+                            {row.Results[0].FastestLap?.AverageSpeed?.units}
+                          </span>
+                          ]
+                        </h6>
+                      ) : (
+                        <h6 className="text-info fw-bold text-center">
+                          Data Not Found!
+                        </h6>
+                      )}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
