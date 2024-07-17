@@ -14,7 +14,7 @@ function Duration(props) {
       acc[curr.driverId].duration = [
         acc[curr.driverId].duration,
         curr.duration,
-      ].join(" || ");
+      ].join(" + ");
     } else {
       acc[curr.driverId] = curr;
     }
