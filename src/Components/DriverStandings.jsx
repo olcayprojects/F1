@@ -82,8 +82,12 @@ const DriverStandings = (props) => {
               <thead className="border-danger border-5">
                 <tr className="text-black">
                   <th className="bg-dark text-danger text-center py-0">POS</th>
-                  <th className="bg-dark text-danger py-0">DRIVER</th>
-                  <th className="bg-dark text-danger py-0">CONSTRUCTOR</th>
+                  <th className="bg-dark text-center text-danger py-0">
+                    DRIVER
+                  </th>
+                  <th className="bg-dark text-center text-danger py-0">
+                    CONSTRUCTOR
+                  </th>
                   <th className="bg-dark text-danger text-center op py-0">
                     POINTS
                   </th>

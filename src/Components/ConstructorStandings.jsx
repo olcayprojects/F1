@@ -52,7 +52,10 @@ const ConstructorStandings = (props) => {
                 <th scope="" className="text-danger bg-dark text-center py-0">
                   POS
                 </th>
-                <th scope="" className="text-danger bg-dark op py-0">
+                <th
+                  scope=""
+                  className="text-danger text-center bg-dark op py-0"
+                >
                   CONSTRUCTOR
                 </th>
                 <th
