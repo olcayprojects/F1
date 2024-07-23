@@ -6,7 +6,7 @@ import Nav from "./Nav";
 export const RaceHistoryChart = () => {
   const [sdata, setData] = useState([]);
   const [season, setSeason] = useState("2024");
-  const [round, setRound] = useState("1");
+  const [round, setRound] = useState("0");
 
   const dateTime = (d, t) =>
     new Date(d + " " + t).toLocaleString("en-EN", {
@@ -39,8 +39,10 @@ export const RaceHistoryChart = () => {
   };
 
   useEffect(() => {
-    fetchData(urlx);
-  }, [urlx]);
+    if (round !== 0) {
+      fetchData(urlx);
+    }
+  }, [urlx, round]);
 
   return sdata ? (
     <>
