@@ -38,16 +38,18 @@ const ConstructorStandings = (props) => {
         ) : (
           <>
             <Nav />
-            <h3 className="text-center py-1 fw-bold m-0">
-              <span className="text-black bg-danger px-2 rounded bg-opacity-50">
-                CONSTRUCTOR STANDINGS
-              </span>
-            </h3>
+            <div className="mt-2">
+              <h4 className="text-center py-1 fw-bold m-0">
+                <span className="text-black bg-danger px-2 rounded bg-opacity-50">
+                  CONSTRUCTOR STANDINGS
+                </span>
+              </h4>
+            </div>
           </>
         )}
         <div className="row justify-content-center m-0">
           <table className="table table-dark table-striped table-bordered w-auto">
-            <thead className="border-danger border-5">
+            <thead className="border-start-0 border-end-0 border-top-0 border-5">
               <tr className="">
                 <th scope="" className="text-danger bg-dark text-center py-0">
                   POS

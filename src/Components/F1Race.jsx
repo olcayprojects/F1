@@ -59,7 +59,12 @@ const F1Race = (props) => {
   }, [urlx]);
 
   if (!isLoaded) {
-    return <Loading />;
+    return(
+      <>
+      <Nav/>
+      <Loading />
+      </>
+    )
   } else {
     return (
       <>
