@@ -53,7 +53,7 @@ const Event = (props) => {
               <div className="carousel-inner" style={{ height: "400px" }}>
                 <div className="carousel-item active" data-bs-interval="1000">
                   <img
-                    className="img"
+                    className="d-block w-100"
                     src={events.strPoster + "/preview"}
                     alt=""
                     srcSet=""
@@ -61,7 +61,7 @@ const Event = (props) => {
                 </div>
                 <div className="carousel-item">
                   <img
-                    className="img"
+                    className="d-block w-100"
                     src={events.strMap + "/preview"}
                     alt=""
                     srcSet=""
@@ -69,7 +69,7 @@ const Event = (props) => {
                 </div>
                 <div className="carousel-item">
                   <img
-                    className="img"
+                    className="d-block w-100"
                     src={events.strBanner + "/preview"}
                     alt=""
                     srcSet=""
@@ -77,7 +77,7 @@ const Event = (props) => {
                 </div>
                 <div className="carousel-item">
                   <img
-                    className="img"
+                    className="d-block w-100"
                     src={events.strThumb + "/preview"}
                     alt=""
                     srcSet=""
@@ -85,7 +85,7 @@ const Event = (props) => {
                 </div>
                 <div className="carousel-item">
                   <img
-                    className="img"
+                    className="d-block w-100"
                     src={events.strSquare + "/preview"}
                     alt=""
                     srcSet=""
