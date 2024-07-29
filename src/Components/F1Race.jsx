@@ -327,6 +327,13 @@ const F1Race = (props) => {
                                       <span className="text-success">
                                         {result.Time.time}
                                       </span>
+                                    ) : result.status !== "Finished" ? (
+                                      <>
+                                        {result.Time.time}
+                                        <span className="text-danger ps-1">
+                                          -{result.status.toUpperCase()}
+                                        </span>
+                                      </>
                                     ) : (
                                       result.Time.time
                                     )
