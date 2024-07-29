@@ -5,13 +5,14 @@ const Next = () => {
   const [sdata, setData] = useState([]);
 
   useEffect(() => {
-    fetch("https://ergast.com/api/f1/current/next.json",{signal:AbortSignal.timeout(5000)})
+    fetch("https://ergast.com/api/f1/current/next.json", {
+      signal: AbortSignal.timeout(5000),
+    })
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }, []);
   return (
     <div className="container-fluid bg-dark p-0">
@@ -32,10 +33,14 @@ const Next = () => {
             style={{ fontFamily: "fantasy" }}
           >
             <marquee className="" behavior="" scrollamount="8">
-              <span className="text-primary">Next Race </span>
+              <span className="text-primary">
+                ROUND {data.round} - UP NEXT{" "}
+              </span>
               <span className="text-info ">{data.raceName}</span>
               <i className="bi bi-calendar3 text-warning px-1"></i>
               <span className="text-danger">
+              <span className="text-success">RACE </span>
+
                 {data.time
                   ? dateTime(data?.date, data.time)
                   : new Date(data.date).toLocaleDateString("tr-TR")}
@@ -52,7 +57,7 @@ const Next = () => {
                 <>
                   <i className="bi bi-clock-fill text-info px-1"></i>
 
-                  <span className="text-success">First Practice: </span>
+                  <span className="text-success">PRACTICE 1 </span>
                   <span>
                     {dateTime(
                       data.FirstPractice?.date,
@@ -60,7 +65,7 @@ const Next = () => {
                     )}
                   </span>
                   <i className="bi bi-clock-fill text-info px-1"></i>
-                  <span className="text-success">Second Practice: </span>
+                  <span className="text-success">PRACTICE 2 </span>
                   {dateTime(
                     data.SecondPractice?.date,
                     data.SecondPractice?.time
@@ -68,7 +73,7 @@ const Next = () => {
                   {data.ThirdPractice?.date ? (
                     <>
                       <i className="bi bi-clock-fill text-info px-1"></i>
-                      <span className="text-success">Third Practice: </span>
+                      <span className="text-success">PRACTICE 3 </span>
                       {dateTime(
                         data.ThirdPractice?.date,
                         data.ThirdPractice?.time
@@ -76,7 +81,7 @@ const Next = () => {
                     </>
                   ) : null}
                   <i className="bi bi-clock-fill text-info px-1"></i>
-                  <span className="text-success">Qualifying: </span>
+                  <span className="text-success">QUALIFYING </span>
                   {dateTime(data.Qualifying?.date, data.Qualifying?.time)}
                 </>
               ) : (
