@@ -59,12 +59,12 @@ const F1Race = (props) => {
   }, [urlx]);
 
   if (!isLoaded) {
-    return(
+    return (
       <>
-      <Nav/>
-      <Loading />
+        <Nav />
+        <Loading />
       </>
-    )
+    );
   } else {
     return (
       <>
@@ -317,8 +317,7 @@ const F1Race = (props) => {
                                 style={{ color: "Fuchsia" }}
                               >
                                 <span className="bg-black px-2">
-
-                                {result.laps}
+                                  {result.laps}
                                 </span>
                               </td>
                               <td className="text-wrap text-center text-warning fw-bold p-0 px-1">
@@ -470,7 +469,12 @@ const F1Race = (props) => {
                     for (let i = laps - 11; i <= laps; i++) {
                       arr.push(
                         <div key={i} className="mb-0">
-                          <Laptimes season={season} round={round} laps={laps} lapsx={i} />
+                          <Laptimes
+                            season={season}
+                            round={round}
+                            laps={laps}
+                            lapsx={i}
+                          />
                         </div>
                       );
                     }

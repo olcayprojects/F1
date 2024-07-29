@@ -35,8 +35,7 @@ const Pitstops = (props) => {
   }, [url]);
 
   if (isLoaded) return <Loading />;
-  return (
-    sdata.length ?
+  return sdata.length ? (
     <div className="container p-0 border border-dark border-5">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
@@ -57,7 +56,7 @@ const Pitstops = (props) => {
                 <tr key={index} className="align-middle">
                   <td className="op text-center px-1 py-0">{index + 1}</td>
                   <td
-                    className="fw-bold text-info cp py-0"
+                    className="col-auto fw-bold text-info cp py-0"
                     style={{ textTransform: "" }}
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
@@ -84,7 +83,7 @@ const Pitstops = (props) => {
                     className="text-center fw-bold op py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="bg-black d-block">
+                    <span className="text-warning">
                       <Duration data={sdata} driverid={ps.driverId} />
                     </span>
                   </td>
@@ -95,7 +94,8 @@ const Pitstops = (props) => {
         </table>
       </div>
     </div>
-    :(<h4 className="text-center">Data Not Found!</h4>)
+  ) : (
+    <h4 className="text-center">Data Not Found!</h4>
   );
 };
 

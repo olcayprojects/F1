@@ -29,9 +29,12 @@ const RaceSchedule = (props) => {
 
   return (
     <div className="bg-black container-fluid table-responsive">
-      <h1 className="text-center bg-black text-danger border border-danger border-5 mb-2">
-        Schedule {props.season}
-      </h1>
+      <div className="text-center bg-black text-danger border-top border-start border-end border-danger border-5 m-0 p-0">
+        <h1 className="m-0 p-0">F1 Schedule {props.season}</h1>
+        <h6 className="m-0 p-0">
+          {props.season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR
+        </h6>
+      </div>
       <table className="table table-dark table-striped table-bordered">
         <thead className="">
           <tr className="text-black">
