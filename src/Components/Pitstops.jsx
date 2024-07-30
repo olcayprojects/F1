@@ -83,7 +83,11 @@ const Pitstops = (props) => {
                     className="text-center fw-bold op py-0"
                     style={{ fontFamily: "Lucida Console" }}
                   >
-                    <span className="text-warning">
+                    <span
+                      className={
+                        index % 2 !== 0 ? "bg-black p-1" : "bg-secondary p-1"
+                      }
+                    >
                       <Duration data={sdata} driverid={ps.driverId} />
                     </span>
                   </td>

@@ -35,10 +35,8 @@ const QualifyingResults = (props) => {
     return <Loading />;
   }
 
-  
-return (
-  sdata.length?
-    (<div className="container">
+  return sdata.length ? (
+    <div className="container">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
@@ -56,7 +54,10 @@ return (
               <tbody key={index}>
                 {item?.QualifyingResults?.map((qualifying, indexQ) => {
                   return (
-                    <tr key={indexQ} className="align-middle">
+                    <tr
+                      key={indexQ}
+                      className={"align-middle" + (indexQ === 0 ? " fs-5" : "")}
+                    >
                       <td className="p-0 text-center op">
                         {qualifying.position < 4 ? (
                           <i
@@ -71,7 +72,7 @@ return (
                         )}
                       </td>
                       <td className="text-center py-0">{qualifying.number}</td>
-                      <td className="col-5 op py-0">
+                      <td className={"col-5 op py-0"}>
                         <span
                           className="fw-bold text-info bg-black px-1 cp"
                           onClick={() => {
@@ -112,7 +113,7 @@ return (
                               : null
                           }
                         >
-                          {qualifying?.Q3 ?qualifying?.Q3: "-"}
+                          {qualifying?.Q3 ? qualifying?.Q3 : "-"}
                         </span>
                       </td>
                       <td className="col-2 text-center op py-0">
@@ -123,7 +124,7 @@ return (
                               : null
                           }
                         >
-                          {qualifying?.Q2?qualifying?.Q2 :"-"}
+                          {qualifying?.Q2 ? qualifying?.Q2 : "-"}
                         </span>
                       </td>
                       <td className="col-2 text-center fw-bolder align-middle py-0">
@@ -143,9 +144,10 @@ return (
           })}
         </table>
       </div>
-    </div>)
-  :(<h4 className="text-center">Data not found!</h4>)
-)
+    </div>
+  ) : (
+    <h4 className="text-center">Data not found!</h4>
+  );
 };
 
 export default QualifyingResults;

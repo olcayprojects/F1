@@ -141,7 +141,7 @@ const F1Race = (props) => {
                   <div className="table-responsive-sm">
                     <table className="table table-dark table-striped table-bordered border-black">
                       <thead className="">
-                        <tr className="">
+                        <tr className={""}>
                           <th className="bg-danger text-center">P</th>
                           <th className="text-center">G</th>
                           <th className="text-center bg-danger">NO</th>
@@ -183,7 +183,13 @@ const F1Race = (props) => {
                       <tbody className="">
                         {item?.Results?.map((result, indexResult) => {
                           return (
-                            <tr key={indexResult} className="align-middle">
+                            <tr
+                              key={indexResult}
+                              className={
+                                "align-middle" +
+                                (indexResult === 0 ? " fs-5" : "")
+                              }
+                            >
                               <td className="text-center p-0">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
