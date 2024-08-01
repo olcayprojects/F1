@@ -190,7 +190,14 @@ const ResultsDriver = () => {
                       <td className="py-0 text-center text-warning">
                         {item?.Results ? (
                           item?.Results[0]?.Time?.time ? (
-                            item?.Results[0]?.Time?.time
+                            <>
+                              <span>{item?.Results[0]?.Time?.time}</span>
+                              <span className="text-danger ps-1">
+                                {item?.Results[0]?.status !== "Finished"
+                                  ? item?.Results[0]?.status
+                                  : null}
+                              </span>
+                            </>
                           ) : (
                             <span className="text-danger">
                               {item?.Results[0]?.status}
@@ -212,25 +219,29 @@ const ResultsDriver = () => {
 
                       <td className="py-0">
                         <span className="px-1 fw-bold text-secondary text-center">
-                          {item?.Results
-                            ? item?.Results[0]?.FastestLap
-                              ? item?.Results[0]?.FastestLap?.rank +
-                                ". Time: " +
-                                item?.Results[0]?.FastestLap?.Time.time +
-                                " | AvgSpd: " +
-                                item?.Results[0]?.FastestLap?.AverageSpeed
-                                  ?.speed +
-                                item?.Results[0]?.FastestLap?.AverageSpeed
-                                  ?.units +
-                                " | Lap: " +
-                                item?.Results[0]?.FastestLap?.lap
-                              : <span className="text-danger">-</span>
-                            : item?.SprintResults[0]?.FastestLap
-                            ? "Time: " +
-                              item?.SprintResults[0]?.FastestLap?.Time.time +
+                          {item?.Results ? (
+                            item?.Results[0]?.FastestLap ? (
+                              item?.Results[0]?.FastestLap?.rank +
+                              ". Time: " +
+                              item?.Results[0]?.FastestLap?.Time.time +
+                              " | AvgSpd: " +
+                              item?.Results[0]?.FastestLap?.AverageSpeed
+                                ?.speed +
+                              item?.Results[0]?.FastestLap?.AverageSpeed
+                                ?.units +
                               " | Lap: " +
-                              item?.SprintResults[0]?.FastestLap?.lap
-                            : <span className="text-danger">-</span>}
+                              item?.Results[0]?.FastestLap?.lap
+                            ) : (
+                              <span className="text-danger">-</span>
+                            )
+                          ) : item?.SprintResults[0]?.FastestLap ? (
+                            "Time: " +
+                            item?.SprintResults[0]?.FastestLap?.Time.time +
+                            " | Lap: " +
+                            item?.SprintResults[0]?.FastestLap?.lap
+                          ) : (
+                            <span className="text-danger">-</span>
+                          )}
                         </span>
                       </td>
                     </tr>
