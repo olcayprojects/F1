@@ -67,7 +67,10 @@ const Sprint = () => {
             <tbody className="fw-bold">
               {data?.SprintResults.map((item, index) => {
                 return (
-                  <tr key={index} className="align-middle">
+                  <tr
+                    key={index}
+                    className={"align-middle " + (index === 0 ? "fs-5 fw-bolder" : null)}
+                  >
                     <td className="p-0 text-center">{item.positionText}</td>
                     <td className="op text-center p-0">{item.grid}</td>
                     <td
