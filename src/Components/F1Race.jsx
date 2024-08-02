@@ -337,7 +337,7 @@ const F1Race = (props) => {
                                       <>
                                         {result.Time.time}
                                         <span className="text-danger ps-1">
-                                          -{result.status.toUpperCase()}
+                                          - {result.status.toUpperCase()}
                                         </span>
                                       </>
                                     ) : (
