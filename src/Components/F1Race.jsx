@@ -141,14 +141,17 @@ const F1Race = (props) => {
                   <div className="table-responsive-sm">
                     <table className="table table-dark table-striped table-bordered border-black">
                       <thead className="">
-                        <tr className={""}>
+                        <tr className="align-middle">
                           <th className="bg-danger text-center">P</th>
                           <th className="text-center">G</th>
                           <th className="text-center bg-danger">NO</th>
-                          <th className="" style={{ letterSpacing: "5px" }}>
+                          <th
+                            className="text-center"
+                            style={{ letterSpacing: "5px" }}
+                          >
                             DRIVER
                           </th>
-                          <th className="bg-danger">T E A M</th>
+                          <th className="bg-danger text-center">T E A M</th>
                           <th className="text-center">LAPS</th>
                           <th className="text-center bg-danger">
                             TIME / RETIRED
@@ -157,7 +160,7 @@ const F1Race = (props) => {
                           <th className="text-center bg-black"></th>
                           <th className="text-end bg-success">
                             <span className="text-decoration-underline text-black">
-                              FASTEST
+                              F A S T E S T
                             </span>
                             <br />
                             <span className="bg-black text-light p-1 px-2">
@@ -173,7 +176,7 @@ const F1Race = (props) => {
                           </th>
                           <th className="text-start bg-success">
                             <span className="text-decoration-underline text-black">
-                              LAPS
+                              L A P S
                             </span>
                             <br />
                             <span className="text-white">AVGSPEED</span>

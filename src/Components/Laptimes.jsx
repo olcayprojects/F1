@@ -42,21 +42,21 @@ const Laptimes = (props) => {
 
   return sdata.length ? (
     <table className="table table-dark table-striped table-bordered">
-      <caption className="text-center bg-dark text-danger border border-black border-5 caption-top">
-        <span className="fw-bold bg-black px-2 p-1">
+      <caption className="text-center py-1 bg-dark text-danger border border-black mx-5 caption-top">
+        <span className="fw-bold px-2">
           LAP <span className="text-warning">{number}</span>
         </span>
       </caption>
       <thead className="text-white border-dark">
         <tr className="text-black">
-          <th className="bg-danger text-center py-0">
-            <span className="bg-black text-danger p-0">DRIVER</span>
+          <th className="bg-danger text-center p-0">
+            <span className="bg-black text-danger ms-1 px-1">DRIVER</span>
           </th>
           <th className="text-center py-0">
             <span className="bg-black text-danger px-1">P</span>
           </th>
           <th className="bg-danger text-center py-0">
-            <span className="bg-black text-danger px-1">TIME</span>
+            <span className="bg-black text-danger p-0 px-1">TIME</span>
           </th>
         </tr>
       </thead>
@@ -74,7 +74,7 @@ const Laptimes = (props) => {
                   {LapTimes.position}
                 </span>
               </td>
-              <td className="text-center op text-success fw-bold py-0">
+              <td className="text-center op text-success fw-bold py-0 px-1">
                 <span className="bg-black px-1">{LapTimes.time}</span>
               </td>
             </tr>

@@ -40,7 +40,7 @@ const Pitstops = (props) => {
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="border-dark">
-            <tr className="text-black">
+            <tr className="text-black align-middle">
               <th className="bg-danger op text-center py-0">#</th>
               <th className="bg-danger py-0">DRIVER INFO</th>
               <th className="bg-danger text-center op py-0">STOPS</th>
@@ -80,7 +80,7 @@ const Pitstops = (props) => {
                     <span className="">{ps.duration}</span>
                   </td>
                   <td
-                    className="text-center fw-bold op py-0"
+                    className="col-1 text-center fw-bold op py-0"
                     style={{ fontFamily: "Arial Black" }}
                   >
                     <span
