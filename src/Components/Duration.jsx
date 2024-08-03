@@ -24,11 +24,7 @@ function Duration(props) {
     var millis = dt.getMilliseconds();
 
     var tm =
-      addZ(mins) +
-      ":" +
-      addZ(secs) +
-      "." +
-      (millis < 100 ? "0" + millis : millis);
+      mins + ":" + addZ(secs) + "." + (millis < 100 ? "0" + millis : millis);
     return tm;
   }
 
