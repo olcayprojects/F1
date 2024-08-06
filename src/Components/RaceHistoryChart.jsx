@@ -2,11 +2,13 @@ import React from "react";
 import { useEffect, useState } from "react";
 import DriverId from "./DriverId";
 import Nav from "./Nav";
+import Loading from "./Loading";
 
 export const RaceHistoryChart = () => {
   const [sdata, setData] = useState([]);
   const [season, setSeason] = useState("");
   const [round, setRound] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const dateTime = (d, t) =>
     new Date(d + " " + t).toLocaleString("en-EN", {
@@ -34,13 +36,17 @@ export const RaceHistoryChart = () => {
 
   urlx = `https://ergast.com/api/f1/${season}/${round}/laps.json?limit=1200`;
   const fetchData = async (url) => {
+    setIsLoaded(false);
+
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
         setData(data["MRData"]?.RaceTable?.Races[0]);
+        setIsLoaded(true);
       })
       .catch((err) => {
         console.log(err);
+        setIsLoaded(true);
       });
   };
 
@@ -106,6 +112,9 @@ export const RaceHistoryChart = () => {
           <div className="container-fluid p-0">
             <div className="row row-cols-1 row-cols-md-auto g-1 justify-content-sm-center">
               {sdata.Laps?.map((LapTimes, index) => {
+                if (!isLoaded) {
+                  return <Loading />;
+                }
                 return (
                   <div className="container py-0" key={index}>
                     <table className="table table-bordered table-striped m-0 mb-1">
