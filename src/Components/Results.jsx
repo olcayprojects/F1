@@ -56,14 +56,16 @@ const Results = (props) => {
             return (
               <tr key={index} className="">
                 <td className="p-0 ps-2 op text-danger fw-bold pe-1">
-                  {!isNaN(Results.positionText) ? (
+                  {Results.positionText}
+
+                  {/* !isNaN(Results.positionText) ? (
                     Results.positionText
                   ) : (
                     <>
                       <span>{Results.position}</span>{"-"}
                       <span className="fw-light">{Results.positionText}</span>
                     </>
-                  )}
+                  )*/}
                 </td>
                 {/* <td className="p-0 ps-3">{Results.number}</td> */}
                 <td className="p-0 fw-bold text-warning">
