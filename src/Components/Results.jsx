@@ -34,31 +34,32 @@ const Results = (props) => {
     return <Loading />;
   } else {
     return sdata?.Results?.length > 0 ? (
-      <table className="table table-dark table-striped table-bordered m-0">
-        <caption className="text-center border border-danger border-5 text-danger caption-top">
-          <span className="bg-dark text-light px-3 fs-5 fw-bold">
-            #{sdata.round} {sdata.raceName}
-          </span>
-        </caption>
-        <thead className="text-white border-dark">
-          <tr className="text-black ">
-            <th className="py-0">P</th>
-            {/* <th className="text-center">NO</th> */}
-            <th className="bg-danger text-start py-0">DRIVER</th>
-            <th className="text-start py-0">CAR</th>
-            <th className="bg-danger text-center py-0">LAP</th>
-            <th className="text-center py-0">TIME</th>
-            <th className="text-center bg-danger py-0">PT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {sdata?.Results?.map((Results, index) => {
-            return (
-              <tr key={index} className="">
-                <td className="p-0 ps-2 op text-danger fw-bold pe-1">
-                  {Results.positionText}
+      <div className="container">
+        <table className="table table-dark table-striped table-bordered m-0 mb-1">
+          <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
+            <span className="text-info fs-5 fw-bold">
+              #{sdata.round} {sdata.raceName}
+            </span>
+          </caption>
+          <thead className="text-white border-dark">
+            <tr className="text-black">
+              <th className="py-0 text-center">P</th>
+              {/* <th className="text-center">NO</th> */}
+              <th className="bg-danger text-start py-0">DRV</th>
+              <th className="text-start py-0">CAR</th>
+              <th className="bg-danger text-center py-0">LAP</th>
+              <th className="text-center py-0">TIME</th>
+              <th className="text-center bg-danger py-0">PT</th>
+            </tr>
+          </thead>
+          <tbody>
+            {sdata?.Results?.map((Results, index) => {
+              return (
+                <tr key={index} className="">
+                  <td className="p-0 op text-danger text-center fw-bold">
+                    {Results.positionText}
 
-                  {/* !isNaN(Results.positionText) ? (
+                    {/* !isNaN(Results.positionText) ? (
                     Results.positionText
                   ) : (
                     <>
@@ -66,31 +67,38 @@ const Results = (props) => {
                       <span className="fw-light">{Results.positionText}</span>
                     </>
                   )*/}
-                </td>
-                {/* <td className="p-0 ps-3">{Results.number}</td> */}
-                <td className="p-0 fw-bold text-warning">
-                  {Results.Driver.givenName?.substring(0, 1)}.{""}
-                  {Results.Driver.familyName.toUpperCase()}
-                </td>
-                <td className="p-0 ps-1 op">{Results.Constructor.name}</td>
-                <td className="p-0 text-center">{Results.laps}</td>
-                <td className="text-center p-0 op">
-                  {Results?.Time?.time ? (
-                    Results?.Time.time
-                  ) : Results?.status[0] === "+" ? (
-                    <span className="text-secondary">{Results?.status}</span>
-                  ) : (
-                    <span className="text-danger text-uppercase">
-                      {Results?.status}
-                    </span>
-                  )}
-                </td>
-                <td className="text-center p-0">{Results?.points}</td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                  </td>
+                  {/* <td className="p-0 ps-3">{Results.number}</td> */}
+                  <td
+                    className="p-0 fw-bold text-warning text-center"
+                    title={
+                      Results.Driver.givenName +
+                      " " +
+                      Results.Driver.familyName.toUpperCase()
+                    }
+                  >
+                    {Results.Driver.code}
+                  </td>
+                  <td className="p-0 ps-1 op">{Results.Constructor.name}</td>
+                  <td className="p-0 text-center">{Results.laps}</td>
+                  <td className="text-center p-0 op">
+                    {Results?.Time?.time ? (
+                      Results?.Time.time
+                    ) : Results?.status[0] === "+" ? (
+                      <span className="text-secondary">{Results?.status}</span>
+                    ) : (
+                      <span className="text-danger text-uppercase">
+                        {Results?.status}
+                      </span>
+                    )}
+                  </td>
+                  <td className="text-center p-0">{Results?.points}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     ) : null;
   }
 };

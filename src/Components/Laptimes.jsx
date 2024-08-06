@@ -41,8 +41,10 @@ const Laptimes = (props) => {
   }, [urlx]);
 
   return sdata.length ? (
+    <div className="container px-1">
+
     <table className="table table-dark table-striped table-bordered">
-      <caption className="text-center py-1 bg-dark text-danger border border-black mx-5 caption-top">
+      <caption className="text-center py-1 bg-dark text-danger border-top border-start border-end border-3 border-danger mx-5 caption-top">
         <span className="fw-bold px-2">
           LAP <span className="text-warning">{number}</span>
         </span>
@@ -82,6 +84,7 @@ const Laptimes = (props) => {
         })}
       </tbody>
     </table>
+    </div>
   ) : props.lapsx == props.laps ? (
     <h4>Lap Times data not found!</h4>
   ) : null;

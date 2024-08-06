@@ -107,9 +107,9 @@ export const RaceHistoryChart = () => {
             <div className="row row-cols-1 row-cols-md-auto g-1 justify-content-sm-center">
               {sdata.Laps?.map((LapTimes, index) => {
                 return (
-                  <div key={index}>
-                    <table className="table table-bordered table-striped m-0 mb-3">
-                      <caption className="text-center bg-dark p-0 text-secondary caption-top">
+                  <div className="container py-0" key={index}>
+                    <table className="table table-bordered table-striped m-0 mb-1">
+                      <caption className="text-center bg-dark mx-4 border-start border-end border-top border-danger border-3 p-0 text-secondary caption-top">
                         <span className="fw-bold px-2 p-1 text-info">
                           LAP <span className="">{LapTimes.number}</span>
                         </span>
