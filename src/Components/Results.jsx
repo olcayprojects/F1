@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect } from "react";
 import Loading from "./Loading";
+import Fastest from "./Fastest";
 
 import axios from "axios";
 
@@ -98,6 +99,9 @@ const Results = (props) => {
             })}
           </tbody>
         </table>
+        <h6 className="text-wrap" style={{ width: "22rem" }}>
+          <Fastest season={props.season} round={props.rounds} />
+        </h6>
       </div>
     ) : null;
   }
