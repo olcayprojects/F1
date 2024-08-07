@@ -41,49 +41,48 @@ const Laptimes = (props) => {
   }, [urlx]);
 
   return sdata.length ? (
-    <div className="container px-1">
+    <div className="container px-1 mt-1">
+      <table className="table table-dark table-striped table-bordered">
+        <caption className="text-center p-0 bg-dark text-danger border-top border-start border-end border-3 border-danger mx-4 caption-top">
+          <span className="fw-bold">
+            LAP <span className="text-warning">{number}</span>
+          </span>
+        </caption>
+        <thead className="text-white border-dark">
+          <tr className="text-black">
+            <th className="bg-danger text-center p-0">
+              <span className="bg-black text-danger ms-1 px-1">DRIVER</span>
+            </th>
+            <th className="text-center py-0">
+              <span className="bg-black text-danger px-1">P</span>
+            </th>
+            <th className="bg-danger text-center py-0">
+              <span className="bg-black text-danger p-0 px-1">TIME</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {sdata.map((LapTimes, index) => {
+            // console.log("aa",LapTimes);
 
-    <table className="table table-dark table-striped table-bordered">
-      <caption className="text-center py-1 bg-dark text-danger border-top border-start border-end border-3 border-danger mx-5 caption-top">
-        <span className="fw-bold px-2">
-          LAP <span className="text-warning">{number}</span>
-        </span>
-      </caption>
-      <thead className="text-white border-dark">
-        <tr className="text-black">
-          <th className="bg-danger text-center p-0">
-            <span className="bg-black text-danger ms-1 px-1">DRIVER</span>
-          </th>
-          <th className="text-center py-0">
-            <span className="bg-black text-danger px-1">P</span>
-          </th>
-          <th className="bg-danger text-center py-0">
-            <span className="bg-black text-danger p-0 px-1">TIME</span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {sdata.map((LapTimes, index) => {
-          // console.log("aa",LapTimes);
+            return (
+              <tr key={index} className="">
+                {<DriverId Id={LapTimes.driverId} ls={0} />}
+                {/* {LapTimes.driverId} */}
 
-          return (
-            <tr key={index} className="">
-              {<DriverId Id={LapTimes.driverId} ls={0} />}
-              {/* {LapTimes.driverId} */}
-
-              <td className="text-center text-primary fw-bold py-0">
-                <span className="bg-black d-block px-1">
-                  {LapTimes.position}
-                </span>
-              </td>
-              <td className="text-center op text-success fw-bold py-0 px-1">
-                <span className="bg-black px-1">{LapTimes.time}</span>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+                <td className="text-center text-primary fw-bold py-0">
+                  <span className="bg-black d-block px-1">
+                    {LapTimes.position}
+                  </span>
+                </td>
+                <td className="text-center op text-success fw-bold py-0 px-1">
+                  <span className="bg-black px-1">{LapTimes.time}</span>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
     </div>
   ) : props.lapsx == props.laps ? (
     <h4>Lap Times data not found!</h4>
