@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 
 const Fastest = (props) => {
-  const [sdata, setData] = useState([]);
+  const [sdata, setData] = useState();
 
   let url;
   if (props) {
@@ -13,7 +13,7 @@ const Fastest = (props) => {
     axios
       .get(url)
       .then((res) => {
-        setData(res?.data["MRData"].RaceTable.Races[0].Results[0]);
+        setData(res?.data["MRData"].RaceTable.Races[0]?.Results[0]);
       })
       .catch((e) => console.log(e));
   }, [url]);
@@ -22,10 +22,13 @@ const Fastest = (props) => {
     fetchFastest();
   }, [fetchFastest]);
 
-  return (
+  return sdata ? (
     <div className="text-light">
-      Note - {sdata.Driver?.familyName} scored an additional point for setting the fastest lap of the race.
+      Note - {sdata?.Driver?.familyName} scored an additional point for setting
+      the fastest lap of the race.
     </div>
+  ) : (
+    <span className="text-danger">Fastest Lap Data Not Found!</span>
   );
 };
 
