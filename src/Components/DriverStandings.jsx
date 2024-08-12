@@ -79,7 +79,7 @@ const DriverStandings = (props) => {
 
           <div className="table-responsive">
             <table className="table table-dark table-striped table-bordered">
-              <thead className="border-danger border-5">
+              <thead className="border-5">
                 <tr className="text-black">
                   <th className="bg-dark text-danger text-center py-0">POS</th>
                   <th className="bg-dark text-center text-danger py-0">
@@ -148,9 +148,15 @@ const DriverStandings = (props) => {
                           </b>
                         </span>
                         <span className="fw-light fst-italic text-secondary pe-1">
-                          {new Date(
-                            driver.Driver.dateOfBirth
-                          ).toLocaleDateString() +
+                          {new Date(driver.Driver.dateOfBirth).toLocaleString(
+                            "en-US",
+                            {
+                              weekday: "short",
+                              month: "short",
+                              day: "2-digit",
+                              year: "numeric",
+                            }
+                          ) +
                             " " +
                             driver.Driver.nationality}
                         </span>
