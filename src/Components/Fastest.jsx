@@ -22,10 +22,22 @@ const Fastest = (props) => {
     fetchFastest();
   }, [fetchFastest]);
 
+  console.log(
+    props.round,
+    sdata?.positionText,
+    sdata?.Driver?.code,
+    sdata?.position
+  );
   return sdata ? (
-    <div className="text-light">
-      Note - {sdata?.Driver?.familyName} scored an additional point for setting
-      the fastest lap of the race.
+    <div className="">
+      {sdata?.position > 10 ? (
+        <>{sdata?.Driver?.familyName} fastest lap of the race.</>
+      ) : (
+        <>
+          {sdata?.Driver?.familyName} scored an additional point for setting the
+          fastest lap of the race.
+        </>
+      )}
     </div>
   ) : (
     <span className="text-danger">Fastest Lap Data Not Found!</span>
