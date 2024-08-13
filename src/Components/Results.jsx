@@ -99,9 +99,9 @@ const Results = (props) => {
             })}
           </tbody>
         </table>
-        <h6 className="text-wrap" style={{ width: "22rem" }}>
+        <p className="text-wrap text-success lh-1 fw-light" style={{ width: "22rem" }}>
           <Fastest season={props.season} round={props.rounds} />
-        </h6>
+        </p>
       </div>
     ) : null;
   }
