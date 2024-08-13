@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Fastest = (props) => {
   const [sdata, setData] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   let url;
   if (props) {
@@ -14,6 +15,7 @@ const Fastest = (props) => {
       .get(url)
       .then((res) => {
         setData(res?.data["MRData"].RaceTable.Races[0]?.Results[0]);
+        setIsLoaded(true);
       })
       .catch((e) => console.log(e));
   }, [url]);
@@ -22,40 +24,40 @@ const Fastest = (props) => {
     fetchFastest();
   }, [fetchFastest]);
 
-  console.log(
-    props.round,
-    sdata?.positionText,
-    sdata?.Driver?.code,
-    sdata?.position
-  );
-  return sdata ? (
-    <div className="">
-      {sdata?.position > 10 ? (
-        <>
-          {sdata?.Driver?.familyName} fastest lap of the race.
-          <h6 className="text-info">
-            Lap:{sdata?.laps} {sdata?.FastestLap?.Time.time}{" "}
-            {sdata?.FastestLap?.AverageSpeed.speed}{" "}
-            {sdata?.FastestLap?.AverageSpeed.units}
-          </h6>
-        </>
-      ) : (
-        <>
-          <span>
-            {sdata?.Driver?.familyName} scored an additional point for setting
-            the fastest lap of the race.
-          </span>
-          <h6 className="text-info">
-            Lap: {sdata?.laps} | {sdata?.FastestLap?.Time.time} |{" "}
-            {sdata?.FastestLap?.AverageSpeed.speed}{" "}
-            {sdata?.FastestLap?.AverageSpeed.units}
-          </h6>
-        </>
-      )}
-    </div>
-  ) : (
-    <span className="text-danger">Fastest Lap Data Not Found!</span>
-  );
+  if (!isLoaded) {
+    return <h6>Loaading...</h6>;
+  } else {
+    return sdata ? (
+      <div className="">
+        {sdata?.position > 10 ? (
+          <>
+            <h6 className="text-info m-0">
+              Fastest Lap: {sdata?.laps} | {sdata?.FastestLap?.Time.time} |{" "}
+              {sdata?.FastestLap?.AverageSpeed.speed}{" "}
+              {sdata?.FastestLap?.AverageSpeed.units}
+            </h6>
+            <span className="fw-bold">
+              <u>{sdata?.Driver?.familyName}</u> fastest lap of the race.
+            </span>
+          </>
+        ) : (
+          <>
+            <h6 className="text-info m-0">
+              Fastest Lap: {sdata?.laps} | {sdata?.FastestLap?.Time.time} |{" "}
+              {sdata?.FastestLap?.AverageSpeed.speed}{" "}
+              {sdata?.FastestLap?.AverageSpeed.units}
+            </h6>
+            <span className="fw-bold">
+              <u>{sdata?.Driver?.familyName}</u> scored an additional point for
+              setting the fastest lap of the race.
+            </span>
+          </>
+        )}
+      </div>
+    ) : (
+      <span className="text-danger fw-bold">Fastest Lap Data Not Found!</span>
+    );
+  }
 };
 
 export default Fastest;
