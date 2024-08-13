@@ -31,11 +31,25 @@ const Fastest = (props) => {
   return sdata ? (
     <div className="">
       {sdata?.position > 10 ? (
-        <>{sdata?.Driver?.familyName} fastest lap of the race.</>
+        <>
+          {sdata?.Driver?.familyName} fastest lap of the race.
+          <h6 className="text-info">
+            Lap:{sdata?.laps} {sdata?.FastestLap?.Time.time}{" "}
+            {sdata?.FastestLap?.AverageSpeed.speed}{" "}
+            {sdata?.FastestLap?.AverageSpeed.units}
+          </h6>
+        </>
       ) : (
         <>
-          {sdata?.Driver?.familyName} scored an additional point for setting the
-          fastest lap of the race.
+          <span>
+            {sdata?.Driver?.familyName} scored an additional point for setting
+            the fastest lap of the race.
+          </span>
+          <h6 className="text-info">
+            Lap: {sdata?.laps} | {sdata?.FastestLap?.Time.time} |{" "}
+            {sdata?.FastestLap?.AverageSpeed.speed}{" "}
+            {sdata?.FastestLap?.AverageSpeed.units}
+          </h6>
         </>
       )}
     </div>
