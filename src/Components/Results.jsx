@@ -17,21 +17,21 @@ const Results = (props) => {
   }
 
   const fetchResultStandings = useCallback(() => {
-    setIsLoaded(false);
+    setIsLoaded(true);
     axios
       .get(url)
       .then((res) => {
         setData(res?.data["MRData"]?.RaceTable?.Races[0]);
       })
-      .catch((e) => console.log(e), setIsLoaded(true))
-      .finally(() => setIsLoaded(true));
+      .catch((e) => console.log(e), setIsLoaded(false))
+      .finally(setIsLoaded(false));
   }, [url]);
 
   useEffect(() => {
     fetchResultStandings();
   }, [fetchResultStandings]);
 
-  if (!isLoaded) {
+  if (isLoaded) {
     return <Loading />;
   } else {
     return sdata?.Results?.length > 0 ? (
@@ -99,7 +99,10 @@ const Results = (props) => {
             })}
           </tbody>
         </table>
-        <p className="text-wrap text-success lh-1 fw-light" style={{ width: "22rem" }}>
+        <p
+          className="text-wrap text-success lh-1 fw-light"
+          style={{ width: "22rem" }}
+        >
           <Fastest season={props.season} round={props.rounds} />
         </p>
       </div>
