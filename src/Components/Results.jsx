@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
 import Loading from "./Loading";
 import Fastest from "./Fastest";
-
 import axios from "axios";
 
 const Results = (props) => {
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
   const [sdata, setData] = useState([]);
 
   // const timeMS = (d) => new Date(d);
@@ -16,15 +15,14 @@ const Results = (props) => {
     url = `https://ergast.com/api/f1/${props.season}/${props.rounds}/results.json`;
   }
 
-  const fetchResultStandings = useCallback(() => {
-    setIsLoaded(true);
-    axios
+  const fetchResultStandings = useCallback(async () => {
+    const response = await axios
       .get(url)
-      .then((res) => {
-        setData(res?.data["MRData"]?.RaceTable?.Races[0]);
-      })
+      .then((res) => res?.data["MRData"]?.RaceTable?.Races[0])
       .catch((e) => console.log(e), setIsLoaded(false))
-      .finally(setIsLoaded(false));
+      .finally();
+      setData(response)
+      setIsLoaded(false)
   }, [url]);
 
   useEffect(() => {
