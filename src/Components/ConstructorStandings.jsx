@@ -2,9 +2,12 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
+import Loading from "./Loading";
 
 const ConstructorStandings = (props) => {
   const [constructorStandings, setConstructorStandings] = useState();
+  const [isLoaded, setIsLoaded] = useState(false);
+
   let navigate = useNavigate();
 
   let url;
@@ -21,6 +24,7 @@ const ConstructorStandings = (props) => {
         setConstructorStandings(
           data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings
         );
+        setIsLoaded(true);
         // console.log(data["MRData"].StandingsTable.season);
       })
       .catch((err) => {
@@ -29,6 +33,8 @@ const ConstructorStandings = (props) => {
         }
       });
   }, [url]);
+
+  if (!isLoaded) return <Loading />;
 
   return (
     <div className="container-fluid p-0">
