@@ -21,8 +21,8 @@ const Results = (props) => {
       .then((res) => res?.data["MRData"]?.RaceTable?.Races[0])
       .catch((e) => console.log(e), setIsLoaded(false))
       .finally();
-      setData(response)
-      setIsLoaded(false)
+    setData(response);
+    setIsLoaded(false);
   }, [url]);
 
   useEffect(() => {
@@ -37,7 +37,8 @@ const Results = (props) => {
         <table className="table table-dark table-striped table-bordered m-0 mb-1">
           <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
             <span className="text-info fs-5 fw-bold">
-              #{sdata.round} {sdata.raceName}
+              <span className="text-light pe-1">#{sdata.round}</span>
+              {sdata.raceName}
             </span>
           </caption>
           <thead className="text-white border-dark">

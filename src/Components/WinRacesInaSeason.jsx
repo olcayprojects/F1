@@ -127,7 +127,7 @@ const WinRacesInaSeason = (props) => {
                               item.Results[0].FastestLap.lap
                             : null}
                         </span>
-                      ) : "-"}
+                      ) : "Fastest Lap Data Not Found!"}
                     </td>
                   </tr>
                 );
