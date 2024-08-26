@@ -13,32 +13,17 @@ function Duration(props) {
     })
   );
 
-  function msToTime(ms) {
-    function addZ(n) {
-      return (n < 10 ? "0" : "") + n;
-    }
-    var dt = new Date(ms);
+  function msToTime(milliseconds) {
+    // Calculate minutes, seconds, and milliseconds
+    const minutes = Math.floor(milliseconds / (60 * 1000));
+    const seconds = Math.floor((milliseconds % (60 * 1000)) / 1000);
+    const millis = Math.floor(milliseconds % 1000);
 
-    var mins = dt.getMinutes();
-    var secs = dt.getSeconds();
-    var millis = dt.getMilliseconds();
-
-    var tm =
-      mins + ":" + addZ(secs) + "." + (millis < 100 ? "0" + millis : millis);
-    return tm;
+    // Format the output
+    return `${minutes}:${String(seconds).padStart(2, "0")}.${String(
+      millis
+    ).padStart(3, "0")}`;
   }
-
-  // const mergeDuration = durationList.reduce((acc, curr) => {
-  //   if (acc[curr.driverId]) {
-  //     acc[curr.driverId].duration = [
-  //       acc[curr.driverId].duration,
-  //       curr.duration,
-  //     ].join(" + ");
-  //   } else {
-  //     acc[curr.driverId] = curr;
-  //   }
-  //   return acc;
-  // }, {});
 
   const mergeDuration = durationList.reduce((acc, curr) => {
     if (acc[curr.driverId]) {
