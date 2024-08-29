@@ -67,11 +67,11 @@ const LapTable = ({ lapTimes }) => {
   return (
     <div className="table-responsive">
       <table className="table table-dark table-bordered table-striped m-0 mb-1">
-        <thead>
-          <tr>
-            <th>Lap</th>
+        <thead className="">
+          <tr className="">
+            <th className="m-0 p-0">Lap</th>
             {Array.from({ length: maxDrivers }, (_, i) => (
-              <th className="text-center" key={i + 1}>
+              <th className="text-center m-0 p-0" key={i + 1}>
                 {i + 1}
               </th>
             ))}
@@ -79,7 +79,10 @@ const LapTable = ({ lapTimes }) => {
         </thead>
         <tbody>
           {lapNumbers.map((lapNumber) => (
-            <tr key={lapNumber}>
+            <tr
+              className={lapNumber % 2 === 0 ? "text-end" : ""}
+              key={lapNumber}
+            >
               <td>{lapNumber}</td>
               {Array.from({ length: maxDrivers }, (_, i) => (
                 <td className="p-0" key={i + 1}>

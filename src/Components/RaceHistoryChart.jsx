@@ -85,9 +85,9 @@ const RaceHistoryChart = () => {
       <div className="RaceHistoryChart">
         <h1 className="text-info text-center">Race History Chart </h1>
         <h2 className="text-warning text-center">
-          {info.date}||{info.time}||
-          {info.raceName}||
-          {info.Circuit?.circuitName}||{season} #{round}
+          {new Date(info.date+"T"+info.time).toLocaleString()}_
+          {info.raceName}_
+          {info.Circuit?.circuitName}__{season} #{round}
         </h2>
         <LapTable lapTimes={lapTimes} driverIds={driverIds} />
       </div>
