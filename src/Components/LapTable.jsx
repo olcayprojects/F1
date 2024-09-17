@@ -23,7 +23,7 @@ const timeToSeconds = (time) => {
 
 // Function to format time from seconds to "mm:ss.sss" format
 const formatTime = (timeInSeconds) => {
-  if (isNaN(timeInSeconds)) return "N/A";
+  if (isNaN(timeInSeconds)) return "-:--.---";
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = (timeInSeconds % 60).toFixed(3);
   return `${minutes}:${seconds.padStart(6, "0")}`;
@@ -89,16 +89,27 @@ const LapTable = ({ lapTimes, driverIds, positions }) => {
                 <td className="p-0" key={i + 1}>
                   {positionsArray[i] && positionsArray[i][lapNumber] ? (
                     <>
-                      <h6 className={"m-0 " +
-                          (positionsArray[i][lapNumber].position==="1" ? " text-danger":"")
-                        } >
+                      <h6
+                        className={
+                          "m-0 " +
+                          (positionsArray[i][lapNumber].position === "1"
+                            ? "text-danger"
+                            : positionsArray[i][lapNumber].position === "2"
+                            ? "text-warning"
+                            : positionsArray[i][lapNumber].position === "3"
+                            ? "text-success"
+                            : "")
+                        }
+                      >
                         {positionsArray[i][lapNumber].driverId}
-                        <span className="ms-2 text-italic">
-                          (P{positionsArray[i][lapNumber].position})
+                        <span className="ms-2 fst-italic">
+                          {positionsArray[i][lapNumber].position
+                            ? `(P${positionsArray[i][lapNumber].position})`
+                            : ""}
                         </span>
                       </h6>
                       <div>
-                        <span>
+                        <span className="text-info fw-bold">
                           {formatTime(
                             timeToSeconds(positionsArray[i][lapNumber].time)
                           )}
