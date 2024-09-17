@@ -1,11 +1,12 @@
-// RaceHistoryChart.jsx
 import React, { useState, useEffect } from "react";
 import LapTable from "./LapTable";
 import { timeToSeconds } from "../utils/utils";
 import Nav from "./Nav";
+import Loading from "./Loading";
 
 const RaceHistoryChart = () => {
   const [lapTimes, setLapTimes] = useState({});
+  const [positions, setPositions] = useState({}); // New state for positions
   const [driverIds, setDriverIds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [season, setSeason] = useState("");
@@ -60,25 +61,22 @@ const RaceHistoryChart = () => {
 
             if (lapsData && lapsData.length > 0) {
               allLapData = allLapData.concat(lapsData);
-              offset += limit; // Bir sonraki offset'i ayarla
+              offset += limit; // Increment the offset
 
-              // Eğer toplam lap sayısı, toplam veriye ulaştıysa, verileri sınırla
               if (allLapData.length >= totalLaps) {
-                allLapData = allLapData.slice(0, totalLaps); // Toplam lap sayısını sınırla
+                allLapData = allLapData.slice(0, totalLaps);
                 return;
               }
 
-              // Daha fazla veri varsa, bir sonraki sayfayı al
               if (offset < totalLaps) {
                 await fetchLapData(offset);
               }
             } else {
-              // Daha fazla veri yoksa döngüyü sonlandırıyoruz
               return;
             }
           } else {
-            console.error("Beklenmeyen veri yapısı:", data);
-            setError("Beklenmeyen veri yapısı alındı.");
+            console.error("Unexpected data structure:", data);
+            setError("Unexpected data structure received.");
             return;
           }
         };
@@ -86,32 +84,41 @@ const RaceHistoryChart = () => {
         await fetchLapData(offset);
 
         let allTimes = {};
+        let allPositions = {}; // New object for positions
+
         allLapData.forEach((lap) => {
           lap.Timings.forEach((timing) => {
             if (!allTimes[timing.driverId]) {
               allTimes[timing.driverId] = {};
+              allPositions[timing.driverId] = {}; // Initialize positions for this driver
             }
             allTimes[timing.driverId][lap.number] = timeToSeconds(timing.time);
+            allPositions[timing.driverId][lap.number] = timing.position; // Add position
           });
         });
 
         const uniqueDriverIds = Object.keys(allTimes);
 
         let completeLapTimes = {};
+        let completePositions = {}; // New object for positions
         allLapData.forEach((lap) => {
           completeLapTimes[lap.number] = {};
+          completePositions[lap.number] = {}; // Initialize for each lap
           uniqueDriverIds.forEach((driverId) => {
             completeLapTimes[lap.number][driverId] =
               allTimes[driverId]?.[lap.number] ?? undefined;
+            completePositions[lap.number][driverId] =
+              allPositions[driverId]?.[lap.number] ?? undefined; // Add positions
           });
         });
 
         setDriverIds(uniqueDriverIds);
         setLapTimes(completeLapTimes);
+        setPositions(completePositions); // Set positions
         setLoading(false);
       } catch (error) {
-        console.error("Tur zamanları alınırken bir hata oluştu:", error);
-        setError("Tur zamanları alınırken bir hata oluştu.");
+        console.error("Error fetching lap times:", error);
+        setError("Error fetching lap times.");
         setLoading(false);
       }
     };
@@ -119,19 +126,19 @@ const RaceHistoryChart = () => {
     fetchAllLapData();
   }, [season, round]);
 
-  if (loading) return <div>Yükleniyor...</div>;
+  if (loading) return <Loading />;
   if (error) return <div>{error}</div>;
 
   return (
     <>
       <Nav />
       <div className="RaceHistoryChart">
-        <h1 className="text-info text-center">Race Chart History</h1>
+        <h1 className="text-info text-center">Race History Chart</h1>
         <h2 className="text-warning text-center">
           {new Date(info.date + "T" + info.time).toLocaleString()}_
           {info.raceName}_{info.Circuit?.circuitName}__{season} #{round}
         </h2>
-        <LapTable lapTimes={lapTimes} driverIds={driverIds} />
+        <LapTable lapTimes={lapTimes} driverIds={driverIds} positions={positions} />
       </div>
     </>
   );
