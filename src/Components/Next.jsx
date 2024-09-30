@@ -39,7 +39,7 @@ const Next = () => {
               <span className="text-info ">{data.raceName}</span>
               <i className="bi bi-calendar3 text-warning px-1"></i>
               <span className="text-danger">
-              <span className="text-success">RACE </span>
+                <span className="text-success">RACE </span>
 
                 {data.time
                   ? dateTime(data?.date, data.time)
@@ -47,17 +47,16 @@ const Next = () => {
               </span>
               {data.Sprint ? (
                 <>
-                  <i className="bi bi-clock-fill text-info"></i>
-                  <span className="text-success"> Sprint: </span>
+                  <i className="bi bi-clock-fill text-info px-1"></i>
+                  <span className="text-success">SPRINT </span>
                   <span>{dateTime(data.Sprint?.date, data.Sprint?.time)}</span>
-                  <i className="bi bi-clock-fill text-info"></i>
                 </>
               ) : null}
               {data.FirstPractice?.date ? (
                 <>
                   <i className="bi bi-clock-fill text-info px-1"></i>
 
-                  <span className="text-success">PRACTICE 1 </span>
+                  <span className="text-success">PRACTICE1 </span>
                   <span>
                     {dateTime(
                       data.FirstPractice?.date,
@@ -65,7 +64,7 @@ const Next = () => {
                     )}
                   </span>
                   <i className="bi bi-clock-fill text-info px-1"></i>
-                  <span className="text-success">PRACTICE 2 </span>
+                  <span className="text-success">PRACTICE2 </span>
                   {dateTime(
                     data.SecondPractice?.date,
                     data.SecondPractice?.time
@@ -73,7 +72,7 @@ const Next = () => {
                   {data.ThirdPractice?.date ? (
                     <>
                       <i className="bi bi-clock-fill text-info px-1"></i>
-                      <span className="text-success">PRACTICE 3 </span>
+                      <span className="text-success">PRACTICE3 </span>
                       {dateTime(
                         data.ThirdPractice?.date,
                         data.ThirdPractice?.time
