@@ -29,7 +29,7 @@ const Next = () => {
         return (
           <h2
             key={index}
-            className="bg-black text-warning mt-1 m-0"
+            className="bg-dark text-warning mt-1 m-0 pt-1"
             style={{ fontFamily: "fantasy" }}
           >
             <marquee className="" behavior="" scrollamount="8">
