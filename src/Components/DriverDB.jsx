@@ -41,20 +41,38 @@ const DriverDB = (props) => {
         className="fw-bold border-bottom border-info border-3 rounded-pill"
         style={{ color: "#62c6a5" }}
       >
-        <span className="">Team: </span>
-        <span className="text-uppercase bg-success text-black px-1">
-          {data?.strTeam} #{data?.strNumber} <br />
-        </span>
-        <span className="">Country: </span>
-        <span className="text-uppercase bg-success text-black px-1">
-          {data?.strNationality} <br />
-        </span>
-        <span className="">Date of Birth: </span>
-        <span className="bg-success text-black px-1">
-          {new Date(data?.dateBorn).toDateString()} <br />
-        </span>
-        <span className="">Place of Birth: </span>
-        <span className="bg-success text-black px-1">{data?.strBirthLocation}</span>
+        <div className="w-50 mx-auto table-responsive-sm">
+          <table className="table table-dark table-bordered">
+            <thead className="">
+              <tr className="">
+                <th className="bg-danger p-0 m-0">Team</th>
+                <th className="p-0 m-0">Country</th>
+                <th className="bg-danger p-0 m-0">Date of Birth</th>
+                <th className="p-0 m-0">Place of Birth</th>
+              </tr>
+            </thead>
+            <tbody className="">
+              <tr className="">
+                <td className="text-uppercase p-0 op">
+                  {data?.strNumber
+                    ? data?.strTeam + "#" + data?.strNumber
+                    : data?.strTeam}
+                  <br />
+                </td>
+
+                <td className="text-uppercase p-0">
+                  {data?.strNationality} <br />
+                </td>
+
+                <td className="p-0 op">
+                  {new Date(data?.dateBorn).toDateString()} <br />
+                </td>
+
+                <td className="p-0">{data?.strBirthLocation}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
       <pre
         className="text-start lh-md p-0 fw-bold"

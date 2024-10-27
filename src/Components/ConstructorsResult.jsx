@@ -57,7 +57,7 @@ const ConstructorsResult = () => {
             }}
           >
             <option value="" hidden>
-              2024
+              {seas}
             </option>
             {years.map((year, index) => {
               return (
