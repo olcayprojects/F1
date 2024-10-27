@@ -165,7 +165,17 @@ const ResultsDriver = () => {
                       <td className="text-center op py-0">
                         {results.length > 0 ? results[0].grid : "-"}
                       </td>
-                      <td className="py-0 text-center text-uppercase">
+                      <td
+                        className="py-0 text-center text-uppercase cp"
+                        onClick={() => {
+                          navigate(
+                            "/ConstructorsResult/" +
+                              results[0]?.Constructor?.constructorId +
+                              "/" +
+                              item.season
+                          );
+                        }}
+                      >
                         <span className="p-0 d-inline-block fw-bold w-100 text-center text-success">
                           {results.length > 0
                             ? results[0]?.Constructor?.name
