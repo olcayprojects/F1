@@ -135,10 +135,20 @@ const RaceHistoryChart = () => {
       <div className="RaceHistoryChart">
         <h1 className="text-info text-center">Race History Chart</h1>
         <h2 className="text-warning text-center">
-          {new Date(info.date + "T" + info.time).toLocaleString()}_
-          {info.raceName}_{info.Circuit?.circuitName}__{season} #{round}
+          <span className="text-danger">
+            {new Date(info.date + "T" + info.time).toLocaleString()}
+          </span>
+          <span className="text-primary px-1">{info.raceName}</span>
+          <span className="text-success">{info.Circuit?.circuitName}</span>
+          <span className="text-warning px-1">
+            {season} #{round}
+          </span>
         </h2>
-        <LapTable lapTimes={lapTimes} driverIds={driverIds} positions={positions} />
+        <LapTable
+          lapTimes={lapTimes}
+          driverIds={driverIds}
+          positions={positions}
+        />
       </div>
     </>
   );

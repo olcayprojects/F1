@@ -117,7 +117,7 @@ const LapTable = ({ lapTimes, driverIds, positions }) => {
                       </div>
                     </>
                   ) : (
-                    "N/A"
+                    "-"
                   )}
                 </td>
               ))}

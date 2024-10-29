@@ -55,7 +55,7 @@ const DriverDB = (props) => {
               <tr className="">
                 <td className="text-uppercase p-0 op">
                   {data?.strNumber
-                    ? data?.strTeam + "#" + data?.strNumber
+                    ? data?.strTeam + " #" + data?.strNumber
                     : data?.strTeam}
                   <br />
                 </td>
