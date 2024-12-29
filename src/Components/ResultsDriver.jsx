@@ -92,10 +92,10 @@ const ResultsDriver = () => {
                 <th className="text-center">P</th>
                 <th className="text-center bg-danger">G</th>
                 <th className="text-center">Constructor</th>
-                <th className="text-center bg-danger">Laps</th>
+                <th className="text-center bg-danger">LAPS</th>
                 <th className="text-center">Time / Status</th>
-                <th className="text-center bg-danger">Pts</th>
-                <th className="text-center">Fastest Lap</th>
+                <th className="text-center bg-danger">PTS</th>
+                <th className="text-center"><span className="">Fastest Lap</span></th>
               </tr>
             </thead>
             <tbody>
@@ -203,15 +203,23 @@ const ResultsDriver = () => {
                         {results.length > 0 ? results[0].points : "-"}
                       </td>
                       <td className="py-0">
-                        <span className="px-1 fw-bold text-secondary text-center">
+                        <span className="bg-black text-danger p-1 px-2 fw-bold text-secondary text-center">
                           {results.length > 0 && results[0]?.FastestLap ? (
                             <>
-                              {results[0].FastestLap.rank}. Time:{" "}
-                              {results[0].FastestLap.Time?.time || "-"} |
-                              AvgSpd:{" "}
-                              {results[0].FastestLap.AverageSpeed?.speed || "-"}{" "}
-                              {results[0].FastestLap.AverageSpeed?.units || ""}|
-                              Lap: {results[0].FastestLap.lap || "-"}
+                              <span className="">
+                                {results[0].FastestLap.rank
+                                  ? "#" + results[0].FastestLap.rank + " || "
+                                  : null}
+                              </span>
+                              Time: {results[0].FastestLap.Time?.time + " || "}
+                              {results[0].FastestLap.AverageSpeed
+                                ? "AvgSpd: " +
+                                  results[0].FastestLap.AverageSpeed?.speed +
+                                  " " +
+                                  results[0].FastestLap.AverageSpeed?.units +
+                                  " || "
+                                : null}
+                              Lap: {results[0].FastestLap.lap}
                             </>
                           ) : (
                             <span className="text-danger">-</span>

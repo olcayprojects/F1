@@ -43,7 +43,7 @@ const WinRacesInaSeason = (props) => {
               <tr className="">
                 <th className="bg-danger op py-0">#</th>
                 <th className="bg-danger text-center py-0">Race Name</th>
-                <th className="bg-danger op text-center py-0">Driver</th>
+                <th className="bg-danger op text-center py-0">Driver Info</th>
                 <th className="bg-danger text-center py-0">P</th>
                 <th className="bg-danger op text-center py-0">Laps</th>
                 <th className="bg-danger text-center py-0">Time</th>
@@ -117,17 +117,22 @@ const WinRacesInaSeason = (props) => {
                       {item.Results[0].FastestLap ? (
                         <span className="px-2">
                           {item.Results[0].FastestLap
-                            ? item.Results[0].FastestLap?.rank +
+                            ? "#" +
+                              item.Results[0].FastestLap?.rank +
                               " => " +
                               "Time: " +
                               item.Results[0].FastestLap?.Time?.time +
                               " | AvgSpd: " +
                               item.Results[0].FastestLap?.AverageSpeed?.speed +
                               " kph | Lap: " +
-                              item.Results[0].FastestLap.lap
+                              (item.Results[0].FastestLap.lap < 10
+                                ? "0" + item.Results[0].FastestLap.lap
+                                : item.Results[0].FastestLap.lap)
                             : null}
                         </span>
-                      ) : "Fastest Lap Data Not Found!"}
+                      ) : (
+                        "Fastest Lap Data Not Found!"
+                      )}
                     </td>
                   </tr>
                 );

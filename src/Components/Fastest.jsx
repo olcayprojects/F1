@@ -25,7 +25,7 @@ const Fastest = (props) => {
   }, [fetchFastest]);
 
   if (!isLoaded) {
-    return <h6>Loaading...</h6>;
+    return <h6>Loading...</h6>;
   } else {
     return sdata ? (
       <div className="">
