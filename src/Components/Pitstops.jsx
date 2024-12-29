@@ -107,7 +107,7 @@ function Pitstops(props) {
                   (detail) =>
                     `${detail.stop}. [ Lap: ${detail.lap}, Time: ${detail.time}, Duration: ${detail.duration} ]`
                 )
-                .join(" ** "),
+                .join("\n"),
               totalDuration: millisecondsToDuration(totalDuration),
             };
           }
@@ -149,15 +149,16 @@ function Pitstops(props) {
                     <DriverId Id={ps.driverId} ls={1}></DriverId>
                   </td>
                   <td className="text-center fs-6 op fw-bold py-0">
-                    <span
-                      className={
-                        index % 2 !== 0
-                          ? "text-warning px-2"
-                          : "text-light px-2"
-                      }
+                    <pre
+                      className="text-warning px-2 fs-6"
+                      // className={
+                      //   index % 2 !== 0
+                      //     ? "text-warning px-2 fs-6"
+                      //     : "text-light px-2 fs-6"
+                      // }
                     >
                       {ps.lapDetails}
-                    </span>
+                    </pre>
                   </td>
 
                   <td
