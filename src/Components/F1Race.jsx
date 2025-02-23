@@ -109,6 +109,7 @@ const F1Race = (props) => {
                       {item?.Results?.map((result, indexResult) => {
                         return result.positionText in [1, 2, 3, 4] ? (
                           <div
+                            key={indexResult}
                             className={
                               "  " +
                               (result.positionText === "1"

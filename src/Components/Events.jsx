@@ -13,7 +13,7 @@ const Events = (props) => {
       fetch(url)
         .then((response) => response.json())
         .then((items) => {
-          setData(items["event"]);
+          setData(items.event[0]);
         })
         .catch((err) => {
           console.log(err.message);
@@ -24,30 +24,27 @@ const Events = (props) => {
 
   return (
     <div className="container-fluid p-0">
-      {data?.map((event, index) => {
-        return event?.strThumb ? (
-          <div key={index}>
-            <div className="">
-              <img
-                className="img-fluid pt-1 ps-1 mx-auto d-block"
-                src={event?.strThumb + "/preview"}
-                alt=""
-                title={event?.strFilename}
-                srcSet=""
-              />
-            </div>
+      {data?.strThumb ? (
+        <div>
+          <div className="">
+            <img
+              className="img-fluid pt-1 ps-1 mx-auto d-block"
+              src={data?.strThumb + "/preview"}
+              alt=""
+              title={data?.strFilename}
+              srcSet=""
+            />
           </div>
-        ) : (
-          <img
-            className="img-fluid pt-1 ps-1 mx-auto d-block"
-            key={index}
-            src={event?.strBanner + "/preview"}
-            alt=""
-            title={event?.strFilename}
-            srcSet=""
-          />
-        );
-      })}
+        </div>
+      ) : (
+        <img
+          className="img-fluid pt-1 ps-1 mx-auto d-block"
+          src={data?.strBanner + "/preview"}
+          alt=""
+          title={data?.strFilename}
+          srcSet=""
+        />
+      )}
     </div>
   );
 };
