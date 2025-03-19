@@ -105,7 +105,9 @@ function Pitstops(props) {
               lapDetails: lapDetails
                 .map(
                   (detail) =>
-                    `${detail.stop}. [ Lap: ${detail.lap}, Time: ${detail.time}, Duration: ${detail.duration} ]`
+                    `${detail.stop}. [ Lap: ${
+                      detail.lap.length > 1 ? detail.lap : " " + detail.lap
+                    }, Time: ${detail.time}, Duration: ${detail.duration} ]`
                 )
                 .join("\n"),
               totalDuration: millisecondsToDuration(totalDuration),
@@ -126,11 +128,11 @@ function Pitstops(props) {
     <div className="container-fluid p-0 border border-dark border-5">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
-          <thead className="border-dark">
+          <thead className="border-dark fs-5">
             <tr className="text-black align-middle">
               <th className="bg-danger op text-center py-0">#</th>
               <th className="bg-danger py-0">DRIVER INFO</th>
-              <th className="bg-danger text-center op py-0">DETAILS</th>
+              <th className="bg-danger op py-0 text-center">DETAILS</th>
               <th className="text-center bg-danger op py-0">TOTAL DURATION</th>
             </tr>
           </thead>
@@ -140,7 +142,7 @@ function Pitstops(props) {
                 <tr key={index} className="align-middle">
                   <td className="op text-center px-1 py-0">{index + 1}</td>
                   <td
-                    className="col-auto fw-bold text-info cp py-0"
+                    className="col-auto fw-bold fs-5 text-info cp py-0"
                     style={{ textTransform: "" }}
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
@@ -148,9 +150,15 @@ function Pitstops(props) {
                   >
                     <DriverId Id={ps.driverId} ls={1}></DriverId>
                   </td>
-                  <td className="text-center fs-6 op fw-bold py-0">
+                  <td className="fs-6 op fw-bold text-center">
                     <pre
-                      className="text-warning px-2 fs-6"
+                      className="text-warning px-1 p-0 fs-6 d-inline-block m-0 align-middle"
+                      style={{
+                        fontFamily: "Arial Black",
+                        borderColor: "rgba(255,255,0,0.2)",
+                        borderWidth: "2px",
+                        borderStyle: "solid",
+                      }}
                       // className={
                       //   index % 2 !== 0
                       //     ? "text-warning px-2 fs-6"

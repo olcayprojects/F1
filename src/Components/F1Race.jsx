@@ -173,6 +173,7 @@ const F1Race = (props) => {
                             </span>
                           </th>
                           <th className="text-center bg-success bg-opacity-75 text-warning">
+                            <br />
                             LAP
                           </th>
                           <th className="text-start bg-success">
