@@ -6,7 +6,8 @@ import Loading from "./Loading";
 
 const ConstructorStandings = (props) => {
   const [constructorStandings, setConstructorStandings] = useState();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [year, setYear] = useState("2024");
 
   let navigate = useNavigate();
 
@@ -14,10 +15,11 @@ const ConstructorStandings = (props) => {
   if (props.season) {
     url = `https://ergast.com/api/f1/${props.season}/constructorStandings.json`;
   } else {
-    url = `https://ergast.com/api/f1/2024/constructorStandings.json`;
+    url = `https://ergast.com/api/f1/${year}/constructorStandings.json`;
   }
 
   useEffect(() => {
+    setIsLoaded(false);
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
@@ -25,14 +27,18 @@ const ConstructorStandings = (props) => {
           data["MRData"].StandingsTable.StandingsLists[0].ConstructorStandings
         );
         setIsLoaded(true);
-        // console.log(data["MRData"].StandingsTable.season);
       })
       .catch((err) => {
         if (!err === "Unexpected token") {
           console.log(err.message);
+          setIsLoaded(true); 
         }
       });
-  }, [url]);
+  }, [url, year]);
+
+  const handleYearChange = (e) => {
+    setYear(e.target.value);
+  };
 
   if (!isLoaded) return <Loading />;
 
@@ -44,12 +50,24 @@ const ConstructorStandings = (props) => {
           ""
         ) : (
           <>
-            <div className="mt-2">
-              <h4 className="text-center py-1 fw-bold m-0">
-                <span className="text-black bg-danger p-2 rounded bg-opacity-50">
-                  CONSTRUCTOR STANDINGS
-                </span>
-              </h4>
+            <div className="d-flex align-items-center justify-content-center">
+              <select
+                className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2 p-0"
+                value={year}
+                onChange={handleYearChange}
+              >
+                {Array.from(
+                  { length: 2025 - 1950 + 1 },
+                  (_, index) => 2025 - index
+                ).map((yearOption) => (
+                  <option key={yearOption} value={yearOption}>
+                    {yearOption}
+                  </option>
+                ))}
+              </select>
+              <h2 className="text-center  fw-bold m-0 text-danger">
+                CONSTRUCTOR STANDINGS
+              </h2>
             </div>
           </>
         )}
@@ -63,10 +81,7 @@ const ConstructorStandings = (props) => {
                 <th scope="" className="op py-0">
                   CONSTRUCTOR
                 </th>
-                <th
-                  scope=""
-                  className="text-center op py-0"
-                >
+                <th scope="" className="text-center op py-0">
                   POINTS
                 </th>
                 <th scope="" className=" text-center py-0">
