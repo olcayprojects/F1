@@ -77,21 +77,21 @@ const DriverStandings = (props) => {
             ) : null;
           })}
 
-          <div className="table-responsive">
-            <table className="table table-dark table-striped table-bordered">
-              <thead className="border-5">
-                <tr className="text-black">
-                  <th className="bg-dark text-danger text-center py-0">POS</th>
-                  <th className="bg-dark text-center text-danger py-0">
+          <div className="table-responsive me-1">
+            <table className="table table-dark table-striped">
+              <thead className="border-5 fs-5">
+                <tr className="">
+                  <th className="text-center py-0">P</th>
+                  <th className="text-center py-0 op">
                     DRIVER
                   </th>
-                  <th className="bg-dark text-center text-danger py-0">
+                  <th className="py-0">
                     CONSTRUCTOR
                   </th>
-                  <th className="bg-dark text-danger text-center op py-0">
+                  <th className="text-center op py-0">
                     POINTS
                   </th>
-                  <th className="bg-dark text-danger text-center py-0">WINS</th>
+                  <th className="text-center py-0">WINS</th>
                 </tr>
               </thead>
               <tbody key={{}}>
@@ -110,7 +110,7 @@ const DriverStandings = (props) => {
                           : null)
                       }
                     >
-                      <td className="text-center fw-bold py-0">
+                      <td className="text-center fw-bold py-0 op">
                         {driver.position < 2 ? (
                           <i
                             className={
@@ -147,6 +147,8 @@ const DriverStandings = (props) => {
                             {driver.Driver.familyName.toUpperCase()}
                           </b>
                         </span>
+                        <span className="text-success">({driver.Driver.code}#{driver.Driver.permanentNumber})
+                        </span>
                         <span className="fw-light fst-italic text-secondary pe-1">
                           {new Date(driver.Driver.dateOfBirth).toLocaleString(
                             "en-US",
@@ -160,15 +162,16 @@ const DriverStandings = (props) => {
                             " " +
                             driver.Driver.nationality}
                         </span>
+
                       </td>
-                      <td>
+                      <td className="op">
                         <i className="fw-bold">
                           <b className="text-warning px-1 mx-1">
                             {driver.Constructors[0].name.toUpperCase()}
                           </b>
                         </i>
                       </td>
-                      <td className="text-center op text-light py-0">
+                      <td className="text-center text-light py-0">
                         <span
                           className={
                             "fw-bold d-block " +
@@ -178,7 +181,7 @@ const DriverStandings = (props) => {
                           {driver.points}
                         </span>
                       </td>
-                      <td className="text-center text-primary py-0">
+                      <td className="text-center text-primary py-0 op">
                         <span
                           className={
                             "fw-bold d-block " +

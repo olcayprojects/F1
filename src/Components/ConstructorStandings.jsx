@@ -37,42 +37,39 @@ const ConstructorStandings = (props) => {
   if (!isLoaded) return <Loading />;
 
   return (
-    <div className="container-fluid p-0">
-      <div className="table-responsive">
+    <div className="p-0">
+      <Nav />
+      <div className="container-fluid">
         {props.season ? (
           ""
         ) : (
           <>
-            <Nav />
             <div className="mt-2">
               <h4 className="text-center py-1 fw-bold m-0">
-                <span className="text-black bg-danger px-2 rounded bg-opacity-50">
+                <span className="text-black bg-danger p-2 rounded bg-opacity-50">
                   CONSTRUCTOR STANDINGS
                 </span>
               </h4>
             </div>
           </>
         )}
-        <div className="row justify-content-center m-0">
-          <table className="table table-dark table-striped table-bordered w-auto">
-            <thead className="border-start-0 border-end-0 border-top-0 border-5">
+        <div className="justify-content-center">
+          <table className="table table-dark table-striped table-bordered">
+            <thead className="border-5 fs-5 bg-danger">
               <tr className="">
-                <th scope="" className="text-danger bg-dark text-center py-0">
+                <th scope="" className="text-center py-0">
                   POS
                 </th>
-                <th
-                  scope=""
-                  className="text-danger text-center bg-dark op py-0"
-                >
+                <th scope="" className="op py-0">
                   CONSTRUCTOR
                 </th>
                 <th
                   scope=""
-                  className="text-danger bg-dark text-center op py-0"
+                  className="text-center op py-0"
                 >
                   POINTS
                 </th>
-                <th scope="" className="text-danger bg-dark text-center py-0">
+                <th scope="" className=" text-center py-0">
                   WINS
                 </th>
               </tr>

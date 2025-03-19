@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: monospace;
+  font-family: monospace !important;
   background-color: black !important;
 }
 

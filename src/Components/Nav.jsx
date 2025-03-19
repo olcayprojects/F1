@@ -43,17 +43,17 @@ const Nav = () => {
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
                 <a className="nav-link" href="#/DriverStandings">
-                  Driver Standings
+                  |Driver Standings|
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#/ConstructorStandings">
-                  Constructor Standings
+                  |Constructor Standings|
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#/RaceHistoryChart">
-                  Race History Chart
+                  |Race History Chart|
                 </a>
               </li>
             </ul>
