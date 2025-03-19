@@ -48,11 +48,18 @@ export const DrvInfo = (props) => {
       <img
         className="img-fluid object-fit-cover"
         style={{ width: "120px", height: "250px" }}
-        src={data1?.strRender + "/preview"}
+        src={
+          data1?.strRender
+            ? data1?.strRender + "/preview"
+            : data1?.strThumb + "/preview"
+        }
         alt=""
         title={data1?.strPlayer + " / " + data1?.strNationality}
         srcSet=""
       />
+      <h5 className="card-title text-danger align-self-end mx-auto text-center">
+        {data1?.strPlayer}
+      </h5>
     </>
   );
 };
