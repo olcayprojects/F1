@@ -31,7 +31,7 @@ const ConstructorStandings = (props) => {
       .catch((err) => {
         if (!err === "Unexpected token") {
           console.log(err.message);
-          setIsLoaded(true); 
+          setIsLoaded(true);
         }
       });
   }, [url, year]);

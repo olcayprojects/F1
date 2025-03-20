@@ -95,7 +95,9 @@ const ResultsDriver = () => {
                 <th className="text-center bg-danger">LAPS</th>
                 <th className="text-center">Time / Status</th>
                 <th className="text-center bg-danger">PTS</th>
-                <th className="text-center"><span className="">Fastest Lap</span></th>
+                <th className="text-center">
+                  <span className="">Fastest Lap</span>
+                </th>
               </tr>
             </thead>
             <tbody>

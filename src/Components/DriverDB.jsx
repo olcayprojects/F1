@@ -7,36 +7,49 @@ const DriverDB = (props) => {
   const [data, setData] = useState();
   const [err, setErr] = useState(true);
   const [playerId, setPlayerId] = useState();
+  const [drvr, setDrvr] = useState("");
 
-  let url = "";
-  url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${props.drv}`;
+  // `drvr`'yi ilk başta props'dan normalize et
+  useEffect(() => {
+    let normalizedDrvr = props.drv
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase()
+      .replace("-", "_")
+      .replace(" ", "_");
+
+    if (normalizedDrvr === "carlos_sainz") {
+      normalizedDrvr = "carlos_sainz_jr";
+    }
+
+    setDrvr(normalizedDrvr);
+  }, [props.drv]);
+
+  const url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${drvr}`;
+
+  console.log(url);
 
   useEffect(() => {
+    if (!drvr) return;
+
     function fetchData() {
       fetch(url)
         .then((response) => response.json())
         .then((items) => {
-          const drv =
-            props.drv === "Carlos Sainz"
-              ? "carlos sainz jr"
-              : props.drv
-                  .normalize("NFD")
-                  .replace(/[\u0300-\u036f]/g, "")
-                  .toLowerCase();
-  
-          // `find` metodu ile ilk eşleşen oyuncuyu buluyoruz
-          const player = items["player"].find((player) => 
-            player["strPlayer"]
-              .normalize("NFD")
-              .replace(/[\u0300-\u036f]/g, "")
-              .toLowerCase() === drv
+          const player = items["player"]?.find(
+            (player) =>
+              player["strPlayer"]
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .toLowerCase()
+                .replace("-", "_")
+                .replace(" ", "_")
+                .replace(" ", "_") === drvr
           );
-  
-          // Eğer oyuncu bulunduysa, setData ve setPlayerId'yi çalıştır
+
           if (player) {
             setData(player);
             setPlayerId(player.idPlayer);
-            console.log(items);
           }
         })
         .catch((err) => {
@@ -44,10 +57,10 @@ const DriverDB = (props) => {
           setErr(false);
         });
     }
-  
+
     fetchData();
-  }, [url]);
-  
+  }, [url, drvr]); //
+
   return err ? (
     <>
       {/* {data?.strCutout && (
@@ -74,7 +87,7 @@ const DriverDB = (props) => {
         className="text-start lh-md p-0 fw-bold"
         style={{ whiteSpace: "pre-wrap", color: "#62b6a5" }}
       ></pre> */}
-      {playerId&&<PlayerProfile playerId={playerId} />}
+      {playerId && <PlayerProfile playerId={playerId} />}
     </>
   ) : null;
 };
