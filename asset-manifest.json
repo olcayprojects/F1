@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/F1/static/css/main.37f778be.css",
-    "main.js": "/F1/static/js/main.5d4d5063.js",
-    "static/media/bootstrap-icons.woff?": "/F1/static/media/bootstrap-icons.4753c5ba57962b4d7bf8.woff",
-    "static/media/bootstrap-icons.woff2?": "/F1/static/media/bootstrap-icons.6d63d0501e5ed7b79dab.woff2",
+    "main.css": "/F1/static/css/main.d81fbe1c.css",
+    "main.js": "/F1/static/js/main.e5b4113b.js",
+    "static/media/bootstrap-icons.woff?": "/F1/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
+    "static/media/bootstrap-icons.woff2?": "/F1/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
     "static/media/Auto_Racing_Yellow_Digiflag-SC.gif": "/F1/static/media/Auto_Racing_Yellow_Digiflag-SC.49e620a0557c9b457ce8.gif",
+    "static/media/Formula1-Regular_web_0.ttf": "/F1/static/media/Formula1-Regular_web_0.a10812e5dfa71f8496d3.ttf",
     "index.html": "/F1/index.html",
-    "main.37f778be.css.map": "/F1/static/css/main.37f778be.css.map",
-    "main.5d4d5063.js.map": "/F1/static/js/main.5d4d5063.js.map"
+    "main.d81fbe1c.css.map": "/F1/static/css/main.d81fbe1c.css.map",
+    "main.e5b4113b.js.map": "/F1/static/js/main.e5b4113b.js.map"
   },
   "entrypoints": [
-    "static/css/main.37f778be.css",
-    "static/js/main.5d4d5063.js"
+    "static/css/main.d81fbe1c.css",
+    "static/js/main.e5b4113b.js"
   ]
 }
