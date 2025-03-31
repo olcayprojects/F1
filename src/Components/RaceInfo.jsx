@@ -36,6 +36,11 @@ const RaceInfo = () => {
   const { date = "2023-07-02" } = useParams();
   const { name = "Austrian Grand Prix" } = useParams();
 
+  const formatDate = (timestamp) => {
+    const date = new Date(timestamp + "Z");
+    return date.toLocaleTimeString();
+  };
+
   const [data, setData] = useState();
 
   let url = "";
@@ -67,18 +72,18 @@ const RaceInfo = () => {
               <h1 className="text-light">{event.strFilename}</h1>
               <img
                 className="img-fluid"
-                src={event?.strThumb}
+                src={event?.strPoster}
                 alt=""
                 srcSet=""
               />
-              <img className="img-fluid" src={event?.strMap} alt="" srcSet="" />
               {/* <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" /> */}
               <h5 className="text-light">{event?.strVenue}</h5>
               <h5 className="text-light">{event?.strCountry}</h5>
               <h5 className="text-light">{event?.strCity}</h5>
               <h5 className="text-light">
-                {new Date(event?.strTimestamp).toLocaleString()}
+                Your Time: {formatDate(event?.strTimestamp)}
               </h5>
+              <h5 className="text-light">Local Time: {event?.strTimeLocal}</h5>
               <h5 className="text-light">{event?.strDescriptionEN}</h5>
             </div>
           );

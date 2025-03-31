@@ -1,24 +1,39 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Fastest = (props) => {
-  const [sdata, setData] = useState();
+  const [sdata, setData] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState(null);
 
-  let url;
-  if (props) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/fastest/1/results.json`;
-  }
+  const url = `${BASE_URL}/${props.season}/fastest/1/results.json`;
 
-  const fetchFastest = useCallback(() => {
-    axios
-      .get(url)
-      .then((res) => {
-        setData(res?.data["MRData"].RaceTable.Races[0]?.Results[0]);
+  const fetchFastest = useCallback(async () => {
+    try {
+      const res = await axios.get(url);
+      setData(res?.data?.MRData?.RaceTable?.Races);
+      setIsLoaded(true);
+    } catch (e) {
+      if (e.response && e.response.status === 429) {
+        console.log("Too many requests. Waiting 5 seconds before retrying...");
+        setError("Too many requests. Please try again later.");
+        setTimeout(fetchFastest, 5000);
+      } else {
+        console.log("Error fetching data: ", e);
+        setError("An error occurred while fetching the data.");
         setIsLoaded(true);
-      })
-      .catch((e) => console.log(e));
+      }
+    }
   }, [url]);
+
+  const getFastestLapForRound = (round) => {
+    if (!sdata || !Array.isArray(sdata)) return null;
+    console.log(sdata);
+    const race = sdata.find((race) => race.round === round);
+    return race ? race.Results[0] : null;
+  };
 
   useEffect(() => {
     fetchFastest();
@@ -26,38 +41,26 @@ const Fastest = (props) => {
 
   if (!isLoaded) {
     return <h6>Loading...</h6>;
-  } else {
-    return sdata ? (
-      <div className="">
-        {sdata?.position > 10 ? (
-          <>
-            <h6 className="text-info m-0">
-              Fastest Lap: {sdata?.laps} | {sdata?.FastestLap?.Time.time} |{" "}
-              {sdata?.FastestLap?.AverageSpeed.speed}{" "}
-              {sdata?.FastestLap?.AverageSpeed.units}
-            </h6>
-            <span className="fw-bold">
-              <u>{sdata?.Driver?.familyName}</u> fastest lap of the race.
-            </span>
-          </>
-        ) : (
-          <>
-            <h6 className="text-info m-0">
-              Fastest Lap: {sdata?.laps} | {sdata?.FastestLap?.Time.time} |{" "}
-              {sdata?.FastestLap?.AverageSpeed.speed}{" "}
-              {sdata?.FastestLap?.AverageSpeed.units}
-            </h6>
-            <span className="fw-bold">
-              <u>{sdata?.Driver?.familyName}</u> scored an additional point for
-              setting the fastest lap of the race.
-            </span>
-          </>
-        )}
-      </div>
-    ) : (
-      <span className="text-danger fw-bold">Fastest Lap Data Not Found!</span>
-    );
   }
+
+  const roundData = getFastestLapForRound(props.round);
+
+  return (
+    <div>
+      {error ? (
+        <span className="text-danger fw-bold">{error}</span>
+      ) : roundData ? (
+        <h6 className="text-info m-0">
+          Fastest Lap: {roundData?.laps} | {roundData?.FastestLap?.Time?.time} |{" "}
+          {roundData?.FastestLap?.AverageSpeed?.speed}{" "}
+          {roundData?.FastestLap?.AverageSpeed?.units}{" "}
+          <u>{roundData?.Driver?.familyName}</u>
+        </h6>
+      ) : (
+        <span className="text-danger fw-bold">Fastest Lap Data Not Found!</span>
+      )}
+    </div>
+  );
 };
 
 export default Fastest;

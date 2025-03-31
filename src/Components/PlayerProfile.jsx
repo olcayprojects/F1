@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Carousel } from "react-bootstrap";
+import Loading from "./Loading";
 
-// Carousel bileşeni
 const PlayerCarousel = ({ playerImages }) => {
   return (
     <div className="container mt-4">
@@ -11,8 +11,8 @@ const PlayerCarousel = ({ playerImages }) => {
             <Carousel.Item key={index}>
               <img
                 className="d-block mx-auto img-fluid"
-                src={image}
-                alt={`Player  ${index + 1}`}
+                src={image + "/small"}
+                alt={`Player ${index + 1}`}
                 style={{ objectFit: "fill", height: "400px" }}
               />
             </Carousel.Item>
@@ -22,30 +22,45 @@ const PlayerCarousel = ({ playerImages }) => {
     </div>
   );
 };
-const PlayerProfile = ({ playerId }) => {
+
+const PlayerInfo = ({ playerData }) => (
+  <div>
+    <h4>
+      <strong>Team:</strong> {playerData.strTeam}
+    </h4>
+    <h5>
+      {playerData.strBirthLocation}{" "}
+      {new Date(playerData.dateBorn).toLocaleDateString()}
+      {playerData.strNationality && <span> ({playerData.strNationality})</span>}
+      {playerData.strHeight && (
+        <p>
+          {playerData.strHeight} {playerData.strWeight}
+        </p>
+      )}
+    </h5>
+  </div>
+);
+
+const PlayerProfile = ({ playerId, t }) => {
   const [playerData, setPlayerData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    // API URL'si, oyuncu ID'sini içeren URL
     const url = `https://www.thesportsdb.com/api/v1/json/3/lookupplayer.php?id=${playerId}`;
 
-    // API'den veriyi çekme
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Failed to fetch player data");
+          throw new Error("Player verisi alınamadı.");
         }
         return response.json();
       })
       .then((data) => {
-        // Gelen veriyi set et
         setPlayerData(data.players[0]);
         setIsLoading(false);
       })
       .catch((err) => {
-        // Hata durumu
         setError(err.message);
         setIsLoading(false);
       });
@@ -61,35 +76,94 @@ const PlayerProfile = ({ playerId }) => {
     playerData?.strBanner,
     playerData?.strRender,
     playerData?.strCutout,
-  ].filter((image) => image !== null); // Sadece geçerli (null olmayan) görselleri alıyoruz
+  ].filter((image) => image !== null);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div>Hata: {error}</div>;
   }
 
-  return (
+  return t === "1" ? (
     <div className="player-profile">
-      <PlayerCarousel playerImages={playerImages} />
-      {/* <img src={playerData.strThumb} alt={playerData.strPlayer} /> */}
-      <p>
-        <strong>Team:</strong> {playerData.strTeam}
-      </p>
-      <p>
-        {playerData.strBirthLocation}{" "}
-        {new Date(playerData.dateBorn).toLocaleDateString()}
-        {playerData.strNationality && (
-          <span> ({playerData.strNationality})</span>
-        )}
-        {playerData.strHeight && <p>Height: {playerData.strHeight}</p>}
-      </p>
-      <pre className="text-wrap">
-        <strong>Biography:</strong> {playerData.strDescriptionEN}
+      {playerImages.length > 1 ? (
+        <PlayerCarousel playerImages={playerImages} />
+      ) : (
+        <img
+          className="img-fluid"
+          src={
+            playerData.strThumb
+              ? playerData.strThumb + "/small"
+              : playerData.strCutout + "/small"
+          }
+          alt={playerData.strPlayer}
+        />
+      )}
+      <PlayerInfo playerData={playerData} />
+      <pre
+        className="p-1 bg-dark text-start border"
+        style={{ whiteSpace: "pre-wrap" }}
+      >
+        <strong className="fs-5 text-black">Biyografi:</strong>{" "}
+        {playerData?.strDescriptionEN}
       </pre>
     </div>
+  ) : t === "2" ? (
+    <div className="container-fluid">
+      <img
+        className="img-fluid"
+        src={
+          playerData.strBanner
+            ? playerData.strBanner + "/small"
+            : playerData.strCutout + "/small"
+        }
+        alt=""
+      />
+      <pre className="text-center m-0">
+        {playerData.dateBorn} {playerData.strBirthLocation}{" "}
+        {playerData.strNationality}
+      </pre>
+      {playerData.strHeight && (
+        <pre className="m-0 text-center">
+          {playerData.strHeight} {playerData.strWeight}
+        </pre>
+      )}
+      <pre
+        className="p-1 bg-dark text-start"
+        style={{ whiteSpace: "pre-wrap" }}
+      >
+        <strong className="fs-5 text-black">Description:</strong>{" "}
+        {playerData?.strDescriptionEN}
+      </pre>
+    </div>
+  ) : t === "3" ? (
+    <div className="container-fluid text-info">
+      <img
+        className="img-fluid"
+        src={
+          playerData.strBanner
+            ? playerData.strBanner + "/small"
+            : playerData.strCutout + "/small"
+            ? playerData.strThumb + "/small"
+            : ""
+        }
+        alt={playerData.strPlayer}
+        title={playerData.strDescriptionEN}
+      />
+      <pre className="text-center m-0">
+        {playerData.dateBorn} {playerData.strBirthLocation}{" "}
+        {playerData.strNationality}
+      </pre>
+      {playerData.strHeight && (
+        <pre className="m-0 text-center">
+          {playerData.strHeight} {playerData.strWeight}
+        </pre>
+      )}
+    </div>
+  ) : (
+    ""
   );
 };
 

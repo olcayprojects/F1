@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 
 const Constructor = (props) => {
-  let url = `https://ergast.com/api/f1/${props.year}/constructors.json`;
+  let url = `${BASE_URL}/${props.year}/constructors.json`;
 
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

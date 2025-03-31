@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
 import Pitstops from "./Pitstops";
-import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 import { DrvInfo } from "./DriverInfo";
 import { Box, Tab, Tabs } from "@mui/material";
@@ -10,10 +9,12 @@ import { red } from "@mui/material/colors";
 import Team from "./Team";
 import Nav from "./Nav";
 import Events from "./Events";
+// import RaceSimulationCanvas from "./RaceAndPitStopPage";
 
 const F1Race = (props) => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(true);
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
   // const randomNumber = (min, max) =>
@@ -24,20 +25,20 @@ const F1Race = (props) => {
   };
 
   let season,
-    round,
-    laps = "";
+    round;
+    // ,laps
 
   let navigate = useNavigate();
-  const { season2 = "2024" } = useParams();
+  const { season2 = "2025" } = useParams();
   const { rounds = 0 } = useParams();
   // const timeMS = (d) => new Date(d);
 
   let urlx;
 
   if (rounds === 0) {
-    urlx = "https://ergast.com/api/f1/current/last/results.json";
+    urlx = `${BASE_URL}/current/last/results.json`;
   } else {
-    urlx = `https://ergast.com/api/f1/${season2}/${rounds}/results.json`;
+    urlx = `${BASE_URL}/${season2}/${rounds}/results.json`;
   }
 
   useEffect(() => {
@@ -74,7 +75,7 @@ const F1Race = (props) => {
             sdata?.map((item, indexItem) => {
               season = item.season;
               round = item.round;
-              laps = item.Results[0].laps;
+              // laps = item.Results[0].laps;
               const dateTime = (d, t) =>
                 new Date(d + " " + t).toLocaleString("en-EN", {
                   dateStyle: "full",
@@ -104,7 +105,7 @@ const F1Race = (props) => {
                     <i className="text-info bi bi-calendar3"></i>
                   </h1>
 
-                  {season2 === "2024" ? (
+                  {season2 > "1970" ? (
                     <div className="" style={{}}>
                       {item?.Results?.map((result, indexResult) => {
                         return result.positionText in [1, 2, 3, 4] ? (
@@ -119,15 +120,25 @@ const F1Race = (props) => {
                                 : "float-end pe-5")
                             }
                           >
-                            <div className="" style={{}}>
+                            <div
+                              className="d-flex flex-column align-items-center"
+                              style={{}}
+                            >
                               <DrvInfo
                                 drv={
                                   result.Driver?.givenName +
                                   " " +
                                   result.Driver?.familyName
                                 }
+                                s={"1"}
                               />
-                              <Team teamName={result.Constructor.name} ls={1} />
+                              {season2 > "1970" && (
+                                <Team
+                                  teamName={result.Constructor.name}
+                                  season={season2}
+                                  ls={1}
+                                />
+                              )}
                             </div>
                           </div>
                         ) : null;
@@ -135,8 +146,12 @@ const F1Race = (props) => {
                     </div>
                   ) : null}
 
-                  {season2 === "2024" ? (
-                    <Events date={sdata[0]?.date} name={sdata[0]?.raceName} />
+                  {season2 > "1970" ? (
+                    <Events
+                      date={sdata[0]?.date}
+                      name={sdata[0]?.raceName}
+                      s={"2"}
+                    />
                   ) : null}
 
                   <div className="table-responsive-sm">
@@ -413,7 +428,7 @@ const F1Race = (props) => {
                                 )}
                               </td>
                               <td className="op text-start p-0">
-                                {result?.FastestLap?.AverageSpeed.speed ? (
+                                {result?.FastestLap?.AverageSpeed?.speed ? (
                                   <>
                                     <span className="ms-1 fw-bold">
                                       {result?.FastestLap?.AverageSpeed.speed}{" "}
@@ -459,7 +474,7 @@ const F1Race = (props) => {
           >
             <Tab label="[Qualifying]" />
             <Tab label="[Pit Stops]" />
-            <Tab label="[Lap Times]" />
+            <Tab label="[Lap Times -3]" />
           </Tabs>
 
           {currentTabIndex === 0 && (
@@ -481,24 +496,7 @@ const F1Race = (props) => {
           {currentTabIndex === 2 && (
             <Box sx={{ p: 0 }}>
               <div className="bg-black container-fluid p-0">
-                <div className="row row-cols-1 row-cols-md-auto g-1 justify-content-sm-center bg-black">
-                  {(() => {
-                    const arr = [];
-                    for (let i = laps - 11; i <= laps; i++) {
-                      arr.push(
-                        <div key={i} className="mb-0">
-                          <Laptimes
-                            season={season}
-                            round={round}
-                            laps={laps}
-                            lapsx={i}
-                          />
-                        </div>
-                      );
-                    }
-                    return laps > 0 ? arr : "";
-                  })()}
-                </div>
+                {/* <Laptimes season={season} round={round} laps={laps} lapsx={1} /> */}
               </div>
             </Box>
           )}

@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "./Loading";
 import DriverDB from "./DriverDB";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const ResultsDriver = () => {
   const navigate = useNavigate();
@@ -13,14 +15,14 @@ const ResultsDriver = () => {
   let drvgivenName = "";
   let drvfamilyName = "";
 
-  const fetchAllData = async () => {
+  const fetchAllData = useCallback(async () => {
     const limit = 100;
     let offset = 0;
     let allData = [];
     let hasMoreData = true;
 
     while (hasMoreData) {
-      const url = `https://ergast.com/api/f1/drivers/${driver}/results.json?limit=${limit}&offset=${offset}`;
+      const url = `${BASE_URL}/drivers/${driver}/results.json?limit=${limit}&offset=${offset}`;
       const response = await fetch(url);
       const data = await response.json();
       const races = data["MRData"].RaceTable.Races;
@@ -34,14 +36,13 @@ const ResultsDriver = () => {
     }
 
     return allData;
-  };
-
+  }, [driver]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const raceData = await fetchAllData();
         const sprintResponse = await fetch(
-          `https://ergast.com/api/f1/drivers/${driver}/sprint.json`
+          `${BASE_URL}/drivers/${driver}/sprint.json`
         );
         const sprintData = await sprintResponse.json();
 
@@ -54,7 +55,7 @@ const ResultsDriver = () => {
     };
 
     fetchData();
-  }, [driver]);
+  }, [driver, fetchAllData]);
 
   if (sdata[0]?.Results) {
     drvgivenName = sdata[0]?.Results[0]?.Driver.givenName;
@@ -67,6 +68,17 @@ const ResultsDriver = () => {
   if (!isLoaded) {
     return <Loading />;
   } else {
+    const groupedData = sdata.reduce((acc, item) => {
+      const season = item.season;
+      if (!acc[season]) {
+        acc[season] = [];
+      }
+      acc[season].push(item);
+      return acc;
+    }, {});
+
+    const sortedSeasons = Object.keys(groupedData).sort((a, b) => b - a);
+
     return (
       <div className="bg-black container-fluid p-0">
         <Nav />
@@ -83,156 +95,184 @@ const ResultsDriver = () => {
           <DriverDB drv={`${drvgivenName} ${drvfamilyName}`} />
         </div>
         <div className="table-responsive-sm">
-          <table className="table table-dark table-striped table-bordered">
-            <thead>
-              <tr>
-                <th className="bg-danger text-center">S</th>
-                <th className="text-center">R</th>
-                <th className="bg-danger">Race Name</th>
-                <th className="text-center">P</th>
-                <th className="text-center bg-danger">G</th>
-                <th className="text-center">Constructor</th>
-                <th className="text-center bg-danger">LAPS</th>
-                <th className="text-center">Time / Status</th>
-                <th className="text-center bg-danger">PTS</th>
-                <th className="text-center">
-                  <span className="">Fastest Lap</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {sdata
-                .sort((a, b) => (a.date < b.date ? 1 : -1))
-                .map((item, index) => {
-                  const results = item.Results || item.SprintResults || [];
-                  return (
-                    <tr key={index} className="text-danger align-middle">
-                      <td className="text-center p-0 op">{item.season}</td>
-                      <td className="text-center p-0">{item.round}</td>
-                      <td
-                        className={`py-0 cp op ${
-                          !item.Results ? "text-info" : ""
-                        }`}
-                        onClick={() =>
-                          item.Results
-                            ? navigate(`/F1Race/${item.season}/${item.round}`)
-                            : navigate(
-                                `/Sprint/${item.season}/${
-                                  item.round
-                                }/${new Date(
-                                  item.date + " " + item.time
-                                ).toLocaleString("tr-TR", {
-                                  dateStyle: "short",
-                                  timeStyle: "short",
-                                })}`
-                              )
-                        }
-                      >
-                        <span className="px-1 d-inline-block w-100">
-                          <span className="fw-bold text-decoration-underline">
-                            {item.Results
-                              ? item.raceName
-                              : item.raceName + " Sprint"}
-                          </span>{" "}
-                          <span className="fst-italic">
-                            ({new Date(item.date).toDateString()})
-                          </span>
-                        </span>
-                      </td>
-
-                      <td
-                        className={
-                          "py-0 text-center fw-bold " +
-                          (results[0]
-                            ? isNaN(parseInt(results[0]?.positionText))
-                              ? " text-danger"
-                              : null
-                            : null)
-                        }
-                      >
-                        {results[0] ? (
-                          results[0]?.positionText < 4 ? (
-                            <i
-                              className={
-                                "bi bi-" +
-                                results[0]?.positionText +
-                                "-square fs-5"
-                              }
-                            ></i>
-                          ) : (
-                            results[0]?.positionText
-                          )
-                        ) : null}
-                      </td>
-                      <td className="text-center op py-0">
-                        {results.length > 0 ? results[0].grid : "-"}
-                      </td>
-                      <td
-                        className="py-0 text-center text-uppercase cp"
-                        onClick={() => {
-                          navigate(
-                            "/ConstructorsResult/" +
-                              results[0]?.Constructor?.constructorId +
-                              "/" +
-                              item.season
-                          );
-                        }}
-                      >
-                        <span className="p-0 d-inline-block fw-bold w-100 text-center text-success">
-                          {results.length > 0
-                            ? results[0]?.Constructor?.name
-                            : "-"}
-                        </span>
-                      </td>
-                      <td className="py-0 text-center op">
-                        {results.length > 0 ? results[0].laps : "-"}
-                      </td>
-                      <td className="py-0 text-center text-warning">
-                        {results.length > 0 ? (
-                          <>
-                            <span>{results[0]?.Time?.time}</span>
-                            <span className="text-danger ps-1">
-                              {results[0]?.status !== "Finished"
-                                ? results[0]?.status
-                                : null}
-                            </span>
-                          </>
-                        ) : (
-                          "-"
-                        )}
-                      </td>
-                      <td className="text-center op">
-                        {results.length > 0 ? results[0].points : "-"}
-                      </td>
-                      <td className="py-0">
-                        <span className="bg-black text-danger p-1 px-2 fw-bold text-secondary text-center">
-                          {results.length > 0 && results[0]?.FastestLap ? (
-                            <>
-                              <span className="">
-                                {results[0].FastestLap.rank
-                                  ? "#" + results[0].FastestLap.rank + " || "
-                                  : null}
+          {sortedSeasons.map((season) => (
+            <div key={season}>
+              <h3 className="text-center text-primary">Season {season}</h3>
+              <table className="table table-dark table-striped table-bordered">
+                <thead>
+                  <tr>
+                    <th className="bg-danger text-center">S</th>
+                    <th className="text-center">R</th>
+                    <th className="bg-danger">Race Name</th>
+                    <th className="text-center">P</th>
+                    <th className="text-center bg-danger">G</th>
+                    <th className="text-center">Constructor</th>
+                    <th className="text-center bg-danger">LAPS</th>
+                    <th className="text-center">Time / Status</th>
+                    <th className="text-center bg-danger">PTS</th>
+                    <th className="text-center">
+                      <span className="">Fastest Lap</span>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {groupedData[season]
+                    .sort((a, b) => (a.date < b.date ? 1 : -1))
+                    .map((item, index) => {
+                      const results = item.Results || item.SprintResults || [];
+                      return (
+                        <tr key={index} className="text-danger align-middle">
+                          <td className="text-center p-0 op">{item.season}</td>
+                          <td className="text-center p-0">{item.round}</td>
+                          <td
+                            className={`py-0 cp op ${
+                              !item.Results ? "text-info" : ""
+                            }`}
+                            onClick={() =>
+                              item.Results
+                                ? navigate(
+                                    `/F1Race/${item.season}/${item.round}`
+                                  )
+                                : navigate(
+                                    `/Sprint/${item.season}/${
+                                      item.round
+                                    }/${new Date(item.date + " " + item.time)
+                                      .toLocaleString("tr-TR", {
+                                        dateStyle: "short",
+                                        timeStyle: "short",
+                                      })
+                                      .replace(/,/g, "")}`
+                                  )
+                            }
+                          >
+                            <span className="px-1 d-inline-block w-100">
+                              <span className="fw-bold text-decoration-underline">
+                                {item.Results
+                                  ? item.raceName
+                                  : item.raceName + " Sprint"}
+                              </span>{" "}
+                              <span className="fst-italic">
+                                ({new Date(item.date).toDateString()})
                               </span>
-                              Time: {results[0].FastestLap.Time?.time + " || "}
-                              {results[0].FastestLap.AverageSpeed
-                                ? "AvgSpd: " +
-                                  results[0].FastestLap.AverageSpeed?.speed +
-                                  " " +
-                                  results[0].FastestLap.AverageSpeed?.units +
-                                  " || "
-                                : null}
-                              Lap: {results[0].FastestLap.lap}
-                            </>
-                          ) : (
-                            <span className="text-danger">-</span>
-                          )}
-                        </span>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
+                            </span>
+                          </td>
+                          <td
+                            className={
+                              "py-0 text-center fw-bold " +
+                              (results[0]
+                                ? isNaN(parseInt(results[0]?.positionText))
+                                  ? " text-danger"
+                                  : null
+                                : null)
+                            }
+                          >
+                            {results[0] ? (
+                              results[0]?.positionText < 4 ? (
+                                <i
+                                  className={
+                                    "bi bi-" +
+                                    results[0]?.positionText +
+                                    "-square fs-5"
+                                  }
+                                ></i>
+                              ) : (
+                                results[0]?.positionText
+                              )
+                            ) : null}
+                          </td>
+                          <td className="text-center op py-0">
+                            {results.length > 0 ? results[0].grid : "-"}
+                          </td>
+                          <td
+                            className="py-0 text-center text-uppercase cp"
+                            onClick={() => {
+                              navigate(
+                                "/ConstructorsResult/" +
+                                  results[0]?.Constructor?.constructorId +
+                                  "/" +
+                                  item.season
+                              );
+                            }}
+                          >
+                            <span className="p-0 d-inline-block fw-bold w-100 text-center text-success">
+                              {results.length > 0
+                                ? results[0]?.Constructor?.name
+                                : "-"}
+                            </span>
+                          </td>
+                          <td className="py-0 text-center op">
+                            {results.length > 0 ? results[0].laps : "-"}
+                          </td>
+                          <td className="py-0 text-center text-warning">
+                            {results.length > 0 ? (
+                              <>
+                                <span>{results[0]?.Time?.time}</span>
+                                <span className="text-danger ps-1">
+                                  {results[0]?.status !== "Finished"
+                                    ? results[0]?.status
+                                    : null}
+                                </span>
+                              </>
+                            ) : (
+                              "-"
+                            )}
+                          </td>
+                          <td className="text-center op">
+                            {results.length > 0 ? results[0].points : "-"}
+                          </td>
+                          <td className="py-0">
+                            <span className="bg-black text-danger p-1 px-2 fw-bold text-secondary text-center">
+                              {results.length > 0 && results[0]?.FastestLap ? (
+                                <>
+                                  <span className="">
+                                    {results[0].FastestLap.rank
+                                      ? "#" +
+                                        results[0].FastestLap.rank +
+                                        " || "
+                                      : null}
+                                  </span>
+                                  Time:{" "}
+                                  {results[0].FastestLap.Time?.time + " || "}
+                                  {results[0].FastestLap.AverageSpeed
+                                    ? "AvgSpd: " +
+                                      results[0].FastestLap.AverageSpeed
+                                        ?.speed +
+                                      " " +
+                                      results[0].FastestLap.AverageSpeed
+                                        ?.units +
+                                      " || "
+                                    : null}
+                                  Lap: {results[0].FastestLap.lap}
+                                </>
+                              ) : (
+                                <span className="text-danger">-</span>
+                              )}
+                            </span>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  <tr>
+                    <td colSpan={10} className="text-center text-light fw-bold">
+                      Total Points:{" "}
+                      {groupedData[season]
+                        .reduce((totalPoints, item) => {
+                          const results =
+                            item.Results || item.SprintResults || [];
+                          const points = results[0]?.points;
+
+                          if (points !== undefined && points !== null) {
+                            return totalPoints + parseFloat(points);
+                          }
+                          return totalPoints;
+                        }, 0)
+                        .toFixed(0)}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          ))}
         </div>
       </div>
     );

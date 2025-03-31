@@ -1,112 +1,152 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Loading from "./Loading";
-import Fastest from "./Fastest";
-import axios from "axios";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const Results = (props) => {
-  const [isLoaded, setIsLoaded] = useState(true);
   const [sdata, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // const timeMS = (d) => new Date(d);
-  //const { season2 = "2023" } = useParams();
+  const roundsArray = [...Array(24)].map((_, index) => index + 1);
 
-  let url;
-  if (props) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.rounds}/results.json`;
-  }
+  const fetchResultStandings = useCallback(async (url) => {
+    try {
+      const response = await fetch(url);
 
-  const fetchResultStandings = useCallback(async () => {
-    const response = await axios
-      .get(url)
-      .then((res) => res?.data["MRData"]?.RaceTable?.Races[0])
-      .catch((e) => console.log(e), setIsLoaded(false))
-      .finally();
-    setData(response);
-    setIsLoaded(false);
-  }, [url]);
+      if (!response.ok) {
+        console.error(`Failed to fetch data for URL: ${url}`);
+        return null;
+      }
+
+      const data = await response.json();
+      const raceData = data?.MRData?.RaceTable?.Races[0];
+      return raceData;
+    } catch (e) {
+      console.error("Error fetching data:", e);
+      return null;
+    }
+  }, []);
 
   useEffect(() => {
-    fetchResultStandings();
-  }, [fetchResultStandings]);
+    const fetchData = async () => {
+      const allRoundsData = [];
 
-  if (isLoaded) {
+      for (let round of roundsArray) {
+        const url = `${BASE_URL}/${props.season}/${round}/results.json`;
+        const roundData = await fetchResultStandings(url);
+        if (roundData) {
+          allRoundsData.push(roundData);
+        }
+      }
+
+      setData(allRoundsData);
+      setLoading(false);
+    };
+
+    fetchData();
+  }, [props.season, roundsArray, fetchResultStandings]);
+
+  if (loading) {
     return <Loading />;
-  } else {
-    return sdata?.Results?.length > 0 ? (
-      <div className="container">
-        <table className="table table-dark table-striped table-bordered m-0 mb-1">
-          <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
-            <span className="text-info fs-5 fw-bold">
-              <span className="text-light pe-1">#{sdata.round}</span>
-              {sdata.raceName}
-            </span>
-          </caption>
-          <thead className="text-white border-dark">
-            <tr className="text-black">
-              <th className="py-0 text-center">P</th>
-              {/* <th className="text-center">NO</th> */}
-              <th className="bg-danger text-start py-0">DRV</th>
-              <th className="text-start py-0">CAR</th>
-              <th className="bg-danger text-center py-0">LAP</th>
-              <th className="text-center py-0">TIME</th>
-              <th className="text-center bg-danger py-0">PT</th>
-            </tr>
-          </thead>
-          <tbody>
-            {sdata?.Results?.map((Results, index) => {
-              return (
-                <tr key={index} className="">
-                  <td className="p-0 op text-danger text-center fw-bold">
-                    {Results.positionText}
-
-                    {/* !isNaN(Results.positionText) ? (
-                    Results.positionText
-                  ) : (
-                    <>
-                      <span>{Results.position}</span>{"-"}
-                      <span className="fw-light">{Results.positionText}</span>
-                    </>
-                  )*/}
-                  </td>
-                  {/* <td className="p-0 ps-3">{Results.number}</td> */}
-                  <td
-                    className="p-0 fw-bold text-warning text-center"
-                    title={
-                      Results.Driver.givenName +
-                      " " +
-                      Results.Driver.familyName.toUpperCase()
-                    }
-                  >
-                    {Results.Driver.code}
-                  </td>
-                  <td className="p-0 ps-1 op">{Results.Constructor.name}</td>
-                  <td className="p-0 text-center">{Results.laps}</td>
-                  <td className="text-center p-0 op">
-                    {Results?.Time?.time ? (
-                      Results?.Time.time
-                    ) : Results?.status[0] === "+" ? (
-                      <span className="text-secondary">{Results?.status}</span>
-                    ) : (
-                      <span className="text-danger text-uppercase">
-                        {Results?.status}
-                      </span>
-                    )}
-                  </td>
-                  <td className="text-center p-0">{Results?.points}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <p
-          className="text-wrap text-success lh-1 fw-light"
-          style={{ width: "22rem" }}
-        >
-          <Fastest season={props.season} round={props.rounds} />
-        </p>
-      </div>
-    ) : null;
   }
+
+  return (
+    <div className="container-fluid">
+      <div className="row d-flex justify-content-center">
+        {/* Array'i döngüyle işleyip verisi olan turları render ediyoruz */}
+        {sdata.length > 0 ? (
+          sdata.map((roundData, roundIndex) => {
+            if (!roundData?.Results || roundData?.Results?.length === 0) {
+              return null;
+            }
+
+            return (
+              <div className="col-md-auto mb-3 p-1" key={roundIndex}>
+                <div className="table-responsive">
+                  <table className="table table-dark table-striped table-bordered m-0 mb-1">
+                    <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
+                      <span className="text-info fs-5 fw-bold">
+                        <span className="text-light pe-1">
+                          #{roundIndex + 1}
+                        </span>
+                        {roundData?.raceName || "Race " + (roundIndex + 1)}
+                      </span>
+                    </caption>
+                    <thead className="text-white border-dark">
+                      <tr className="text-black">
+                        <th className="py-0 text-center">P</th>
+                        <th className="bg-danger text-start py-0">DRV</th>
+                        <th className="text-start py-0">CAR</th>
+                        <th className="bg-danger text-center py-0">L</th>
+                        <th className="text-center py-0">TIME</th>
+                        <th className="text-center bg-danger py-0">PT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {roundData?.Results?.map((result, index) => (
+                        <tr key={index}>
+                          <td className="p-0 op text-danger text-center fw-bold">
+                            {result.positionText}
+                          </td>
+                          <td
+                            className="p-0 fw-bold text-warning text-center"
+                            title={
+                              result.Driver.givenName +
+                              " " +
+                              result.Driver.familyName.toUpperCase()
+                            }
+                          >
+                            {result.Driver.code}
+                          </td>
+                          <td className="p-0 px-1 op">
+                            {result.Constructor.name}
+                          </td>
+                          <td className="p-0 text-center">{result.laps}</td>
+                          <td className="text-center p-0 op">
+                            {result?.Time?.time ? (
+                              result?.Time.time
+                            ) : result?.status[0] === "+" ? (
+                              <span className="text-secondary">
+                                {result?.status}
+                              </span>
+                            ) : (
+                              <span className="text-danger text-uppercase m-0">
+                                {result?.status}
+                              </span>
+                            )}
+                          </td>
+                          <td className="text-center p-0">{result?.points}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  {/* Verisi olan her yarış için Fastest lap bilgilerini gösteriyoruz */}
+                  {roundData?.Results?.length > 0 && (
+                    <div className="fastest-lap">
+                      <h6 className="text-center text-warning">
+                        Fastest Lap: {roundData.Results[0]?.FastestLap?.lap}{" "}
+                        Time: {roundData.Results[0]?.FastestLap?.Time?.time}{" "}
+                        <br />
+                        {roundData.Results[0]?.FastestLap?.AverageSpeed
+                          ? `Avg. Speed: ${roundData.Results[0]?.FastestLap?.AverageSpeed?.speed} kph`
+                          : ""}
+                        <p className="text-info ps-1 fw-bold">
+                          {roundData.Results[0]?.Driver.familyName}
+                        </p>
+                      </h6>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })
+        ) : (
+          <p>No results available for the selected season.</p>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Results;

@@ -3,19 +3,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
 import Loading from "./Loading";
+import Team from "./Team";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const ConstructorStandings = (props) => {
   const [constructorStandings, setConstructorStandings] = useState();
   const [isLoaded, setIsLoaded] = useState(true);
-  const [year, setYear] = useState("2024");
+  const [year, setYear] = useState("2025");
 
   let navigate = useNavigate();
 
   let url;
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}/constructorStandings.json`;
+    url = `${BASE_URL}/${props.season}/constructorStandings.json`;
   } else {
-    url = `https://ergast.com/api/f1/${year}/constructorStandings.json`;
+    url = `${BASE_URL}/${year}/constructorStandings.json`;
   }
 
   useEffect(() => {
@@ -44,7 +47,8 @@ const ConstructorStandings = (props) => {
 
   return (
     <div className="p-0">
-      <Nav />
+      {props.tab !== 1 && <Nav />}
+
       <div className="container-fluid">
         {props.season ? (
           ""
@@ -111,7 +115,7 @@ const ConstructorStandings = (props) => {
                           className={
                             "fs-3 bi bi-" +
                             ConstructorStandings.position +
-                            "-square-fill text-danger"
+                            "-square-fill text-info"
                           }
                         ></i>
                       ) : (
@@ -127,10 +131,16 @@ const ConstructorStandings = (props) => {
                             "/ConstructorsResult/" +
                               ConstructorStandings?.Constructor?.constructorId +
                               "/" +
-                              (props.season ? props.season : "2024")
+                              (props.season ? props.season : "2025")
                           );
                         }}
                       >
+                        {ConstructorStandings.position < 2 && (
+                          <Team
+                            teamName={ConstructorStandings.Constructor.name}
+                            ls={2}
+                          />
+                        )}
                         {ConstructorStandings.Constructor.name.toUpperCase()}
                       </span>
                       <span className="ps-2 text-center text-secondary fw-light fst-italic py-0">

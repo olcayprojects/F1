@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import Nav from "./Nav";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const Sprint = () => {
   const { season2 = "2024" } = useParams();
   const { rounds = "1" } = useParams();
@@ -14,7 +16,7 @@ const Sprint = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
 
-  let url = `https://ergast.com/api/f1/${season2}/${rounds}/sprint.json`;
+  let url = `${BASE_URL}/${season2}/${rounds}/sprint.json`;
 
   useEffect(() => {
     function fetchData() {
@@ -69,7 +71,9 @@ const Sprint = () => {
                 return (
                   <tr
                     key={index}
-                    className={"align-middle " + (index === 0 ? "fs-5 fw-bolder" : null)}
+                    className={
+                      "align-middle " + (index === 0 ? "fs-5 fw-bolder" : null)
+                    }
                   >
                     <td className="p-0 text-center">{item.positionText}</td>
                     <td className="op text-center p-0">{item.grid}</td>
@@ -118,7 +122,10 @@ const Sprint = () => {
                     <td className="op py-0 text-start">
                       <span className="">
                         {item.FastestLap
-                          ? item.FastestLap?.Time.time +
+                          ? "#" +
+                            item.FastestLap?.rank +
+                            " | " +
+                            item.FastestLap?.Time.time +
                             " | Lap: " +
                             item.FastestLap?.lap
                           : null}

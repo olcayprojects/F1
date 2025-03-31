@@ -7,7 +7,7 @@ const Event = (props) => {
   const { date = "2024" } = useParams();
   const { name = "Austrian Grand Prix" } = useParams();
   let url = `https://www.thesportsdb.com/api/v1/json/3/searchevents.php?e=${name}&s=${date}`;
-
+console.log(url)
   const [sdata, setData] = useState([]);
 
   const fetchData = async (url) => {

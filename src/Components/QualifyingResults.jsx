@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "./Loading";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -12,9 +14,9 @@ const QualifyingResults = (props) => {
 
   let url = "";
   if (props.season !== undefined) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/qualifying.json`;
+    url = `${BASE_URL}/${props.season}/${props.round}/qualifying.json`;
   } else {
-    url = `https://ergast.com/api/f1/${season2}/${rounds}/qualifying.json`;
+    url = `${BASE_URL}/${season2}/${rounds}/qualifying.json`;
   }
 
   useEffect(() => {
@@ -23,7 +25,6 @@ const QualifyingResults = (props) => {
       .then((data) => {
         setData(data["MRData"].RaceTable.Races);
         setIsLoaded(true);
-        //  console.log(data["MRData"].RaceTable.Races);
       })
       .catch((err) => {
         console.log(err);

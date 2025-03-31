@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
+
 const WinRacesInaSeason = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [seasonResults, setSeasonResults] = useState([]);
@@ -12,7 +15,7 @@ const WinRacesInaSeason = (props) => {
   const { season2 = "2024" } = useParams();
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}/results/1.json`;
+    url = `${BASE_URL}/${props.season}/results/1.json`;
   }
 
   useEffect(() => {

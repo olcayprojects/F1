@@ -3,7 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import DriverId from "./DriverId";
 import Loading from "./Loading";
 
-// Duration'ı milisaniyelere dönüştüren fonksiyon
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 function durationToMilliseconds(duration) {
   const [minutesPart, secondsPart] = duration.split(":");
   let minutes = 0;
@@ -26,7 +27,6 @@ function durationToMilliseconds(duration) {
   return minutesInMilliseconds + secondsInMilliseconds + milliseconds;
 }
 
-// Milisaniyeleri '1:05.564' formatına çeviren fonksiyon
 function millisecondsToDuration(milliseconds) {
   const minutes = Math.floor(milliseconds / (60 * 1000));
   const seconds = Math.floor((milliseconds % (60 * 1000)) / 1000);
@@ -36,18 +36,20 @@ function millisecondsToDuration(milliseconds) {
   ).padStart(3, "0")}`;
 }
 
-// React bileşeni
 function Pitstops(props) {
   const [formattedData, setFormattedData] = useState([]);
+  const [drivers, setDrivers] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
 
   let url = "";
   if (props.season !== undefined) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json?limit=100`;
+    url = `${BASE_URL}/${props.season}/${props.round}/pitstops.json?limit=100`;
   } else {
-    url = `https://ergast.com/api/f1/${season2}/${rounds}/pitstops.json?limit=100`;
+    url = `${BASE_URL}/${season2}/${rounds}/pitstops.json?limit=100`;
   }
 
   useEffect(() => {
@@ -116,6 +118,7 @@ function Pitstops(props) {
         );
 
         setFormattedData(newFormattedData);
+        setIsLoaded(true);
       } catch (error) {
         console.error("Veri çekme veya işleme hatası:", error);
       }
@@ -124,8 +127,13 @@ function Pitstops(props) {
     fetchData();
   }, [url]);
 
+  if (!isLoaded) {
+    return <Loading />;
+  }
+
   return formattedData.length ? (
     <div className="container-fluid p-0 border border-dark border-5">
+      <DriverId setDrivers={setDrivers} season={props.season} />
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="border-dark fs-5">
@@ -138,17 +146,26 @@ function Pitstops(props) {
           </thead>
           <tbody className="text-danger">
             {formattedData.map((ps, index) => {
+              const driver = drivers.find(
+                (driver) => driver.driverId === ps.driverId
+              );
               return (
                 <tr key={index} className="align-middle">
                   <td className="op text-center px-1 py-0">{index + 1}</td>
                   <td
                     className="col-auto fw-bold fs-5 text-info cp py-0"
-                    style={{ textTransform: "" }}
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
                   >
-                    <DriverId Id={ps.driverId} ls={1}></DriverId>
+                    {driver
+                      ? `${driver.givenName} 
+                          ${driver.familyName}
+                          (${driver.permanentNumber})
+                          ${driver.nationality}
+                          ${driver.dateOfBirth}                          
+                          `
+                      : ps.driverId}
                   </td>
                   <td className="fs-6 op fw-bold text-center">
                     <pre
@@ -159,11 +176,6 @@ function Pitstops(props) {
                         borderWidth: "2px",
                         borderStyle: "solid",
                       }}
-                      // className={
-                      //   index % 2 !== 0
-                      //     ? "text-warning px-2 fs-6"
-                      //     : "text-light px-2 fs-6"
-                      // }
                     >
                       {ps.lapDetails}
                     </pre>
@@ -179,7 +191,6 @@ function Pitstops(props) {
                       }
                     >
                       {ps.totalDuration}
-                      {/* <Duration data={sdata} driverid={ps.driverId} /> */}
                     </span>
                   </td>
                 </tr>
@@ -190,7 +201,7 @@ function Pitstops(props) {
       </div>
     </div>
   ) : (
-    "data not found"
+    "Data not found"
   );
 }
 

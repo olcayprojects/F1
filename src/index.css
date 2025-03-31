@@ -4,6 +4,13 @@ body {
   background-color: black !important;
 }
 
+@font-face {
+  font-family: "F1";
+  src: url("./assets/fonts/Formula1-Regular_web_0.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .table-responsive {
   display: block;
   width: 100%;
@@ -111,4 +118,54 @@ thead th {
 ::-webkit-scrollbar-button {
   background-color: red;
   -webkit-box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Tabloları tek bir sırada hizalamak için Flexbox kullanıyoruz */
+.table-container {
+  display: flex;
+  flex-wrap: nowrap; /* Tablo satırlarının tek bir satırda olmasını sağlar */
+  overflow-x: auto; /* Eğer tablo genişliği çoksa, yatay kaydırma barı ekler */
+}
+
+.table-fade {
+  animation: fadeIn 1s ease;
+  opacity: 0;
+  display: inline-block; /* Her bir tabloyu yatayda hizalamak için */
+  margin-right: 10px; /* Tablolar arasında boşluk bırakmak için */
+}
+
+.table-fade-in {
+  opacity: 1 !important; /* FadeIn animasyonunu tetikleyen sınıf */
+}
+
+/* Animasyon efekti */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.small-text {
+  font-size: 12px; /* Varsayılan font boyutu */
+}
+
+@media (max-width: 768px) {
+  .small-text {
+    font-size: 10px; /* Tablet ve daha küçük ekranlar için font boyutunu küçült */
+  }
+}
+
+@media (max-width: 480px) {
+  .small-text {
+    font-size: 18px; /* Mobil ekranlar için daha küçük font boyutu */
+  }
 }

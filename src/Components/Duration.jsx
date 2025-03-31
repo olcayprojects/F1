@@ -14,12 +14,10 @@ function Duration(props) {
   );
 
   function msToTime(milliseconds) {
-    // Calculate minutes, seconds, and milliseconds
     const minutes = Math.floor(milliseconds / (60 * 1000));
     const seconds = Math.floor((milliseconds % (60 * 1000)) / 1000);
     const millis = Math.floor(milliseconds % 1000);
 
-    // Format the output
     return `${minutes}:${String(seconds).padStart(2, "0")}.${String(
       millis
     ).padStart(3, "0")}`;

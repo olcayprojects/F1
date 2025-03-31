@@ -1,27 +1,23 @@
 import React from "react";
-import { useState, useCallback, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import Nav from "./Nav";
 import { DrvInfo } from "./DriverInfo";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const DriverStandings = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [driverStandings, setDriverStandings] = useState([]);
-  const [year, setYear] = useState("2024");
+  const [year, setYear] = useState("2025");
   const navigate = useNavigate();
 
-  const dateTime = (d) => {
-    return d ? new Date(d).toDateString() : "? ";
-  };
-
-  // URL dinamik olarak yıl değişimlerine göre ayarlandı
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}/driverStandings.json`;
+    url = `${BASE_URL}/${props.season}/driverStandings.json`;
   } else {
-    url = `https://ergast.com/api/f1/${year}/driverStandings.json`;
+    url = `${BASE_URL}/${year}/driverStandings.json`;
   }
 
   useEffect(() => {
@@ -53,7 +49,8 @@ const DriverStandings = (props) => {
 
   return (
     <div className="container-fluid p-0">
-      <Nav />
+      {props.tab !== "1" && <Nav />}
+
       {!year ? (
         ""
       ) : (
@@ -144,8 +141,14 @@ const DriverStandings = (props) => {
                       </b>
                     </span>
                     <span className="text-success">
-                      ({driver.Driver.code}#{driver.Driver.permanentNumber})
+                      {driver.Driver.code &&
+                        `(${driver.Driver.code}${
+                          driver.Driver.permanentNumber
+                            ? "#" + driver.Driver.permanentNumber
+                            : ""
+                        })`}
                     </span>
+
                     <span className="fw-light fst-italic text-secondary pe-1">
                       {new Date(driver.Driver.dateOfBirth).toLocaleString(
                         "en-US",

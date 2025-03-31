@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 const Events = (props) => {
   const [data, setData] = useState();
@@ -7,7 +6,6 @@ const Events = (props) => {
   let url = "";
 
   url = `https://www.thesportsdb.com/api/v1/json/3/searchfilename.php?e=Formula_1_${props.date}_${props.name}`;
-
   useEffect(() => {
     function fetchData() {
       fetch(url)
@@ -16,7 +14,7 @@ const Events = (props) => {
           setData(items.event[0]);
         })
         .catch((err) => {
-          console.log(err.message);
+          // console.log(err.message);
         });
     }
     fetchData();
@@ -25,25 +23,35 @@ const Events = (props) => {
   return (
     <div className="container-fluid p-0">
       {data?.strThumb ? (
-        <div>
-          <div className="">
-            <img
-              className="img-fluid pt-1 ps-1 mx-auto d-block"
-              src={data?.strThumb + "/preview"}
-              alt=""
-              title={data?.strFilename}
-              srcSet=""
-            />
-          </div>
+        <div className="container">
+          <img
+            style={{ width: "44%" }}
+            className="img-fluid p-0 m-0 mx-auto d-block"
+            src={data?.strBanner + "/medium"}
+            alt=""
+            title={data?.strFilename}
+            srcSet=""
+          />
+          {(data?.strResult || data?.strDescriptionEN) && (
+            <p className="text-secondary small-text">
+              &quot; {data?.strResult || data?.strDescriptionEN} &quot;
+            </p>
+          )}
         </div>
-      ) : (
-        <img
+      ) : <img
           className="img-fluid pt-1 ps-1 mx-auto d-block"
           src={data?.strBanner + "/preview"}
           alt=""
           title={data?.strFilename}
           srcSet=""
-        />
+        /> ? (
+        <div className="container-fluid text-secondary text-center d-flex justify-content-center">
+          <h6>
+            {data?.strFilename}-{data?.strVenue}
+          </h6>
+        </div>
+      ) : (
+        ""
       )}
     </div>
   );

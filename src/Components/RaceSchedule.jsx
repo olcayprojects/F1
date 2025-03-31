@@ -2,7 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RaceThumb } from "./RaceInfo";
-import { Event } from "./Event";
+
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const RaceSchedule = (props) => {
   const [sdata, setData] = useState([]);
@@ -11,9 +12,29 @@ const RaceSchedule = (props) => {
   const dateNow = new Date();
   dateNow.setDate(dateNow.getDate());
 
+  const dateTime = (d, t) => new Date(d + " " + t);
+
+  const getFormattedDate = (event) => {
+    if (!event) return "-";
+
+    const { date, time } = event;
+    if (time) {
+      return dateTime(date, time).toLocaleString("en", {
+        weekday: "short",
+        month: "2-digit",
+        day: "2-digit",
+        hourCycle: "h23",
+        hour: "2-digit",
+        minute: "2-digit",
+      });
+    }
+
+    return date;
+  };
+
   let url = "";
   if (props.season) {
-    url = `https://ergast.com/api/f1/${props.season}.json`;
+    url = `${BASE_URL}/${props.season}.json`;
   }
 
   useEffect(() => {
@@ -41,8 +62,9 @@ const RaceSchedule = (props) => {
             <th className="text-center">R</th>
             <th className="bg-danger text-center">Race Name</th>
             <th className=" text-center">Race Date</th>
-            <th className="text-center bg-info">Sprint Date</th>
             <th className="text-center">Qualifying</th>
+            <th className="text-center bg-info">Sprint Date</th>
+            <th className="text-center bg-info">Sprint Qualifying</th>
             <th className="bg-danger text-center">Practice1</th>
             <th className="text-center">Practice 2</th>
             <th className="bg-danger text-center">Practice 3</th>
@@ -54,7 +76,11 @@ const RaceSchedule = (props) => {
             const titleSprint =
               "Click go to " + rs.raceName + " Sprint details ";
 
-            const dateTime = (d, t) => new Date(d + " " + t);
+            const resultSprintQualifyingShootout = rs.SprintQualifying
+              ? getFormattedDate(rs.SprintQualifying)
+              : rs.SprintShootout
+              ? getFormattedDate(rs.SprintShootout)
+              : "-";
 
             return (
               <tr
@@ -62,7 +88,7 @@ const RaceSchedule = (props) => {
                   "align-middle " +
                   ((rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1]) &
-                  (props.season === "2024")
+                  (props.season === "2025")
                     ? " text-center fw-bold bg-success border border-2 border-success"
                     : " ")
                 }
@@ -72,10 +98,10 @@ const RaceSchedule = (props) => {
                 <td
                   className={
                     "text-nowrap op fw-bold text-warning py-0 " +
-                    (props.season === "2024" ? "col-2" : "")
+                    (props.season === "2025" ? "col-2" : "")
                   }
                 >
-                  {props.season === "2024" ? (
+                  {props.season === "2025" ? (
                     (rs.date.split("-")[1] ===
                       dateNow.toISOString().split("T")[0].split("-")[1]) &
                     (rs.date.split("-")[2] >=
@@ -140,15 +166,8 @@ const RaceSchedule = (props) => {
                       : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
                   }
                 >
-                  {dateTime(rs.date, rs.time) > dateNow
-                    ? dateTime(rs.date, rs.time).toLocaleString("en", {
-                        weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
+                  {dateTime(rs.date, rs.time) < dateNow
+                    ? getFormattedDate(rs)
                     : rs.time
                     ? dateTime(rs.date, rs.time).toLocaleString("en", {
                         weekday: "short",
@@ -160,6 +179,23 @@ const RaceSchedule = (props) => {
                         minute: "2-digit",
                       })
                     : new Date(rs.date).toDateString()}
+                </td>
+                <td
+                  className="text-nowrap text-center cp px-1 p-0"
+                  onClick={() =>
+                    navigate(
+                      "/Event/" +
+                        rs.raceName.replace(/ /g, "_") +
+                        "_Qualifying/" +
+                        props.season
+                    )
+                  }
+                >
+                  {rs.Qualifying
+                    ? rs.Qualifying?.time
+                      ? getFormattedDate(rs.Qualifying)
+                      : rs.Qualifying?.date
+                    : "-"}
                 </td>
                 <td
                   title={titleSprint}
@@ -193,95 +229,43 @@ const RaceSchedule = (props) => {
                 >
                   {rs.Sprint
                     ? rs.Sprint?.time
-                      ? dateTime(
-                          rs.Sprint?.date,
-                          rs.Sprint?.time
-                        ).toLocaleString("en", {
-                          weekday: "short",
-                          month: "2-digit",
-                          day: "2-digit",
-                          hourCycle: "h23",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
+                      ? getFormattedDate(rs.Sprint)
                       : rs.Sprint?.date
                     : "-"}
                 </td>
                 <td
-                  className="text-nowrap text-center cp px-1 p-0"
-                  onClick={() =>
-                    navigate(
-                      "/Event/" +
-                        rs.raceName.replace(/ /g, "_") +
-                        "_Qualifying/" +
-                        props.season
-                    )
+                  title={titleSprint}
+                  className={
+                    "text-nowrap text-center p-0 px-1 text-info op " +
+                    (rs.Sprint ? "cp" : "ch") +
+                    " " +
+                    (dateTime(rs.date, rs.time) < dateNow
+                      ? "fw-bold"
+                      : //  ? "fw-bold text-decoration-line-through"
+                        null)
                   }
                 >
-                  {rs.Qualifying
-                    ? rs.Qualifying?.time
-                      ? dateTime(
-                          rs.Qualifying?.date,
-                          rs.Qualifying?.time
-                        ).toLocaleString("en", {
-                          weekday: "short",
-                          month: "2-digit",
-                          day: "2-digit",
-                          hourCycle: "h23",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
-                      : rs.Qualifying?.date
-                    : "-"}
+                  {resultSprintQualifyingShootout}
                 </td>
+
                 <td className="text-nowrap text-center op px-1 p-0">
                   {rs.FirstPractice
                     ? rs.FirstPractice?.time
-                      ? dateTime(
-                          rs.FirstPractice?.date,
-                          rs.FirstPractice?.time
-                        ).toLocaleString("en-EN", {
-                          weekday: "short",
-                          month: "2-digit",
-                          day: "2-digit",
-                          hourCycle: "h23",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
+                      ? getFormattedDate(rs.FirstPractice)
                       : rs.FirstPractice?.date
                     : "-"}
                 </td>
                 <td className="text-nowrap text-center px-1 p-0">
                   {rs.SecondPractice
                     ? rs.SecondPractice?.time
-                      ? dateTime(
-                          rs.SecondPractice?.date,
-                          rs.SecondPractice?.time
-                        ).toLocaleString("en", {
-                          weekday: "short",
-                          month: "2-digit",
-                          day: "2-digit",
-                          hourCycle: "h23",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
+                      ? getFormattedDate(rs.SecondPractice)
                       : rs.SecondPractice?.date
                     : "-"}
                 </td>
                 <td className="text-nowrap text-center p-0 op px-1">
                   {rs.ThirdPractice
                     ? rs.ThirdPractice?.time
-                      ? dateTime(
-                          rs.ThirdPractice?.date,
-                          rs.ThirdPractice?.time
-                        ).toLocaleString("en", {
-                          weekday: "short",
-                          month: "2-digit",
-                          day: "2-digit",
-                          hourCycle: "h23",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })
+                      ? getFormattedDate(rs.ThirdPractice)
                       : rs.ThirdPractice?.date
                     : "-"}
                 </td>

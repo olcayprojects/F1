@@ -12,30 +12,37 @@ const Team = (props) => {
       fetch(url)
         .then((response) => response.json())
         .then((item) => {
-          setData(item.teams);
+          setData(item?.teams);
         })
         .catch((err) => {
-          console.log(err.message);
+          // console.log(err.message);
         });
     }
     fetchData();
   }, [url]);
 
   return data?.map((teams, index) => {
-    if (teams.strTeam === "Scuderia AlphaTauri") {
+    if (teams?.strTeamAlternate === "Scuderia AlphaTauri") {
       teams.strTeam = "RB F1 Team";
-    } else if (teams.strTeam === "Alfa Romeo Racing") {
-      teams.strTeam = "Sauber";
     }
 
-    if (props?.teamName?.substring(0, 4) === teams?.strTeam?.substring(0, 4)) {
+    let changedTeamname =
+      props?.teamName === "Renault"
+        ? "BWT Alpine Formula One Team"
+        : props?.teamName;
+
+    const foundTeam = teams.strTeam
+      .toLowerCase()
+      .includes(changedTeamname.toLowerCase());
+
+    if (foundTeam) {
       if (props.ls === 1) {
         return (
           <div className="" key={index}>
             <img
-              className="img-fluid w-100"
-              style={{ maxWidth: "120px" }}
-              src={teams?.strBadge}
+              className="img-fluid"
+              style={{}}
+              src={teams?.strLogo + "/preview"}
               alt=""
               srcSet=""
               title={teams?.strDescriptionEN}
@@ -48,7 +55,21 @@ const Team = (props) => {
               srcSet=""
               title={teams?.strDescriptionEN}
             /> */}
+            {/* <h6>{teams.strTeam}</h6> */}
           </div>
+        );
+      }
+      if (props.ls === 2) {
+        return (
+          <img
+            className="img-fluid me-1"
+            key={{ index }}
+            style={{}}
+            src={teams?.strBanner + "/small"}
+            alt=""
+            srcSet=""
+            title={teams?.strDescriptionEN}
+          />
         );
       } else {
         return (
@@ -117,7 +138,7 @@ const Team = (props) => {
         );
       }
     } else {
-      // console.log(teams);
+      return null;
     }
   });
 };

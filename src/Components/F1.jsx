@@ -10,27 +10,28 @@ import Carousel from "./Carousel";
 import Results from "./Results";
 import Nav from "./Nav";
 
-import { Box, Tab, Tabs, TabContext, Select } from "@mui/material";
-import { blue, red, cyan, grey } from "@mui/material/colors";
+import { Box, Tab, Tabs } from "@mui/material";
+// import { Box, Tab, Tabs, TabContext, Select } from "@mui/material";
+import { red } from "@mui/material/colors";
+// import { blue, red, cyan, grey } from "@mui/material/colors";
+// import { createTheme } from "@mui/material/styles";
 
-import { createTheme } from "@mui/material/styles";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      light: "#757ce8",
-      main: "#3f50b5",
-      dark: "#002884",
-      contrastText: "#fff",
-    },
-    secondary: {
-      light: "#ff7961",
-      main: "#f44336",
-      dark: "#ba000d",
-      contrastText: "#000",
-    },
-  },
-});
+// const theme = createTheme({
+//   palette: {
+//     primary: {
+//       light: "#757ce8",
+//       main: "#3f50b5",
+//       dark: "#002884",
+//       contrastText: "#fff",
+//     },
+//     secondary: {
+//       light: "#ff7961",
+//       main: "#f44336",
+//       dark: "#ba000d",
+//       contrastText: "#000",
+//     },
+//   },
+// });
 
 const F1 = () => {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
@@ -42,7 +43,7 @@ const F1 = () => {
   let d = new Date();
 
   let navigate = useNavigate();
-  const { season2 = "2024" } = useParams();
+  const { season2 = "2025" } = useParams();
   const year = new Date().getFullYear();
   const years = Array.from(new Array(75), (val, index) => year - index);
 
@@ -51,7 +52,8 @@ const F1 = () => {
       <div className="container-fluid bg-black p-0">
         <Next />
         <Carousel />
-        {season2 === "2024" ? <F1Race /> : <Nav />}
+
+        {season2 === "2025" ? <F1Race /> : <Nav />}
 
         <select
           className="form-select bg-black text-danger fs-3 text-center shadow-none cp mb-1"
@@ -108,32 +110,18 @@ const F1 = () => {
 
         {currentTabIndex === 1 && (
           <Box sx={{ pt: 1 }}>
-            <DriverStandings season={season2} round={round} />
+            <DriverStandings season={season2} round={round} tab="1" />
           </Box>
         )}
 
         {currentTabIndex === 2 && (
           <Box sx={{ pt: 1 }}>
-            <ConstructorStandings season={season2} round={round} />
+            <ConstructorStandings season={season2} round={round} tab={1} />
           </Box>
         )}
         {currentTabIndex === 3 && (
           <Box sx={{ pt: 0 }}>
-            <div className="bg-black container-fluid p-0">
-              <div className="row row-cols-1 row-cols-md-auto  g-1 justify-content-md-center bg-black">
-                {(() => {
-                  const arr = [];
-                  for (let round = 1; round <= 22; round++) {
-                    arr.push(
-                      <div key={round} className="mb-0">
-                        <Results season={season2} rounds={round} />
-                      </div>
-                    );
-                  }
-                  return arr;
-                })()}
-              </div>
-            </div>
+            <Results season={season2} />
           </Box>
         )}
       </div>

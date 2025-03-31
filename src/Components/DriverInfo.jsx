@@ -1,65 +1,78 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import PlayerProfile from "./PlayerProfile";
+
+const normalizeString = (str) => {
+  return str
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace("-", "_")
+    .replace(/\s+/g, "_");
+};
 
 export const DrvInfo = (props) => {
-  const [data1, setData] = useState();
-
-  let url = "";
-  if (props.drv === "Carlos Sainz") {
-    url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=Carlos Sainz Jr`;
-  } else {
-    url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${props.drv}`;
-  }
-
+  const [player, setPlayer] = useState(null);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
+    let drvName = props.drv === "Carlos Sainz" ? "Carlos Sainz Jr" : props.drv;
+    drvName = normalizeString(drvName);
+    const url = `https://www.thesportsdb.com/api/v1/json/3/searchplayers.php?p=${drvName}`;
+
     function fetchData() {
+      setLoading(true);
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          setData(data["player"][0]);
+          const foundPlayer = data?.player?.find(
+            (player) => normalizeString(player?.strPlayer) === drvName
+          );
+          setPlayer(foundPlayer);
+          setLoading(false);
         })
         .catch((err) => {
-          console.log(err.message);
+          console.error(err.message);
+          setLoading(false);
         });
     }
-    fetchData();
-  }, [url]);
 
-  return props.s === "1" ? (
-    <div className="card bg-black text-warning">
-      <img
-        className="img-fluid object-fit-cover"
-        style={{ width: "", height: "" }}
-        src={
-          data1?.strCutout
-            ? data1?.strCutout + "/preview"
-            : data1?.strThumb + "/preview"
-        }
-        alt=""
-        title=""
-        srcSet=""
-      />
-      <h5 className="card-title align-self-end mx-auto text-center">
-        {data1?.strPlayer}
-      </h5>
-    </div>
-  ) : (
-    <>
-      <img
-        className="img-fluid object-fit-cover"
-        style={{ width: "120px", height: "250px" }}
-        src={
-          data1?.strRender
-            ? data1?.strRender + "/preview"
-            : data1?.strThumb + "/preview"
-        }
-        alt=""
-        title={data1?.strPlayer + " / " + data1?.strNationality}
-        srcSet=""
-      />
-      <h5 className="card-title text-danger align-self-end mx-auto text-center">
-        {data1?.strPlayer}
-      </h5>
-    </>
-  );
+    fetchData();
+  }, [props.drv]);
+
+  if (loading) {
+    return <div>Yükleniyor...</div>;
+  }
+
+  if (props.s === "1") {
+    return player ? (
+      <PlayerProfile playerId={player?.idPlayer} t={"3"} />
+    ) : null;
+  }
+
+  if (player) {
+    return (
+      <>
+        <img
+          className="img-fluid"
+          style={{}}
+          src={
+            player?.strCutout
+              ? player?.strCutout + "/preview"
+              : player?.strThumb + "/preview"
+          }
+          alt={player?.strPlayer}
+          title={player?.strPlayer + " / " + player?.strNationality}
+        />
+        <h4 className="card-title text-danger align-self-end mx-auto text-center">
+          {player?.strPlayer}
+        </h4>
+        <h6 className="card-title text-warning align-self-end mx-auto text-center">
+          {player?.dateBorn} {player?.strNationality}
+        </h6>
+      </>
+    );
+  }
+
+  return null;
 };
+
+export default DrvInfo;

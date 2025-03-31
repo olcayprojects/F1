@@ -13,11 +13,13 @@ const Pitstops = (props) => {
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
 
+  const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
   let url = "";
   if (props.season !== undefined) {
-    url = `https://ergast.com/api/f1/${props.season}/${props.round}/pitstops.json?limit=100`;
+    url = `${BASE_URL}/${props.season}/${props.round}/pitstops.json?limit=100`;
   } else {
-    url = `https://ergast.com/api/f1/${season2}/${rounds}/pitstops.json?limit=100`;
+    url = `${BASE_URL}/${season2}/${rounds}/pitstops.json?limit=100`;
   }
 
   useEffect(() => {

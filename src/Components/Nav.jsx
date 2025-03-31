@@ -53,7 +53,7 @@ const Nav = () => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#/RaceHistoryChart">
-                  |Race History Chart|
+                  |Last Race Laps|
                 </a>
               </li>
             </ul>

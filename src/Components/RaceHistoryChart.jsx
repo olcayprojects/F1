@@ -4,9 +4,11 @@ import { timeToSeconds } from "../utils/utils";
 import Nav from "./Nav";
 import Loading from "./Loading";
 
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const RaceHistoryChart = () => {
   const [lapTimes, setLapTimes] = useState({});
-  const [positions, setPositions] = useState({}); // New state for positions
+  const [positions, setPositions] = useState({});
   const [driverIds, setDriverIds] = useState([]);
   const [loading, setLoading] = useState(true);
   const [season, setSeason] = useState("");
@@ -17,9 +19,7 @@ const RaceHistoryChart = () => {
   useEffect(() => {
     const fetchRaceInfo = async () => {
       try {
-        const response = await fetch(
-          "https://ergast.com/api/f1/current/last/results.json"
-        );
+        const response = await fetch(`${BASE_URL}/current/last/results.json`);
         const data = await response.json();
 
         if (season === "" && round === "") {
@@ -46,7 +46,7 @@ const RaceHistoryChart = () => {
         const limit = 100;
 
         const fetchLapData = async (offset) => {
-          const url = `https://ergast.com/api/f1/${season}/${round}/laps.json?limit=${limit}&offset=${offset}`;
+          const url = `${BASE_URL}/${season}/${round}/laps.json?limit=${limit}&offset=${offset}`;
           const response = await fetch(url);
           const data = await response.json();
 
@@ -61,7 +61,7 @@ const RaceHistoryChart = () => {
 
             if (lapsData && lapsData.length > 0) {
               allLapData = allLapData.concat(lapsData);
-              offset += limit; // Increment the offset
+              offset += limit;
 
               if (allLapData.length >= totalLaps) {
                 allLapData = allLapData.slice(0, totalLaps);
@@ -84,37 +84,55 @@ const RaceHistoryChart = () => {
         await fetchLapData(offset);
 
         let allTimes = {};
-        let allPositions = {}; // New object for positions
+        let allPositions = {};
 
         allLapData.forEach((lap) => {
           lap.Timings.forEach((timing) => {
             if (!allTimes[timing.driverId]) {
               allTimes[timing.driverId] = {};
-              allPositions[timing.driverId] = {}; // Initialize positions for this driver
+              allPositions[timing.driverId] = {};
             }
             allTimes[timing.driverId][lap.number] = timeToSeconds(timing.time);
-            allPositions[timing.driverId][lap.number] = timing.position; // Add position
+            allPositions[timing.driverId][lap.number] = timing.position;
           });
         });
 
         const uniqueDriverIds = Object.keys(allTimes);
 
+        // let completeLapTimes = {};
+        // let completePositions = {};
+        // allLapData.forEach((lap) => {
+        //   completeLapTimes[lap.number] = {};
+        //   completePositions[lap.number] = {};
+        //   uniqueDriverIds.forEach((driverId) => {
+        //     completeLapTimes[lap.number][driverId] =
+        //       allTimes[driverId]?.[lap.number] ?? undefined;
+        //     completePositions[lap.number][driverId] =
+        //       allPositions[driverId]?.[lap.number] ?? undefined;
+        //   });
+        // });
+
         let completeLapTimes = {};
-        let completePositions = {}; // New object for positions
+        let completePositions = {};
         allLapData.forEach((lap) => {
           completeLapTimes[lap.number] = {};
-          completePositions[lap.number] = {}; // Initialize for each lap
+          completePositions[lap.number] = {};
           uniqueDriverIds.forEach((driverId) => {
-            completeLapTimes[lap.number][driverId] =
-              allTimes[driverId]?.[lap.number] ?? undefined;
-            completePositions[lap.number][driverId] =
-              allPositions[driverId]?.[lap.number] ?? undefined; // Add positions
+            if (
+              allTimes[driverId]?.[lap.number] !== undefined &&
+              allPositions[driverId]?.[lap.number] !== undefined
+            ) {
+              completeLapTimes[lap.number][driverId] =
+                allTimes[driverId][lap.number];
+              completePositions[lap.number][driverId] =
+                allPositions[driverId][lap.number];
+            }
           });
         });
 
         setDriverIds(uniqueDriverIds);
         setLapTimes(completeLapTimes);
-        setPositions(completePositions); // Set positions
+        setPositions(completePositions);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching lap times:", error);
@@ -133,13 +151,15 @@ const RaceHistoryChart = () => {
     <>
       <Nav />
       <div className="RaceHistoryChart">
-        <h1 className="text-info text-center">Race History Chart</h1>
+        <h1 className="text-info text-center">
+          Last Race Laps, Times, and Positions
+        </h1>
         <h2 className="text-warning text-center">
           <span className="text-danger">
             {new Date(info.date + "T" + info.time).toLocaleString()}
           </span>
           <span className="text-primary px-1">{info.raceName}</span>
-          <span className="text-success">{info.Circuit?.circuitName}</span>
+          {/* <span className="text-success">{info.Circuit?.circuitName}</span> */}
           <span className="text-warning px-1">
             {season} #{round}
           </span>
