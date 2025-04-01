@@ -31,9 +31,11 @@ const Team = (props) => {
         ? "BWT Alpine Formula One Team"
         : props?.teamName;
 
-    const foundTeam = teams.strTeam
-      .toLowerCase()
-      .includes(changedTeamname.toLowerCase());
+    const foundTeam =
+      teams?.strTeam?.toLowerCase()?.includes(changedTeamname?.toLowerCase()) ||
+      teams?.strTeamAlternate
+        ?.toLowerCase()
+        .includes(changedTeamname?.toLowerCase());
 
     if (foundTeam) {
       if (props.ls === 1) {

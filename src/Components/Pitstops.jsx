@@ -120,7 +120,7 @@ function Pitstops(props) {
         setFormattedData(newFormattedData);
         setIsLoaded(true);
       } catch (error) {
-        console.error("Veri çekme veya işleme hatası:", error);
+        setIsLoaded(true);
       }
     }
 
@@ -201,7 +201,7 @@ function Pitstops(props) {
       </div>
     </div>
   ) : (
-    "Data not found"
+    <h4 className="text-center text-danger">Data not found!</h4>
   );
 }
 

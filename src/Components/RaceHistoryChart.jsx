@@ -135,8 +135,6 @@ const RaceHistoryChart = () => {
         setPositions(completePositions);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching lap times:", error);
-        setError("Error fetching lap times.");
         setLoading(false);
       }
     };

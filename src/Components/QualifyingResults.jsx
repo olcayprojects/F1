@@ -147,7 +147,7 @@ const QualifyingResults = (props) => {
       </div>
     </div>
   ) : (
-    <h4 className="text-center">Data not found!</h4>
+    <h4 className="text-center text-danger">Data not found!</h4>
   );
 };
 
