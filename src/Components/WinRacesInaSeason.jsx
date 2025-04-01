@@ -4,7 +4,6 @@ import Loading from "./Loading";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-
 const WinRacesInaSeason = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [seasonResults, setSeasonResults] = useState([]);
@@ -119,19 +118,28 @@ const WinRacesInaSeason = (props) => {
                     >
                       {item.Results[0].FastestLap ? (
                         <span className="px-2">
-                          {item.Results[0].FastestLap
-                            ? "#" +
-                              item.Results[0].FastestLap?.rank +
-                              " => " +
-                              "Time: " +
-                              item.Results[0].FastestLap?.Time?.time +
-                              " | AvgSpd: " +
-                              item.Results[0].FastestLap?.AverageSpeed?.speed +
-                              " kph | Lap: " +
-                              (item.Results[0].FastestLap.lap < 10
-                                ? "0" + item.Results[0].FastestLap.lap
-                                : item.Results[0].FastestLap.lap)
-                            : null}
+                          <>
+                            {"#"}
+                            {item.Results[0].FastestLap.rank}
+                            {" => Time: "}
+                            {item.Results[0].FastestLap.Time?.time}
+                            {item.Results[0].FastestLap.AverageSpeed ? (
+                              <>
+                                {" "}
+                                | AvgSpd:{" "}
+                                {
+                                  item.Results[0].FastestLap.AverageSpeed?.speed
+                                }{" "}
+                                kph |
+                              </>
+                            ) : (
+                              ""
+                            )}
+                            {" Lap: "}
+                            {item.Results[0].FastestLap.lap < 10
+                              ? `0${item.Results[0].FastestLap.lap}`
+                              : item.Results[0].FastestLap.lap}
+                          </>
                         </span>
                       ) : (
                         "Fastest Lap Data Not Found!"
