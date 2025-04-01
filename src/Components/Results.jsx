@@ -96,7 +96,11 @@ const Results = (props) => {
                               result.Driver.familyName.toUpperCase()
                             }
                           >
-                            {result.Driver.code}
+                            {result.Driver.code
+                              ? result.Driver.code
+                              : result.Driver.familyName
+                                  .toUpperCase()
+                                  .slice(0, 3)}
                           </td>
                           <td className="p-0 px-1 op">
                             {result.Constructor.name}

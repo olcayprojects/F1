@@ -44,8 +44,6 @@ const F1 = () => {
 
   let navigate = useNavigate();
   const { season2 = "2025" } = useParams();
-  const year = new Date().getFullYear();
-  const years = Array.from(new Array(75), (val, index) => year - index);
 
   return (
     <>
@@ -55,6 +53,7 @@ const F1 = () => {
 
         {season2 === "2025" ? <F1Race /> : <Nav />}
 
+        {/* Select Year for Drivers and Constructors Winning Races In a Season */}
         <select
           className="form-select bg-black text-danger fs-3 text-center shadow-none cp mb-1"
           onChange={(e) => {
@@ -62,17 +61,19 @@ const F1 = () => {
             navigate(0);
           }}
         >
+          {" "}
           <option value="" hidden>
             Select Year for Drivers and Constructors Winning Races In a Season
             1950 - {d.getFullYear()}
           </option>
-          {years.map((year, index) => {
-            return (
-              <option key={`year${index}`} value={year}>
-                {year}
-              </option>
-            );
-          })}
+          {Array.from(
+            { length: d.getFullYear() - 1950 + 1 },
+            (_, index) => d.getFullYear() - index
+          ).map((yearOption) => (
+            <option key={yearOption} value={yearOption}>
+              {yearOption}
+            </option>
+          ))}
         </select>
         <RaceSchedule season={season2} />
 
