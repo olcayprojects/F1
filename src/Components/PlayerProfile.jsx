@@ -118,6 +118,8 @@ const PlayerProfile = ({ playerId, t }) => {
           playerData.strBanner
             ? playerData.strBanner + "/small"
             : playerData.strCutout + "/small"
+            ? playerData.strThumb + "/small"
+            : ""
         }
         alt=""
       />
