@@ -141,7 +141,7 @@ const PlayerProfile = ({ playerId, t }) => {
   ) : t === "3" ? (
     <div className="container-fluid text-info">
       <img
-        className="img-fluid"
+        className="img-fluid d-block mx-auto"
         src={
           playerData.strBanner
             ? playerData.strBanner + "/small"

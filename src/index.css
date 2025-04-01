@@ -169,3 +169,9 @@ thead th {
     font-size: 18px; /* Mobil ekranlar için daha küçük font boyutu */
   }
 }
+
+.vertical-text {
+  width: 1px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}

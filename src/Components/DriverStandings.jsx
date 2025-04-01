@@ -77,7 +77,7 @@ const DriverStandings = (props) => {
         </>
       )}
 
-      <div className="d-md-flex flex-row align-items-center">
+      <div className="d-block align-items-center">
         {driverStandings?.map((driver, indexedDB) => {
           return driver.positionText === "1" ? (
             <div key={indexedDB}>
