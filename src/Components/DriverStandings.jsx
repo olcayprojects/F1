@@ -125,7 +125,7 @@ const DriverStandings = (props) => {
                         }
                       ></i>
                     ) : (
-                      driver.position
+                      driver.position || driver.positionText
                     )}
                   </td>
                   <td
