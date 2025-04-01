@@ -11,7 +11,7 @@ const normalizeString = (str) => {
 };
 
 export const DrvInfo = (props) => {
-  const [player, setPlayer] = useState(null);
+  const [player, setPlayer] = useState();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     let drvName = props.drv === "Carlos Sainz" ? "Carlos Sainz Jr" : props.drv;
@@ -23,10 +23,16 @@ export const DrvInfo = (props) => {
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
-          const foundPlayer = data?.player?.find(
-            (player) => normalizeString(player?.strPlayer) === drvName
+          // const foundPlayer = data?.player?.find(
+          //   (player) => normalizeString(player?.strPlayer) === drvName
+          // );
+          const foundPlayer = data?.player?.filter(
+            (player) =>
+              normalizeString(player?.strPlayer) === drvName &&
+              player?.strSport === "Motorsport"
           );
-          setPlayer(foundPlayer);
+
+          setPlayer(foundPlayer[0]);
           setLoading(false);
         })
         .catch((err) => {
