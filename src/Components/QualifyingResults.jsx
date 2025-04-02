@@ -37,7 +37,7 @@ const QualifyingResults = (props) => {
   }
 
   return sdata.length ? (
-    <div className="container">
+    <div className="container-fluid p-0">
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="">

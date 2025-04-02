@@ -49,7 +49,7 @@ const ConstructorStandings = (props) => {
     <div className="p-0">
       {props.tab !== 1 && <Nav />}
 
-      <div className="container-fluid">
+      <div className="container-fluid p-0">
         {props.season ? (
           ""
         ) : (

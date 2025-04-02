@@ -106,8 +106,8 @@ const ApiDataComponent = () => {
       <Nav />
       <DriverId setDrivers={setDrivers} season={season} />
 
-      <div className="border border-danger border-5 fs-2 text-info text-center fw-bold m-1">
-        <p>
+      <div className="border border-danger border-5 fs-2 text-info text-center fw-bold m-1 ">
+        <p className=" ">
           {raceDetails?.raceName} <br />
           {raceDetails?.season} #{raceDetails?.round} <br />
           {raceDetails?.date} {raceDetails?.time} <br />
@@ -119,13 +119,13 @@ const ApiDataComponent = () => {
         </p>
       </div>
 
-      <table className="table table-dark table-striped op table-bordered border-black">
+      <table className="table table-dark table-striped op table-bordered border-dark">
         <thead>
           <tr className="text-center">
+            <th className="text-start">Driver Info</th>
             <th className="">
               Lap Time<i className="bi bi-sort-down-alt fs-4"></i>
             </th>
-            <th className="">Driver Info</th>
             <th>LAP</th>
             <th>POS</th>
           </tr>
@@ -137,41 +137,18 @@ const ApiDataComponent = () => {
                 (driver) => driver.driverId === timing.driverId
               );
               return (
-                <tr key={index}>
-                  {/* Time Column */}
-                  <td className="text-black text-center">
-                    <span className="bg-warning p-2 fw-bold  d-inline-block">
-                      {timing.time}
-                    </span>
+                <tr key={index} className="">
+                  <td className="text-danger fw-bold p-0 bg-black">
+                    {driver
+                      ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`
+                      : timing.driverId}
                   </td>
-
-                  {/* Driver Column */}
-                  <td className="text-black fw-bold text-center">
-                    <span
-                      className="bg-danger p-2 d-inline-block"
-                      style={{ width: "460px", textAlign: "center" }}
-                    >
-                      {driver
-                        ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`
-                        : timing.driverId}
-                    </span>
+                  <td className="text-center p-0 bg-black">{timing.time}</td>
+                  <td className="text-primary text-center bg-black p-0">
+                    {timing.lapNumber}
                   </td>
-
-                  {/* Lap Number Column */}
-                  <td className="text-primary text-center">
-                    <span className="bg-light p-2  d-inline-block">
-                      {timing.lapNumber}
-                    </span>
-                  </td>
-
-                  {/* Position Column */}
-                  <td className="text-success text-center">
-                    <span
-                      className="bg-light p-2 d-inline-block"
-                      style={{ width: "50px", textAlign: "center" }}
-                    >
-                      {timing.position}
-                    </span>
+                  <td className="text-success text-center bg-black p-0">
+                    {timing.position}
                   </td>
                 </tr>
               );

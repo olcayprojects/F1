@@ -49,7 +49,7 @@ const RaceSchedule = (props) => {
   }, [url]);
 
   return (
-    <div className="bg-black container-fluid table-responsive">
+    <div className="bg-black container-fluid table-responsive p-0">
       <div className="text-center bg-black text-danger border-top border-start border-end border-danger border-5 m-0 p-0">
         <h1 className="m-0 p-0">F1 Schedule {props.season}</h1>
         <h6 className="m-0 p-0">
