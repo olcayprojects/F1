@@ -122,6 +122,7 @@ const ApiDataComponent = () => {
       <table className="table table-dark table-striped op table-bordered border-dark">
         <thead>
           <tr className="text-center">
+            <th className="text-start">#</th>
             <th className="text-start">Driver Info</th>
             <th className="">
               Lap Time<i className="bi bi-sort-down-alt fs-4"></i>
@@ -138,16 +139,19 @@ const ApiDataComponent = () => {
               );
               return (
                 <tr key={index} className="">
-                  <td className="text-danger fw-bold p-0 bg-black">
+                  <td className="p-0 text-end p-2">{index + 1}</td>
+                  <td className="col-8 text-danger fw-bold ps-2 p-0 bg-black">
                     {driver
                       ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`
                       : timing.driverId}
                   </td>
-                  <td className="text-center p-0 bg-black">{timing.time}</td>
-                  <td className="text-primary text-center bg-black p-0">
+                  <td className="col-2 text-center p-0 bg-black">
+                    {timing.time}
+                  </td>
+                  <td className="col-1 text-primary text-center bg-black p-0">
                     {timing.lapNumber}
                   </td>
-                  <td className="text-success text-center bg-black p-0">
+                  <td className="col-1 text-success text-center bg-black p-0">
                     {timing.position}
                   </td>
                 </tr>
