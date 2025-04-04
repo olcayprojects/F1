@@ -158,14 +158,16 @@ function Pitstops(props) {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
                   >
-                    {driver
-                      ? `${driver.givenName} 
-                          ${driver.familyName}
+                    <span className="bg-black p-2">
+                      {driver
+                        ? `${driver.givenName} 
+                      ${driver.familyName}
                           (${driver.permanentNumber})
                           ${driver.nationality}
                           ${driver.dateOfBirth}                          
                           `
-                      : ps.driverId}
+                        : ps.driverId}
+                    </span>
                   </td>
                   <td className="fs-6 op fw-bold text-center">
                     <pre
@@ -181,13 +183,10 @@ function Pitstops(props) {
                     </pre>
                   </td>
 
-                  <td
-                    className="text-center fw-bold op py-0"
-                    style={{ fontFamily: "Arial Black" }}
-                  >
+                  <td className="text-center text-info fs-4 fw-bold op py-0">
                     <span
                       className={
-                        index % 2 !== 0 ? "bg-black px-2" : "bg-secondary px-2"
+                        index % 2 !== 0 ? "bg-black px-2" : "bg-light px-2"
                       }
                     >
                       {ps.totalDuration}

@@ -94,7 +94,7 @@ const DriverStandings = (props) => {
             <thead className="border-5 fs-5">
               <tr className="">
                 <th className="text-center py-0">P</th>
-                <th className="text-center py-0 op">DRIVER</th>
+                <th className="text-center py-0 op">DRIVER INFO</th>
                 <th className="py-0">CONSTRUCTOR</th>
                 <th className="text-center op py-0">POINTS</th>
                 <th className="text-center py-0">WINS</th>
@@ -129,18 +129,18 @@ const DriverStandings = (props) => {
                     )}
                   </td>
                   <td
-                    className="cp py-0"
+                    className="cp py-0 fw-bold"
                     onClick={() => {
                       navigate("/ResultsDriver/" + driver.Driver.driverId);
                     }}
                   >
-                    <span className="text-info px-1">
+                    <span className="text-info px-1 bg-black">
                       {driver.Driver.givenName}
                       <b className="ps-1">
                         {driver.Driver.familyName.toUpperCase()}
                       </b>
                     </span>
-                    <span className="text-success">
+                    <span className="text-info opacity-25 bg-info-subtle">
                       {driver.Driver.code &&
                         `(${driver.Driver.code}${
                           driver.Driver.permanentNumber
@@ -148,8 +148,7 @@ const DriverStandings = (props) => {
                             : ""
                         })`}
                     </span>
-
-                    <span className="fw-light fst-italic text-secondary pe-1">
+                    <span className="fw-light opacity-50 fst-italic text-info bg-info-subtle pe-2">
                       {new Date(driver.Driver.dateOfBirth).toLocaleString(
                         "en-US",
                         {
@@ -160,15 +159,16 @@ const DriverStandings = (props) => {
                         }
                       ) +
                         " " +
-                        driver.Driver.nationality}
+                        driver.Driver.nationality.toUpperCase()}
                     </span>
                   </td>
-                  <td className="op">
-                    <i className="fw-bold">
-                      <b className="text-warning px-1 mx-1">
-                        {driver.Constructors[0].name.toUpperCase()}
-                      </b>
-                    </i>
+                  <td className="op fw-bold fst-italic text-warning ps-2">
+                    <span className="bg-black px-2">
+                      {driver.Constructors[0].name.toUpperCase()}
+                    </span>
+                    <span className="ps-2 text-warning-emphasis bg-warning-subtle px-2">
+                      {driver.Constructors[0].nationality.toUpperCase()}
+                    </span>
                   </td>
                   <td className="text-center text-light py-0">
                     <span

@@ -44,7 +44,8 @@ const QualifyingResults = (props) => {
             <tr className="text-black text-center">
               <th className="bg-danger py-0">P</th>
               <th className="py-0">No</th>
-              <th className="bg-danger text-start py-0">DRIVER INFO</th>
+              <th className="bg-danger text-start py-0">DRIVER</th>
+              <th className="bg-danger text-start py-0">TEAM</th>
               <th className="py-0">Q3</th>
               <th className="bg-danger py-0">Q2</th>
               <th className="py-0">Q1</th>
@@ -86,11 +87,13 @@ const QualifyingResults = (props) => {
                             " " +
                             qualifying.Driver.familyName.toUpperCase()}
                         </span>
-                        <span className="text-secondary px-1 fst-italic fw-light">
+                        <span className="text-black opacity-50 bg-info px-1 fst-italic fw-light">
                           {qualifying.Driver.nationality}
                         </span>
+                      </td>
+                      <td className={"col-5 op py-0"}>
                         <span
-                          className="fw-bold fst-italic text-black px-1 bg-info cp"
+                          className="fw-bold fst-italic text-black px-2 bg-info cp"
                           onClick={() => {
                             navigate(
                               "/ConstructorsResult/" +
@@ -102,7 +105,7 @@ const QualifyingResults = (props) => {
                         >
                           {qualifying.Constructor.name.toUpperCase()}
                         </span>
-                        <span className="text-secondary ps-1 fst-italic fw-light">
+                        <span className="text-black opacity-50 bg-info px-2 fst-italic fw-light">
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>

@@ -124,7 +124,7 @@ const ConstructorStandings = (props) => {
                     </td>
                     <td className="op fw-bold text-warning py-0">
                       <span
-                        className="p-0 px-1 cp"
+                        className="p-0 px-1 cp bg-black"
                         style={{ fontFamily: "" }}
                         onClick={() => {
                           navigate(
@@ -143,7 +143,7 @@ const ConstructorStandings = (props) => {
                         )}
                         {ConstructorStandings.Constructor.name.toUpperCase()}
                       </span>
-                      <span className="ps-2 text-center text-secondary fw-light fst-italic py-0">
+                      <span className="px-2 text-center opacity-25 bg-warning-subtle text-black fw-light fst-italic py-0">
                         {ConstructorStandings.Constructor.nationality}
                       </span>
                     </td>

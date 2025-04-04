@@ -207,7 +207,7 @@ const F1Race = (props) => {
                               key={indexResult}
                               className={
                                 "align-middle" +
-                                (indexResult === 0 ? " fs-5 fw-bolder" : "")
+                                (indexResult === 0 ? " fs-5 fw-bold" : "")
                               }
                             >
                               <td className="text-center p-0">
@@ -308,7 +308,7 @@ const F1Race = (props) => {
                                   {result.Driver?.familyName.toUpperCase()}
                                 </span>
 
-                                <span className="fw-bold p-1 fst-italic text-black bg-info px-1">
+                                <span className="fw-bold p-1 opacity-75 fst-italic text-black bg-info pe-2">
                                   {result.Driver?.nationality}
                                 </span>
                               </td>
@@ -333,7 +333,7 @@ const F1Race = (props) => {
                                   <span className="bg-black text-primary fw-bold p-1 px-1">
                                     {result.Constructor.name.toUpperCase()}
                                   </span>
-                                  <span className="bg-primary text-black p-1 fw-bold fst-italic">
+                                  <span className="bg-primary opacity-75 text-black p-1 pe-2 fw-bold fst-italic">
                                     {" " + result.Constructor.nationality}
                                   </span>
                                 </>
