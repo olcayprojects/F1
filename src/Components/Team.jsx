@@ -64,10 +64,14 @@ const Team = (props) => {
       if (props.ls === 2) {
         return (
           <img
-            className="img-fluid me-1"
+            className="img-fluid me-1 object-fit-md-cover object-fit-sm-none"
             key={{ index }}
-            style={{}}
-            src={teams?.strBanner + "/small"}
+            style={{
+              width: "40%",
+              maxHeight: "110px",
+              objectPosition: "center",
+            }}
+            src={teams?.strEquipment + "/medium"}
             alt=""
             srcSet=""
             title={teams?.strDescriptionEN}
