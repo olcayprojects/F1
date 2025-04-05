@@ -61,8 +61,8 @@ const RaceSchedule = (props) => {
           <tr className="text-black">
             <th className="text-center">R</th>
             <th className="bg-danger text-center">Race Name</th>
-            <th className=" text-center">Race Date</th>
-            <th className="text-center">Qualifying</th>
+            <th className=" text-center bg-light">Race Date</th>
+            <th className="text-center bg-light">Qualifying</th>
             <th className="text-center bg-info">Sprint Date</th>
             <th className="text-center bg-info">Sprint Qualifying</th>
             <th className="bg-danger text-center">Practice1</th>

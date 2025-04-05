@@ -111,29 +111,21 @@ const QualifyingResults = (props) => {
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
-                      <td className="col-2 text-center py-0">
+                      <td className="text-center py-0">
                         <span
                           className={
-                            qualifying?.Q3
-                              ? "bg-black px-2 text-success fw-bold align-middle"
-                              : null
+                            "bg-black px-2 text-success fw-bold align-middle"
                           }
                         >
                           {qualifying?.Q3 ? qualifying?.Q3 : "-"}
                         </span>
                       </td>
-                      <td className="col-2 text-center op py-0">
-                        <span
-                          className={
-                            qualifying?.Q2
-                              ? "bg-black px-2 fw-bold text-warning"
-                              : null
-                          }
-                        >
-                          {qualifying?.Q2 ? qualifying?.Q2 : "-"}
+                      <td className="text-center op py-0">
+                        <span className={"bg-black px-2 fw-bold text-warning"}>
+                          {qualifying?.Q2 || "-"}
                         </span>
                       </td>
-                      <td className="col-2 text-center fw-bolder align-middle py-0">
+                      <td className="text-center fw-bolder align-middle py-0">
                         <span
                           className={
                             qualifying?.Q1 ? "bg-black px-2 text-danger" : null
