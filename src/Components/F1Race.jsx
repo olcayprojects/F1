@@ -24,9 +24,8 @@ const F1Race = (props) => {
     setCurrentTabIndex(tabIndex);
   };
 
-  let season,
-    round;
-    // ,laps
+  let season, round;
+  // ,laps
 
   let navigate = useNavigate();
   const { season2 = "2025" } = useParams();
@@ -162,12 +161,12 @@ const F1Race = (props) => {
                           <th className="text-center">G</th>
                           <th className="text-center bg-danger">NO</th>
                           <th
-                            className="text-center"
+                            className="text-end bg-info"
                             style={{ letterSpacing: "5px" }}
                           >
                             DRIVER
                           </th>
-                          <th className="bg-danger text-center">T E A M</th>
+                          <th className="bg-primary">T E A M</th>
                           <th className="text-center">LAPS</th>
                           <th className="text-center bg-danger">
                             TIME / RETIRED
@@ -288,7 +287,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="cp op p-0 p-1"
+                                className="cp op p-0 p-1 text-end"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + result.Driver.driverId
