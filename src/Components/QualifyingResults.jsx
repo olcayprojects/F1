@@ -41,13 +41,13 @@ const QualifyingResults = (props) => {
       <div className="table-responsive">
         <table className="table table-dark table-striped table-bordered">
           <thead className="">
-            <tr className="text-black text-center">
-              <th className="bg-danger py-0">P</th>
-              <th className="py-0">No</th>
-              <th className="bg-danger text-start py-0">DRIVER</th>
-              <th className="bg-danger text-start py-0">TEAM</th>
-              <th className="py-0">Q3</th>
-              <th className="bg-danger py-0">Q2</th>
+            <tr className="text-black  text-center">
+              <th className="bg-black text-light py-0">P</th>
+              <th className="bg-light py-0">No</th>
+              <th className="bg-info text-end py-0">DRIVER</th>
+              <th className="bg-black text-info text-start py-0">TEAM</th>
+              <th className="bg-success py-0">Q3</th>
+              <th className="bg-warning py-0">Q2</th>
               <th className="py-0">Q1</th>
             </tr>
           </thead>
@@ -70,11 +70,13 @@ const QualifyingResults = (props) => {
                             }
                           ></i>
                         ) : (
-                          qualifying.position
+                          <span className="bg-black px-1">
+                            {qualifying.position}
+                          </span>
                         )}
                       </td>
                       <td className="text-center py-0">{qualifying.number}</td>
-                      <td className={"col-5 op py-0"}>
+                      <td className={"col-5 op py-0 text-end"}>
                         <span
                           className="fw-bold text-info bg-black px-1 cp"
                           onClick={() => {
