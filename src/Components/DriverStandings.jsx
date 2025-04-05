@@ -100,7 +100,7 @@ const DriverStandings = (props) => {
                 <th className="text-center py-0">WINS</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="">
               {driverStandings?.map((driver) => (
                 <tr
                   key={driver.Driver.driverId}
@@ -162,7 +162,7 @@ const DriverStandings = (props) => {
                         driver.Driver.nationality.toUpperCase()}
                     </span>
                   </td>
-                  <td className="op fw-bold fst-italic text-warning ps-2">
+                  <td className="op fw-bold fst-italic text-warning py-0 ps-2">
                     <span className="bg-black px-2">
                       {driver.Constructors[0].name.toUpperCase()}
                     </span>

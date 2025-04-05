@@ -85,9 +85,9 @@ const F1Race = (props) => {
                 <div key={indexItem} className="bg-black p-0 m-1">
                   <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
                     {rounds === 0 ? (
-                      <>
+                      <span className="text-danger">
                         Last Race <i className="bi bi-arrow-right-square"> </i>
-                      </>
+                      </span>
                     ) : (
                       ""
                     )}
