@@ -7,8 +7,23 @@ const Event = (props) => {
   const { date = "2024" } = useParams();
   const { name = "Austrian Grand Prix" } = useParams();
   let url = `https://www.thesportsdb.com/api/v1/json/3/searchevents.php?e=${name}&s=${date}`;
-console.log(url)
   const [sdata, setData] = useState([]);
+
+  const getFormattedDate = (timestamp) => {
+    if (!timestamp) return "-";
+
+    const fullDate = new Date(timestamp + "Z");
+
+    return fullDate.toLocaleString("en-EN", {
+      weekday: "long",
+      month: "long",
+      day: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23",
+    });
+  };
 
   const fetchData = async (url) => {
     await fetch(url)
@@ -38,7 +53,8 @@ console.log(url)
               {events.strCity} {events.strCountry}
             </h6>
             <h6 className="text-center">
-              {events.dateEvent + " " + events.strTime}
+              {getFormattedDate(events?.strTimestamp)} | Track Time:
+              {events?.strTimeLocal}
             </h6>
             <QualifyingResults
               season={events.strSeason}
