@@ -54,19 +54,19 @@ const Sprint = () => {
         </h5>
         <div className="table-responsive-sm">
           <table className="table table-dark table-striped table-bordered">
-            <thead className="fw-bold text-center">
+            <thead className="text-center">
               <tr className="align-middle">
                 <th className="">P</th>
-                <th className="bg-danger">G</th>
-                <th className="text-start">DRIVER</th>
-                <th className="text-start bg-danger">CONSTRUCTOR</th>
-                <th className="p-0">LAPS</th>
-                <th className="bg-danger text-end">TIME</th>
+                <th className="bg-primary">G</th>
+                <th className="text-start bg-info text-black">DRIVER</th>
+                <th className="text-start bg-warning">CONSTRUCTOR</th>
+                <th className="p-0 bg-success">LAPS</th>
+                <th className="bg-light text-end">TIME</th>
                 <th className="p-0">PTS</th>
-                <th className="bg-danger text-start">FASTEST LAP</th>
+                <th className="bg-light text-start">FASTEST LAP</th>
               </tr>
             </thead>
-            <tbody className="fw-bold">
+            <tbody className="">
               {data?.SprintResults.map((item, index) => {
                 return (
                   <tr
@@ -75,19 +75,22 @@ const Sprint = () => {
                       "align-middle " + (index === 0 ? "fs-5 fw-bolder" : null)
                     }
                   >
-                    <td className="p-0 text-center">{item.positionText}</td>
-                    <td className="op text-center p-0">{item.grid}</td>
+                    <td className="p-0 text-center text-danger">
+                      {item.positionText}
+                    </td>
+                    <td className="op text-center fw-normal text-primary p-0">
+                      {item.grid}
+                    </td>
                     <td
                       className="text-info cp py-0"
                       onClick={() => {
                         navigate("/ResultsDriver/" + item.Driver.driverId);
                       }}
                     >
-                      <span className="bg-black px-1">
+                      <span className="bg-black px-2 text-uppercase">
                         {item.Driver.givenName} {item.Driver.familyName}
                       </span>
-                      <span className="fst-italic fw-normal ">
-                        {" "}
+                      <span className="fst-italic fw-normal bg-info text-black px-2">
                         {item.Driver.nationality}
                       </span>
                     </td>
@@ -102,15 +105,16 @@ const Sprint = () => {
                         );
                       }}
                     >
-                      <span className="bg-black px-1">
-                        {item.Constructor.name}
+                      <span className="bg-black px-2">
+                        {item.Constructor.name.toUpperCase()}
                       </span>
-                      <span className="fst-italic fw-normal ">
-                        {" "}
+                      <span className="fst-italic fw-normal bg-warning text-black px-2">
                         {item.Constructor.nationality}
                       </span>
                     </td>
-                    <td className="text-center p-0">{item.laps}</td>
+                    <td className="text-center p-0 text-success">
+                      {item.laps}
+                    </td>
                     <td className="op text-end py-0">
                       <span className="">
                         {item.Time?.time ? item.Time?.time : item.status}
