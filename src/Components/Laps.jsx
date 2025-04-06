@@ -12,6 +12,22 @@ const timeToSeconds = (time) => {
   return parseFloat(minutes) * 60 + parseFloat(sec) + parseFloat(ms) / 1000;
 };
 
+const getFormattedDate = (timestamp) => {
+  if (!timestamp) return "-";
+
+  const fullDate = new Date(timestamp);
+
+  return fullDate.toLocaleString("en-EN", {
+    weekday: "long",
+    month: "long",
+    day: "2-digit",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23",
+  });
+};
+
 const ApiDataComponent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -110,7 +126,7 @@ const ApiDataComponent = () => {
         <p className=" ">
           {raceDetails?.raceName} <br />
           {raceDetails?.season} #{raceDetails?.round} <br />
-          {raceDetails?.date} {raceDetails?.time} <br />
+          {getFormattedDate(raceDetails?.date + "T" + raceDetails?.time)} <br />
           {raceDetails?.Circuit?.Location?.locality},{" "}
           {raceDetails?.Circuit?.Location?.country} (lat:
           {raceDetails?.Circuit?.Location?.lat} long:
@@ -139,7 +155,7 @@ const ApiDataComponent = () => {
               );
               return (
                 <tr key={index} className="">
-                  <td className="p-0 text-end p-2">{index + 1}</td>
+                  <td className="py-0 text-end p-2">{index + 1}</td>
                   <td className="col-8 text-danger fw-bold ps-2 p-0 bg-black">
                     {driver
                       ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`

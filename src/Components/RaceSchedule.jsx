@@ -187,7 +187,7 @@ const RaceSchedule = (props) => {
                       "/Event/" +
                         rs.raceName.replace(/ /g, "_") +
                         "_Qualifying/" +
-                        props.season
+                        props.season+"/"+rs.round
                     )
                   }
                 >

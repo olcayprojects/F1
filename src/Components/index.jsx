@@ -40,7 +40,7 @@ const Components = () => {
           path="/ConstructorStandings"
           element={<ConstructorStandings />}
         />
-        <Route path="/Event/:name/:date" element={<Event />} />
+        <Route path="/Event/:name/:date/:round" element={<Event />} />
         <Route path="/RaceHistoryChart" element={<RaceHistoryChart />} />
       </Routes>
     </HashRouter>

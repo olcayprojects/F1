@@ -140,24 +140,16 @@ const DriverStandings = (props) => {
                         {driver.Driver.familyName.toUpperCase()}
                       </b>
                     </span>
-                    <span className="text-info opacity-25 bg-info-subtle">
+                    <span className="text-info fs-5 opacity-25 bg-black">
                       {driver.Driver.code &&
-                        `(${driver.Driver.code}${
+                        `(${
                           driver.Driver.permanentNumber
                             ? "#" + driver.Driver.permanentNumber
                             : ""
                         })`}
                     </span>
-                    <span className="fw-light opacity-50 fst-italic text-info bg-info-subtle pe-2">
-                      {new Date(driver.Driver.dateOfBirth).toLocaleString(
-                        "en-US",
-                        {
-                          weekday: "short",
-                          month: "short",
-                          day: "2-digit",
-                          year: "numeric",
-                        }
-                      ) +
+                    <span className="fw-light fs-5 opacity-25 fst-italic text-info bg-black pe-2">
+                      {driver.Driver.dateOfBirth +
                         " " +
                         driver.Driver.nationality.toUpperCase()}
                     </span>
@@ -166,7 +158,7 @@ const DriverStandings = (props) => {
                     <span className="bg-black px-2">
                       {driver.Constructors[0].name.toUpperCase()}
                     </span>
-                    <span className="ps-2 text-warning-emphasis bg-warning-subtle px-2">
+                    <span className="ps-2 opacity-25 text-warning-emphasis bg-warning-subtle px-2">
                       {driver.Constructors[0].nationality.toUpperCase()}
                     </span>
                   </td>

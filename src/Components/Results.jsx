@@ -7,14 +7,13 @@ const Results = (props) => {
   const [sdata, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const roundsArray = [...Array(24)].map((_, index) => index + 1);
+  const roundsArray = [...Array(3)].map((_, index) => index + 1);
 
   const fetchResultStandings = useCallback(async (url) => {
     try {
       const response = await fetch(url);
 
       if (!response.ok) {
-        console.error(`Failed to fetch data for URL: ${url}`);
         return null;
       }
 
@@ -22,7 +21,6 @@ const Results = (props) => {
       const raceData = data?.MRData?.RaceTable?.Races[0];
       return raceData;
     } catch (e) {
-      console.error("Error fetching data:", e);
       return null;
     }
   }, []);
@@ -44,7 +42,11 @@ const Results = (props) => {
     };
 
     fetchData();
-  }, [props.season, roundsArray, fetchResultStandings]);
+
+    return () => {
+      setLoading(false);
+    };
+  }, [props.season, fetchResultStandings]);
 
   if (loading) {
     return <Loading />;
@@ -53,7 +55,6 @@ const Results = (props) => {
   return (
     <div className="container-fluid">
       <div className="row d-flex justify-content-center">
-        {/* Array'i döngüyle işleyip verisi olan turları render ediyoruz */}
         {sdata.length > 0 ? (
           sdata.map((roundData, roundIndex) => {
             if (!roundData?.Results || roundData?.Results?.length === 0) {

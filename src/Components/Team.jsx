@@ -1,11 +1,10 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const Team = (props) => {
+const Team = ({ constructor, teamName, ls }) => {
   const [data, setData] = useState([]);
+  const [foundTeam, setFoundTeam] = useState(null);
 
-  let url = "";
-  url = `https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=Formula 1`;
+  let url = `https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=Formula 1`;
 
   useEffect(() => {
     function fetchData() {
@@ -21,24 +20,42 @@ const Team = (props) => {
     fetchData();
   }, [url]);
 
+  useEffect(() => {
+    if (data.length > 0) {
+      const changedTeamname =
+        teamName === "Renault" ? "BWT Alpine Formula One Team" : teamName;
+
+      const team = data.find(
+        (teams) =>
+          teams?.strTeam
+            ?.toLowerCase()
+            ?.includes(changedTeamname?.toLowerCase()) ||
+          teams?.strTeamAlternate
+            ?.toLowerCase()
+            .includes(changedTeamname?.toLowerCase())
+      );
+
+      if (team) {
+        setFoundTeam(team);
+      } else {
+        setFoundTeam(null);
+      }
+    }
+  }, [data, teamName]);
+
+  useEffect(() => {
+    if (foundTeam) {
+      constructor(foundTeam);
+    }
+  }, [foundTeam, constructor]);
+
   return data?.map((teams, index) => {
     if (teams?.strTeamAlternate === "Scuderia AlphaTauri") {
       teams.strTeam = "RB F1 Team";
     }
 
-    let changedTeamname =
-      props?.teamName === "Renault"
-        ? "BWT Alpine Formula One Team"
-        : props?.teamName;
-
-    const foundTeam =
-      teams?.strTeam?.toLowerCase()?.includes(changedTeamname?.toLowerCase()) ||
-      teams?.strTeamAlternate
-        ?.toLowerCase()
-        .includes(changedTeamname?.toLowerCase());
-
-    if (foundTeam) {
-      if (props.ls === 1) {
+    if (foundTeam && teams?.strTeam === foundTeam.strTeam) {
+      if (ls === 1) {
         return (
           <div className="" key={index}>
             <img
@@ -46,26 +63,16 @@ const Team = (props) => {
               style={{}}
               src={teams?.strLogo + "/preview"}
               alt=""
-              srcSet=""
               title={teams?.strDescriptionEN}
             />
-            {/* <img
-              className="img-fluid w-100 "
-              style={{height: "100px", objectFit: "cover" }}
-              src={teams?.strTeamJersey + ""}
-              alt=""
-              srcSet=""
-              title={teams?.strDescriptionEN}
-            /> */}
-            {/* <h6>{teams.strTeam}</h6> */}
           </div>
         );
       }
-      if (props.ls === 2) {
+      if (ls === 2) {
         return (
           <img
             className="img-fluid me-1 object-fit-md-cover object-fit-sm-none"
-            key={{ index }}
+            key={index}
             style={{
               width: "40%",
               maxHeight: "110px",
@@ -73,21 +80,12 @@ const Team = (props) => {
             }}
             src={teams?.strEquipment + "/medium"}
             alt=""
-            srcSet=""
             title={teams?.strDescriptionEN}
           />
         );
       } else {
         return (
           <div key={index} className="container-fluid p-0" style={{}}>
-            {/* <img
-              className="img-fluid w-25"
-              src={teams?.strTeamBadge + "/preview"}
-              alt=""
-              srcSet=""
-              title=""
-            /> */}
-
             <img
               className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
               style={{ maxHeight: "220px" }}

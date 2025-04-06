@@ -124,8 +124,8 @@ const PlayerProfile = ({ playerId, t }) => {
         alt=""
       />
       <pre className="text-center m-0">
-        {playerData.dateBorn} {playerData.strBirthLocation}{" "}
-        {playerData.strNationality}
+        {new Date(playerData?.dateBorn).toDateString()}{" "}
+        {playerData.strBirthLocation} {playerData.strNationality}
       </pre>
       {playerData.strHeight && (
         <pre className="m-0 text-center">
@@ -155,8 +155,8 @@ const PlayerProfile = ({ playerId, t }) => {
         title={playerData.strDescriptionEN}
       />
       <pre className="text-center m-0">
-        {playerData.dateBorn} {playerData.strBirthLocation}{" "}
-        {playerData.strNationality}
+        {new Date(playerData.dateBorn).toDateString()} <br />
+        {playerData.strBirthLocation} {playerData.strNationality}
       </pre>
       {playerData.strHeight && (
         <pre className="m-0 text-center">

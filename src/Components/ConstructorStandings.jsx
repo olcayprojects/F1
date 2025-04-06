@@ -9,6 +9,7 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const ConstructorStandings = (props) => {
   const [constructorStandings, setConstructorStandings] = useState();
+  const [constructor, setConstructor] = useState();
   const [isLoaded, setIsLoaded] = useState(true);
   const [year, setYear] = useState("2025");
 
@@ -75,6 +76,26 @@ const ConstructorStandings = (props) => {
             </div>
           </>
         )}
+        {year == new Date().getFullYear() ? (
+          <div className="container-fluid d-flex flex-column justify-content-center align-items-center fw-bold">
+            <img
+              src={constructor?.strBadge + "/small"}
+              alt=""
+              className="img-fluid"
+            />
+            <h4 className="text-warning-emphasis m-0 fw-bold">
+              {constructor?.strTeam}-{constructor?.intFormedYear}
+            </h4>
+            <h4 className="text-warning-emphasis m-0 fw-bold">
+              {constructor?.strLocation}
+            </h4>
+            <pre className="text-wrap text-warning-emphasis px-1">
+              {constructor?.strDescriptionEN}
+            </pre>
+          </div>
+        ) : (
+          ""
+        )}
         <div className="justify-content-center">
           <table className="table table-dark table-striped table-bordered">
             <thead className="border-5 fs-5 bg-danger">
@@ -138,6 +159,7 @@ const ConstructorStandings = (props) => {
                         {ConstructorStandings.position < 2 && (
                           <Team
                             teamName={ConstructorStandings.Constructor.name}
+                            constructor={setConstructor}
                             ls={2}
                           />
                         )}
