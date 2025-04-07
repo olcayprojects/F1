@@ -61,7 +61,7 @@ const Team = ({ constructor, teamName, ls }) => {
             <img
               className="img-fluid"
               style={{}}
-              src={teams?.strLogo + "/preview"}
+              src={teams?.strLogo + "/tiny"}
               alt=""
               title={teams?.strDescriptionEN}
             />

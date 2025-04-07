@@ -61,13 +61,15 @@ const RaceSchedule = (props) => {
           <tr className="text-black">
             <th className="text-center">R</th>
             <th className="bg-danger text-center">Race Name</th>
-            <th className=" text-center bg-light">Race Date</th>
-            <th className="text-center bg-light">Qualifying</th>
-            <th className="text-center bg-info">Sprint Date</th>
-            <th className="text-center bg-info">Sprint Qualifying</th>
-            <th className="bg-danger text-center">Practice1</th>
-            <th className="text-center">Practice 2</th>
-            <th className="bg-danger text-center">Practice 3</th>
+            <th className=" text-center text-black bg-light op">Race Date</th>
+            <th className="text-center bg-light text-black">Qualifying</th>
+            <th className="text-center bg-info text-black">Sprint Date</th>
+            <th className="text-center bg-info text-black op">
+              Sprint Qualifying
+            </th>
+            <th className="bg-danger text-black text-center">Practice1</th>
+            <th className="op text-center bg-danger text-black">Practice 2</th>
+            <th className="bg-danger text-black text-center">Practice 3</th>
           </tr>
         </thead>
         <tbody className="text-danger">
@@ -187,7 +189,9 @@ const RaceSchedule = (props) => {
                       "/Event/" +
                         rs.raceName.replace(/ /g, "_") +
                         "_Qualifying/" +
-                        props.season+"/"+rs.round
+                        props.season +
+                        "/" +
+                        rs.round
                     )
                   }
                 >

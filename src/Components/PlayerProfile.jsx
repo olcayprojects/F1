@@ -145,10 +145,10 @@ const PlayerProfile = ({ playerId, t }) => {
       <img
         className="img-fluid d-block mx-auto"
         src={
-          playerData.strBanner
-            ? playerData.strBanner + "/small"
-            : playerData.strCutout + "/small"
-            ? playerData.strThumb + "/small"
+          playerData.strCutout
+            ? playerData.strCutout + "/tiny"
+            : playerData.strThumb + "/tiny"
+            ? playerData.strRender + "/tiny"
             : ""
         }
         alt={playerData.strPlayer}

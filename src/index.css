@@ -86,16 +86,11 @@ tr {
   opacity: 0.9;
 }
 
-thead th {
-  background-color: red !important;
-  color: black !important;
-}
-
 .carousel-item {
-  transition: -webkit-transform 0.6s ease;
-  transition: transform 0.6s ease;
-  transition: transform 0.6s ease, -webkit-transform 0.6s ease;
-  text-align: center;
+  transition: opacity 2s ease-in-out !important;
+}
+li {
+  transition: opacity 2s ease !important;
 }
 
 .bg-gradient {

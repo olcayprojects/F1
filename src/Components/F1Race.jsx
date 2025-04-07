@@ -68,7 +68,7 @@ const F1Race = (props) => {
   } else {
     return (
       <>
-        <div className="container.fluid bg-black p-0">
+        <div className="container-fluid bg-black p-0">
           <Nav />
           {sdata.length > 0 ? (
             sdata?.map((item, indexItem) => {
@@ -82,7 +82,10 @@ const F1Race = (props) => {
                 });
 
               return (
-                <div key={indexItem} className="bg-black p-0 m-1">
+                <div
+                  key={indexItem}
+                  className="container-fluid bg-black p-0 m-1"
+                >
                   <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
                     {rounds === 0 ? (
                       <span className="text-danger">
@@ -105,7 +108,7 @@ const F1Race = (props) => {
                   </h1>
 
                   {season2 > "1970" ? (
-                    <div className="" style={{}}>
+                    <div className="container-fluid" style={{}}>
                       {item?.Results?.map((result, indexResult) => {
                         return result.positionText in [1, 2, 3, 4] ? (
                           <div
@@ -154,25 +157,56 @@ const F1Race = (props) => {
                   ) : null}
 
                   <div className="table-responsive-sm">
-                    <table className="table table-dark table-striped table-bordered border-black">
+                    <table className="table table-dark table-striped table-bordered border-dark">
                       <thead className="">
                         <tr className="align-middle">
-                          <th className="bg-danger text-center">P</th>
-                          <th className="text-center">G</th>
-                          <th className="text-center bg-danger">NO</th>
+                          <th className="bg-light text-center text-black text-black op">
+                            P
+                          </th>
                           <th
-                            className="text-end bg-info"
+                            className="text-center text-black"
+                            style={{ backgroundColor: "#74F0B6" }}
+                          >
+                            G
+                          </th>
+                          <th
+                            className="text-center text-black"
+                            style={{ backgroundColor: "#FFF200" }}
+                          >
+                            NO
+                          </th>
+                          <th
+                            className="text-end text-black bg-info"
                             style={{ letterSpacing: "5px" }}
                           >
-                            DRIVER
+                            <span className="bg-black text-info p-1">
+                              DRIVER
+                            </span>
                           </th>
-                          <th className="bg-primary">T E A M</th>
-                          <th className="text-center">LAPS</th>
-                          <th className="text-center bg-danger">
+                          <th className="bg-primary text-black">
+                            <span className="bg-black text-primary p-1 ">
+                              T E A M
+                            </span>
+                          </th>
+                          <th
+                            className="text-center text-black op"
+                            style={{ backgroundColor: "#DE3126" }}
+                          >
+                            LAPS
+                          </th>
+                          <th
+                            className="text-center text-black"
+                            style={{ backgroundColor: "#86995B" }}
+                          >
                             TIME / RETIRED
                           </th>
-                          <th className="text-center">PTS</th>
-                          <th className="text-center bg-black"></th>
+                          <th
+                            className="text-center text-black op"
+                            style={{ backgroundColor: "aquamarine" }}
+                          >
+                            PTS
+                          </th>
+                          <th className="text-center text-black bg-secondary"></th>
                           <th className="text-end bg-success">
                             <span className="text-decoration-underline text-black">
                               F A S T E S T
@@ -239,7 +273,10 @@ const F1Race = (props) => {
                                   </>
                                 )}
                               </td>
-                              <td className="op text-center text-warning p-0">
+                              <td
+                                className="op text-center p-0"
+                                style={{ color: "#74F0B6" }}
+                              >
                                 <span>
                                   {result.grid - result.position === 0 ? (
                                     <i className="bi bi-dash"></i>
@@ -339,17 +376,20 @@ const F1Race = (props) => {
                               </td>
                               <td
                                 className="op text-center fw-bold"
-                                style={{ color: "Fuchsia" }}
+                                style={{ color: "#DE3126" }}
                               >
-                                <span className="bg-black px-2">
+                                <span className="d-block bg-black px-1">
                                   {result.laps}
                                 </span>
                               </td>
-                              <td className="text-wrap text-center text-warning fw-bold p-0 px-1">
-                                <span className="bg-black w-100 d-inline-block">
+                              <td className="text-wrap text-center fw-bold p-0 px-1">
+                                <span
+                                  className="bg-black w-100 d-inline-block"
+                                  style={{ color: "#86995B" }}
+                                >
                                   {result.Time?.time ? (
                                     result.Time.time[0] === "+" ? (
-                                      <span className="text-success">
+                                      <span className="">
                                         {result.Time.time}
                                       </span>
                                     ) : result.status !== "Finished" ? (
@@ -382,9 +422,18 @@ const F1Race = (props) => {
                                     : { color: "black" }
                                 }
                               >
-                                {result.points}
+                                <span
+                                  className={
+                                    "d-block mx-1  " +
+                                    (result.points > 0
+                                      ? "bg-black"
+                                      : "bg-light op")
+                                  }
+                                >
+                                  {result.points}
+                                </span>
                               </td>
-                              <td className="bg-black"></td>
+                              <td className="bg-secondary"></td>
 
                               <td
                                 className={

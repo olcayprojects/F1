@@ -100,17 +100,17 @@ const ResultsDriver = () => {
               <h3 className="text-center text-primary">Season {season}</h3>
               <table className="table table-dark table-striped table-bordered">
                 <thead>
-                  <tr>
-                    <th className="bg-danger text-center">S</th>
+                  <tr className="table-active">
+                    <th className="text-center">S</th>
                     <th className="text-center">R</th>
-                    <th className="bg-danger">Race Name</th>
+                    <th className="">Race Name</th>
                     <th className="text-center">P</th>
-                    <th className="text-center bg-danger">G</th>
-                    <th className="text-center">Constructor</th>
-                    <th className="text-center bg-danger">LAPS</th>
-                    <th className="text-center">Time / Status</th>
-                    <th className="text-center bg-danger">PTS</th>
-                    <th className="text-center">
+                    <th className="text-center">G</th>
+                    <th className="text-center text-success">Constructor</th>
+                    <th className="text-center">LAPS</th>
+                    <th className="text-center text-warning">Time / Status</th>
+                    <th className="text-center">PTS</th>
+                    <th className="text-center text-danger">
                       <span className="">Fastest Lap</span>
                     </th>
                   </tr>

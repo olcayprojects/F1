@@ -27,17 +27,18 @@ const Carousel = () => {
       controls={false}
       indicators={false}
       fade={true}
+      pause={"hover" |false}
       style={{ height: "110px" }}
     >
       {data.map((item, i) => {
         return (
-          <Caro.Item interval={2000} key={i}>
-            {/* <h1
+          <Caro.Item interval={1000} key={i} className="">
+            <h1
               style={{ fontFamily: "fantasy", transform: "scaleX(-1)" }}
               className="text-danger float-start pe-1"
             >
-              {item.strTeam}
-            </h1> */}
+              {item.strTeamAlternate}
+            </h1>
             <img
               style={{
                 width: "28%",
@@ -52,12 +53,12 @@ const Carousel = () => {
               srcSet=""
               alt=""
             />
-            {/* <h1
+            <h1
               style={{ fontFamily: "fantasy" }}
               className="text-danger float-end pe-1"
             >
-              {item.strTeam}
-            </h1> */}
+              {item.strTeamAlternate}
+            </h1>
             <img
               style={{
                 width: "28%",

@@ -27,7 +27,7 @@ const Events = (props) => {
           <img
             style={{ width: "44%" }}
             className="img-fluid p-0 m-0 mx-auto d-block"
-            src={data?.strBanner + "/medium"}
+            src={data?.strBanner + "/small"}
             alt=""
             title={data?.strFilename}
             srcSet=""
@@ -40,7 +40,7 @@ const Events = (props) => {
         </div>
       ) : <img
           className="img-fluid pt-1 ps-1 mx-auto d-block"
-          src={data?.strBanner + "/preview"}
+          src={data?.strBanner + "/small"}
           alt=""
           title={data?.strFilename}
           srcSet=""

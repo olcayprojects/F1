@@ -65,8 +65,8 @@ const LapTable = ({ lapTimes, driverIds, positions }) => {
   return (
     <div className="table-responsive">
       <table className="table table-dark table-bordered table-striped m-0 mb-1">
-        <thead>
-          <tr>
+        <thead className="">
+          <tr className="">
             <th className="m-0 p-0 text-center">L</th>
             {Array.from({ length: maxDrivers }, (_, i) => (
               <th className="text-center m-0 p-0" key={i + 1}>

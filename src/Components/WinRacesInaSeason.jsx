@@ -43,13 +43,21 @@ const WinRacesInaSeason = (props) => {
           <table className="table table-dark table-striped table-bordered">
             <thead className="">
               <tr className="">
-                <th className="bg-danger op py-0">#</th>
-                <th className="bg-danger text-center py-0">Race Name</th>
-                <th className="bg-danger op text-center py-0">Driver Info</th>
-                <th className="bg-danger text-center py-0">P</th>
-                <th className="bg-danger op text-center py-0">Laps</th>
-                <th className="bg-danger text-center py-0">Time</th>
-                <th className="bg-danger op text-center py-0">Fastest Lap</th>
+                <th className="text-black bg-light op py-0">#</th>
+                <th className="text-black bg-warning text-center py-0">
+                  Race Name
+                </th>
+                <th className="text-black bg-info op text-center py-0">
+                  Driver Info
+                </th>
+                <th className="text-black bg-danger text-center py-0">P</th>
+                <th className="text-black bg-secondary op text-center py-0">
+                  Laps
+                </th>
+                <th className="text-black bg-success text-center py-0">Time</th>
+                <th className="text-black bg-primary op text-center py-0">
+                  Fastest Lap
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -97,14 +105,14 @@ const WinRacesInaSeason = (props) => {
                         {item.Results[0].Constructor.name.toUpperCase()}
                       </span>
                     </td>
-                    <td className="col text-center fw-bold py-0">
+                    <td className="col text-center text-danger fw-bold py-0">
                       <span className="px-1">{item.Results[0].points}</span>
                     </td>
 
-                    <td className="col text-center op fw-bold py-0">
+                    <td className="col text-center text-secondary op fw-bold py-0">
                       <span className="px-1">{item.Results[0].laps}</span>
                     </td>
-                    <td className="col text-center fw-bold py-0">
+                    <td className="col text-center text-success fw-bold py-0">
                       <span className="px-1">{item.Results[0].Time.time}</span>
                     </td>
 

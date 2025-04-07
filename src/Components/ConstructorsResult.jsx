@@ -104,14 +104,14 @@ const ConstructorsResult = () => {
                     </caption>
                     <thead>
                       <tr className="">
-                        <th className="text-center">P</th>
-                        <th className="bg-danger text-center">G</th>
+                        <th className="text-center text-info">P</th>
+                        <th className="text-center">G</th>
                         <th className="">DRIVER</th>
-                        <th className="bg-danger  text-center">TIME</th>
+                        <th className="text-center">TIME</th>
                         <th className="text-center">STATUS</th>
-                        <th className="bg-danger text-center">PTS</th>
+                        <th className="text-warning text-center">PTS</th>
                         <th className="text-center">LAPS</th>
-                        <th className="bg-danger text-center">FASTEST LAP</th>
+                        <th className="text-center">FASTEST LAP</th>
                       </tr>
                     </thead>
                     <tbody>

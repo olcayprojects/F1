@@ -136,18 +136,18 @@ const ApiDataComponent = () => {
       </div>
 
       <table className="table table-dark table-striped op table-bordered border-dark">
-        <thead>
+        <thead className="">
           <tr className="text-center">
-            <th className="text-start">#</th>
-            <th className="text-start">Driver Info</th>
-            <th className="">
+            <th className="text-start text-light">#</th>
+            <th className="text-start bg-danger text-black">Driver Info</th>
+            <th className="bg-light text-black">
               Lap Time<i className="bi bi-sort-down-alt fs-4"></i>
             </th>
-            <th>LAP</th>
-            <th>POS</th>
+            <th className="bg-primary text-black">LAP</th>
+            <th className="bg-success text-black">POS</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="fw-bold">
           {data.length > 0 ? (
             data.map((timing, index) => {
               const driver = drivers.find(
@@ -156,19 +156,21 @@ const ApiDataComponent = () => {
               return (
                 <tr key={index} className="">
                   <td className="py-0 text-end p-2">{index + 1}</td>
-                  <td className="col-8 text-danger fw-bold ps-2 p-0 bg-black">
-                    {driver
-                      ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`
-                      : timing.driverId}
+                  <td className="col-8 text-danger fw-bold ps-2 p-0">
+                    <span className="bg-black px-2">
+                      {driver
+                        ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`
+                        : timing.driverId}
+                    </span>
                   </td>
-                  <td className="col-2 text-center p-0 bg-black">
-                    {timing.time}
+                  <td className="col-2 text-center p-0">
+                    <span className="bg-black px-2">{timing.time}</span>
                   </td>
-                  <td className="col-1 text-primary text-center bg-black p-0">
-                    {timing.lapNumber}
+                  <td className="col-1 text-primary text-center p-0">
+                    <span className="bg-black px-2">{timing.lapNumber}</span>
                   </td>
-                  <td className="col-1 text-success text-center bg-black p-0">
-                    {timing.position}
+                  <td className="col-1 text-success text-center p-0">
+                    <span className="bg-black px-2">{timing.position}</span>
                   </td>
                 </tr>
               );

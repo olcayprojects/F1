@@ -43,12 +43,12 @@ const QualifyingResults = (props) => {
           <thead className="">
             <tr className="text-black  text-center">
               <th className="bg-black text-light py-0">P</th>
-              <th className="bg-light py-0">No</th>
-              <th className="bg-info text-end py-0">DRIVER</th>
+              <th className="bg-light text-black py-0">No</th>
+              <th className="bg-info text-black text-end py-0">DRIVER</th>
               <th className="bg-black text-info text-start py-0">TEAM</th>
-              <th className="bg-success py-0">Q3</th>
-              <th className="bg-warning py-0">Q2</th>
-              <th className="py-0">Q1</th>
+              <th className="bg-success text-black py-0">Q3</th>
+              <th className="bg-warning text-black py-0">Q2</th>
+              <th className="py-0 bg-danger text-black">Q1</th>
             </tr>
           </thead>
           {sdata?.map((item, index) => {
@@ -114,21 +114,27 @@ const QualifyingResults = (props) => {
                       <td className="text-center py-0">
                         <span
                           className={
-                            "bg-black px-2 text-success fw-bold align-middle"
+                            "d-block bg-black px-1 text-success fw-bold align-middle"
                           }
                         >
                           {qualifying?.Q3 ? qualifying?.Q3 : "-"}
                         </span>
                       </td>
                       <td className="text-center op py-0">
-                        <span className={"bg-black px-2 fw-bold text-warning"}>
+                        <span
+                          className={
+                            "d-block bg-black px-1 fw-bold text-warning"
+                          }
+                        >
                           {qualifying?.Q2 || "-"}
                         </span>
                       </td>
                       <td className="text-center fw-bolder align-middle py-0">
                         <span
                           className={
-                            qualifying?.Q1 ? "bg-black px-2 text-danger" : null
+                            qualifying?.Q1
+                              ? "d-block bg-black px-1 text-danger"
+                              : null
                           }
                         >
                           {qualifying?.Q1}

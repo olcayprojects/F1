@@ -3,6 +3,12 @@ import Loading from "./Loading";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+const dateTime = (d, t) =>
+  new Date(d + " " + t).toLocaleString("en-EN", {
+    dateStyle: "short",
+    timeStyle: "short",
+  });
+
 const Results = (props) => {
   const [sdata, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,6 +66,9 @@ const Results = (props) => {
             if (!roundData?.Results || roundData?.Results?.length === 0) {
               return null;
             }
+            const fastestLapRank1 = roundData?.Results?.find(
+              (result) => result.FastestLap?.rank === "1"
+            );
 
             return (
               <div className="col-md-auto mb-3 p-1" key={roundIndex}>
@@ -68,19 +77,43 @@ const Results = (props) => {
                     <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
                       <span className="text-info fs-5 fw-bold">
                         <span className="text-light pe-1">
-                          #{roundIndex + 1}
+                          #{roundData?.round}
                         </span>
-                        {roundData?.raceName || "Race " + (roundIndex + 1)}
+                        {roundData?.raceName || "Race " + roundData?.round}
+                        <br />
+                        <h6 className="m-0">
+                          {roundData?.Circuit.circuitName}
+                        </h6>
+                        <h6 className="m-0">
+                          {dateTime(roundData.date, roundData.time)}
+                        </h6>
                       </span>
+                      {roundData?.Results?.length > 0 && fastestLapRank1 && (
+                        <div className="fastest-lap border border-warning mx-1">
+                          <h6 className="text-center text-warning m-0">
+                            Fastest Lap: {fastestLapRank1?.FastestLap?.lap}{" "}
+                            Time: {fastestLapRank1?.FastestLap?.Time?.time}{" "}
+                            <br />
+                            {fastestLapRank1?.FastestLap?.AverageSpeed
+                              ? `Avg. Speed: ${fastestLapRank1?.FastestLap?.AverageSpeed?.speed} kph`
+                              : ""}
+                            <p className="text-warning ps-1 m-0">
+                              {fastestLapRank1?.Driver?.givenName}{" "}
+                              {fastestLapRank1?.Driver?.familyName}(
+                              {fastestLapRank1?.Constructor?.name})
+                            </p>
+                          </h6>
+                        </div>
+                      )}
                     </caption>
                     <thead className="text-white border-dark">
                       <tr className="text-black">
-                        <th className="py-0 text-center">P</th>
-                        <th className="bg-danger text-start py-0">DRV</th>
-                        <th className="text-start py-0">CAR</th>
-                        <th className="bg-danger text-center py-0">L</th>
-                        <th className="text-center py-0">TIME</th>
-                        <th className="text-center bg-danger py-0">PT</th>
+                        <th className="bg-danger text-black py-0 text-center">P</th>
+                        <th className="op bg-danger text-black text-start py-0">DRV</th>
+                        <th className="bg-danger text-black text-start py-0">CAR</th>
+                        <th className="op bg-danger text-black text-center py-0">L</th>
+                        <th className="bg-danger text-black text-center py-0">TIME</th>
+                        <th className="op bg-danger text-black text-center py-0">PT</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -125,23 +158,6 @@ const Results = (props) => {
                       ))}
                     </tbody>
                   </table>
-
-                  {/* Verisi olan her yarış için Fastest lap bilgilerini gösteriyoruz */}
-                  {roundData?.Results?.length > 0 && (
-                    <div className="fastest-lap">
-                      <h6 className="text-center text-warning">
-                        Fastest Lap: {roundData.Results[0]?.FastestLap?.lap}{" "}
-                        Time: {roundData.Results[0]?.FastestLap?.Time?.time}{" "}
-                        <br />
-                        {roundData.Results[0]?.FastestLap?.AverageSpeed
-                          ? `Avg. Speed: ${roundData.Results[0]?.FastestLap?.AverageSpeed?.speed} kph`
-                          : ""}
-                        <p className="text-info ps-1 fw-bold">
-                          {roundData.Results[0]?.Driver.familyName}
-                        </p>
-                      </h6>
-                    </div>
-                  )}
                 </div>
               </div>
             );

@@ -81,6 +81,7 @@ const ConstructorStandings = (props) => {
             <img
               src={constructor?.strBadge + "/small"}
               alt=""
+              title={constructor?.strDescriptionEN}
               className="img-fluid"
             />
             <h4 className="text-warning-emphasis m-0 fw-bold">
@@ -89,27 +90,24 @@ const ConstructorStandings = (props) => {
             <h4 className="text-warning-emphasis m-0 fw-bold">
               {constructor?.strLocation}
             </h4>
-            <pre className="text-wrap text-warning-emphasis px-1">
-              {constructor?.strDescriptionEN}
-            </pre>
           </div>
         ) : (
           ""
         )}
         <div className="justify-content-center">
           <table className="table table-dark table-striped table-bordered">
-            <thead className="border-5 fs-5 bg-danger">
+            <thead className="border-5 fs-5">
               <tr className="">
-                <th scope="" className="bg-light text-center py-0">
+                <th scope="" className="bg-light text-center py-0 text-black">
                   POS
                 </th>
-                <th scope="" className="bg-warning op py-0">
+                <th scope="" className="bg-warning op py-0 text-black">
                   CONSTRUCTOR
                 </th>
-                <th scope="" className="bg-info text-end op py-0">
+                <th scope="" className="bg-info text-end op py-0 text-black">
                   POINTS
                 </th>
-                <th scope="" className=" bg-primary py-0">
+                <th scope="" className=" bg-primary py-0 text-black">
                   WINS
                 </th>
               </tr>
@@ -172,22 +170,22 @@ const ConstructorStandings = (props) => {
                     <td className="text-end op text-info py-0">
                       <span
                         className={
-                          "fw-bold py-0 " +
+                          "d-block fw-bold py-1 pe-2 " +
                           (ConstructorStandings.points === "0"
-                            ? "text-secondary"
-                            : null)
+                            ? "text-secondary bg-dark-subtle"
+                            : "bg-black")
                         }
                       >
                         {ConstructorStandings.points}
                       </span>
                     </td>
-                    <td className="text-primary fw-bold py-0">
+                    <td className="text-primary fw-bold py-1">
                       <span
                         className={
-                          "" +
+                          "d-block ps-2 " +
                           (ConstructorStandings.wins === "0"
-                            ? "text-secondary"
-                            : null)
+                            ? "text-secondary bg-dark-subtle"
+                            : "bg-black")
                         }
                       >
                         {ConstructorStandings.wins}
