@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/F1/static/css/main.a7b345c2.css",
-    "main.js": "/F1/static/js/main.66886888.js",
+    "main.css": "/F1/static/css/main.645518b8.css",
+    "main.js": "/F1/static/js/main.37db7815.js",
     "static/media/bootstrap-icons.woff?": "/F1/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
     "static/media/bootstrap-icons.woff2?": "/F1/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
     "static/media/Auto_Racing_Yellow_Digiflag-SC.gif": "/F1/static/media/Auto_Racing_Yellow_Digiflag-SC.49e620a0557c9b457ce8.gif",
     "static/media/Formula1-Regular_web_0.ttf": "/F1/static/media/Formula1-Regular_web_0.a10812e5dfa71f8496d3.ttf",
     "index.html": "/F1/index.html",
-    "main.a7b345c2.css.map": "/F1/static/css/main.a7b345c2.css.map",
-    "main.66886888.js.map": "/F1/static/js/main.66886888.js.map"
+    "main.645518b8.css.map": "/F1/static/css/main.645518b8.css.map",
+    "main.37db7815.js.map": "/F1/static/js/main.37db7815.js.map"
   },
   "entrypoints": [
-    "static/css/main.a7b345c2.css",
-    "static/js/main.66886888.js"
+    "static/css/main.645518b8.css",
+    "static/js/main.37db7815.js"
   ]
 }
