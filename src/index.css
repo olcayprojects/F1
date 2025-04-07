@@ -170,3 +170,7 @@ li {
   word-wrap: break-word;
   white-space: pre-wrap;
 }
+
+.myTable {
+  border-collapse: separate;
+}

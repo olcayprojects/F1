@@ -95,7 +95,7 @@ const ConstructorStandings = (props) => {
           ""
         )}
         <div className="justify-content-center">
-          <table className="table table-dark table-striped table-bordered">
+          <table className="myTable table table-dark table-striped table-bordered">
             <thead className="border-5 fs-6">
               <tr className="">
                 <th scope="" className="bg-light text-center py-0 text-black">
@@ -166,7 +166,7 @@ const ConstructorStandings = (props) => {
                         {ConstructorStandings.Constructor.nationality}
                       </span>
                     </td>
-                    <td className="text-end op text-info py-0">
+                    <td className="text-end op text-info py-1">
                       <span
                         className={
                           "d-block fw-bold py-1 pe-2 " +

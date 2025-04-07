@@ -157,7 +157,7 @@ const F1Race = (props) => {
                   ) : null}
 
                   <div className="table-responsive-sm">
-                    <table className="table table-dark table-striped table-bordered border-dark">
+                    <table className="myTable table table-dark table-striped table-bordered border-dark">
                       <thead className="">
                         <tr className="align-middle">
                           <th className="bg-light text-center text-black text-black op">

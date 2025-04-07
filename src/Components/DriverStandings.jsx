@@ -90,7 +90,7 @@ const DriverStandings = (props) => {
         })}
 
         <div className="table-responsive me-1">
-          <table className="table table-dark table-bordered table-striped">
+          <table className="myTable table table-dark table-bordered table-striped">
             <thead className="border-5 fs-6">
               <tr className="">
                 <th className="text-center py-0">P</th>
@@ -165,7 +165,7 @@ const DriverStandings = (props) => {
                       {driver.Constructors[0].nationality.toUpperCase()}
                     </span>
                   </td>
-                  <td className="text-center text-light py-0">
+                  <td className="text-center text-light py-1">
                     <span
                       className={
                         "fw-bold d-block " +
@@ -175,7 +175,7 @@ const DriverStandings = (props) => {
                       {driver.points}
                     </span>
                   </td>
-                  <td className="text-center text-primary py-0 op">
+                  <td className="text-center text-primary py-1 op">
                     <span
                       className={
                         "fw-bold d-block " +
