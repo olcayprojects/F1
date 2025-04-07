@@ -96,7 +96,7 @@ const ConstructorStandings = (props) => {
         )}
         <div className="justify-content-center">
           <table className="table table-dark table-striped table-bordered">
-            <thead className="border-5 fs-5">
+            <thead className="border-5 fs-6">
               <tr className="">
                 <th scope="" className="bg-light text-center py-0 text-black">
                   POS
@@ -120,13 +120,12 @@ const ConstructorStandings = (props) => {
                     className={
                       "align-middle " +
                       (ConstructorStandings.position === "1"
-                        ? "fs-3"
-                        : ConstructorStandings.position === "2"
-                        ? "fs-4"
-                        : ConstructorStandings.position === "3"
                         ? "fs-5"
+                        : ConstructorStandings.position === "2"
+                        ? "fs-6"
                         : null)
                     }
+                    style={{ fontSize: "14px" }}
                   >
                     <td className="text-center fw-bold py-0">
                       {ConstructorStandings.position < 2 ? (
@@ -172,7 +171,7 @@ const ConstructorStandings = (props) => {
                         className={
                           "d-block fw-bold py-1 pe-2 " +
                           (ConstructorStandings.points === "0"
-                            ? "text-secondary bg-dark-subtle"
+                            ? "text-secondary"
                             : "bg-black")
                         }
                       >
@@ -184,7 +183,7 @@ const ConstructorStandings = (props) => {
                         className={
                           "d-block ps-2 " +
                           (ConstructorStandings.wins === "0"
-                            ? "text-secondary bg-dark-subtle"
+                            ? "text-secondary"
                             : "bg-black")
                         }
                       >

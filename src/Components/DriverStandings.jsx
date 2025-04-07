@@ -91,7 +91,7 @@ const DriverStandings = (props) => {
 
         <div className="table-responsive me-1">
           <table className="table table-dark table-bordered table-striped">
-            <thead className="border-5 fs-5">
+            <thead className="border-5 fs-6">
               <tr className="">
                 <th className="text-center py-0">P</th>
                 <th className="text-center text-black bg-info py-0 op">
@@ -111,13 +111,12 @@ const DriverStandings = (props) => {
                   className={
                     "align-middle " +
                     (driver.position === "1"
-                      ? "fs-4"
-                      : driver.position === "2"
                       ? "fs-5"
-                      : driver.position === "3"
+                      : driver.position === "2"
                       ? "fs-6"
                       : null)
                   }
+                  style={{ fontSize: "14px" }}
                 >
                   <td className="text-center fw-bold py-0 op">
                     {driver.position < 2 ? (
@@ -144,7 +143,7 @@ const DriverStandings = (props) => {
                         {driver.Driver.familyName.toUpperCase()}
                       </b>
                     </span>
-                    <span className="text-info fs-5 opacity-25 bg-black">
+                    <span className="text-info opacity-25 bg-black">
                       {driver.Driver.code &&
                         `(${
                           driver.Driver.permanentNumber
@@ -152,7 +151,7 @@ const DriverStandings = (props) => {
                             : ""
                         })`}
                     </span>
-                    <span className="fw-light fs-5 opacity-25 fst-italic text-info bg-black pe-2">
+                    <span className="fw-light  opacity-25 fst-italic text-info bg-black pe-2">
                       {driver.Driver.dateOfBirth +
                         " " +
                         driver.Driver.nationality.toUpperCase()}
@@ -169,8 +168,8 @@ const DriverStandings = (props) => {
                   <td className="text-center text-light py-0">
                     <span
                       className={
-                        "bg-black fw-bold d-block " +
-                        (driver?.points === "0" ? "text-secondary" : null)
+                        "fw-bold d-block " +
+                        (driver?.points === "0" ? "text-secondary" : "bg-black")
                       }
                     >
                       {driver.points}
@@ -179,8 +178,8 @@ const DriverStandings = (props) => {
                   <td className="text-center text-primary py-0 op">
                     <span
                       className={
-                        "bg-black fw-bold d-block " +
-                        (driver?.wins === "0" ? "text-secondary" : null)
+                        "fw-bold d-block " +
+                        (driver?.wins === "0" ? "text-secondary" : "bg-black")
                       }
                     >
                       {driver.wins}

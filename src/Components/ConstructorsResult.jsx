@@ -104,17 +104,17 @@ const ConstructorsResult = () => {
                     </caption>
                     <thead>
                       <tr className="">
-                        <th className="text-center text-info">P</th>
-                        <th className="text-center">G</th>
-                        <th className="">DRIVER</th>
-                        <th className="text-center">TIME</th>
-                        <th className="text-center">STATUS</th>
-                        <th className="text-warning text-center">PTS</th>
-                        <th className="text-center">LAPS</th>
-                        <th className="text-center">FASTEST LAP</th>
+                        <th className="text-center bg-info text-black text-info">P</th>
+                        <th className="text-center bg-black text-light op">G</th>
+                        <th className="bg-black text-light">DRIVER</th>
+                        <th className="text-center bg-black text-light op">TIME</th>
+                        <th className="text-center bg-success text-black">STATUS</th>
+                        <th className="text-warning text-center bg-warning text-black op">PTS</th>
+                        <th className="text-center bg-primary text-black">LAPS</th>
+                        <th className="text-center bg-danger text-black op">FASTEST LAP</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="fw-bold">
                       {!isLoaded ? (
                         <Loading />
                       ) : (
@@ -156,17 +156,20 @@ const ConstructorsResult = () => {
                                 {item.Time?.time ? item.Time?.time : "-"}
                               </td>
                               <td className="op text-center p-0">
+                                <span className="text-success px-2">
+
                                 {item.status}
+                                </span>
                               </td>
                               <td className="text-center text-warning p-0">
                                 {item.points}
                               </td>
-                              <td className="text-center op p-0">
+                              <td className="text-center text-primary op p-0">
                                 {item.laps}
                               </td>
 
                               {item?.FastestLap ? (
-                                <td className="p-0 text-center">
+                                <td className="p-0 text-center text-danger">
                                   {item?.FastestLap?.rank} => [ Time:{" "}
                                   {item.FastestLap?.Time?.time}
                                   {item?.FastestLap?.AverageSpeed?.speed &&

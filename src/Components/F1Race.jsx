@@ -161,19 +161,26 @@ const F1Race = (props) => {
                       <thead className="">
                         <tr className="align-middle">
                           <th className="bg-light text-center text-black text-black op">
-                            P
+                            <span className="bg-black p-1 text-light">P</span>
                           </th>
                           <th
                             className="text-center text-black"
                             style={{ backgroundColor: "#74F0B6" }}
                           >
-                            G
+                            <span
+                              className="bg-black p-1"
+                              style={{ color: "#74F0B6" }}
+                            >
+                              G
+                            </span>
                           </th>
                           <th
                             className="text-center text-black"
                             style={{ backgroundColor: "#FFF200" }}
                           >
-                            NO
+                            <span className="bg-black text-warning p-1">
+                              NO
+                            </span>
                           </th>
                           <th
                             className="text-end text-black bg-info"
@@ -192,19 +199,31 @@ const F1Race = (props) => {
                             className="text-center text-black op"
                             style={{ backgroundColor: "#DE3126" }}
                           >
-                            LAPS
+                            <span className="bg-black text-danger p-1">
+                              LAPS
+                            </span>
                           </th>
                           <th
                             className="text-center text-black"
                             style={{ backgroundColor: "#86995B" }}
                           >
-                            TIME / RETIRED
+                            <span
+                              className="bg-black p-1"
+                              style={{ color: "#86995B" }}
+                            >
+                              TIME / RETIRED
+                            </span>
                           </th>
                           <th
                             className="text-center text-black op"
                             style={{ backgroundColor: "aquamarine" }}
                           >
-                            PTS
+                            <span
+                              className="bg-black p-1"
+                              style={{ color: "aquamarine" }}
+                            >
+                              PTS
+                            </span>
                           </th>
                           <th className="text-center text-black bg-secondary"></th>
                           <th className="text-end bg-success">
