@@ -125,7 +125,7 @@ const ResultsDriver = () => {
                           <td className="text-center p-0 op">{item.season}</td>
                           <td className="text-center p-0">{item.round}</td>
                           <td
-                            className={`py-0 cp op ${
+                            className={`p-0 ps-1 cp op ${
                               !item.Results ? "text-info" : ""
                             }`}
                             onClick={() =>
@@ -145,7 +145,7 @@ const ResultsDriver = () => {
                                   )
                             }
                           >
-                            <span className="px-1 d-inline-block w-100">
+                            <span className="bg-black d-inline-block w-100">
                               <span className="fw-bold text-decoration-underline">
                                 {item.Results
                                   ? item.raceName
@@ -158,7 +158,7 @@ const ResultsDriver = () => {
                           </td>
                           <td
                             className={
-                              "py-0 text-center fw-bold " +
+                              "p-0 text-center fw-bold " +
                               (results[0]
                                 ? isNaN(parseInt(results[0]?.positionText))
                                   ? " text-danger"
@@ -180,11 +180,11 @@ const ResultsDriver = () => {
                               )
                             ) : null}
                           </td>
-                          <td className="text-center op py-0">
+                          <td className="text-center op p-0">
                             {results.length > 0 ? results[0].grid : "-"}
                           </td>
                           <td
-                            className="py-0 text-center text-uppercase cp"
+                            className="p-0 text-center text-uppercase cp"
                             onClick={() => {
                               navigate(
                                 "/ConstructorsResult/" +
@@ -200,10 +200,10 @@ const ResultsDriver = () => {
                                 : "-"}
                             </span>
                           </td>
-                          <td className="py-0 text-center op">
+                          <td className="p-0 text-center op">
                             {results.length > 0 ? results[0].laps : "-"}
                           </td>
-                          <td className="py-0 text-center text-warning">
+                          <td className="p-0 text-center text-warning">
                             {results.length > 0 ? (
                               <>
                                 <span>{results[0]?.Time?.time}</span>
@@ -220,7 +220,7 @@ const ResultsDriver = () => {
                           <td className="text-center op">
                             {results.length > 0 ? results[0].points : "-"}
                           </td>
-                          <td className="py-0">
+                          <td className="p-0">
                             <span className="bg-black text-danger p-1 px-2 fw-bold text-secondary text-center">
                               {results.length > 0 && results[0]?.FastestLap ? (
                                 <>

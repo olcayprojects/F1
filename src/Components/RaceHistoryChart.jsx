@@ -149,10 +149,10 @@ const RaceHistoryChart = () => {
     <>
       <Nav />
       <div className="RaceHistoryChart">
-        <h1 className="text-info text-center">
+        <h2 className="text-info text-center">
           Last Race Laps, Times, and Positions
-        </h1>
-        <h2 className="text-warning text-center">
+        </h2>
+        <h4 className="text-warning text-center">
           <span className="text-danger">
             {new Date(info.date + "T" + info.time).toLocaleString()}
           </span>
@@ -161,7 +161,7 @@ const RaceHistoryChart = () => {
           <span className="text-warning px-1">
             {season} #{round}
           </span>
-        </h2>
+        </h4>
         <LapTable
           lapTimes={lapTimes}
           driverIds={driverIds}

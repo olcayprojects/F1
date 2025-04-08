@@ -33,7 +33,10 @@ const Events = (props) => {
             srcSet=""
           />
           {(data?.strResult || data?.strDescriptionEN) && (
-            <p className="text-secondary small-text">
+            <p
+              className="text-secondary small-text"
+              style={{ fontSize: "0.7em" }}
+            >
               &quot; {data?.strResult || data?.strDescriptionEN} &quot;
             </p>
           )}

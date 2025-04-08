@@ -56,14 +56,18 @@ const Sprint = () => {
           <table className="table table-dark table-striped table-bordered">
             <thead className="text-center">
               <tr className="align-middle">
-                <th className="">P</th>
-                <th className="bg-primary">G</th>
+                <th className="bg-danger text-black">P</th>
+                <th className="text-black bg-primary">G</th>
                 <th className="text-start bg-info text-black">DRIVER</th>
-                <th className="text-start bg-warning">CONSTRUCTOR</th>
-                <th className="p-0 bg-success">LAPS</th>
-                <th className="bg-light text-end">TIME</th>
-                <th className="p-0">PTS</th>
-                <th className="bg-light text-start">FASTEST LAP</th>
+                <th className="text-black text-start bg-warning">
+                  CONSTRUCTOR
+                </th>
+                <th className="text-black p-0 bg-success">LAPS</th>
+                <th className="text-black bg-light text-end">TIME</th>
+                <th className="text-black p-0 bg-danger">PTS</th>
+                <th className="text-black bg-light op text-start">
+                  FASTEST LAP
+                </th>
               </tr>
             </thead>
             <tbody className="">
@@ -72,7 +76,7 @@ const Sprint = () => {
                   <tr
                     key={index}
                     className={
-                      "align-middle " + (index === 0 ? "fs-5 fw-bolder" : null)
+                      "align-middle " + (index === 0 ? "fs-6 fw-bolder" : null)
                     }
                   >
                     <td className="p-0 text-center text-danger">

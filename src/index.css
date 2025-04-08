@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: monospace !important;
+  font-family: monospace;
   background-color: black !important;
 }
 
@@ -82,9 +82,9 @@ tr {
   cursor: help;
 }
 
-.op {
+/* .op {
   opacity: 0.9;
-}
+} */
 
 .carousel-item {
   transition: opacity 2s ease-in-out !important;
@@ -173,4 +173,8 @@ li {
 
 .myTable {
   border-collapse: separate;
+}
+
+tr {
+  font-size: 0.9em;
 }

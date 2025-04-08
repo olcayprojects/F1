@@ -116,7 +116,6 @@ const DriverStandings = (props) => {
                       ? "fs-6"
                       : null)
                   }
-                  style={{ fontSize: "14px" }}
                 >
                   <td className="text-center fw-bold py-0 op">
                     {driver.position < 2 ? (
@@ -151,7 +150,7 @@ const DriverStandings = (props) => {
                             : ""
                         })`}
                     </span>
-                    <span className="fw-light  opacity-25 fst-italic text-info bg-black pe-2">
+                    <span className="fw-light opacity-25 fst-italic text-info bg-black pe-2">
                       {driver.Driver.dateOfBirth +
                         " " +
                         driver.Driver.nationality.toUpperCase()}

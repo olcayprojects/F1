@@ -20,7 +20,7 @@ const RaceSchedule = (props) => {
     const { date, time } = event;
     if (time) {
       return dateTime(date, time).toLocaleString("en", {
-        weekday: "short",
+        // weekday: "short",
         month: "2-digit",
         day: "2-digit",
         hourCycle: "h23",
@@ -59,7 +59,7 @@ const RaceSchedule = (props) => {
       <table className="table table-dark table-striped table-bordered">
         <thead className="">
           <tr className="text-black">
-            <th className="text-center">R</th>
+            <th className="text-center px-0">R</th>
             <th className="bg-danger text-center">Race Name</th>
             <th className=" text-center text-black bg-light op">Race Date</th>
             <th className="text-center bg-light text-black">Qualifying</th>
@@ -68,8 +68,8 @@ const RaceSchedule = (props) => {
               Sprint Qualifying
             </th>
             <th className="bg-danger text-black text-center">Practice1</th>
-            <th className="op text-center bg-danger text-black">Practice 2</th>
-            <th className="bg-danger text-black text-center">Practice 3</th>
+            <th className="op text-center bg-danger text-black">Practice2</th>
+            <th className="bg-danger text-black text-center">Practice3</th>
           </tr>
         </thead>
         <tbody className="text-danger">
@@ -172,10 +172,10 @@ const RaceSchedule = (props) => {
                     ? getFormattedDate(rs)
                     : rs.time
                     ? dateTime(rs.date, rs.time).toLocaleString("en", {
-                        weekday: "short",
-                        month: "short",
+                        // weekday: "short",
+                        month: "2-digit",
                         day: "2-digit",
-                        year: "numeric",
+                        // year: "numeric",
                         hourCycle: "h23",
                         hour: "2-digit",
                         minute: "2-digit",
@@ -183,7 +183,7 @@ const RaceSchedule = (props) => {
                     : new Date(rs.date).toDateString()}
                 </td>
                 <td
-                  className="text-nowrap text-center cp px-1 p-0"
+                  className="text-nowrap text-center cp p-0"
                   onClick={() =>
                     navigate(
                       "/Event/" +
@@ -204,7 +204,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={titleSprint}
                   className={
-                    "text-nowrap text-center p-0 px-1 text-info op " +
+                    "text-nowrap text-center p-0 text-info op " +
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
@@ -240,7 +240,7 @@ const RaceSchedule = (props) => {
                 <td
                   title={titleSprint}
                   className={
-                    "text-nowrap text-center p-0 px-1 text-info op " +
+                    "text-nowrap text-center p-0 text-info op " +
                     (rs.Sprint ? "cp" : "ch") +
                     " " +
                     (dateTime(rs.date, rs.time) < dateNow
@@ -252,21 +252,21 @@ const RaceSchedule = (props) => {
                   {resultSprintQualifyingShootout}
                 </td>
 
-                <td className="text-nowrap text-center op px-1 p-0">
+                <td className="text-nowrap text-center op p-0">
                   {rs.FirstPractice
                     ? rs.FirstPractice?.time
                       ? getFormattedDate(rs.FirstPractice)
                       : rs.FirstPractice?.date
                     : "-"}
                 </td>
-                <td className="text-nowrap text-center px-1 p-0">
+                <td className="text-nowrap text-center p-0">
                   {rs.SecondPractice
                     ? rs.SecondPractice?.time
                       ? getFormattedDate(rs.SecondPractice)
                       : rs.SecondPractice?.date
                     : "-"}
                 </td>
-                <td className="text-nowrap text-center p-0 op px-1">
+                <td className="text-nowrap text-center p-0 op">
                   {rs.ThirdPractice
                     ? rs.ThirdPractice?.time
                       ? getFormattedDate(rs.ThirdPractice)

@@ -125,7 +125,6 @@ const ConstructorStandings = (props) => {
                         ? "fs-6"
                         : null)
                     }
-                    style={{ fontSize: "14px" }}
                   >
                     <td className="text-center fw-bold py-0">
                       {ConstructorStandings.position < 2 ? (
@@ -162,7 +161,7 @@ const ConstructorStandings = (props) => {
                         )}
                         {ConstructorStandings.Constructor.name.toUpperCase()}
                       </span>
-                      <span className="px-2 text-center opacity-25 bg-warning-subtle text-black fw-light fst-italic py-0">
+                      <span className="px-2 text-center bg-warning-subtle text-black fw-light fst-italic py-0">
                         {ConstructorStandings.Constructor.nationality}
                       </span>
                     </td>

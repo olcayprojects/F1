@@ -132,13 +132,13 @@ const PlayerProfile = ({ playerId, t }) => {
           {playerData.strHeight} {playerData.strWeight}
         </pre>
       )}
-      <pre
-        className="p-1 bg-dark text-start"
-        style={{ whiteSpace: "pre-wrap" }}
+      <p
+        className="m-0 bg-dark text-start ps-1"
+        style={{ whiteSpace: "pre-wrap", fontSize: "12px" }}
       >
         <strong className="fs-5 text-black">Description:</strong>{" "}
         {playerData?.strDescriptionEN}
-      </pre>
+      </p>
     </div>
   ) : t === "3" ? (
     <div className="container-fluid text-info">
