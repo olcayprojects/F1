@@ -39,16 +39,30 @@ const QualifyingResults = (props) => {
   return sdata.length ? (
     <div className="container-fluid p-0">
       <div className="table-responsive">
-        <table className="table table-dark table-striped table-bordered">
-          <thead className="">
+      <table className="myTable table table-dark table-striped table-bordered border-dark">
+      <thead className="">
             <tr className="text-black  text-center">
-              <th className="bg-black text-light py-0">P</th>
-              <th className="bg-light text-black py-0">No</th>
-              <th className="bg-info text-black text-end py-0">DRIVER</th>
-              <th className="bg-black text-info text-start py-0">TEAM</th>
-              <th className="bg-success text-black py-0">Q3</th>
-              <th className="bg-warning text-black py-0">Q2</th>
-              <th className="py-0 bg-danger text-black">Q1</th>
+              <th className="bg-black border-4 border-secondary text-light py-0">
+                P
+              </th>
+              <th className="border-4 border-light bg-black text-light py-0">
+                No
+              </th>
+              <th className="bg-black text-info border-4 border-info text-end py-0">
+                DRIVER
+              </th>
+              <th className="bg-black text-info border-4 border-info text-start py-0">
+                TEAM
+              </th>
+              <th className="border-4 bg-black border-success text-success py-0">
+                Q3
+              </th>
+              <th className="border-4 border-warning text-warning bg-black py-0">
+                Q2
+              </th>
+              <th className="py-0 border-4 border-danger text-danger bg-black">
+                Q1
+              </th>
             </tr>
           </thead>
           {sdata?.map((item, index) => {
@@ -70,7 +84,7 @@ const QualifyingResults = (props) => {
                             }
                           ></i>
                         ) : (
-                          <span className="bg-black px-1">
+                          <span className="bg-secondary px-1">
                             {qualifying.position}
                           </span>
                         )}

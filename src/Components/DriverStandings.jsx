@@ -90,11 +90,11 @@ const DriverStandings = (props) => {
         })}
 
         <div className="table-responsive me-1">
-          <table className="myTable table table-dark table-bordered table-striped">
-            <thead className="border-5 fs-6">
+        <table className="myTable table table-dark table-striped table-bordered border-dark">
+        <thead className="border-5 fs-6">
               <tr className="">
                 <th className="text-center py-0">P</th>
-                <th className="text-center text-black bg-info py-0 op">
+                <th className="text-black bg-info py-0 op">
                   DRIVER INFO
                 </th>
                 <th className="py-0 bg-warning text-black">CONSTRUCTOR</th>

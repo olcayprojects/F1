@@ -123,15 +123,17 @@ const PlayerProfile = ({ playerId, t }) => {
         }
         alt=""
       />
-      <pre className="text-center m-0">
-        {new Date(playerData?.dateBorn).toDateString()}{" "}
-        {playerData.strBirthLocation} {playerData.strNationality}
-      </pre>
-      {playerData.strHeight && (
-        <pre className="m-0 text-center">
-          {playerData.strHeight} {playerData.strWeight}
+      <div className="bg-secondary">
+        <pre className="text-center m-0">
+          {new Date(playerData?.dateBorn).toDateString()}{" "}
+          {playerData.strBirthLocation} {playerData.strNationality}
         </pre>
-      )}
+        {playerData.strHeight && (
+          <pre className="m-0 text-center">
+            {playerData.strHeight} {playerData.strWeight}
+          </pre>
+        )}
+      </div>
       <p
         className="m-0 bg-dark text-start ps-1"
         style={{ whiteSpace: "pre-wrap", fontSize: "12px" }}

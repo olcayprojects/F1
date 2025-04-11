@@ -84,7 +84,7 @@ const ResultsDriver = () => {
         <Nav />
 
         <div className="container-fluid text-center text-light mt-1">
-          <h4>
+          <h4 className="m-0">
             <span className="text-black bg-info px-2 fw-bold">
               {drvgivenName}
             </span>
@@ -94,11 +94,13 @@ const ResultsDriver = () => {
           </h4>
           <DriverDB drv={`${drvgivenName} ${drvfamilyName}`} />
         </div>
-        <div className="table-responsive-sm">
+        <div className="table-responsive-sm pt-2">
           {sortedSeasons.map((season) => (
             <div key={season}>
-              <h3 className="text-center text-primary">Season {season}</h3>
-              <table className="table table-dark table-striped table-bordered">
+              <h3 className="text-center m-0 text-primary">
+                <span className="bg-dark px-2">Season {season}</span>
+              </h3>
+              <table className="myTable mb-1 table table-dark table-striped table-bordered border-dark">
                 <thead>
                   <tr className="table-active">
                     <th className="text-center">S</th>
@@ -125,7 +127,7 @@ const ResultsDriver = () => {
                           <td className="text-center p-0 op">{item.season}</td>
                           <td className="text-center p-0">{item.round}</td>
                           <td
-                            className={`p-0 ps-1 cp op ${
+                            className={`p-0 px-1 cp op ${
                               !item.Results ? "text-info" : ""
                             }`}
                             onClick={() =>
@@ -145,7 +147,7 @@ const ResultsDriver = () => {
                                   )
                             }
                           >
-                            <span className="bg-black d-inline-block w-100">
+                            <span className="bg-black px-2 d-inline-block w-100">
                               <span className="fw-bold text-decoration-underline">
                                 {item.Results
                                   ? item.raceName

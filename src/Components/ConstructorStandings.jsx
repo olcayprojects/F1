@@ -95,8 +95,8 @@ const ConstructorStandings = (props) => {
           ""
         )}
         <div className="justify-content-center">
-          <table className="myTable table table-dark table-striped table-bordered">
-            <thead className="border-5 fs-6">
+        <table className="myTable table table-dark table-striped table-bordered border-dark">
+        <thead className="border-5 fs-6">
               <tr className="">
                 <th scope="" className="bg-light text-center py-0 text-black">
                   POS
@@ -132,7 +132,7 @@ const ConstructorStandings = (props) => {
                           className={
                             "fs-3 bi bi-" +
                             ConstructorStandings.position +
-                            "-square-fill text-info"
+                            "-square-fill text-light"
                           }
                         ></i>
                       ) : (
@@ -168,7 +168,7 @@ const ConstructorStandings = (props) => {
                     <td className="text-end op text-info py-1">
                       <span
                         className={
-                          "d-block fw-bold py-1 pe-2 " +
+                          "d-block fw-bold pe-2 " +
                           (ConstructorStandings.points === "0"
                             ? "text-secondary"
                             : "bg-black")
@@ -177,7 +177,7 @@ const ConstructorStandings = (props) => {
                         {ConstructorStandings.points}
                       </span>
                     </td>
-                    <td className="text-primary fw-bold py-1">
+                    <td className="text-primary fw-bold p-0">
                       <span
                         className={
                           "d-block ps-2 " +

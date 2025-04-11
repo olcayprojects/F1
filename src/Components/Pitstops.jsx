@@ -135,13 +135,17 @@ function Pitstops(props) {
     <div className="container-fluid p-0 border border-dark border-5">
       <DriverId setDrivers={setDrivers} season={props.season} />
       <div className="table-responsive">
-        <table className="myTable table table-dark table-striped table-bordered">
-          <thead className="border-dark">
+      <table className="myTable table table-dark table-striped table-bordered border-dark">
+      <thead className="border-dark">
             <tr className="text-black align-middle">
               <th className="text-center py-0">#</th>
               <th className="py-0 bg-info text-black">DRIVER INFO</th>
-              <th className="py-0 bg-warning text-black text-center">DETAILS</th>
-              <th className="text-center py-0 text-info bg-black">TOTAL DURATION</th>
+              <th className="py-0 bg-warning text-black text-center">
+                DETAILS
+              </th>
+              <th className="text-center py-0 text-info bg-black">
+                TOTAL DURATION
+              </th>
             </tr>
           </thead>
           <tbody className="text-danger">
@@ -158,7 +162,13 @@ function Pitstops(props) {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
                   >
-                    <span className="bg-black px-1 ">
+                    <span
+                      className={
+                        index % 2 === 0
+                          ? "bg-black p-1"
+                          : "bg-info text-black p-1"
+                      }
+                    >
                       {driver
                         ? `${driver.givenName} 
                       ${driver.familyName}
@@ -186,7 +196,9 @@ function Pitstops(props) {
                   <td className="text-center text-info fw-bold op py-0">
                     <span
                       className={
-                        index % 2 !== 0 ? "bg-black px-2" : "bg-light px-2"
+                        index % 2 !== 0
+                          ? "bg-black p-1"
+                          : "bg-info text-black p-1"
                       }
                     >
                       {ps.totalDuration}

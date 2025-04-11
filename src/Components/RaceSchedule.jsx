@@ -56,8 +56,8 @@ const RaceSchedule = (props) => {
           {props.season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR
         </h6>
       </div>
-      <table className="table table-dark table-striped table-bordered">
-        <thead className="">
+      <table className="myTable table table-dark table-striped table-bordered border-dark">
+      <thead className="">
           <tr className="text-black">
             <th className="text-center px-0">R</th>
             <th className="bg-danger text-center">Race Name</th>
