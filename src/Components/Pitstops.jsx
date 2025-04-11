@@ -135,13 +135,13 @@ function Pitstops(props) {
     <div className="container-fluid p-0 border border-dark border-5">
       <DriverId setDrivers={setDrivers} season={props.season} />
       <div className="table-responsive">
-        <table className="table table-dark table-striped table-bordered">
-          <thead className="border-dark fs-5">
+        <table className="myTable table table-dark table-striped table-bordered">
+          <thead className="border-dark">
             <tr className="text-black align-middle">
-              <th className="bg-danger op text-center py-0">#</th>
-              <th className="bg-danger py-0">DRIVER INFO</th>
-              <th className="bg-danger op py-0 text-center">DETAILS</th>
-              <th className="text-center bg-danger op py-0">TOTAL DURATION</th>
+              <th className="text-center py-0">#</th>
+              <th className="py-0 bg-info text-black">DRIVER INFO</th>
+              <th className="py-0 bg-warning text-black text-center">DETAILS</th>
+              <th className="text-center py-0 text-info bg-black">TOTAL DURATION</th>
             </tr>
           </thead>
           <tbody className="text-danger">
@@ -153,12 +153,12 @@ function Pitstops(props) {
                 <tr key={index} className="align-middle">
                   <td className="op text-center px-1 py-0">{index + 1}</td>
                   <td
-                    className="col-auto fw-bold fs-5 text-info cp py-0"
+                    className="col-auto fw-bold  text-info cp"
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
                   >
-                    <span className="bg-black p-2">
+                    <span className="bg-black px-1 ">
                       {driver
                         ? `${driver.givenName} 
                       ${driver.familyName}
@@ -169,9 +169,9 @@ function Pitstops(props) {
                         : ps.driverId}
                     </span>
                   </td>
-                  <td className="fs-6 op fw-bold text-center">
+                  <td className="op fw-bold p-0 text-center">
                     <pre
-                      className="text-warning px-1 p-0 fs-6 d-inline-block m-0 align-middle"
+                      className="text-warning px-1 p-0 d-inline-block m-0 align-middle"
                       style={{
                         fontFamily: "Arial Black",
                         borderColor: "rgba(255,255,0,0.2)",
@@ -183,7 +183,7 @@ function Pitstops(props) {
                     </pre>
                   </td>
 
-                  <td className="text-center text-info fs-4 fw-bold op py-0">
+                  <td className="text-center text-info fw-bold op py-0">
                     <span
                       className={
                         index % 2 !== 0 ? "bg-black px-2" : "bg-light px-2"
