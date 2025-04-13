@@ -57,7 +57,7 @@ const RaceSchedule = (props) => {
         </h6>
       </div>
       <table className="myTable table table-dark table-striped table-bordered border-dark">
-      <thead className="">
+        <thead className="">
           <tr className="text-black">
             <th className="text-center px-0">R</th>
             <th className="bg-danger text-center">Race Name</th>
@@ -162,11 +162,12 @@ const RaceSchedule = (props) => {
                       ? "fw-bold text-center p-0"
                       : "text-center")
                   }
-                  onClick={() =>
-                    dateTime(rs.date, rs.time ? rs.time : "00:00:00Z") < dateNow
+                  onClick={() => {
+                    dateTime(rs.date, "00:00") <=
+                    new Date().setHours(0, 0, 0, 0)
                       ? navigate("/F1Race/" + props.season + "/" + rs.round)
-                      : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName)
-                  }
+                      : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName);
+                  }}
                 >
                   {dateTime(rs.date, rs.time) < dateNow
                     ? getFormattedDate(rs)
