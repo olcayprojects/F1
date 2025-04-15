@@ -87,11 +87,16 @@ const RaceSchedule = (props) => {
             return (
               <tr
                 className={
-                  "align-middle " +
+                  "align-middle  " +
                   ((rs.date.split("-")[1] ===
                     dateNow.toISOString().split("T")[0].split("-")[1]) &
+                  (rs.date.split("-")[2] >=
+                    dateNow.toISOString().split("T")[0].split("-")[2]) &
                   (props.season === "2025")
-                    ? " text-center fw-bold bg-success border border-2 border-success"
+                    ? " text-center fw-bold table-dark fst-italic"
+                    : rs.date.split("-")[1] ===
+                      dateNow.toISOString().split("T")[0].split("-")[1]
+                    ? " text-center fw-bold"
                     : " ")
                 }
                 key={index}
