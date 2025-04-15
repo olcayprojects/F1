@@ -97,7 +97,7 @@ const RaceSchedule = (props) => {
                     : rs.date.split("-")[1] ===
                       dateNow.toISOString().split("T")[0].split("-")[1]
                     ? " text-center fw-bold"
-                    : " ")
+                    : "")
                 }
                 key={index}
               >
