@@ -1,67 +1,73 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RaceThumb } from "./RaceInfo";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const RaceSchedule = (props) => {
-  const [sdata, setData] = useState([]);
+const RaceSchedule = ({ season }) => {
+  const [races, setRaces] = useState([]);
   const navigate = useNavigate();
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Günü normalize et
 
-  const dateNow = new Date();
-  dateNow.setDate(dateNow.getDate());
-
-  const dateTime = (d, t) => new Date(d + " " + t);
+  const dateTime = (d, t) => new Date(`${d} ${t}`);
 
   const getFormattedDate = (event) => {
     if (!event) return "-";
-
-    const { date, time } = event;
-    if (time) {
-      return dateTime(date, time).toLocaleString("en", {
-        // weekday: "short",
-        month: "2-digit",
-        day: "2-digit",
-        hourCycle: "h23",
-        hour: "2-digit",
-        minute: "2-digit",
-      });
-    }
-
-    return date;
+    const fullDate = event.time
+      ? dateTime(event.date, event.time)
+      : new Date(event.date);
+    return fullDate.toLocaleString("en", {
+      month: "2-digit",
+      day: "2-digit",
+      hourCycle: "h23",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
   };
 
-  let url = "";
-  if (props.season) {
-    url = `${BASE_URL}/${props.season}.json`;
-  }
+  const isUpcoming = (raceDate) => {
+    const race = new Date(raceDate);
+    race.setHours(0, 0, 0, 0);
+    return race >= today;
+  };
+
+  const shouldShowThumb = (raceDate) => {
+    const d = new Date(raceDate);
+    return (
+      season === "2025" &&
+      d.getFullYear() === today.getFullYear() &&
+      d.getMonth() === today.getMonth() &&
+      d.getDate() >= today.getDate()
+    );
+  };
 
   useEffect(() => {
+    if (!season) return;
+    const url = `${BASE_URL}/${season}.json`;
     fetch(url)
-      .then((response) => response.json())
+      .then((res) => res.json())
       .then((data) => {
-        setData(data["MRData"].RaceTable.Races);
+        setRaces(data?.MRData?.RaceTable?.Races || []);
       })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [url]);
+      .catch(console.error);
+  }, [season]);
 
   return (
     <div className="bg-black container-fluid table-responsive p-0">
       <div className="text-center bg-black text-danger border-top border-start border-end border-danger border-5 m-0 p-0">
-        <h1 className="m-0 p-0">F1 Schedule {props.season}</h1>
+        <h1 className="m-0 p-0">F1 Schedule {season}</h1>
         <h6 className="m-0 p-0">
-          {props.season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR
+          {season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR
         </h6>
       </div>
+
       <table className="myTable table table-dark table-striped table-bordered border-dark m-0">
-        <thead className="">
+        <thead>
           <tr className="text-black">
             <th className="text-center px-0">R</th>
             <th className="bg-danger text-center">Race Name</th>
-            <th className=" text-center text-black bg-light op">Race Date</th>
+            <th className="text-center text-black bg-light op">Race Date</th>
             <th className="text-center bg-light text-black">Qualifying</th>
             <th className="text-center bg-info text-black">Sprint Date</th>
             <th className="text-center bg-info text-black op">
@@ -72,211 +78,134 @@ const RaceSchedule = (props) => {
             <th className="bg-danger text-black text-center">Practice3</th>
           </tr>
         </thead>
-        <tbody className="text-danger">
-          {sdata?.map((rs, index) => {
-            const title = "Click go to " + rs.raceName + " details ";
-            const titleSprint =
-              "Click go to " + rs.raceName + " Sprint details ";
 
-            const resultSprintQualifyingShootout = rs.SprintQualifying
-              ? getFormattedDate(rs.SprintQualifying)
-              : rs.SprintShootout
-              ? getFormattedDate(rs.SprintShootout)
+        <tbody className="text-danger">
+          {races.map((race, index) => {
+            const raceDate = new Date(race.date);
+            const isFuture = isUpcoming(race.date);
+            const showThumb = shouldShowThumb(race.date);
+
+            const isCurrentMonthThisYear =
+              raceDate.getFullYear() === today.getFullYear() &&
+              raceDate.getMonth() === today.getMonth();
+
+            const rowClass = `align-middle ${
+              showThumb
+                ? "text-center fw-bold table-dark fst-italic"
+                : isFuture && season === "2025"
+                ? "text-center fw-bold "
+                : ""
+            }`;
+
+            const title = `Click to view ${race.raceName} details`;
+            const sprintTitle = `Click to view ${race.raceName} Sprint details`;
+
+            const resultSprintQual = race.SprintQualifying
+              ? getFormattedDate(race.SprintQualifying)
+              : race.SprintShootout
+              ? getFormattedDate(race.SprintShootout)
               : "-";
 
             return (
-              <tr
-                className={
-                  "align-middle  " +
-                  ((rs.date.split("-")[1] ===
-                    dateNow.toISOString().split("T")[0].split("-")[1]) &
-                  (rs.date.split("-")[2] >=
-                    dateNow.toISOString().split("T")[0].split("-")[2]) &
-                  (props.season === "2025")
-                    ? " text-center fw-bold table-dark fst-italic"
-                    : rs.date.split("-")[1] ===
-                      dateNow.toISOString().split("T")[0].split("-")[1]
-                    ? " text-center fw-bold"
-                    : "")
-                }
-                key={index}
-              >
-                <td className="text-center p-0 align-middle">{rs.round}</td>
+              <tr className={rowClass} key={index}>
+                <td className="text-center p-0 align-middle">{race.round}</td>
+
                 <td
-                  className={
-                    "text-nowrap op fw-bold text-warning py-0 " +
-                    (props.season === "2025" ? "col-2" : "")
-                  }
+                  className={`text-nowrap op fw-bold text-warning py-0 ${
+                    season === "2025" ? "col-2" : ""
+                  } ${isCurrentMonthThisYear ? "text-end" : "text-start"}`}
                 >
-                  {props.season === "2025" ? (
-                    (rs.date.split("-")[1] ===
-                      dateNow.toISOString().split("T")[0].split("-")[1]) &
-                    (rs.date.split("-")[2] >=
-                      dateNow.toISOString().split("T")[0].split("-")[2]) ? (
-                      <>
-                        <RaceThumb date={rs.date} name={rs.raceName} />
-                        <h6 className="m-0">{rs.raceName}</h6>
-                        <h6
-                          className="m-0 cp text-info"
-                          onClick={() =>
-                            navigate("/Circuit/" + rs.Circuit.circuitId)
-                          }
-                        >
-                          {rs.Circuit.circuitName}
-                        </h6>
-                      </>
-                    ) : (
-                      <>
-                        <span className="">{rs.raceName}</span>
-                        <i className="text-danger bi bi-slash-lg"></i>
-                        <span
-                          className="cp text-info"
-                          onClick={() =>
-                            navigate("/Circuit/" + rs.Circuit.circuitId)
-                          }
-                        >
-                          {rs.Circuit.circuitName}
-                        </span>
-                      </>
-                    )
+                  {showThumb ? (
+                    <>
+                      <RaceThumb date={race.date} name={race.raceName} />
+                      <h6 className="m-0">{race.raceName}</h6>
+                      <h6
+                        className="m-0 cp text-info"
+                        onClick={() =>
+                          navigate(`/Circuit/${race.Circuit.circuitId}`)
+                        }
+                      >
+                        {race.Circuit.circuitName}
+                      </h6>
+                    </>
                   ) : (
                     <>
-                      <span className="">{rs.raceName}</span>
+                      <span>{race.raceName}</span>
                       <i className="text-danger bi bi-slash-lg"></i>
                       <span
                         className="cp text-info"
                         onClick={() =>
-                          navigate("/Circuit/" + rs.Circuit.circuitId)
+                          navigate(`/Circuit/${race.Circuit.circuitId}`)
                         }
                       >
-                        {rs.Circuit.circuitName}
+                        {race.Circuit.circuitName}
                       </span>
                     </>
                   )}
                 </td>
+
                 <td
                   title={title}
-                  className={
-                    "p-0 py-0 text-center text-nowrap cp " +
-                    ((rs.date.split("-")[1] ===
-                      dateNow.toISOString().split("T")[0].split("-")[1]) &
-                    (props.season === new Date().getFullYear())
-                      ? "text-center fw-bold fst-normal"
-                      : (dateTime(rs.date, rs.time) < dateNow) |
-                        (new Date(rs.date) < dateNow)
-                      ? "fw-bold text-center p-0"
-                      : "text-center")
+                  className="p-0 py-0 text-center text-nowrap cp"
+                  onClick={() =>
+                    dateTime(race.date, "00:00") <= today
+                      ? navigate(`/F1Race/${season}/${race.round}`)
+                      : navigate(`/RaceInfo/${race.date}/${race.raceName}`)
                   }
-                  onClick={() => {
-                    dateTime(rs.date, "00:00") <=
-                    new Date().setHours(0, 0, 0, 0)
-                      ? navigate("/F1Race/" + props.season + "/" + rs.round)
-                      : navigate("/RaceInfo/" + rs.date + "/" + rs.raceName);
-                  }}
                 >
-                  {dateTime(rs.date, rs.time) < dateNow
-                    ? getFormattedDate(rs)
-                    : rs.time
-                    ? dateTime(rs.date, rs.time).toLocaleString("en", {
-                        // weekday: "short",
-                        month: "2-digit",
-                        day: "2-digit",
-                        // year: "numeric",
-                        hourCycle: "h23",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })
-                    : new Date(rs.date).toDateString()}
+                  {getFormattedDate(race)}
                 </td>
+
                 <td
                   className="text-nowrap text-center cp p-0"
                   onClick={() =>
                     navigate(
-                      "/Event/" +
-                        rs.raceName.replace(/ /g, "_") +
-                        "_Qualifying/" +
-                        props.season +
-                        "/" +
-                        rs.round
+                      `/Event/${race.raceName.replace(
+                        / /g,
+                        "_"
+                      )}_Qualifying/${season}/${race.round}`
                     )
                   }
                 >
-                  {rs.Qualifying
-                    ? rs.Qualifying?.time
-                      ? getFormattedDate(rs.Qualifying)
-                      : rs.Qualifying?.date
-                    : "-"}
+                  {race.Qualifying ? getFormattedDate(race.Qualifying) : "-"}
                 </td>
+
                 <td
-                  title={titleSprint}
-                  className={
-                    "text-nowrap text-center p-0 text-info op " +
-                    (rs.Sprint ? "cp" : "ch") +
-                    " " +
-                    (dateTime(rs.date, rs.time) < dateNow
-                      ? "fw-bold"
-                      : //  ? "fw-bold text-decoration-line-through"
-                        null)
-                  }
+                  title={sprintTitle}
+                  className={`text-nowrap text-center p-0 text-info op ${
+                    race.Sprint ? "cp" : "ch"
+                  } ${isFuture ? "fw-bold" : ""}`}
                   onClick={() =>
-                    rs.Sprint
-                      ? navigate(
-                          "/Sprint/" +
-                            props.season +
-                            "/" +
-                            rs.round +
-                            "/" +
-                            dateTime(
-                              rs.Sprint?.date,
-                              rs.Sprint?.time
-                            ).toLocaleString("en", {
-                              dateStyle: "long",
-                              timeStyle: "short",
-                            })
-                        )
-                      : null
+                    race.Sprint &&
+                    navigate(
+                      `/Sprint/${season}/${race.round}/${getFormattedDate(
+                        race.Sprint
+                      )}`
+                    )
                   }
                 >
-                  {rs.Sprint
-                    ? rs.Sprint?.time
-                      ? getFormattedDate(rs.Sprint)
-                      : rs.Sprint?.date
-                    : "-"}
+                  {race.Sprint ? getFormattedDate(race.Sprint) : "-"}
                 </td>
-                <td
-                  title={titleSprint}
-                  className={
-                    "text-nowrap text-center p-0 text-info op " +
-                    (rs.Sprint ? "cp" : "ch") +
-                    " " +
-                    (dateTime(rs.date, rs.time) < dateNow
-                      ? "fw-bold"
-                      : //  ? "fw-bold text-decoration-line-through"
-                        null)
-                  }
-                >
-                  {resultSprintQualifyingShootout}
+
+                <td className="text-nowrap text-center p-0 text-info op">
+                  {resultSprintQual}
                 </td>
 
                 <td className="text-nowrap text-center op p-0">
-                  {rs.FirstPractice
-                    ? rs.FirstPractice?.time
-                      ? getFormattedDate(rs.FirstPractice)
-                      : rs.FirstPractice?.date
+                  {race.FirstPractice
+                    ? getFormattedDate(race.FirstPractice)
                     : "-"}
                 </td>
+
                 <td className="text-nowrap text-center p-0">
-                  {rs.SecondPractice
-                    ? rs.SecondPractice?.time
-                      ? getFormattedDate(rs.SecondPractice)
-                      : rs.SecondPractice?.date
+                  {race.SecondPractice
+                    ? getFormattedDate(race.SecondPractice)
                     : "-"}
                 </td>
+
                 <td className="text-nowrap text-center p-0 op">
-                  {rs.ThirdPractice
-                    ? rs.ThirdPractice?.time
-                      ? getFormattedDate(rs.ThirdPractice)
-                      : rs.ThirdPractice?.date
+                  {race.ThirdPractice
+                    ? getFormattedDate(race.ThirdPractice)
                     : "-"}
                 </td>
               </tr>
