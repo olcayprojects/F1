@@ -39,8 +39,8 @@ const QualifyingResults = (props) => {
   return sdata.length ? (
     <div className="container-fluid p-0">
       <div className="table-responsive">
-      <table className="myTable table table-dark table-striped table-bordered border-dark">
-      <thead className="">
+        <table className="myTable table table-dark table-striped table-bordered border-dark">
+          <thead className="">
             <tr className="text-black  text-center">
               <th className="bg-black border-4 border-secondary text-light py-0">
                 P
@@ -125,7 +125,7 @@ const QualifyingResults = (props) => {
                           {qualifying.Constructor.nationality}
                         </span>
                       </td>
-                      <td className="text-center py-0">
+                      <td className="text-center py-1">
                         <span
                           className={
                             "d-block bg-black px-1 text-success fw-bold align-middle"

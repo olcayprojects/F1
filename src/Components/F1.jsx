@@ -15,6 +15,9 @@ import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
 // import { blue, red, cyan, grey } from "@mui/material/colors";
 // import { createTheme } from "@mui/material/styles";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import BuildIcon from "@mui/icons-material/Build";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
 
 // const theme = createTheme({
 //   palette: {
@@ -76,55 +79,79 @@ const F1 = () => {
           ))}
         </select>
         <RaceSchedule season={season2} />
-
         <Tabs
           className="bg-dark"
           value={currentTabIndex}
           onChange={handleTabChange}
           centered
-          variant="standard"
+          variant="scrollable" //  Yatay kaydırma
+          scrollButtons="auto" // Yatay kaydırma için oklar
           sx={{
-            "& .MuiTabs-indicator": { backgroundColor: "#FFFFFF" },
-            "& .MuiTab-root": { color: red[500], fontSize: "20px" },
-            "& .Mui-selected": { color: red[500], fontSize: "24px" },
+            "& .MuiTabs-indicator": {
+              backgroundColor: "#FFFFFF",
+              height: "4px",
+            },
+            "& .MuiTab-root": {
+              color: "#B71C1C",
+              fontSize: "16px",
+              textTransform: "uppercase",
+              transition: "all 0.3s",
+              "&:hover": {
+                color: "#FF6F00",
+                backgroundColor: "#222",
+                borderRadius: 2,
+              },
+            },
+            "& .Mui-selected": {
+              color: "#FFFFFF",
+              fontSize: "20px",
+              fontWeight: "bold",
+              backgroundColor: "#B71C1C",
+              borderRadius: 2,
+            },
             boxShadow: 4,
-            p: 1,
+            mt: 1,
+            p: 0,
             borderRadius: 1,
-            borderColor: "primary.dark",
+            "@media (max-width: 600px)": {
+              "& .MuiTab-root": {
+                fontSize: "12px",
+              },
+              "& .Mui-selected": {
+                fontSize: "16px",
+              },
+            },
           }}
         >
-          <Tab label="[Races In a Season]" />
-          <Tab label="[Driver Standings]" />
-          <Tab label="[Constructor]" />
-          <Tab label="[All Results] " />
+          <Tab
+            icon={<DirectionsCarIcon />}
+            iconPosition="start"
+            label="Races In a Season"
+          />
+          <Tab
+            icon={<ShowChartIcon />}
+            iconPosition="start"
+            label="Driver Standings"
+          />
+          <Tab icon={<BuildIcon />} iconPosition="start" label="Constructor" />
+          <Tab
+            icon={<DirectionsCarIcon />}
+            iconPosition="start"
+            label="All Results"
+          />
         </Tabs>
 
-        {currentTabIndex === 0 && (
-          <Box
-            sx={{
-              pt: 1,
-            }}
-          >
-            <WinRacesInaSeason season={season2} />
-          </Box>
-        )}
-
-        {currentTabIndex === 1 && (
-          <Box sx={{ pt: 1 }}>
+        {/* Tab içeriği */}
+        <Box sx={{ pt: 0 }}>
+          {currentTabIndex === 0 && <WinRacesInaSeason season={season2} />}
+          {currentTabIndex === 1 && (
             <DriverStandings season={season2} round={round} tab="1" />
-          </Box>
-        )}
-
-        {currentTabIndex === 2 && (
-          <Box sx={{ pt: 1 }}>
+          )}
+          {currentTabIndex === 2 && (
             <ConstructorStandings season={season2} round={round} tab={1} />
-          </Box>
-        )}
-        {currentTabIndex === 3 && (
-          <Box sx={{ pt: 0 }}>
-            <Results season={season2} />
-          </Box>
-        )}
+          )}
+          {currentTabIndex === 3 && <Results season={season2} />}
+        </Box>
       </div>
     </>
   );

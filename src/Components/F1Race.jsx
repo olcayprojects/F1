@@ -6,9 +6,14 @@ import Loading from "./Loading";
 import { DrvInfo } from "./DriverInfo";
 import { Box, Tab, Tabs } from "@mui/material";
 import { red } from "@mui/material/colors";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import BuildIcon from "@mui/icons-material/Build";
+import ShowChartIcon from "@mui/icons-material/ShowChart";
+
 import Team from "./Team";
 import Nav from "./Nav";
 import Events from "./Events";
+
 // import RaceSimulationCanvas from "./RaceAndPitStopPage";
 
 const F1Race = (props) => {
@@ -528,45 +533,68 @@ const F1Race = (props) => {
             value={currentTabIndex}
             onChange={handleTabChange}
             centered
-            variant="standard"
+            variant="scrollable" // Scrollable yaparak küçük ekranlarda yatay kaydırma ekliyoruz
+            scrollButtons="auto" // Yatay kaydırma için oklar ekliyoruz
             sx={{
-              "& .MuiTabs-indicator": { backgroundColor: "#FFFFFF" },
-              "& .MuiTab-root": { color: red[500], fontSize: "20px" },
-              "& .Mui-selected": { color: red[500], fontSize: "24px" },
+              "& .MuiTabs-indicator": {
+                backgroundColor: "#FFFFFF",
+                height: "4px",
+              },
+              "& .MuiTab-root": {
+                color: "#B71C1C",
+                fontSize: "16px",
+                textTransform: "uppercase",
+                transition: "all 0.3s",
+                "&:hover": {
+                  color: "#FF6F00",
+                  backgroundColor: "#222",
+                  borderRadius: 2,
+                },
+              },
+              "& .Mui-selected": {
+                color: "#FFFFFF",
+                fontSize: "20px",
+                fontWeight: "bold",
+                backgroundColor: "#B71C1C",
+                borderRadius: 2,
+              },
               boxShadow: 4,
+              mt: 2,
               p: 0,
               borderRadius: 1,
-              borderColor: "primary.main",
             }}
           >
-            <Tab label="[Qualifying]" />
-            <Tab label="[Pit Stops]" />
-            <Tab label="[Lap Times -3]" />
+            <Tab
+              icon={<DirectionsCarIcon />}
+              iconPosition="start"
+              label="Qualifying"
+            />
+            <Tab icon={<BuildIcon />} iconPosition="start" label="Pit Stops" />
+            <Tab
+              icon={<ShowChartIcon />}
+              iconPosition="start"
+              label="Lap Times"
+            />
           </Tabs>
 
-          {currentTabIndex === 0 && (
-            <Box
-              sx={{
-                pt: 1,
-              }}
-            >
-              <QualifyingResults season={season} round={round} />
-            </Box>
-          )}
-
-          {currentTabIndex === 1 && (
-            <Box sx={{ pt: 1 }}>
-              <Pitstops season={season} round={round} />
-            </Box>
-          )}
-
-          {currentTabIndex === 2 && (
-            <Box sx={{ p: 0 }}>
-              <div className="bg-black container-fluid p-0">
+          <Box sx={{ pt: 1 }}>
+            {currentTabIndex === 0 && (
+              <div className="container-fluid p-0">
+                <QualifyingResults season={season} round={round} />
+              </div>
+            )}
+            {currentTabIndex === 1 && (
+              <div className="container-fluid p-0">
+                <Pitstops season={season} round={round} />
+              </div>
+            )}
+            {currentTabIndex === 2 && (
+              <div className="container-fluid p-0">
+                {/* Laptimes içeriği burada */}
                 {/* <Laptimes season={season} round={round} laps={laps} lapsx={1} /> */}
               </div>
-            </Box>
-          )}
+            )}
+          </Box>
         </div>
       </>
     );
