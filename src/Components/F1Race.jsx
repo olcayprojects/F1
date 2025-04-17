@@ -532,7 +532,6 @@ const F1Race = (props) => {
             className="bg-dark"
             value={currentTabIndex}
             onChange={handleTabChange}
-            centered
             variant="scrollable" // Scrollable yaparak küçük ekranlarda yatay kaydırma ekliyoruz
             scrollButtons="auto" // Yatay kaydırma için oklar ekliyoruz
             sx={{

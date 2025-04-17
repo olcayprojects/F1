@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPlayer } from "../redux/playerSlice";
 import { Carousel } from "react-bootstrap";
 import Loading from "./Loading";
 
@@ -42,29 +44,23 @@ const PlayerInfo = ({ playerData }) => (
 );
 
 const PlayerProfile = ({ playerId, t }) => {
-  const [playerData, setPlayerData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { playersData, isLoading, error } = useSelector(
+    (state) => state.player
+  );
 
   useEffect(() => {
-    const url = `https://www.thesportsdb.com/api/v1/json/3/lookupplayer.php?id=${playerId}`;
+    if (playerId && !playersData[playerId]) {
+      // Eğer daha önce bu playerId verisi çekilmediyse
+      dispatch(fetchPlayer(playerId));
+    }
+  }, [dispatch, playerId, playersData]);
 
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Player verisi alınamadı.");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setPlayerData(data.players[0]);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
-  }, [playerId]);
+  const playerData = playersData[playerId];
+
+  if (isLoading) return <Loading />;
+  if (error) return <div>Hata: {error}</div>;
+  if (!playerData) return null;
 
   const playerImages = [
     playerData?.strThumb,
@@ -77,14 +73,6 @@ const PlayerProfile = ({ playerId, t }) => {
     playerData?.strRender,
     playerData?.strCutout,
   ].filter((image) => image !== null);
-
-  if (isLoading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return <div>Hata: {error}</div>;
-  }
 
   return t === "1" ? (
     <div className="player-profile">

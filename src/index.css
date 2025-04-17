@@ -178,3 +178,9 @@ li {
 tr {
   font-size: 0.9em;
 }
+
+table td,
+table th {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

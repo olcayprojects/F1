@@ -1,84 +1,55 @@
-import React from "react";
-import { useState, useEffect } from "react";
+// DriverStandings.jsx
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import Nav from "./Nav";
 import { DrvInfo } from "./DriverInfo";
-
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import { fetchDriverStandings, setYear } from "../redux/driverStandingsSlice";
 
 const DriverStandings = (props) => {
-  const [isLoaded, setIsLoaded] = useState(true);
-  const [driverStandings, setDriverStandings] = useState([]);
-  const [year, setYear] = useState("2025");
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  let url = "";
-  if (props.season) {
-    url = `${BASE_URL}/${props.season}/driverStandings.json`;
-  } else {
-    url = `${BASE_URL}/${year}/driverStandings.json`;
-  }
+  const { standings, year, isLoading } = useSelector(
+    (state) => state.driverStandings
+  );
 
   useEffect(() => {
-    setIsLoaded(false);
-    fetch(url)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setDriverStandings(
-          data["MRData"].StandingsTable.StandingsLists[0].DriverStandings
-        );
-        setIsLoaded(true);
-      })
-      .catch((err) => {
-        console.error("Fetch error: ", err);
-        setIsLoaded(true);
-      });
-  }, [url, year]);
+    dispatch(fetchDriverStandings(props.season || year));
+  }, [dispatch, year, props.season]);
 
   const handleYearChange = (e) => {
-    setYear(e.target.value);
+    dispatch(setYear(e.target.value));
   };
 
-  if (!isLoaded) return <Loading />;
+  if (isLoading) return <Loading />;
 
   return (
     <div className="container-fluid p-0">
       {props.tab !== "1" && <Nav />}
-
-      {!year ? (
-        ""
-      ) : (
-        <>
-          <div className="d-flex align-items-center justify-content-center">
-            <select
-              className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2 p-0"
-              value={year}
-              onChange={handleYearChange}
-            >
-              {Array.from(
-                { length: 2025 - 1950 + 1 },
-                (_, index) => 2025 - index
-              ).map((yearOption) => (
-                <option key={yearOption} value={yearOption}>
-                  {yearOption}
-                </option>
-              ))}
-            </select>
-            <h2 className="text-center  fw-bold m-0 text-danger">
-              DRIVER STANDINGS
-            </h2>
-          </div>
-        </>
-      )}
+      <div className="d-flex align-items-center justify-content-center">
+        <select
+          className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2 p-0"
+          value={year}
+          onChange={handleYearChange}
+        >
+          {Array.from(
+            { length: 2025 - 1950 + 1 },
+            (_, index) => 2025 - index
+          ).map((yearOption) => (
+            <option key={yearOption} value={yearOption}>
+              {yearOption}
+            </option>
+          ))}
+        </select>
+        <h2 className="text-center fw-bold m-0 text-danger">
+          DRIVER STANDINGS
+        </h2>
+      </div>
 
       <div className="d-block align-items-center">
-        {driverStandings?.map((driver, indexedDB) => {
+        {standings?.map((driver, indexedDB) => {
           return driver.positionText === "1" ? (
             <div key={indexedDB}>
               <DrvInfo
@@ -90,13 +61,11 @@ const DriverStandings = (props) => {
         })}
 
         <div className="table-responsive me-1">
-        <table className="myTable table table-dark table-striped table-bordered border-dark">
-        <thead className="border-5 fs-6">
-              <tr className="">
+          <table className="myTable table table-dark table-striped table-bordered border-dark">
+            <thead className="border-5 fs-6">
+              <tr>
                 <th className="text-center py-0">P</th>
-                <th className="text-black bg-info py-0 op">
-                  DRIVER INFO
-                </th>
+                <th className="text-black bg-info py-0 op">DRIVER INFO</th>
                 <th className="py-0 bg-warning text-black">CONSTRUCTOR</th>
                 <th className="text-center op py-0 bg-light text-black">
                   POINTS
@@ -104,8 +73,8 @@ const DriverStandings = (props) => {
                 <th className="text-center py-0 bg-primary text-black">WINS</th>
               </tr>
             </thead>
-            <tbody className="">
-              {driverStandings?.map((driver) => (
+            <tbody>
+              {standings?.map((driver) => (
                 <tr
                   key={driver.Driver.driverId}
                   className={

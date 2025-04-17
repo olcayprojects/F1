@@ -1,57 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { RaceThumb } from "./RaceInfo";
+import { useDispatch, useSelector } from "react-redux";
+import Loading from "./Loading";
 
-const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+import { fetchRaceSchedule } from "../redux/raceScheduleSlice";
+import {
+  thisYear,
+  getFormattedDate,
+  isUpcoming,
+  shouldShowThumb,
+  dateTime,
+} from "../utils/utils";
 
 const RaceSchedule = ({ season }) => {
-  const [races, setRaces] = useState([]);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { races, isLoading, error } = useSelector((state) => state.schedule);
+
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Günü normalize et
 
-  const dateTime = (d, t) => new Date(`${d} ${t}`);
-
-  const getFormattedDate = (event) => {
-    if (!event) return "-";
-    const fullDate = event.time
-      ? dateTime(event.date, event.time)
-      : new Date(event.date);
-    return fullDate.toLocaleString("en", {
-      month: "2-digit",
-      day: "2-digit",
-      hourCycle: "h23",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
-  const isUpcoming = (raceDate) => {
-    const race = new Date(raceDate);
-    race.setHours(0, 0, 0, 0);
-    return race >= today;
-  };
-
-  const shouldShowThumb = (raceDate) => {
-    const d = new Date(raceDate);
-    return (
-      season === "2025" &&
-      d.getFullYear() === today.getFullYear() &&
-      d.getMonth() === today.getMonth() &&
-      d.getDate() >= today.getDate()
-    );
-  };
-
   useEffect(() => {
-    if (!season) return;
-    const url = `${BASE_URL}/${season}.json`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setRaces(data?.MRData?.RaceTable?.Races || []);
-      })
-      .catch(console.error);
-  }, [season]);
+    if (season) {
+      dispatch(fetchRaceSchedule(season));
+    }
+  }, [dispatch, season]);
+
+  if (isLoading) return <Loading />;
+  if (error) return <div className="text-danger">Hata: {error}</div>;
 
   return (
     <div className="bg-black container-fluid table-responsive p-0">
@@ -83,7 +61,7 @@ const RaceSchedule = ({ season }) => {
           {races.map((race, index) => {
             const raceDate = new Date(race.date);
             const isFuture = isUpcoming(race.date);
-            const showThumb = shouldShowThumb(race.date);
+            const showThumb = shouldShowThumb(race.date, thisYear);
 
             const isCurrentMonthThisYear =
               raceDate.getFullYear() === today.getFullYear() &&
@@ -92,7 +70,7 @@ const RaceSchedule = ({ season }) => {
             const rowClass = `align-middle ${
               showThumb
                 ? "text-center fw-bold table-dark fst-italic"
-                : isFuture && season === "2025"
+                : isFuture && season === thisYear
                 ? "text-center fw-bold "
                 : ""
             }`;
@@ -112,7 +90,7 @@ const RaceSchedule = ({ season }) => {
 
                 <td
                   className={`text-nowrap op fw-bold text-warning py-0 ${
-                    season === "2025" ? "col-2" : ""
+                    season === thisYear ? "col-2" : ""
                   } ${isCurrentMonthThisYear ? "text-end" : "text-start"}`}
                 >
                   {showThumb ? (
@@ -180,7 +158,7 @@ const RaceSchedule = ({ season }) => {
                     navigate(
                       `/Sprint/${season}/${race.round}/${getFormattedDate(
                         race.Sprint
-                      )}`
+                      ).replace("/", "-")}`
                     )
                   }
                 >

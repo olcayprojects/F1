@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PlayerProfile from "./PlayerProfile";
+import Loading from "./Loading";
 
 const normalizeString = (str) => {
   return str
@@ -45,7 +46,7 @@ export const DrvInfo = (props) => {
   }, [props.drv]);
 
   if (loading) {
-    return <div>Yükleniyor...</div>;
+    return <Loading />;
   }
 
   if (props.s === "1") {

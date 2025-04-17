@@ -51,12 +51,13 @@ const F1 = () => {
   return (
     <>
       <div className="container-fluid bg-black p-0">
-        <Next />
-        <Carousel />
+        <div className="mb-2">
+          <Next />
+          <Carousel />
+        </div>
 
         {season2 === "2025" ? <F1Race /> : <Nav />}
 
-        {/* Select Year for Drivers and Constructors Winning Races In a Season */}
         <select
           className="form-select bg-black text-danger fs-3 text-center shadow-none cp mb-1"
           onChange={(e) => {
@@ -83,7 +84,6 @@ const F1 = () => {
           className="bg-dark"
           value={currentTabIndex}
           onChange={handleTabChange}
-          centered
           variant="scrollable" //  Yatay kaydırma
           scrollButtons="auto" // Yatay kaydırma için oklar
           sx={{
