@@ -98,7 +98,9 @@ const Results = ({ season }) => {
           {race.Results.map((result, i) => (
             <tr key={i}>
               <td className="text-center">{result.position}</td>
-              <td className="text-nowrap">{`${result.Driver.givenName} ${result.Driver.code}`}</td>
+              <td className="text-nowrap">{`${result.Driver.givenName} ${
+                result.Driver.code || result.Driver.familyName
+              }`}</td>
               <td className="text-nowrap">{result.Constructor.name}</td>
               <td className="text-center p-0">{result.laps}</td>
               <td className="text-center p-0 text-nowrap">

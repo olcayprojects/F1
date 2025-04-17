@@ -104,14 +104,28 @@ const ConstructorsResult = () => {
                     </caption>
                     <thead>
                       <tr className="">
-                        <th className="text-center bg-info text-black text-info">P</th>
-                        <th className="text-center bg-black text-light op">G</th>
-                        <th className="bg-black text-light">DRIVER</th>
-                        <th className="text-center bg-black text-light op">TIME</th>
-                        <th className="text-center bg-success text-black">STATUS</th>
-                        <th className="text-warning text-center bg-warning text-black op">PTS</th>
-                        <th className="text-center bg-primary text-black">LAPS</th>
-                        <th className="text-center bg-danger text-black op">FASTEST LAP</th>
+                        <th className="text-center bg-info text-black text-info">
+                          P
+                        </th>
+                        <th className="text-center bg-black text-light op">
+                          G
+                        </th>
+                        <th className="bg-light text-black">DRIVER</th>
+                        <th className="text-center bg-secondary text-black op">
+                          TIME
+                        </th>
+                        <th className="text-center bg-success text-black">
+                          STATUS
+                        </th>
+                        <th className="text-warning text-center bg-warning text-black op">
+                          PTS
+                        </th>
+                        <th className="text-center bg-primary text-black">
+                          LAPS
+                        </th>
+                        <th className="text-center bg-danger text-black op">
+                          FASTEST LAP
+                        </th>
                       </tr>
                     </thead>
                     <tbody className="fw-bold">
@@ -129,7 +143,9 @@ const ConstructorsResult = () => {
                                     item.positionText +
                                     ")"}
                               </td>
-                              <td className="text-center p-0">{item.grid}</td>
+                              <td className="text-center text-black p-0">
+                                {item.grid}
+                              </td>
                               <td
                                 className="cp op p-0 fw-bold"
                                 onClick={() => {
@@ -152,13 +168,12 @@ const ConstructorsResult = () => {
                                   {item.Driver.nationality}
                                 </span>
                               </td>
-                              <td className="text-center p-0">
+                              <td className="text-center text-secondary p-0">
                                 {item.Time?.time ? item.Time?.time : "-"}
                               </td>
                               <td className="op text-center p-0">
                                 <span className="text-success px-2">
-
-                                {item.status}
+                                  {item.status}
                                 </span>
                               </td>
                               <td className="text-center text-warning p-0">

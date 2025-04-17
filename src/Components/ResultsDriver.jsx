@@ -107,12 +107,12 @@ const ResultsDriver = () => {
                     <th className="text-center">R</th>
                     <th className="">Race Name</th>
                     <th className="text-center">P</th>
-                    <th className="text-center">G</th>
+                    <th className="text-center text-secondary">G</th>
                     <th className="text-center text-success">Constructor</th>
-                    <th className="text-center">LAPS</th>
+                    <th className="text-center text-primary">LAPS</th>
                     <th className="text-center text-warning">Time / Status</th>
                     <th className="text-center">PTS</th>
-                    <th className="text-center text-danger">
+                    <th className="text-danger">
                       <span className="">Fastest Lap</span>
                     </th>
                   </tr>
@@ -147,7 +147,7 @@ const ResultsDriver = () => {
                                   )
                             }
                           >
-                            <span className="bg-black px-2 d-inline-block w-100">
+                            <span className="px-2 d-inline-block w-100">
                               <span className="fw-bold text-decoration-underline">
                                 {item.Results
                                   ? item.raceName
@@ -182,7 +182,7 @@ const ResultsDriver = () => {
                               )
                             ) : null}
                           </td>
-                          <td className="text-center op p-0">
+                          <td className="text-center text-secondary fw-bold op p-0">
                             {results.length > 0 ? results[0].grid : "-"}
                           </td>
                           <td
@@ -202,7 +202,7 @@ const ResultsDriver = () => {
                                 : "-"}
                             </span>
                           </td>
-                          <td className="p-0 text-center op">
+                          <td className="p-0 text-center text-primary fw-bold op">
                             {results.length > 0 ? results[0].laps : "-"}
                           </td>
                           <td className="p-0 text-center text-warning">
@@ -223,7 +223,7 @@ const ResultsDriver = () => {
                             {results.length > 0 ? results[0].points : "-"}
                           </td>
                           <td className="p-0">
-                            <span className="bg-black text-danger p-1 px-2 fw-bold text-secondary text-center">
+                            <span className="text-danger p-1 px-2 fw-bold text-secondary text-center">
                               {results.length > 0 && results[0]?.FastestLap ? (
                                 <>
                                   <span className="">

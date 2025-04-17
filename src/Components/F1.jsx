@@ -82,24 +82,30 @@ const F1 = () => {
         <RaceSchedule season={season2} />
         <Tabs
           className="bg-dark"
+          centered
           value={currentTabIndex}
           onChange={handleTabChange}
-          variant="scrollable" //  Yatay kaydırma
+          variant="fullWidth" //  Yatay kaydırma
           scrollButtons="auto" // Yatay kaydırma için oklar
           sx={{
             "& .MuiTabs-indicator": {
-              backgroundColor: "#FFFFFF",
+              backgroundColor: "white",
               height: "4px",
             },
             "& .MuiTab-root": {
-              color: "#B71C1C",
-              fontSize: "16px",
-              textTransform: "uppercase",
+              color: "red",
+              backgroundColor: "darkred",
+              fontSize: "18px",
+              fontWeight: "bold",
+              textTransform: "",
               transition: "all 0.3s",
+              border: 2,
+              borderColor: "black",
+
               "&:hover": {
-                color: "#FF6F00",
-                backgroundColor: "#222",
-                borderRadius: 2,
+                color: "white",
+                backgroundColor: "red",
+                borderRadius: 3,
               },
             },
             "& .Mui-selected": {
@@ -107,18 +113,18 @@ const F1 = () => {
               fontSize: "20px",
               fontWeight: "bold",
               backgroundColor: "#B71C1C",
-              borderRadius: 2,
+              borderRadius: 1,
             },
             boxShadow: 4,
             mt: 1,
             p: 0,
-            borderRadius: 1,
+            borderRadius: 3,
             "@media (max-width: 600px)": {
               "& .MuiTab-root": {
-                fontSize: "12px",
+                fontSize: "10px",
               },
               "& .Mui-selected": {
-                fontSize: "16px",
+                fontSize: "12px",
               },
             },
           }}
@@ -133,7 +139,11 @@ const F1 = () => {
             iconPosition="start"
             label="Driver Standings"
           />
-          <Tab icon={<BuildIcon />} iconPosition="start" label="Constructor" />
+          <Tab
+            icon={<ShowChartIcon />}
+            iconPosition="start"
+            label="Constructor Standings"
+          />
           <Tab
             icon={<DirectionsCarIcon />}
             iconPosition="start"
