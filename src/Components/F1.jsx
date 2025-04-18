@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import WinRacesInaSeason from "./WinRacesInaSeason";
+import Classifications from "./Classifications"; // Classifications'ı import ettik
 import DriverStandings from "./DriverStandings";
 import ConstructorStandings from "./ConstructorStandings";
 import Next from "./Next";
@@ -82,21 +83,26 @@ const F1 = () => {
         <RaceSchedule season={season2} />
         <Tabs
           className="bg-dark"
-          centered
           value={currentTabIndex}
           onChange={handleTabChange}
           variant="fullWidth" //  Yatay kaydırma
           scrollButtons="auto" // Yatay kaydırma için oklar
           sx={{
+            height: "30px",
+            minHeight: "30px",
             "& .MuiTabs-indicator": {
               backgroundColor: "white",
               height: "4px",
             },
+            "& .MuiButtonBase-root": {
+              height: "30px",
+              minHeight: "30px",
+            },
             "& .MuiTab-root": {
               color: "red",
               backgroundColor: "darkred",
-              fontSize: "18px",
-              fontWeight: "bold",
+              fontSize: "12px",
+              fontWeight: "",
               textTransform: "",
               transition: "all 0.3s",
               border: 2,
@@ -105,26 +111,23 @@ const F1 = () => {
               "&:hover": {
                 color: "white",
                 backgroundColor: "red",
-                borderRadius: 3,
               },
             },
             "& .Mui-selected": {
               color: "#FFFFFF",
-              fontSize: "20px",
+              fontSize: "14px",
               fontWeight: "bold",
               backgroundColor: "#B71C1C",
-              borderRadius: 1,
             },
             boxShadow: 4,
             mt: 1,
             p: 0,
-            borderRadius: 3,
             "@media (max-width: 600px)": {
               "& .MuiTab-root": {
-                fontSize: "10px",
+                fontSize: "8px",
               },
               "& .Mui-selected": {
-                fontSize: "12px",
+                fontSize: "10px",
               },
             },
           }}
@@ -132,17 +135,17 @@ const F1 = () => {
           <Tab
             icon={<DirectionsCarIcon />}
             iconPosition="start"
-            label="Races In a Season"
+            label="Races_In_a_Season"
           />
           <Tab
             icon={<ShowChartIcon />}
             iconPosition="start"
-            label="Driver Standings"
+            label="Driver_Standings"
           />
           <Tab
             icon={<ShowChartIcon />}
             iconPosition="start"
-            label="Constructor Standings"
+            label="Constructor_Standings"
           />
           <Tab
             icon={<DirectionsCarIcon />}
@@ -154,9 +157,7 @@ const F1 = () => {
         {/* Tab içeriği */}
         <Box sx={{ pt: 0 }}>
           {currentTabIndex === 0 && <WinRacesInaSeason season={season2} />}
-          {currentTabIndex === 1 && (
-            <DriverStandings season={season2} round={round} tab="1" />
-          )}
+          {currentTabIndex === 1 && <Classifications season={season2} />}
           {currentTabIndex === 2 && (
             <ConstructorStandings season={season2} round={round} tab={1} />
           )}
