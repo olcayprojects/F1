@@ -81,6 +81,7 @@ const Results = ({ season }) => {
         <thead className="">
           <tr>
             <th className="bg-danger text-black py-0 text-center">P</th>
+            <th className="bg-danger text-black py-0 text-center">G</th>
             <th className="op bg-danger text-black text-start py-0 text-nowrap">
               DRV
             </th>
@@ -98,6 +99,7 @@ const Results = ({ season }) => {
           {race.Results.map((result, i) => (
             <tr key={i}>
               <td className="text-center">{result.position}</td>
+              <td className="text-center">{result.grid}</td>
               <td className="text-nowrap">{`${result.Driver.givenName} ${
                 result.Driver.code || result.Driver.familyName
               }`}</td>
