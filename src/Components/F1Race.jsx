@@ -526,73 +526,69 @@ const F1Race = (props) => {
               Season:{season2} Round#{rounds}
             </h2>
           )}
-          <Box sx={{ pt: 1 }}>
-            <AppBar position="static">
-              <Tabs
-                className="bg-dark"
-                value={currentTabIndex}
-                onChange={handleTabChange}
-                variant="fullWidth" // Scrollable yaparak küçük ekranlarda yatay kaydırma ekliyoruz
-                scrollButtons="auto" // Yatay kaydırma için oklar ekliyoruz
-                sx={{
-                  "& .MuiTabs-indicator": {
-                    backgroundColor: "white",
-                    height: "4px",
-                  },
-                  "& .MuiTab-root": {
-                    color: "red",
-                    backgroundColor: "darkred",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    textTransform: "",
-                    transition: "all 0.3s",
-                    border: 2,
-                    borderColor: "black",
+          <Tabs
+            className="bg-dark"
+            value={currentTabIndex}
+            onChange={handleTabChange}
+            variant="fullWidth" // Scrollable yaparak küçük ekranlarda yatay kaydırma ekliyoruz
+            scrollButtons="auto" // Yatay kaydırma için oklar ekliyoruz
+            sx={{
+              height: "30px",
+              minHeight: "30px",
+              "& .MuiTabs-indicator": {
+                backgroundColor: "aqua",
+                height: "2px",
+              },
+              "& .MuiButtonBase-root": {
+                height: "30px",
+                minHeight: "30px",
+              },
+              "& .MuiTab-root": {
+                color: "red",
+                backgroundColor: "darkred",
+                fontSize: "12px",
+                fontWeight: "",
+                textTransform: "",
+                transition: "all 0.3s",
+                border: 2,
+                borderColor: "black",
 
-                    "&:hover": {
-                      color: "white",
-                      backgroundColor: "red",
-                      borderRadius: 3,
-                    },
-                  },
-                  "& .Mui-selected": {
-                    color: "#FFFFFF",
-                    fontSize: "20px",
-                    fontWeight: "bold",
-                    backgroundColor: "#B71C1C",
-                    borderRadius: 1,
-                  },
-                  boxShadow: 4,
-                  mt: 1,
-                  p: 0,
-                  borderRadius: 3,
-                  "@media (max-width: 600px)": {
-                    "& .MuiTab-root": {
-                      fontSize: "10px",
-                    },
-                    "& .Mui-selected": {
-                      fontSize: "12px",
-                    },
-                  },
-                }}
-              >
-                <Tab
-                  icon={<DirectionsCarIcon />}
-                  iconPosition="start"
-                  label="Qualifying"
-                />
-                <Tab
-                  icon={<BuildIcon />}
-                  iconPosition="start"
-                  label="Pit Stops"
-                />
-                <Tab
-                  icon={<ShowChartIcon />}
-                  iconPosition="start"
-                  label="Lap Times"
-                />
-              </Tabs>
-            </AppBar>
+                "&:hover": {
+                  color: "white",
+                  backgroundColor: "red",
+                },
+              },
+              "& .Mui-selected": {
+                color: "white",
+                fontSize: "14px",
+                fontWeight: "bold",
+                backgroundColor: "red",
+              },
+              boxShadow: 4,
+              borderRadius: 3,
+              "@media (max-width: 600px)": {
+                "& .MuiTab-root": {
+                  fontSize: "10px",
+                },
+                "& .Mui-selected": {
+                  fontSize: "12px",
+                },
+              },
+            }}
+          >
+            <Tab
+              icon={<DirectionsCarIcon />}
+              iconPosition="start"
+              label="Qualifying"
+            />
+            <Tab icon={<BuildIcon />} iconPosition="start" label="Pit Stops" />
+            <Tab
+              icon={<ShowChartIcon />}
+              iconPosition="start"
+              label="Lap Times"
+            />
+          </Tabs>
+          <Box sx={{ pt: 1 }}>
             {currentTabIndex === 0 && (
               <div className="container-fluid p-0">
                 <QualifyingResults season={season} round={round} />
