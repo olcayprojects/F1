@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Nav from "./Nav";
@@ -31,24 +31,25 @@ const ConstructorStandings = (props) => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="p-0">
+    <div className="">
       {props.tab !== 1 && <Nav />}
 
-      <div className="container-fluid p-0">
+      <div className="container-fluid">
         {!props.season && (
           <div className="d-flex align-items-center justify-content-center">
             <select
-              className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2 p-0"
+              className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2"
               value={year}
               onChange={handleYearChange}
             >
-              {Array.from({ length: 2025 - 1950 + 1 }, (_, index) => 2025 - index).map(
-                (yearOption) => (
-                  <option key={yearOption} value={yearOption}>
-                    {yearOption}
-                  </option>
-                )
-              )}
+              {Array.from(
+                { length: 2025 - 1950 + 1 },
+                (_, index) => 2025 - index
+              ).map((yearOption) => (
+                <option key={yearOption} value={yearOption}>
+                  {yearOption}
+                </option>
+              ))}
             </select>
             <h2 className="text-center fw-bold m-0 text-danger">
               CONSTRUCTOR STANDINGS
@@ -77,10 +78,10 @@ const ConstructorStandings = (props) => {
           <table className="myTable table table-dark table-striped table-bordered border-dark">
             <thead className="border-5 fs-6">
               <tr>
-                <th className="bg-light text-center py-0 text-black">POS</th>
-                <th className="bg-warning op py-0 text-black">CONSTRUCTOR</th>
-                <th className="bg-info text-end op py-0 text-black">POINTS</th>
-                <th className="bg-primary py-0 text-black">WINS</th>
+                <th className="bg-light text-center text-black">POS</th>
+                <th className="bg-warning op text-black">CONSTRUCTOR</th>
+                <th className="bg-info text-end op text-black">POINTS</th>
+                <th className="bg-primary text-black">WINS</th>
               </tr>
             </thead>
             <tbody>
@@ -111,7 +112,7 @@ const ConstructorStandings = (props) => {
                   </td>
                   <td className="op fw-bold text-warning py-0">
                     <span
-                      className="p-0 px-1 cp bg-black"
+                      className="px-1 cp bg-black"
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +
@@ -121,6 +122,7 @@ const ConstructorStandings = (props) => {
                         );
                       }}
                     >
+                      {cs.Constructor.name.toUpperCase()}
                       {cs.position < 2 && (
                         <Team
                           teamName={cs.Constructor.name}
@@ -128,7 +130,6 @@ const ConstructorStandings = (props) => {
                           ls={2}
                         />
                       )}
-                      {cs.Constructor.name.toUpperCase()}
                     </span>
                     <span className="px-2 text-center bg-warning-subtle text-black fw-light fst-italic py-0">
                       {cs.Constructor.nationality}
@@ -144,7 +145,7 @@ const ConstructorStandings = (props) => {
                       {cs.points}
                     </span>
                   </td>
-                  <td className="text-primary fw-bold p-0">
+                  <td className="text-primary fw-bold">
                     <span
                       className={
                         "d-block ps-2 " +

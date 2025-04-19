@@ -34,10 +34,8 @@ const RaceSchedule = ({ season }) => {
   return (
     <div className="bg-black container-fluid table-responsive p-0">
       <div className="text-center bg-black text-danger border-top border-start border-end border-danger border-5 m-0 p-0">
-        <h1 className="m-0 p-0">F1 Schedule {season}</h1>
-        <h6 className="m-0 p-0">
-          {season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR
-        </h6>
+        <h1>F1 Schedule {season}</h1>
+        <h6>{season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR</h6>
       </div>
 
       <table className="myTable table table-dark table-striped table-bordered border-dark m-0">
@@ -86,7 +84,7 @@ const RaceSchedule = ({ season }) => {
 
             return (
               <tr className={rowClass} key={index}>
-                <td className="text-center p-0 align-middle">{race.round}</td>
+                <td className="text-center align-middle">{race.round}</td>
 
                 <td
                   className={`text-nowrap op fw-bold text-warning py-0 ${
@@ -124,7 +122,7 @@ const RaceSchedule = ({ season }) => {
 
                 <td
                   title={title}
-                  className="p-0 py-0 text-center text-nowrap cp"
+                  className="py-0 text-center text-nowrap cp"
                   onClick={() =>
                     dateTime(race.date, "00:00") <= today
                       ? navigate(`/F1Race/${season}/${race.round}`)
@@ -135,7 +133,7 @@ const RaceSchedule = ({ season }) => {
                 </td>
 
                 <td
-                  className="text-nowrap text-center cp p-0"
+                  className="text-nowrap text-center cp"
                   onClick={() =>
                     navigate(
                       `/Event/${race.raceName.replace(
@@ -150,7 +148,7 @@ const RaceSchedule = ({ season }) => {
 
                 <td
                   title={sprintTitle}
-                  className={`text-nowrap text-center p-0 text-info op ${
+                  className={`text-nowrap text-center text-info op ${
                     race.Sprint ? "cp" : "ch"
                   } ${isFuture ? "fw-bold" : ""}`}
                   onClick={() =>
@@ -165,23 +163,23 @@ const RaceSchedule = ({ season }) => {
                   {race.Sprint ? getFormattedDate(race.Sprint) : "-"}
                 </td>
 
-                <td className="text-nowrap text-center p-0 text-info op">
+                <td className="text-nowrap text-center text-info op">
                   {resultSprintQual}
                 </td>
 
-                <td className="text-nowrap text-center op p-0">
+                <td className="text-nowrap text-center op">
                   {race.FirstPractice
                     ? getFormattedDate(race.FirstPractice)
                     : "-"}
                 </td>
 
-                <td className="text-nowrap text-center p-0">
+                <td className="text-nowrap text-center">
                   {race.SecondPractice
                     ? getFormattedDate(race.SecondPractice)
                     : "-"}
                 </td>
 
-                <td className="text-nowrap text-center p-0 op">
+                <td className="text-nowrap text-center op">
                   {race.ThirdPractice
                     ? getFormattedDate(race.ThirdPractice)
                     : "-"}

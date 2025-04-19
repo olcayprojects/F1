@@ -74,7 +74,7 @@ const QualifyingResults = (props) => {
                       key={indexQ}
                       className={"align-middle" + (indexQ === 0 ? " fs-6" : "")}
                     >
-                      <td className="p-0 text-center op">
+                      <td className="text-center op">
                         {qualifying.position < 4 ? (
                           <i
                             className={

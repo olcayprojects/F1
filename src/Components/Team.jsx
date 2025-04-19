@@ -74,11 +74,11 @@ const Team = ({ constructor, teamName, ls }) => {
             className="img-fluid me-1 object-fit-md-cover object-fit-sm-none"
             key={index}
             style={{
-              width: "40%",
-              maxHeight: "110px",
+              width: "20%",
+              height: "40px",
               objectPosition: "center",
             }}
-            src={teams?.strEquipment + "/medium"}
+            src={teams?.strEquipment + "/small"}
             alt=""
             title={teams?.strDescriptionEN}
           />

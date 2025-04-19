@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import DriverId from "./DriverId";
+import { useDrivers } from "../context/DriverContext";
 import Loading from "./Loading";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
@@ -38,12 +38,17 @@ function millisecondsToDuration(milliseconds) {
 
 function Pitstops(props) {
   const [formattedData, setFormattedData] = useState([]);
-  const [drivers, setDrivers] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { drivers, season, setSeason } = useDrivers();
 
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
+
+  useEffect(() => {
+    setSeason(props.season);
+  }, [setSeason,props.season]);
+
 
   let url = "";
   if (props.season !== undefined) {
@@ -133,10 +138,9 @@ function Pitstops(props) {
 
   return formattedData.length ? (
     <div className="container-fluid p-0 border border-dark border-5">
-      <DriverId setDrivers={setDrivers} season={props.season} />
       <div className="table-responsive">
-      <table className="myTable table table-dark table-striped table-bordered border-dark">
-      <thead className="border-dark">
+        <table className="myTable table table-dark table-striped table-bordered border-dark">
+          <thead className="border-dark">
             <tr className="text-black align-middle">
               <th className="text-center py-0">#</th>
               <th className="py-0 bg-info text-black">DRIVER INFO</th>
@@ -179,9 +183,9 @@ function Pitstops(props) {
                         : ps.driverId}
                     </span>
                   </td>
-                  <td className="op fw-bold p-0 text-center">
+                  <td className="op fw-bold text-center">
                     <pre
-                      className="text-warning px-1 p-0 d-inline-block m-0 align-middle"
+                      className="text-warning px-1 d-inline-block m-0 align-middle"
                       style={{
                         fontFamily: "Arial Black",
                         borderColor: "rgba(255,255,0,0.2)",

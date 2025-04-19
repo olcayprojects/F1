@@ -121,26 +121,30 @@ const Classifications = ({ season }) => {
   }
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
       <table className="myTable table table-dark table-striped table-bordered border-dark text-center">
         <thead>
-          <tr>
-            <th className="bg-info p-0">P</th>
-            <th className="bg-warning p-0">Drv</th>
+          <tr className="">
+            <th className="text-dark bg-info">P</th>
+            <th className="text-dark bg-warning">Driver</th>
             {raceResults.map((race, idx) => (
-              <th title={race.raceName} className="bg-danger p-0" key={idx}>
+              <th
+                title={race.raceName}
+                className="text-dark bg-danger"
+                key={idx}
+              >
                 {getShortRaceName(race.raceName)}
               </th>
             ))}
-            <th className="bg-success p-0">W</th>
-            <th className="bg-primary p-0">Pts</th>
+            <th className="text-dark bg-success">W</th>
+            <th className="text-dark bg-primary">Pts</th>
           </tr>
         </thead>
         <tbody>
           {driversData.map((driver, idx) => (
-            <tr key={idx}>
-              <td className="text-info p-0">{driver.pos}</td>
-              <td className="text-warning p-0" title={driver.name}>
+            <tr className="align-all-middle" key={idx}>
+              <td className="text-info">{driver.pos}</td>
+              <td className="text-warning" title={driver.name}>
                 {driver.pos === "1" ? (
                   <>
                     {driver.name} / {driver.constructors}
@@ -157,8 +161,8 @@ const Classifications = ({ season }) => {
                   {res ? <strong>{res.position}</strong> : <strong>-</strong>}
                 </td>
               ))}
-              <td className="text-success fw-bold p-0">{driver.wins}</td>
-              <td className="text-primary fw-bolder p-0">{driver.points}</td>
+              <td className="text-success fw-bold">{driver.wins}</td>
+              <td className="text-primary fw-bolder">{driver.points}</td>
             </tr>
           ))}
         </tbody>

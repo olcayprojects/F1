@@ -85,10 +85,8 @@ const ResultsDriver = () => {
 
         <div className="container-fluid text-center text-light mt-1">
           <h4 className="m-0">
-            <span className="text-black bg-info px-2 fw-bold">
-              {drvgivenName}
-            </span>
-            <span className="text-black bg-warning px-2 fw-bold text-uppercase">
+            <span className="text-black bg-info fw-bold">{drvgivenName}</span>
+            <span className="text-black bg-warning fw-bold text-uppercase">
               {drvfamilyName}
             </span>
           </h4>
@@ -124,10 +122,10 @@ const ResultsDriver = () => {
                       const results = item.Results || item.SprintResults || [];
                       return (
                         <tr key={index} className="text-danger align-middle">
-                          <td className="text-center p-0 op">{item.season}</td>
-                          <td className="text-center p-0">{item.round}</td>
+                          <td className="text-center op">{item.season}</td>
+                          <td className="text-center">{item.round}</td>
                           <td
-                            className={`p-0 px-1 cp op ${
+                            className={`p op ${
                               !item.Results ? "text-info" : ""
                             }`}
                             onClick={() =>
@@ -147,7 +145,7 @@ const ResultsDriver = () => {
                                   )
                             }
                           >
-                            <span className="px-2 d-inline-block w-100">
+                            <span className="d-inline-block w-100">
                               <span className="fw-bold text-decoration-underline">
                                 {item.Results
                                   ? item.raceName
@@ -160,7 +158,7 @@ const ResultsDriver = () => {
                           </td>
                           <td
                             className={
-                              "p-0 text-center fw-bold " +
+                              "text-center fw-bold " +
                               (results[0]
                                 ? isNaN(parseInt(results[0]?.positionText))
                                   ? " text-danger"
@@ -182,11 +180,11 @@ const ResultsDriver = () => {
                               )
                             ) : null}
                           </td>
-                          <td className="text-center text-secondary fw-bold op p-0">
+                          <td className="text-center text-secondary fw-bold op">
                             {results.length > 0 ? results[0].grid : "-"}
                           </td>
                           <td
-                            className="p-0 text-center text-uppercase cp"
+                            className="text-center text-uppercase cp"
                             onClick={() => {
                               navigate(
                                 "/ConstructorsResult/" +
@@ -196,20 +194,20 @@ const ResultsDriver = () => {
                               );
                             }}
                           >
-                            <span className="p-0 d-inline-block fw-bold w-100 text-center text-success">
+                            <span className="fw-bold  text-center text-success">
                               {results.length > 0
                                 ? results[0]?.Constructor?.name
                                 : "-"}
                             </span>
                           </td>
-                          <td className="p-0 text-center text-primary fw-bold op">
+                          <td className="text-center text-primary fw-bold op">
                             {results.length > 0 ? results[0].laps : "-"}
                           </td>
-                          <td className="p-0 text-center text-warning">
+                          <td className="text-center text-warning">
                             {results.length > 0 ? (
                               <>
                                 <span>{results[0]?.Time?.time}</span>
-                                <span className="text-danger ps-1">
+                                <span className="text-danger">
                                   {results[0]?.status !== "Finished"
                                     ? results[0]?.status
                                     : null}
@@ -222,8 +220,8 @@ const ResultsDriver = () => {
                           <td className="text-center op">
                             {results.length > 0 ? results[0].points : "-"}
                           </td>
-                          <td className="p-0">
-                            <span className="text-danger p-1 px-2 fw-bold text-secondary text-center">
+                          <td className="">
+                            <span className="text-danger fw-bold text-secondary text-center">
                               {results.length > 0 && results[0]?.FastestLap ? (
                                 <>
                                   <span className="">

@@ -26,11 +26,11 @@ const DriverStandings = (props) => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid">
       {props.tab !== "1" && <Nav />}
       <div className="d-flex align-items-center justify-content-center">
         <select
-          className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2 p-0"
+          className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2"
           value={year}
           onChange={handleYearChange}
         >

@@ -188,3 +188,18 @@ table th {
 .Mui-selected {
   color: white !important;
 }
+
+.align-all-middle td {
+  vertical-align: middle;
+}
+
+.table-no-padding td {
+  padding: 0 !important;
+}
+
+.position-change {
+  font-size: 14px;
+  color: #f39c12;
+  font-weight: bold;
+  margin-left: 10px;
+}

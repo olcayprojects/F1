@@ -19,6 +19,10 @@ import { red } from "@mui/material/colors";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import BuildIcon from "@mui/icons-material/Build";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import LeaderboardIcon from '@mui/icons-material/Leaderboard';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+
 
 // const theme = createTheme({
 //   palette: {
@@ -133,17 +137,17 @@ const F1 = () => {
           }}
         >
           <Tab
-            icon={<DirectionsCarIcon />}
+            icon={<LeaderboardIcon />}
             iconPosition="start"
             label="Races_In_a_Season"
           />
           <Tab
-            icon={<ShowChartIcon />}
+            icon={<EmojiEventsIcon />}
             iconPosition="start"
             label="Driver_Standings"
           />
           <Tab
-            icon={<ShowChartIcon />}
+            icon={<FormatListNumberedIcon />}
             iconPosition="start"
             label="Constructor_Standings"
           />

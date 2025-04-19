@@ -53,7 +53,7 @@ const Sprint = () => {
           </span>
         </h5>
         <div className="table-responsive-sm">
-          <table className="table table-dark table-striped table-bordered">
+          <table className="mytable table table-dark table-striped table-bordered">
             <thead className="text-center">
               <tr className="align-middle">
                 <th className="bg-danger text-black">P</th>
@@ -62,9 +62,9 @@ const Sprint = () => {
                 <th className="text-black text-start bg-warning">
                   CONSTRUCTOR
                 </th>
-                <th className="text-black p-0 bg-success">LAPS</th>
+                <th className="text-black bg-success">LAPS</th>
                 <th className="text-black bg-light text-end">TIME</th>
-                <th className="text-black p-0 bg-danger">PTS</th>
+                <th className="text-black bg-danger">PTS</th>
                 <th className="text-black bg-light op text-start">
                   FASTEST LAP
                 </th>
@@ -79,7 +79,7 @@ const Sprint = () => {
                       "align-middle " + (index === 0 ? "fs-6 fw-bolder" : null)
                     }
                   >
-                    <td className="p-0 text-center text-danger">
+                    <td className="text-center text-danger">
                       {item.positionText}
                     </td>
                     <td className="op text-center fw-normal text-primary p-0">
@@ -116,15 +116,13 @@ const Sprint = () => {
                         {item.Constructor.nationality}
                       </span>
                     </td>
-                    <td className="text-center p-0 text-success">
-                      {item.laps}
-                    </td>
+                    <td className="text-center text-success">{item.laps}</td>
                     <td className="op text-end py-0">
                       <span className="">
                         {item.Time?.time ? item.Time?.time : item.status}
                       </span>
                     </td>
-                    <td className="text-center text-danger fw-bolder p-0 py-0">
+                    <td className="text-center text-danger fw-bolder py-0">
                       {item.points}
                     </td>
                     <td className="op py-0 text-start">

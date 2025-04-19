@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
-import DriverId from "./DriverId";
+import { useDrivers } from "../context/DriverContext";
 import Loading from "./Loading";
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -35,9 +35,12 @@ const ApiDataComponent = () => {
   const [raceDetails, setRaceDetails] = useState(null);
   const itemsPerPage = 100;
 
-  const [drivers, setDrivers] = useState([]);
+  const { drivers, setSeason } = useDrivers();
 
   const { season, rounds = "1" } = useParams();
+  useEffect(() => {
+    setSeason(season);
+  }, [setSeason,season]);
 
   const apiUrl = `${BASE_URL}/${season}/${rounds}/laps.json`;
 
@@ -120,7 +123,6 @@ const ApiDataComponent = () => {
   return (
     <div className="container-fluid p-0">
       <Nav />
-      <DriverId setDrivers={setDrivers} season={season} />
 
       <div className="border border-danger border-5 fs-2 text-info text-center fw-bold m-1 ">
         <p className=" ">
@@ -135,7 +137,7 @@ const ApiDataComponent = () => {
         </p>
       </div>
 
-      <table className="table table-striped table-dark caption-top table-bordered">
+      <table className="mytable table table-striped table-dark caption-top table-bordered">
         <thead className="">
           <tr className="text-center">
             <th className="text-start text-light">#</th>

@@ -8,12 +8,16 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import "bootstrap/dist/js/bootstrap.min.js";
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
+import { DriverProvider } from "./context/DriverContext";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Provider store={store}>
+           <DriverProvider>
+
         <App />
+           </DriverProvider>
     </Provider>
 );
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import QualifyingResults from "./QualifyingResults";
 import Pitstops from "./Pitstops";
+import Laptimes from "./Laptimes";
 import Loading from "./Loading";
 import { DrvInfo } from "./DriverInfo";
 import { Box, Tab, Tabs } from "@mui/material";
@@ -268,7 +269,7 @@ const F1Race = (props) => {
                                 (indexResult === 0 ? " fs-6 fw-bold" : "")
                               }
                             >
-                              <td className="text-center p-0">
+                              <td className="text-center">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
                                     <b className="text-black bg-danger px-2">
@@ -299,7 +300,7 @@ const F1Race = (props) => {
                                 )}
                               </td>
                               <td
-                                className="op text-center p-0"
+                                className="op text-center"
                                 style={{ color: "#74F0B6" }}
                               >
                                 <span>
@@ -317,7 +318,7 @@ const F1Race = (props) => {
                                   {" " + result.grid + ""}
                                 </span>
                               </td>
-                              <td className="text-center text-warning p-0">
+                              <td className="text-center text-warning">
                                 <span className="bg-black px-1">
                                   {result.number < 10 ? (
                                     <i
@@ -349,7 +350,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="cp op p-0 p-1 text-end"
+                                className="cp op p-1 text-end"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + result.Driver.driverId
@@ -375,7 +376,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="cp p-0 ps-1"
+                                className="cp ps-1"
                                 title={
                                   "Click go to " +
                                   result.Constructor.name +
@@ -407,7 +408,7 @@ const F1Race = (props) => {
                                   {result.laps}
                                 </span>
                               </td>
-                              <td className="text-wrap text-center fw-bold p-0 px-1">
+                              <td className="text-wrap text-center fw-bold px-1">
                                 <span
                                   className="bg-black w-100 d-inline-block"
                                   style={{ color: "#86995B" }}
@@ -440,7 +441,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="text-center fw-bold op p-0"
+                                className="text-center fw-bold op"
                                 style={
                                   result.points > 0
                                     ? { color: "aquamarine" }
@@ -460,7 +461,7 @@ const F1Race = (props) => {
 
                               <td
                                 className={
-                                  "fw-bold op text-end pe-1 cp p-0 " +
+                                  "fw-bold op text-end pe-1 cp " +
                                   (result.FastestLap?.rank in
                                   ["1", "2", "3", "4"]
                                     ? "text-danger"
@@ -491,14 +492,14 @@ const F1Race = (props) => {
                                   <h3 className="text-center">-</h3>
                                 )}
                               </td>
-                              <td className="text-center fw-bold text-warning p-0">
+                              <td className="text-center fw-bold text-warning">
                                 {result.FastestLap?.lap ? (
                                   result.FastestLap?.lap
                                 ) : (
                                   <h3>-</h3>
                                 )}
                               </td>
-                              <td className="op text-start p-0">
+                              <td className="op text-start">
                                 {result?.FastestLap?.AverageSpeed?.speed ? (
                                   <>
                                     <span className="ms-1 fw-bold">
@@ -602,7 +603,7 @@ const F1Race = (props) => {
             {currentTabIndex === 2 && (
               <div className="container-fluid p-0">
                 {/* Laptimes içeriği burada */}
-                {/* <Laptimes season={season} round={round} laps={laps} lapsx={1} /> */}
+                <Laptimes season={season} round={round} laps={1} lapsx={1} />
               </div>
             )}
           </Box>

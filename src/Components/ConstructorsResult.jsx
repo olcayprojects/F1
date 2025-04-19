@@ -135,7 +135,7 @@ const ConstructorsResult = () => {
                         items?.Results.map((item, index) => {
                           return (
                             <tr key={index} className="">
-                              <td className="op text-center text-info p-0 fw-bold">
+                              <td className="op text-center text-info fw-bold">
                                 {!isNaN(+item.positionText)
                                   ? item.positionText
                                   : item.position +
@@ -143,11 +143,11 @@ const ConstructorsResult = () => {
                                     item.positionText +
                                     ")"}
                               </td>
-                              <td className="text-center text-black p-0">
+                              <td className="text-center text-black">
                                 {item.grid}
                               </td>
                               <td
-                                className="cp op p-0 fw-bold"
+                                className="cp op fw-bold"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + item.Driver.driverId
@@ -168,10 +168,10 @@ const ConstructorsResult = () => {
                                   {item.Driver.nationality}
                                 </span>
                               </td>
-                              <td className="text-center text-secondary p-0">
+                              <td className="text-center text-secondary">
                                 {item.Time?.time ? item.Time?.time : "-"}
                               </td>
-                              <td className="op text-center p-0">
+                              <td className="op text-center">
                                 <span className="text-success px-2">
                                   {item.status}
                                 </span>
