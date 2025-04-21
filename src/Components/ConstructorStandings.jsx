@@ -13,7 +13,7 @@ const ConstructorStandings = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { standings, year, isLoading } = useSelector(
+  const { standings, prevStandings, year, isLoading } = useSelector(
     (state) => state.constructorStandings
   );
 
@@ -31,7 +31,7 @@ const ConstructorStandings = (props) => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="">
+    <div>
       {props.tab !== 1 && <Nav />}
 
       <div className="container-fluid">
@@ -85,78 +85,86 @@ const ConstructorStandings = (props) => {
               </tr>
             </thead>
             <tbody>
-              {standings?.map((cs) => (
-                <tr
-                  key={cs.Constructor.constructorId}
-                  className={
-                    "align-middle " +
-                    (cs.position === "1"
-                      ? "fs-5"
-                      : cs.position === "2"
-                      ? "fs-6"
-                      : null)
-                  }
-                >
-                  <td className="text-center fw-bold py-0">
-                    {cs.position < 2 ? (
-                      <i
-                        className={
-                          "fs-3 bi bi-" +
-                          cs.position +
-                          "-square-fill text-light"
+              {standings?.map((cs) => {
+                const prev = prevStandings.find(
+                  (prevCs) =>
+                    prevCs.Constructor.constructorId ===
+                    cs.Constructor.constructorId
+                );
+
+                let change = 0;
+                if (prev) {
+                  change = parseInt(prev.position) - parseInt(cs.position);
+                }
+
+                const renderChange = () => {
+                  if (!prev || change === 0) return null;
+                  return (
+                    <span
+                      className={`ms-1 fw-normal ${
+                        change > 0 ? "text-success" : "text-danger"
+                      }`}
+                    >
+                      {change > 0 ? "↑" : "↓"}
+                      {Math.abs(change)}
+                    </span>
+                  );
+                };
+
+                return (
+                  <tr key={cs.Constructor.constructorId}>
+                    <td className="text-center fw-bold py-0">
+                      {cs.position}
+                      {renderChange()}
+                    </td>
+                    <td className="op fw-bold text-warning py-0">
+                      <span
+                        className="px-1 cp bg-black"
+                        onClick={() =>
+                          navigate(
+                            "/ConstructorsResult/" +
+                              cs.Constructor.constructorId +
+                              "/" +
+                              (props.season || year)
+                          )
                         }
-                      ></i>
-                    ) : (
-                      cs.position
-                    )}
-                  </td>
-                  <td className="op fw-bold text-warning py-0">
-                    <span
-                      className="px-1 cp bg-black"
-                      onClick={() => {
-                        navigate(
-                          "/ConstructorsResult/" +
-                            cs.Constructor.constructorId +
-                            "/" +
-                            (props.season || year)
-                        );
-                      }}
-                    >
-                      {cs.Constructor.name.toUpperCase()}
-                      {cs.position < 2 && (
-                        <Team
-                          teamName={cs.Constructor.name}
-                          constructor={setConstructor}
-                          ls={2}
-                        />
-                      )}
-                    </span>
-                    <span className="px-2 text-center bg-warning-subtle text-black fw-light fst-italic py-0">
-                      {cs.Constructor.nationality}
-                    </span>
-                  </td>
-                  <td className="text-end op text-info py-1">
-                    <span
-                      className={
-                        "d-block fw-bold pe-2 " +
-                        (cs.points === "0" ? "text-secondary" : "bg-black")
-                      }
-                    >
-                      {cs.points}
-                    </span>
-                  </td>
-                  <td className="text-primary fw-bold">
-                    <span
-                      className={
-                        "d-block ps-2 " +
-                        (cs.wins === "0" ? "text-secondary" : "bg-black")
-                      }
-                    >
-                      {cs.wins}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                      >
+                        {cs.Constructor.name.toUpperCase()}
+                        {cs.position < 2 && (
+                          <Team
+                            teamName={cs.Constructor.name}
+                            constructor={setConstructor}
+                            ls={2}
+                          />
+                        )}
+                      </span>
+                      <span className="px-2 text-center bg-warning-subtle text-black fw-light fst-italic py-0">
+                        {cs.Constructor.nationality}
+                      </span>
+                    </td>
+                    <td className="text-end op text-info py-1">
+                      <span
+                        className={
+                          "d-block fw-bold pe-2 " +
+                          (cs.points === "0" ? "text-secondary" : "bg-black")
+                        }
+                      >
+                        {cs.points}
+                      </span>
+                    </td>
+                    <td className="text-primary fw-bold">
+                      <span
+                        className={
+                          "d-block ps-2 " +
+                          (cs.wins === "0" ? "text-secondary" : "bg-black")
+                        }
+                      >
+                        {cs.wins}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
