@@ -3,13 +3,35 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-// Async thunk ile API'den veri çekiyoruz
+// Async thunk: Mevcut + Önceki round'un driver standings'i
 export const fetchDriverStandings = createAsyncThunk(
   'driverStandings/fetchDriverStandings',
-  async (year, thunkAPI) => {
-    const res = await fetch(`${BASE_URL}/${year}/driverStandings.json`);
-    const data = await res.json();
-    return data["MRData"].StandingsTable.StandingsLists[0].DriverStandings;
+  async (yearOrSeason, thunkAPI) => {
+    try {
+      // Mevcut sezon verisini çekiyoruz
+      const res = await fetch(`${BASE_URL}/${yearOrSeason}/driverStandings.json`);
+      const data = await res.json();
+      const currentList = data["MRData"].StandingsTable.StandingsLists[0];
+      const standings = currentList.DriverStandings;
+      const currentRound = parseInt(currentList.round);
+
+      // Önceki round verisi
+      let prevStandings = [];
+      if (currentRound > 1) {
+        const prevRes = await fetch(`${BASE_URL}/${yearOrSeason}/${currentRound - 1}/driverStandings.json`);
+        const prevData = await prevRes.json();
+        prevStandings =
+          prevData["MRData"].StandingsTable.StandingsLists[0]?.DriverStandings || [];
+      }
+
+      return {
+        standings,
+        prevStandings,
+        round: currentRound,
+      };
+    } catch (err) {
+      return thunkAPI.rejectWithValue("Standings fetch failed.");
+    }
   }
 );
 
@@ -17,6 +39,8 @@ const driverStandingsSlice = createSlice({
   name: 'driverStandings',
   initialState: {
     standings: [],
+    prevStandings: [],
+    round: null,
     year: "2025",
     isLoading: false,
   },
@@ -31,7 +55,9 @@ const driverStandingsSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchDriverStandings.fulfilled, (state, action) => {
-        state.standings = action.payload;
+        state.standings = action.payload.standings;
+        state.prevStandings = action.payload.prevStandings;
+        state.round = action.payload.round;
         state.isLoading = false;
       })
       .addCase(fetchDriverStandings.rejected, (state) => {

@@ -1,4 +1,3 @@
-// DriverStandings.jsx
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -11,7 +10,7 @@ const DriverStandings = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { standings, year, isLoading } = useSelector(
+  const { standings, prevStandings, year, isLoading } = useSelector(
     (state) => state.driverStandings
   );
 
@@ -65,6 +64,7 @@ const DriverStandings = (props) => {
             <thead className="border-5 fs-6">
               <tr>
                 <th className="text-center py-0">P</th>
+                <th className="text-center p-0">↑↓</th>
                 <th className="text-black bg-info py-0 op">DRIVER INFO</th>
                 <th className="py-0 bg-warning text-black">CONSTRUCTOR</th>
                 <th className="text-center op py-0 bg-light text-black">
@@ -74,87 +74,104 @@ const DriverStandings = (props) => {
               </tr>
             </thead>
             <tbody>
-              {standings?.map((driver) => (
-                <tr
-                  key={driver.Driver.driverId}
-                  className={
-                    "align-middle " +
-                    (driver.position === "1"
-                      ? "fs-5"
-                      : driver.position === "2"
-                      ? "fs-6"
-                      : null)
+              {standings?.map((driver) => {
+                const driverId = driver.Driver.driverId;
+
+                // Önceki round'dan aynı sürücüyü bul
+                const prev = prevStandings?.find(
+                  (d) => d.Driver.driverId === driverId
+                );
+
+                // Pozisyon farkı
+                let positionDiff = null;
+                let positionIcon = null;
+
+                if (prev) {
+                  const currentPos = parseInt(driver.position);
+                  const prevPos = parseInt(prev.position);
+
+                  if (!isNaN(currentPos) && !isNaN(prevPos)) {
+                    const diff = prevPos - currentPos;
+                    if (diff > 0) {
+                      positionDiff = `↑ ${diff}`;
+                      positionIcon = "text-success";
+                    } else if (diff < 0) {
+                      positionDiff = `↓ ${-diff}`;
+                      positionIcon = "text-danger";
+                    } else {
+                      positionDiff = "";
+                      positionIcon = "text-secondary";
+                    }
                   }
-                >
-                  <td className="text-center fw-bold py-0 op">
-                    {driver.position < 2 ? (
-                      <i
+                }
+
+                return (
+                  <tr key={driverId}>
+                    <td className="text-center fw-bold py-0 op">
+                      {driver.position}
+                    </td>
+                    <td className={`p-0 text-center  ${positionIcon}`}>
+                      {positionDiff && <span className="">{positionDiff}</span>}
+                    </td>
+                    <td
+                      className="cp py-0 fw-bold"
+                      onClick={() => {
+                        navigate("/ResultsDriver/" + driver.Driver.driverId);
+                      }}
+                    >
+                      <span className="text-info px-1 bg-black">
+                        {driver.Driver.givenName}
+                        <b className="ps-1">
+                          {driver.Driver.familyName.toUpperCase()}
+                        </b>
+                      </span>
+                      <span className="text-info opacity-25 bg-black">
+                        {driver.Driver.code &&
+                          `(${
+                            driver.Driver.permanentNumber
+                              ? "#" + driver.Driver.permanentNumber
+                              : ""
+                          })`}
+                      </span>
+                      <span className="fw-light opacity-25 fst-italic text-info bg-black pe-2">
+                        {driver.Driver.dateOfBirth +
+                          " " +
+                          driver.Driver.nationality.toUpperCase()}
+                      </span>
+                    </td>
+                    <td className="op fw-bold fst-italic text-warning py-0 ps-2">
+                      <span className="bg-black px-2">
+                        {driver.Constructors[0].name.toUpperCase()}
+                      </span>
+                      <span className="ps-2 opacity-25 text-warning-emphasis bg-warning-subtle px-2">
+                        {driver.Constructors[0].nationality.toUpperCase()}
+                      </span>
+                    </td>
+                    <td className="text-center text-light py-1">
+                      <span
                         className={
-                          "bi bi-" +
-                          driver.position +
-                          "-square-fill text-danger"
+                          "fw-bold d-block " +
+                          (driver?.points === "0"
+                            ? "text-secondary"
+                            : "bg-black")
                         }
-                      ></i>
-                    ) : (
-                      driver.position || driver.positionText
-                    )}
-                  </td>
-                  <td
-                    className="cp py-0 fw-bold"
-                    onClick={() => {
-                      navigate("/ResultsDriver/" + driver.Driver.driverId);
-                    }}
-                  >
-                    <span className="text-info px-1 bg-black">
-                      {driver.Driver.givenName}
-                      <b className="ps-1">
-                        {driver.Driver.familyName.toUpperCase()}
-                      </b>
-                    </span>
-                    <span className="text-info opacity-25 bg-black">
-                      {driver.Driver.code &&
-                        `(${
-                          driver.Driver.permanentNumber
-                            ? "#" + driver.Driver.permanentNumber
-                            : ""
-                        })`}
-                    </span>
-                    <span className="fw-light opacity-25 fst-italic text-info bg-black pe-2">
-                      {driver.Driver.dateOfBirth +
-                        " " +
-                        driver.Driver.nationality.toUpperCase()}
-                    </span>
-                  </td>
-                  <td className="op fw-bold fst-italic text-warning py-0 ps-2">
-                    <span className="bg-black px-2">
-                      {driver.Constructors[0].name.toUpperCase()}
-                    </span>
-                    <span className="ps-2 opacity-25 text-warning-emphasis bg-warning-subtle px-2">
-                      {driver.Constructors[0].nationality.toUpperCase()}
-                    </span>
-                  </td>
-                  <td className="text-center text-light py-1">
-                    <span
-                      className={
-                        "fw-bold d-block " +
-                        (driver?.points === "0" ? "text-secondary" : "bg-black")
-                      }
-                    >
-                      {driver.points}
-                    </span>
-                  </td>
-                  <td className="text-center text-primary py-1 op">
-                    <span
-                      className={
-                        "fw-bold d-block " +
-                        (driver?.wins === "0" ? "text-secondary" : "bg-black")
-                      }
-                    >
-                      {driver.wins}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                      >
+                        {driver.points}
+                      </span>
+                    </td>
+                    <td className="text-center text-primary py-1 op">
+                      <span
+                        className={
+                          "fw-bold d-block " +
+                          (driver?.wins === "0" ? "text-secondary" : "bg-black")
+                        }
+                      >
+                        {driver.wins}
+                      </span>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
