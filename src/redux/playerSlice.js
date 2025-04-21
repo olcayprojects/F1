@@ -1,7 +1,5 @@
-// redux/playerSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// Player verisini çekme işlemi
 export const fetchPlayer = createAsyncThunk(
     "player/fetchPlayer",
     async (playerId) => {
@@ -9,7 +7,7 @@ export const fetchPlayer = createAsyncThunk(
             `https://www.thesportsdb.com/api/v1/json/3/lookupplayer.php?id=${playerId}`
         );
         const data = await res.json();
-        return { playerId, playerData: data.players[0] };  // playerId'yi de ekliyoruz
+        return { playerId, playerData: data.players[0] };
     }
 );
 
@@ -35,7 +33,7 @@ const playerSlice = createSlice({
             })
             .addCase(fetchPlayer.fulfilled, (state, action) => {
                 const { playerId, playerData } = action.payload;
-                state.playersData[playerId] = playerData; // playerId'ye göre veriyi saklıyoruz
+                state.playersData[playerId] = playerData;
                 state.isLoading = false;
             })
             .addCase(fetchPlayer.rejected, (state, action) => {

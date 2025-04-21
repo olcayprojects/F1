@@ -5,7 +5,7 @@ const DriverContext = createContext();
 
 export const DriverProvider = ({ children }) => {
   const [drivers, setDrivers] = useState([]);
-  const [season, setSeason] = useState("2023"); // varsayılan sezon
+  const [season, setSeason] = useState("2025"); 
 
   useEffect(() => {
     const fetchDrivers = async () => {

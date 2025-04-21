@@ -1,21 +1,17 @@
-// redux/driverStandingsSlice.js
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-// Async thunk: Mevcut + Önceki round'un driver standings'i
 export const fetchDriverStandings = createAsyncThunk(
   'driverStandings/fetchDriverStandings',
   async (yearOrSeason, thunkAPI) => {
     try {
-      // Mevcut sezon verisini çekiyoruz
       const res = await fetch(`${BASE_URL}/${yearOrSeason}/driverStandings.json`);
       const data = await res.json();
       const currentList = data["MRData"].StandingsTable.StandingsLists[0];
       const standings = currentList.DriverStandings;
       const currentRound = parseInt(currentList.round);
 
-      // Önceki round verisi
       let prevStandings = [];
       if (currentRound > 1) {
         const prevRes = await fetch(`${BASE_URL}/${yearOrSeason}/${currentRound - 1}/driverStandings.json`);

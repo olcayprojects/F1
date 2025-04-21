@@ -51,7 +51,6 @@ const PlayerProfile = ({ playerId, t }) => {
 
   useEffect(() => {
     if (playerId && !playersData[playerId]) {
-      // Eğer daha önce bu playerId verisi çekilmediyse
       dispatch(fetchPlayer(playerId));
     }
   }, [dispatch, playerId, playersData]);

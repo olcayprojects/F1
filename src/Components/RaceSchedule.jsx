@@ -20,7 +20,7 @@ const RaceSchedule = ({ season }) => {
   const { races, isLoading, error } = useSelector((state) => state.schedule);
 
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Günü normalize et
+  today.setHours(0, 0, 0, 0);
 
   useEffect(() => {
     if (season) {

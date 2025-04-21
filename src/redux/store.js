@@ -1,4 +1,3 @@
-// redux/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import driverStandingsReducer from './driverStandingsSlice';
 import constructorStandingsReducer from "./constructorStandingsSlice";

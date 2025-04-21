@@ -1,4 +1,3 @@
-// redux/carouselSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCarouselTeams = createAsyncThunk(

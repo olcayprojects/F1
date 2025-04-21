@@ -1,4 +1,3 @@
-// redux/raceScheduleSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchRaceSchedule = createAsyncThunk(

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import WinRacesInaSeason from "./WinRacesInaSeason";
-import Classifications from "./Classifications"; // Classifications'ı import ettik
-import DriverStandings from "./DriverStandings";
+import Classifications from "./Classifications";
 import ConstructorStandings from "./ConstructorStandings";
 import Next from "./Next";
 import RaceSchedule from "./RaceSchedule";
@@ -19,10 +18,9 @@ import { red } from "@mui/material/colors";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import BuildIcon from "@mui/icons-material/Build";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import LeaderboardIcon from '@mui/icons-material/Leaderboard';
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import LeaderboardIcon from "@mui/icons-material/Leaderboard";
+import FormatListNumberedIcon from "@mui/icons-material/FormatListNumbered";
 
 // const theme = createTheme({
 //   palette: {

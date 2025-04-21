@@ -77,12 +77,10 @@ const DriverStandings = (props) => {
               {standings?.map((driver) => {
                 const driverId = driver.Driver.driverId;
 
-                // Önceki round'dan aynı sürücüyü bul
                 const prev = prevStandings?.find(
                   (d) => d.Driver.driverId === driverId
                 );
 
-                // Pozisyon farkı
                 let positionDiff = null;
                 let positionIcon = null;
 

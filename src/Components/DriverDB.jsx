@@ -19,7 +19,7 @@ const DriverDB = (props) => {
     let normalizedDrvr = normalizeString(props.drv);
 
     if (normalizedDrvr === "carlos_sainz") {
-      normalizedDrvr = "carlos_sainz_jr"; // Özel durum
+      normalizedDrvr = "carlos_sainz_jr";
     }
 
     setDrvr(normalizedDrvr);

@@ -9,7 +9,7 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
   const prevLap = laps[currentLapIndex - 1];
 
   const startRace = () => {
-    setCurrentLapIndex(0); // Her başlatmada sıfırdan başla
+    setCurrentLapIndex(0);
     setIsRunning(true);
 
     intervalRef.current = setInterval(() => {
@@ -18,7 +18,7 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
           return prevIndex + 1;
         } else {
           clearInterval(intervalRef.current);
-          setIsRunning(false); // Yarış bitince tekrar başlatılabilir hale getir
+          setIsRunning(false);
           return prevIndex;
         }
       });
