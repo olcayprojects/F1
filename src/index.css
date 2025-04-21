@@ -203,3 +203,7 @@ table th {
   font-weight: bold;
   margin-left: 10px;
 }
+
+.text-pit {
+  color: #c084fc !important; /* lila tonu */
+}

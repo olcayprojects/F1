@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-const RaceSimulation = ({ laps, drivers }) => {
+const RaceSimulation = ({ laps, drivers, pitStops }) => {
   const [currentLapIndex, setCurrentLapIndex] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const intervalRef = useRef(null);
@@ -22,7 +22,7 @@ const RaceSimulation = ({ laps, drivers }) => {
           return prevIndex;
         }
       });
-    }, 2000);
+    }, 3000);
   };
 
   const stopRace = () => {
@@ -77,15 +77,19 @@ const RaceSimulation = ({ laps, drivers }) => {
           </div>
         </caption>
         <thead>
-          <tr>
+          <tr className="text-center">
             <th>#</th>
+            <th>PST</th>
             <th>Driver</th>
-            <th>Time ↓</th>
+            <th>↓ ↑</th>
+            <th className="">PIT</th> {/* Yeni sütun */}
+            <th>Time</th>
           </tr>
         </thead>
         <tbody>
           {[...(currentLap?.Timings || [])]
-            .sort((a, b) => parseFloat(a.time) - parseFloat(b.time))
+            .sort((a, b) => parseInt(a.position) - parseInt(b.position))
+
             .map((timing, i) => {
               const driver = drivers.find(
                 (d) => d.driverId === timing.driverId
@@ -94,9 +98,14 @@ const RaceSimulation = ({ laps, drivers }) => {
                 timing.driverId,
                 timing.position
               );
+              const pitStop = pitStops.find(
+                (ps) =>
+                  ps.driverId === timing.driverId &&
+                  parseInt(ps.lap) === parseInt(currentLap.number)
+              );
 
               return (
-                <tr className="font-monospace fs-5" key={i}>
+                <tr className="font-monospace fs-5 text-center" key={i}>
                   <td>{formatPosition(i + 1)}</td>
                   <td>
                     <strong className="text-warning">
@@ -109,16 +118,41 @@ const RaceSimulation = ({ laps, drivers }) => {
                       <span className="mx-2">→</span>
                       {formatPosition(timing.position)}
                     </strong>
-                    <span className="mx-4 px-2 fw-bold bg-black rounded text-success">
+                  </td>
+                  <td
+                    className={
+                      timing.position === "1"
+                        ? "text-warning"
+                        : pitStop
+                        ? positionChange.includes("↑")
+                          ? "text-primary"
+                          : positionChange.includes("↓")
+                          ? "text-danger"
+                          : "text-decoration-line-through"
+                        : positionChange.includes("↑")
+                        ? "text-primary"
+                        : positionChange.includes("↓")
+                        ? "text-danger"
+                        : "text-success"
+                    }
+                  >
+                    <span className="px-2 bg-black rounded">
                       {driver ? `${driver.givenName} ${driver.familyName}` : ""}
                     </span>
+                  </td>
+                  <td className="p-0">
                     {positionChange && (
                       <span className="position-change ms-1">
                         {positionChange}
                       </span>
                     )}
                   </td>
-                  <td>{timing.time}</td>
+                  <td className="text-info fw-bold p-0">
+                    {pitStop ? `${pitStop.duration}s` : ""}
+                  </td>
+                  <td className={"p-0 " + (pitStop ? "text-info fw-bold" : "")}>
+                    {timing.time}
+                  </td>
                 </tr>
               );
             })}

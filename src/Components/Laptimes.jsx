@@ -11,6 +11,7 @@ const Laptimes = (props) => {
   const [loading, setLoading] = useState(true);
   const { season2 = "2025" } = useParams();
   const { drivers, setSeason } = useDrivers();
+  const [pitStops, setPitStops] = useState([]);
 
   const season = props.season || season2;
   const round = props.round || "18";
@@ -18,6 +19,22 @@ const Laptimes = (props) => {
   useEffect(() => {
     setSeason(season);
   }, [season, setSeason]);
+
+  useEffect(() => {
+    const fetchPitStops = async () => {
+      try {
+        const url = `${BASE_URL}/${season}/${round}/pitstops.json?limit=100`;
+        const res = await fetch(url);
+        const data = await res.json();
+        const pitStopsData = data?.MRData?.RaceTable?.Races[0]?.PitStops || [];
+        setPitStops(pitStopsData);
+      } catch (error) {
+        console.error("Pit stop verisi alınamadı:", error);
+      }
+    };
+
+    fetchPitStops();
+  }, [season, round]);
 
   useEffect(() => {
     const fetchLaps = async () => {
@@ -74,7 +91,7 @@ const Laptimes = (props) => {
   return (
     <div className="container-fluid">
       <div className="">
-        <RaceSimulation laps={laps} drivers={drivers} />
+        <RaceSimulation laps={laps} drivers={drivers} pitStops={pitStops} />
 
         {/* <div className="row">
         {laps.map((lap, index) => (
