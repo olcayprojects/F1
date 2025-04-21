@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
-import { DrvInfo } from "./DriverInfo";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -50,9 +49,7 @@ const Classifications = ({ season }) => {
         );
 
         setRaceResults(uniqueRaces);
-      } catch (error) {
-        console.error("Error fetching race results:", error);
-      }
+      } catch (error) {}
     };
 
     fetchAllResults();
@@ -82,9 +79,7 @@ const Classifications = ({ season }) => {
           }));
 
           setDriversData(updatedDriversData);
-        } catch (error) {
-          console.error("Error fetching driver standings:", error);
-        }
+        } catch (error) {}
       };
 
       fetchDriverStandings();
@@ -114,7 +109,7 @@ const Classifications = ({ season }) => {
       setDriversData(updatedDriversData);
       setLoading(false);
     }
-  }, [raceResults, driversData.length]); // `raceResults` ve `driversData`'ya bağlı olarak çalışacak. `driversData.length` burada önemli çünkü bu sayede sonsuz döngüden kaçınabiliriz.
+  }, [raceResults, driversData.length]);
 
   if (loading) {
     return <Loading />;
@@ -125,7 +120,7 @@ const Classifications = ({ season }) => {
       <table className="myTable table table-dark table-striped table-bordered border-dark text-center">
         <thead>
           <tr className="">
-            <th className="text-dark bg-info">P</th>
+            <th className="text-dark bg-info">#</th>
             <th className="text-dark bg-warning">Driver</th>
             {raceResults.map((race, idx) => (
               <th
@@ -137,7 +132,7 @@ const Classifications = ({ season }) => {
               </th>
             ))}
             <th className="text-dark bg-success">W</th>
-            <th className="text-dark bg-primary">Pts</th>
+            <th className="text-dark bg-primary">P</th>
           </tr>
         </thead>
         <tbody>
@@ -156,11 +151,19 @@ const Classifications = ({ season }) => {
                   driver.code
                 )}
               </td>
-              {driver.raceResults.map((res, i) => (
-                <td className="text-danger" key={i}>
-                  {res ? <strong>{res.position}</strong> : <strong>-</strong>}
-                </td>
-              ))}
+              {driver.raceResults.map((res, i) => {
+                return (
+                  <td
+                    className={
+                      !isNaN(res?.position) ? "text-danger" : "text-light"
+                    }
+                    key={i}
+                  >
+                    {res?.position}
+                  </td>
+                );
+              })}
+
               <td className="text-success fw-bold">{driver.wins}</td>
               <td className="text-primary fw-bolder">{driver.points}</td>
             </tr>
