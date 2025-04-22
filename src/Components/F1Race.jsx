@@ -93,7 +93,7 @@ const F1Race = (props) => {
                   key={indexItem}
                   className="container-fluid bg-black p-0 m-1"
                 >
-                  <h1 className="text-center fs-2 text-warning fst-italic fw-bold bg-dark border border-danger border-5">
+                  <h4 className="text-center text-warning fst-italic fw-bold bg-dark border border-danger border-2">
                     {rounds === 0 ? (
                       <span className="text-danger">
                         Last Race <i className="bi bi-arrow-right-square"> </i>
@@ -112,7 +112,7 @@ const F1Race = (props) => {
                       </span>
                     </i>
                     <i className="text-info bi bi-calendar3"></i>
-                  </h1>
+                  </h4>
 
                   {season2 > "1970" ? (
                     <div className="container-fluid" style={{}}>
@@ -166,7 +166,7 @@ const F1Race = (props) => {
                   <div className="table-responsive-sm">
                     <table className="myTable table table-dark table-striped table-bordered border-dark">
                       <thead className="">
-                        <tr className="align-middle">
+                        <tr className="align-middle fs-7">
                           <th className="bg-light text-center text-black text-black op">
                             <span className="bg-black p-1 text-light">P</span>
                           </th>
@@ -250,13 +250,15 @@ const F1Race = (props) => {
                             <br />
                             LAP
                           </th>
-                          <th className="text-start bg-success">
-                            <span className="text-decoration-underline text-black">
-                              L A P S
-                            </span>
-                            <br />
-                            <span className="text-white">AVGSPEED</span>
-                          </th>
+                          {season2 !== "2025" && (
+                            <th className="text-start bg-success">
+                              <span className="text-decoration-underline text-black">
+                                L A P S
+                              </span>
+                              <br />
+                              <span className="text-white">AVGSPEED</span>
+                            </th>
+                          )}
                         </tr>
                       </thead>
                       <tbody className="">
@@ -499,20 +501,22 @@ const F1Race = (props) => {
                                   <h3>-</h3>
                                 )}
                               </td>
-                              <td className="op text-start">
-                                {result?.FastestLap?.AverageSpeed?.speed ? (
-                                  <>
-                                    <span className="ms-1 fw-bold">
-                                      {result?.FastestLap?.AverageSpeed.speed}{" "}
-                                    </span>
-                                    <span className="fst-italic text-secondary">
-                                      {result?.FastestLap?.AverageSpeed.units}
-                                    </span>
-                                  </>
-                                ) : (
-                                  <h3 className="text-center">-</h3>
-                                )}
-                              </td>
+                              {season2 !== "2025" && (
+                                <td className="op text-start">
+                                  {result?.FastestLap?.AverageSpeed?.speed ? (
+                                    <>
+                                      <span className="ms-1 fw-bold">
+                                        {result?.FastestLap?.AverageSpeed.speed}{" "}
+                                      </span>
+                                      <span className="fst-italic text-secondary">
+                                        {result?.FastestLap?.AverageSpeed.units}
+                                      </span>
+                                    </>
+                                  ) : (
+                                    <h3 className="text-center">-</h3>
+                                  )}
+                                </td>
+                              )}
                             </tr>
                           );
                         })}
