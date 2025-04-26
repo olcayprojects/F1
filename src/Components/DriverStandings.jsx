@@ -97,7 +97,7 @@ const DriverStandings = (props) => {
                       positionDiff = `↓ ${-diff}`;
                       positionIcon = "text-danger";
                     } else {
-                      positionDiff = "";
+                      positionDiff = "--";
                       positionIcon = "text-secondary";
                     }
                   }
