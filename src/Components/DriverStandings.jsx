@@ -139,12 +139,38 @@ const DriverStandings = (props) => {
                     </td>
                     <td className="op fw-bold fst-italic text-warning py-0 ps-2">
                       <span className="bg-black px-2">
-                        {driver.Constructors[0].name.toUpperCase()}
+                        {/* İlk constructor'ı normal şekilde yaz */}
+                        {driver.Constructors && driver.Constructors[0] && (
+                          <span>
+                            {driver.Constructors[0].name.toUpperCase()}
+                          </span>
+                        )}
                       </span>
+
+                      {/* İlk constructor'ın milliyetini göster */}
                       <span className="ps-2 opacity-25 text-warning-emphasis bg-warning-subtle px-2">
-                        {driver.Constructors[0].nationality.toUpperCase()}
+                        {driver.Constructors[0]?.nationality.toUpperCase()}
+                      </span>
+
+                      {/* Eski takımları (diğer constructor'lar) satırın sonuna ekle ve üstünü çiz */}
+                      <span className="px-2">
+                        {driver.Constructors?.slice(1).map(
+                          (constructor, index) => (
+                            <span
+                              key={index}
+                              style={{
+                                textDecorationLine: "line-through",
+                                color: "gray",
+                              }}
+                            >
+                              {constructor.name.toUpperCase()}
+                              {index < driver.Constructors.length - 2 && ", "}
+                            </span>
+                          )
+                        )}
                       </span>
                     </td>
+
                     <td className="text-center text-light py-1">
                       <span
                         className={
