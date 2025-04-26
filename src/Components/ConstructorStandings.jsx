@@ -9,6 +9,11 @@ import {
   setYear,
 } from "../redux/constructorStandingsSlice";
 
+import {
+  fetchDriverStandings,
+  setYear as setDriverYear,
+} from "../redux/driverStandingsSlice";
+
 const ConstructorStandings = (props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,11 +22,14 @@ const ConstructorStandings = (props) => {
     (state) => state.constructorStandings
   );
 
+  const driver = useSelector((state) => state.driverStandings);
+
   const [constructor, setConstructor] = useState(null);
 
   useEffect(() => {
     const yearOrSeason = props.season || year;
     dispatch(fetchConstructorStandings(yearOrSeason));
+    dispatch(fetchDriverStandings(yearOrSeason));
   }, [dispatch, year, props.season]);
 
   const handleYearChange = (e) => {
@@ -92,6 +100,13 @@ const ConstructorStandings = (props) => {
                     cs.Constructor.constructorId
                 );
 
+                const relatedDrivers = driver.standings.filter((d) =>
+                  d.Constructors.some(
+                    (constructor) =>
+                      constructor.constructorId === cs.Constructor.constructorId
+                  )
+                );
+
                 let change = 0;
                 if (prev) {
                   change = parseInt(prev.position) - parseInt(cs.position);
@@ -140,6 +155,19 @@ const ConstructorStandings = (props) => {
                       </span>
                       <span className="px-2 text-center bg-warning-subtle text-black fw-light fst-italic py-0">
                         {cs.Constructor.nationality}
+                      </span>
+                      <span className="px-2 text-info">
+                        {relatedDrivers
+                          .map(
+                            (d) =>
+                              d.Driver.givenName +
+                              " " +
+                              d.Driver.familyName +
+                              " (" +
+                              d.positionText +
+                              ")"
+                          )
+                          .join(" & ")}
                       </span>
                     </td>
                     <td className="text-end op text-info py-1">
