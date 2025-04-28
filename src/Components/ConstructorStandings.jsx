@@ -145,7 +145,7 @@ const ConstructorStandings = (props) => {
                         }
                       >
                         {cs.Constructor.name.toUpperCase()}
-                        {cs.position < 10 && (
+                        {cs.position < 11 && (
                           <Team
                             teamName={cs.Constructor.name}
                             constructor={setConstructor}
