@@ -65,7 +65,7 @@ const ConstructorStandings = (props) => {
           </div>
         )}
 
-        {year == new Date().getFullYear() && constructor && (
+        {/* {year == new Date().getFullYear() && constructor && (
           <div className="container-fluid d-flex flex-column justify-content-center align-items-center fw-bold">
             <img
               src={constructor?.strBadge + "/small"}
@@ -80,7 +80,7 @@ const ConstructorStandings = (props) => {
               {constructor?.strLocation}
             </h4>
           </div>
-        )}
+        )} */}
 
         <div className="justify-content-center">
           <table className="myTable table table-dark table-striped table-bordered border-dark">
@@ -128,7 +128,7 @@ const ConstructorStandings = (props) => {
 
                 return (
                   <tr key={cs.Constructor.constructorId}>
-                    <td className="text-center fw-bold py-0">
+                    <td className="text-center fw-bold py-0 align-middle">
                       {cs.position}
                       {renderChange()}
                     </td>
@@ -145,7 +145,7 @@ const ConstructorStandings = (props) => {
                         }
                       >
                         {cs.Constructor.name.toUpperCase()}
-                        {cs.position < 2 && (
+                        {cs.position < 10 && (
                           <Team
                             teamName={cs.Constructor.name}
                             constructor={setConstructor}
@@ -170,7 +170,7 @@ const ConstructorStandings = (props) => {
                           .join(" & ")}
                       </span>
                     </td>
-                    <td className="text-end op text-info py-1">
+                    <td className="text-end op text-info py-1 align-middle">
                       <span
                         className={
                           "d-block fw-bold pe-2 " +
@@ -180,7 +180,7 @@ const ConstructorStandings = (props) => {
                         {cs.points}
                       </span>
                     </td>
-                    <td className="text-primary fw-bold">
+                    <td className="text-primary fw-bold align-middle">
                       <span
                         className={
                           "d-block ps-2 " +

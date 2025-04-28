@@ -105,14 +105,14 @@ const DriverStandings = (props) => {
 
                 return (
                   <tr key={driverId}>
-                    <td className="text-center fw-bold py-0 op">
+                    <td className="text-center fw-bold py-1 op">
                       {driver.position}
                     </td>
-                    <td className={`p-0 text-center  ${positionIcon}`}>
+                    <td className={`p-0 py-1 text-center  ${positionIcon}`}>
                       {positionDiff && <span className="">{positionDiff}</span>}
                     </td>
                     <td
-                      className="cp py-0 fw-bold"
+                      className="cp py-1 fw-bold"
                       onClick={() => {
                         navigate("/ResultsDriver/" + driver.Driver.driverId);
                       }}
@@ -137,7 +137,7 @@ const DriverStandings = (props) => {
                           driver.Driver.nationality.toUpperCase()}
                       </span>
                     </td>
-                    <td className="op fw-bold fst-italic text-warning py-0 ps-2">
+                    <td className="op fw-bold fst-italic text-warning py-1 ps-2">
                       <span className="bg-black px-2">
                         {/* İlk constructor'ı normal şekilde yaz */}
                         {driver.Constructors && driver.Constructors[0] && (

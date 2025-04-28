@@ -75,10 +75,10 @@ const Team = ({ constructor, teamName, ls }) => {
             key={index}
             style={{
               width: "20%",
-              height: "40px",
+              height: "50px",
               objectPosition: "center",
             }}
-            src={teams?.strEquipment + "/small"}
+            src={teams?.strEquipment + "/medium"}
             alt=""
             title={teams?.strDescriptionEN}
           />
