@@ -63,7 +63,7 @@ const Results = ({ season }) => {
 
     return (
       <table
-        className="table table-dark table-striped table-bordered m-0 mb-1 me-1"
+        className="table table-dark table-striped table-bordered m-0"
         key={race.round}
         style={{}}
       >
@@ -80,8 +80,8 @@ const Results = ({ season }) => {
         </caption>
         <thead className="">
           <tr>
-            <th className="bg-danger text-black py-0 text-center">P</th>
-            <th className="bg-danger text-black py-0 text-center">G</th>
+            <th className="bg-danger text-black p-0 text-center">P</th>
+            <th className="bg-danger text-black p-0 text-center">G</th>
             <th className="op bg-danger text-black text-start py-0 text-nowrap">
               DRV
             </th>
@@ -99,13 +99,13 @@ const Results = ({ season }) => {
           {race.Results.map((result, i) => (
             <tr key={i}>
               <td className="text-center">{result.position}</td>
-              <td className="text-center">{result.grid}</td>
-              <td className="text-nowrap">{`${result.Driver.givenName} ${
+              <td className="text-center text-secondary p-0">{result.grid}</td>
+              <td className="text-nowrap pe-0">{`${
                 result.Driver.code || result.Driver.familyName
               }`}</td>
-              <td className="text-nowrap">{result.Constructor.name}</td>
+              <td className="text-nowrap ">{result.Constructor.name}</td>
               <td className="text-center p-0">{result.laps}</td>
-              <td className="text-center p-0 text-nowrap">
+              <td className="text-center text-nowrap">
                 {result.Time?.time || result.status}
               </td>
               <td className="text-center">{result.points}</td>
@@ -125,7 +125,7 @@ const Results = ({ season }) => {
         {Object.keys(races)
           .sort((a, b) => parseInt(a) - parseInt(b))
           .map((round) => (
-            <div className="col-auto" key={round}>
+            <div className="col-auto bg-danger m-1 p-0" key={round}>
               {renderTable(races[round])}
             </div>
           ))}
