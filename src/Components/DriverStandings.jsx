@@ -65,12 +65,14 @@ const DriverStandings = (props) => {
               <tr>
                 <th className="text-center py-0">P</th>
                 <th className="text-center p-0">↑↓</th>
-                <th className="text-black bg-info py-0 op">DRIVER INFO</th>
-                <th className="py-0 bg-warning text-black">CONSTRUCTOR</th>
-                <th className="text-center op py-0 bg-light text-black">
+                <th className="text-black-50 bg-info py-0 op">DRIVER INFO</th>
+                <th className="py-0 bg-warning text-black-50">CONSTRUCTOR</th>
+                <th className="text-center op py-0 bg-light text-black-50">
                   POINTS
                 </th>
-                <th className="text-center py-0 bg-primary text-black">WINS</th>
+                <th className="text-center py-0 bg-primary text-black-50">
+                  WINS
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -117,29 +119,26 @@ const DriverStandings = (props) => {
                         navigate("/ResultsDriver/" + driver.Driver.driverId);
                       }}
                     >
-                      <span className="text-info px-1 bg-black">
-                        {driver.Driver.givenName}
-                        <b className="ps-1">
-                          {driver.Driver.familyName.toUpperCase()}
-                        </b>
+                      <span className="text-info fw-bolder px-1 bg-black">
+                        {`${
+                          driver.Driver.givenName
+                        } ${driver.Driver.familyName.toUpperCase()}`}
                       </span>
-                      <span className="text-info opacity-25 bg-black">
+
+                      <span className="fst-italic text-info-emphasis ps-1">
                         {driver.Driver.code &&
                           `(${
                             driver.Driver.permanentNumber
                               ? "#" + driver.Driver.permanentNumber
                               : ""
                           })`}
-                      </span>
-                      <span className="fw-light opacity-25 fst-italic text-info bg-black pe-2">
                         {driver.Driver.dateOfBirth +
                           " " +
                           driver.Driver.nationality.toUpperCase()}
                       </span>
                     </td>
                     <td className="op fw-bold fst-italic text-warning py-1 ps-2">
-                      <span className="bg-black px-2">
-                        {/* İlk constructor'ı normal şekilde yaz */}
+                      <span className="bg-black px-1">
                         {driver.Constructors && driver.Constructors[0] && (
                           <span>
                             {driver.Constructors[0].name.toUpperCase()}
@@ -147,12 +146,10 @@ const DriverStandings = (props) => {
                         )}
                       </span>
 
-                      {/* İlk constructor'ın milliyetini göster */}
-                      <span className="ps-2 opacity-25 text-warning-emphasis bg-warning-subtle px-2">
+                      <span className="ps-2  text-warning-emphasis px-2">
                         {driver.Constructors[0]?.nationality.toUpperCase()}
                       </span>
 
-                      {/* Eski takımları (diğer constructor'lar) satırın sonuna ekle ve üstünü çiz */}
                       <span className="px-2">
                         {driver.Constructors?.slice(1).map(
                           (constructor, index) => (
