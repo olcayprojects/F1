@@ -80,11 +80,7 @@ const PlayerProfile = ({ playerId, t }) => {
       ) : (
         <img
           className="img-fluid"
-          src={
-            playerData.strThumb
-              ? playerData.strThumb + "/small"
-              : playerData.strCutout + "/small"
-          }
+          src={(playerData.strThumb || playerData.strCutout || "") + "/small"}
           alt={playerData.strPlayer}
         />
       )}
@@ -102,11 +98,10 @@ const PlayerProfile = ({ playerId, t }) => {
       <img
         className="img-fluid"
         src={
-          playerData.strBanner
-            ? playerData.strBanner + "/small"
-            : playerData.strCutout + "/small"
-            ? playerData.strThumb + "/small"
-            : ""
+          (playerData.strBanner ||
+            playerData.strCutout ||
+            playerData.strThumb ||
+            "") + "/small"
         }
         alt=""
       />
@@ -132,13 +127,12 @@ const PlayerProfile = ({ playerId, t }) => {
   ) : t === "3" ? (
     <div className="container-fluid text-info">
       <img
-        className="img-fluid d-block mx-auto"
+        className="img-fluid d-block mx-auto text-center"
         src={
-          playerData.strCutout
-            ? playerData.strCutout + "/tiny"
-            : playerData.strThumb + "/tiny"
-            ? playerData.strRender + "/tiny"
-            : ""
+          (playerData.strCutout ||
+            playerData.strThumb ||
+            playerData.strRender ||
+            null) + "/tiny"
         }
         alt={playerData.strPlayer}
         title={playerData.strDescriptionEN}

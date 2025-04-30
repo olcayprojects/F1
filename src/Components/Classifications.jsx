@@ -148,7 +148,12 @@ const Classifications = ({ season }) => {
                     {/* <DrvInfo drv={driver.name} s="1" /> */}
                   </>
                 ) : (
-                  driver.code
+                  <>
+                    <span className="pe-1">{driver.name}</span>
+                    <span className="text-warning-emphasis">
+                      {driver.constructors}
+                    </span>
+                  </>
                 )}
               </td>
               {driver.raceResults.map((res, i) => {
