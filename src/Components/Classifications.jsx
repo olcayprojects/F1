@@ -117,64 +117,66 @@ const Classifications = ({ season }) => {
 
   return (
     <div className="container-fluid p-0">
-      <table className="myTable table table-dark table-striped table-bordered border-dark text-center">
-        <thead>
-          <tr className="">
-            <th className="text-dark bg-info">#</th>
-            <th className="text-dark bg-warning">Driver</th>
-            {raceResults.map((race, idx) => (
-              <th
-                title={race.raceName}
-                className="text-dark bg-danger"
-                key={idx}
-              >
-                {getShortRaceName(race.raceName)}
-              </th>
-            ))}
-            <th className="text-dark bg-success">W</th>
-            <th className="text-dark bg-primary">P</th>
-          </tr>
-        </thead>
-        <tbody>
-          {driversData.map((driver, idx) => (
-            <tr className="align-all-middle" key={idx}>
-              <td className="text-info">{driver.pos}</td>
-              <td className="text-warning" title={driver.name}>
-                {driver.pos === "1" ? (
-                  <>
-                    {driver.name} / {driver.constructors}
-                    <br />({driver.driverNationality} /{" "}
-                    {driver.constructorsNationality})
-                    {/* <DrvInfo drv={driver.name} s="1" /> */}
-                  </>
-                ) : (
-                  <>
-                    <span className="pe-1">{driver.name}</span>
-                    <span className="text-warning-emphasis">
-                      {driver.constructors}
-                    </span>
-                  </>
-                )}
-              </td>
-              {driver.raceResults.map((res, i) => {
-                return (
-                  <td
-                    className={
-                      !isNaN(res?.position) ? "text-danger" : "text-light"
-                    }
-                    key={i}
-                  >
-                    {res?.position}
-                  </td>
-                );
-              })}
-
-              <td className="text-success fw-bold">{driver.wins}</td>
-              <td className="text-primary fw-bolder">{driver.points}</td>
+      <div className="table-responsive">
+        <table className="myTable table table-dark table-striped table-bordered border-dark text-center">
+          <thead>
+            <tr className="">
+              <th className="text-dark bg-info">#</th>
+              <th className="text-dark bg-warning">Driver</th>
+              {raceResults.map((race, idx) => (
+                <th
+                  title={race.raceName}
+                  className="text-dark bg-danger"
+                  key={idx}
+                >
+                  {getShortRaceName(race.raceName)}
+                </th>
+              ))}
+              <th className="text-dark bg-success">W</th>
+              <th className="text-dark bg-primary">P</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {driversData.map((driver, idx) => (
+              <tr className="align-all-middle" key={idx}>
+                <td className="text-info">{driver.pos}</td>
+                <td className="text-warning" title={driver.name}>
+                  {driver.pos === "1" ? (
+                    <>
+                      {driver.name} / {driver.constructors}
+                      <br />({driver.driverNationality} /{" "}
+                      {driver.constructorsNationality})
+                      {/* <DrvInfo drv={driver.name} s="1" /> */}
+                    </>
+                  ) : (
+                    <>
+                      <span className="pe-1">{driver.name}</span>
+                      <span className="text-warning-emphasis">
+                        {driver.constructors}
+                      </span>
+                    </>
+                  )}
+                </td>
+                {driver.raceResults.map((res, i) => {
+                  return (
+                    <td
+                      className={
+                        !isNaN(res?.position) ? "text-danger" : "text-light"
+                      }
+                      key={i}
+                    >
+                      {res?.position}
+                    </td>
+                  );
+                })}
+
+                <td className="text-success fw-bold">{driver.wins}</td>
+                <td className="text-primary fw-bolder">{driver.points}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -89,10 +89,7 @@ const F1Race = (props) => {
                 });
 
               return (
-                <div
-                  key={indexItem}
-                  className="container-fluid bg-black p-0 m-1"
-                >
+                <div key={indexItem} className="container-fluid bg-black p-0">
                   <h4 className="text-center text-warning fst-italic fw-bold bg-dark border border-danger border-2">
                     {rounds === 0 ? (
                       <span className="text-danger">

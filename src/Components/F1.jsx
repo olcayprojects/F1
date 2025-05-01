@@ -62,7 +62,7 @@ const F1 = () => {
         {season2 === "2025" ? <F1Race /> : <Nav />}
 
         <select
-          className="form-select bg-black text-danger fs-3 text-center shadow-none cp mb-1"
+          className="form-select bg-black text-danger p-0 fs-3 text-center shadow-none cp mb-1"
           onChange={(e) => {
             navigate(`/F1/${e.target.value}`);
             navigate(0);

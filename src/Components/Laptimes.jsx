@@ -90,7 +90,7 @@ const Laptimes = (props) => {
 
   return (
     <div className="container-fluid">
-      <div className="">
+      <div className="table-responsive">
         <RaceSimulation laps={laps} drivers={drivers} pitStops={pitStops} />
 
         {/* <div className="row">

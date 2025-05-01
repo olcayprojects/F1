@@ -62,57 +62,61 @@ const Results = ({ season }) => {
       : null;
 
     return (
-      <table
-        className="table table-dark table-striped table-bordered m-0"
-        key={race.round}
-        style={{}}
-      >
-        <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
-          <span className="text-info fs-6 fw-bold">
-            <span className="text-light pe-1">#{race?.round}</span>
-            {race?.raceName || "Race " + race?.round}
-            <pre className="m-0">{race?.Circuit.circuitName}</pre>
-            <pre className="m-0">{dateTime(race.date, race.time)}</pre>
-          </span>
-          {fastestLapInfo && (
-            <pre className="text-warning m-0">{fastestLapInfo}</pre>
-          )}
-        </caption>
-        <thead className="">
-          <tr>
-            <th className="bg-danger text-black p-0 text-center">P</th>
-            <th className="bg-danger text-black p-0 text-center">G</th>
-            <th className="op bg-danger text-black text-start py-0 text-nowrap">
-              DRV
-            </th>
-            <th className="bg-danger text-black text-start py-0 text-nowrap">
-              CAR
-            </th>
-            <th className="op bg-danger text-black text-center py-0">L</th>
-            <th className="bg-danger text-black text-center py-0 text-nowrap">
-              TIME
-            </th>
-            <th className="op bg-danger text-black text-center py-0">PT</th>
-          </tr>
-        </thead>
-        <tbody>
-          {race.Results.map((result, i) => (
-            <tr key={i}>
-              <td className="text-center">{result.position}</td>
-              <td className="text-center text-secondary p-0">{result.grid}</td>
-              <td className="text-nowrap pe-0">{`${
-                result.Driver.code || result.Driver.familyName
-              }`}</td>
-              <td className="text-nowrap ">{result.Constructor.name}</td>
-              <td className="text-center p-0">{result.laps}</td>
-              <td className="text-center text-nowrap">
-                {result.Time?.time || result.status}
-              </td>
-              <td className="text-center">{result.points}</td>
+      <div className="table-responsive">
+        <table
+          className="table table-dark table-striped table-bordered m-0"
+          key={race.round}
+          style={{}}
+        >
+          <caption className="mx-4 p-0 text-center bg-dark border-start border-end border-top border-danger border-5 text-danger caption-top">
+            <span className="text-info fs-6 fw-bold">
+              <span className="text-light pe-1">#{race?.round}</span>
+              {race?.raceName || "Race " + race?.round}
+              <pre className="m-0">{race?.Circuit.circuitName}</pre>
+              <pre className="m-0">{dateTime(race.date, race.time)}</pre>
+            </span>
+            {fastestLapInfo && (
+              <pre className="text-warning m-0">{fastestLapInfo}</pre>
+            )}
+          </caption>
+          <thead className="">
+            <tr>
+              <th className="bg-danger text-black p-0 text-center">P</th>
+              <th className="bg-danger text-black p-0 text-center">G</th>
+              <th className="op bg-danger text-black text-start py-0 text-nowrap">
+                DRV
+              </th>
+              <th className="bg-danger text-black text-start py-0 text-nowrap">
+                CAR
+              </th>
+              <th className="op bg-danger text-black text-center py-0">L</th>
+              <th className="bg-danger text-black text-center py-0 text-nowrap">
+                TIME
+              </th>
+              <th className="op bg-danger text-black text-center py-0">PT</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {race.Results.map((result, i) => (
+              <tr key={i}>
+                <td className="text-center">{result.position}</td>
+                <td className="text-center text-secondary p-0">
+                  {result.grid}
+                </td>
+                <td className="text-nowrap pe-0">{`${
+                  result.Driver.code || result.Driver.familyName
+                }`}</td>
+                <td className="text-nowrap ">{result.Constructor.name}</td>
+                <td className="text-center p-0">{result.laps}</td>
+                <td className="text-center text-nowrap">
+                  {result.Time?.time || result.status}
+                </td>
+                <td className="text-center">{result.points}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   };
   if (!isLoaded) {
@@ -120,7 +124,7 @@ const Results = ({ season }) => {
   }
 
   return (
-    <div className="container-fluid pt-1">
+    <div className="container-fluid p-0">
       <div className="row justify-content-center g-1">
         {Object.keys(races)
           .sort((a, b) => parseInt(a) - parseInt(b))

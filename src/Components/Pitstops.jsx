@@ -47,8 +47,7 @@ function Pitstops(props) {
 
   useEffect(() => {
     setSeason(props.season);
-  }, [setSeason,props.season]);
-
+  }, [setSeason, props.season]);
 
   let url = "";
   if (props.season !== undefined) {
