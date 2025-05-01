@@ -36,7 +36,9 @@ const DriverDB = (props) => {
         const items = await response.json();
 
         const player = items["player"]?.find(
-          (player) => normalizeString(player["strPlayer"]) === drvr
+          (player) =>
+            normalizeString(player["strPlayer"]) === drvr &&
+            player?.strSport === "Motorsport"
         );
 
         if (player) {

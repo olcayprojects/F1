@@ -98,7 +98,8 @@ const PlayerProfile = ({ playerId, t }) => {
       <img
         className="img-fluid"
         src={
-          (playerData.strBanner ||
+          (
+            playerData.strBanner ||
             playerData.strCutout ||
             playerData.strThumb ||
             "") + "/small"
@@ -106,6 +107,7 @@ const PlayerProfile = ({ playerId, t }) => {
         alt=""
       />
       <div className="bg-secondary">
+        {playerData?.strTeam}
         <pre className="text-center m-0">
           {new Date(playerData?.dateBorn).toDateString()}{" "}
           {playerData.strBirthLocation} {playerData.strNationality}
