@@ -142,11 +142,13 @@ function Pitstops(props) {
           <thead className="border-dark">
             <tr className="text-black align-middle">
               <th className="text-center py-0">#</th>
-              <th className="py-0 bg-info text-black">DRIVER INFO</th>
-              <th className="py-0 bg-warning text-black text-center">
+              <th className="py-0 bg-info text-info-emphasis bi-card-list">
+                DRIVER INFO
+              </th>
+              <th className="py-0 bg-warning text-warning-emphasis text-center bi-list-ol">
                 DETAILS
               </th>
-              <th className="text-center py-0 text-info bg-black">
+              <th className="text-center py-0 text-success-emphasis bg-success bi-stopwatch-fill">
                 TOTAL DURATION
               </th>
             </tr>
@@ -166,11 +168,11 @@ function Pitstops(props) {
                     }}
                   >
                     <span
-                      className={
-                        index % 2 === 0
-                          ? "bg-black p-1"
-                          : "bg-info text-black p-1"
-                      }
+                    // className={
+                    //   index % 2 === 0
+                    //     ? "bg-black p-1"
+                    //     : "bg-info text-black p-1"
+                    // }
                     >
                       {driver
                         ? `${driver.givenName} 
@@ -196,13 +198,13 @@ function Pitstops(props) {
                     </pre>
                   </td>
 
-                  <td className="text-center text-info fw-bold op py-0">
+                  <td className="text-center text-success fw-bold op py-0">
                     <span
-                      className={
-                        index % 2 !== 0
-                          ? "bg-black p-1"
-                          : "bg-info text-black p-1"
-                      }
+                    // className={
+                    //   index % 2 !== 0
+                    //     ? "bg-black p-1"
+                    //     : "bg-info text-black p-1"
+                    // }
                     >
                       {ps.totalDuration}
                     </span>

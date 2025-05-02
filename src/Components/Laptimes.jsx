@@ -89,7 +89,7 @@ const Laptimes = (props) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0">
       <div className="table-responsive">
         <RaceSimulation laps={laps} drivers={drivers} pitStops={pitStops} />
 

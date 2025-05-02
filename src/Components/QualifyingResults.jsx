@@ -76,13 +76,9 @@ const QualifyingResults = (props) => {
                     >
                       <td className="text-center op">
                         {qualifying.position < 4 ? (
-                          <i
-                            className={
-                              "fs-5 bi bi-" +
-                              qualifying.position +
-                              "-square-fill"
-                            }
-                          ></i>
+                          <span className="border border-1 border-info text-info px-1">
+                            {qualifying.position}
+                          </span>
                         ) : (
                           <span className="bg-secondary px-1">
                             {qualifying.position}

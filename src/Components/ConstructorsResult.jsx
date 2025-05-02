@@ -104,26 +104,26 @@ const ConstructorsResult = () => {
                     </caption>
                     <thead>
                       <tr className="">
-                        <th className="text-center bg-info text-black text-info">
+                        <th className="text-center bg-info text-info-emphasis text-info">
                           P
                         </th>
-                        <th className="text-center bg-black text-light op">
+                        <th className="text-center bg-dark text-black op">
                           G
                         </th>
-                        <th className="bg-light text-black">DRIVER</th>
-                        <th className="text-center bg-secondary text-black op">
+                        <th className="bg-light-subtle text-light-emphasis">DRIVER</th>
+                        <th className="text-center bg-secondary text-secondary-emphasis op">
                           TIME
                         </th>
-                        <th className="text-center bg-success text-black">
+                        <th className="text-center bg-success text-success-emphasis">
                           STATUS
                         </th>
-                        <th className="text-warning text-center bg-warning text-black op">
+                        <th className="text-warning text-center bg-warning text-warning-emphasis op">
                           PTS
                         </th>
-                        <th className="text-center bg-primary text-black">
+                        <th className="text-center bg-primary text-primary-emphasis">
                           LAPS
                         </th>
-                        <th className="text-center bg-danger text-black op">
+                        <th className="text-center bg-danger text-danger-emphasis op">
                           FASTEST LAP
                         </th>
                       </tr>

@@ -3,7 +3,6 @@ import Loading from "./Loading";
 
 const Results = ({ season }) => {
   const [races, setRaces] = useState({});
-  const [total, setTotal] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const dateTime = (d, t) =>
@@ -23,7 +22,6 @@ const Results = ({ season }) => {
       );
       const initialData = await initialRes.json();
       const totalCount = parseInt(initialData.MRData.total, 10);
-      setTotal(totalCount);
 
       for (let offset = 0; offset < totalCount; offset += limit) {
         const res = await fetch(
@@ -83,7 +81,7 @@ const Results = ({ season }) => {
             <tr>
               <th className="bg-danger text-black p-0 text-center">P</th>
               <th className="bg-danger text-black p-0 text-center">G</th>
-              <th className="op bg-danger text-black text-start py-0 text-nowrap">
+              <th className="op bg-danger text-black text-start p-0 text-nowrap">
                 DRV
               </th>
               <th className="bg-danger text-black text-start py-0 text-nowrap">
@@ -99,11 +97,11 @@ const Results = ({ season }) => {
           <tbody>
             {race.Results.map((result, i) => (
               <tr key={i}>
-                <td className="text-center">{result.position}</td>
+                <td className="text-center p-0">{result.position}</td>
                 <td className="text-center text-secondary p-0">
                   {result.grid}
                 </td>
-                <td className="text-nowrap pe-0">{`${
+                <td className="text-nowrap p-0">{`${
                   result.Driver.code || result.Driver.familyName
                 }`}</td>
                 <td className="text-nowrap ">{result.Constructor.name}</td>

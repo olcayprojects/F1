@@ -98,8 +98,7 @@ const PlayerProfile = ({ playerId, t }) => {
       <img
         className="img-fluid"
         src={
-          (
-            playerData.strBanner ||
+          (playerData.strBanner ||
             playerData.strCutout ||
             playerData.strThumb ||
             "") + "/small"
@@ -107,7 +106,7 @@ const PlayerProfile = ({ playerId, t }) => {
         alt=""
       />
       <div className="bg-secondary">
-        {playerData?.strTeam}
+        {/* {playerData?.strTeam} */}
         <pre className="text-center m-0">
           {new Date(playerData?.dateBorn).toDateString()}{" "}
           {playerData.strBirthLocation} {playerData.strNationality}
@@ -119,10 +118,9 @@ const PlayerProfile = ({ playerId, t }) => {
         )}
       </div>
       <p
-        className="m-0 bg-dark text-start ps-1"
-        style={{ whiteSpace: "pre-wrap", fontSize: "12px" }}
+        className="m-0 bg-dark text-start px-1"
+        style={{ whiteSpace: "pre-wrap" }}
       >
-        <strong className="fs-5 text-black">Description:</strong>{" "}
         {playerData?.strDescriptionEN}
       </p>
     </div>

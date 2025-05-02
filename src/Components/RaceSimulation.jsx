@@ -81,7 +81,7 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
             <th>#</th>
             <th>PST</th>
             <th>Driver</th>
-            <th>↓ ↑</th>
+            <th className="bi-arrow-down-up"></th>
             <th className="">PIT</th> {/* Yeni sütun */}
             <th>Time</th>
           </tr>
@@ -105,8 +105,8 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
               );
 
               return (
-                <tr className="font-monospace fs-5 text-center" key={i}>
-                  <td>{formatPosition(i + 1)}</td>
+                <tr className="fs-5 text-center" key={i}>
+                  <td className="px-0 align-middle">{formatPosition(i + 1)}</td>
                   <td>
                     <strong className="text-warning">
                       {formatPosition(
@@ -150,7 +150,11 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
                   <td className="text-info fw-bold p-0">
                     {pitStop ? `${pitStop.duration}s` : ""}
                   </td>
-                  <td className={"p-0 " + (pitStop ? "text-info fw-bold" : "")}>
+                  <td
+                    className={
+                      "align-middle p-0 " + (pitStop ? "text-info fw-bold" : "")
+                    }
+                  >
                     {timing.time}
                   </td>
                 </tr>

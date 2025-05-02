@@ -164,46 +164,32 @@ const F1Race = (props) => {
                     <table className="myTable table table-dark table-striped table-bordered border-dark">
                       <thead className="">
                         <tr className="align-middle fs-7">
-                          <th className="bg-light text-center text-black text-black op">
-                            <span className="bg-black p-1 text-light">P</span>
+                          <th className="bg-light text-center op">
+                            <span className=" p-1 text-light-emphasis">P</span>
                           </th>
-                          <th
-                            className="text-center text-black"
-                            style={{ backgroundColor: "#74F0B6" }}
-                          >
-                            <span
-                              className="bg-black p-1"
-                              style={{ color: "#74F0B6" }}
-                            >
-                              G
-                            </span>
+                          <th className="text-center bg-success">
+                            <span className="text-success-emphasis p-1">G</span>
                           </th>
-                          <th
-                            className="text-center text-black"
-                            style={{ backgroundColor: "#FFF200" }}
-                          >
-                            <span className="bg-black text-warning p-1">
+                          <th className="text-center bg-warning">
+                            <span className="text-warning-emphasis p-1">
                               NO
                             </span>
                           </th>
                           <th
-                            className="text-end text-black bg-info"
+                            className="text-end bg-info"
                             style={{ letterSpacing: "5px" }}
                           >
-                            <span className="bg-black text-info p-1">
+                            <span className="text-info-emphasis p-1">
                               DRIVER
                             </span>
                           </th>
-                          <th className="bg-primary text-black">
-                            <span className="bg-black text-primary p-1 ">
+                          <th className="bg-primary">
+                            <span className="text-primary-emphasis p-1 ">
                               T E A M
                             </span>
                           </th>
-                          <th
-                            className="text-center text-black op"
-                            style={{ backgroundColor: "#DE3126" }}
-                          >
-                            <span className="bg-black text-danger p-1">
+                          <th className="text-center op bg-danger">
+                            <span className="text-danger-emphasis p-1">
                               LAPS
                             </span>
                           </th>
@@ -304,13 +290,13 @@ const F1Race = (props) => {
                               >
                                 <span>
                                   {result.grid - result.position === 0 ? (
-                                    <i className="bi bi-dash"></i>
+                                    <i className="bi bi-dash-circle-dotted"></i>
                                   ) : (result.grid === "0" ? 20 : result.grid) -
                                       result.position >
                                     0 ? (
-                                    <i className="bi bi-chevron-up"></i>
+                                    <i className="bi bi-caret-up"></i>
                                   ) : (
-                                    <i className="bi bi-chevron-down"></i>
+                                    <i className="bi bi-caret-down"></i>
                                   )}
                                   {/* {result.grid - result.position} */}
 
@@ -318,34 +304,30 @@ const F1Race = (props) => {
                                 </span>
                               </td>
                               <td className="text-center text-warning">
-                                <span className="bg-black px-1">
-                                  {result.number < 10 ? (
-                                    <i
-                                      className={
-                                        "fs-5 bi bi-" +
-                                        result.number +
-                                        "-square-fill"
-                                      }
-                                    ></i>
-                                  ) : (
+                                {(() => {
+                                  const drvNumber = result?.number;
+                                  const drvNumberDigits = drvNumber
+                                    ? drvNumber.split("")
+                                    : [];
+
+                                  const isNumber = (value) => !isNaN(value);
+
+                                  return (
                                     <>
-                                      <i
-                                        className={
-                                          "fs-5 bi bi-" +
-                                          result.number[0] +
-                                          "-square-fill pe-1"
+                                      {drvNumberDigits.map((item, index) => {
+                                        if (isNumber(item)) {
+                                          return (
+                                            <i
+                                              key={index}
+                                              className={`bi bi-${item}-circle fs-5`}
+                                            />
+                                          );
                                         }
-                                      ></i>
-                                      <i
-                                        className={
-                                          "fs-5 bi bi-" +
-                                          result.number[1] +
-                                          "-square-fill"
-                                        }
-                                      ></i>
+                                        return result?.number;
+                                      })}
                                     </>
-                                  )}
-                                </span>
+                                  );
+                                })()}
                               </td>
 
                               <td
@@ -602,10 +584,7 @@ const F1Race = (props) => {
               </div>
             )}
             {currentTabIndex === 2 && (
-              <div className="container-fluid p-0">
-                {/* Laptimes içeriği burada */}
-                <Laptimes season={season} round={round} laps={1} lapsx={1} />
-              </div>
+              <Laptimes season={season} round={round} laps={1} lapsx={1} />
             )}
           </Box>
         </div>
