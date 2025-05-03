@@ -137,7 +137,17 @@ const DriverStandings = (props) => {
                           driver.Driver.nationality.toUpperCase()}
                       </span>
                     </td>
-                    <td className="op fw-bold fst-italic text-warning py-1 ps-2">
+                    <td
+                      className="op cp fw-bold fst-italic text-warning py-1 ps-2"
+                      onClick={() => {
+                        navigate(
+                          "/ConstructorsResult/" +
+                            driver.Constructors[0].constructorId +
+                            "/" +
+                            year
+                        );
+                      }}
+                    >
                       <span className="bg-black px-1">
                         {driver.Constructors && driver.Constructors[0] && (
                           <span>

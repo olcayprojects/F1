@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { useNavigate } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -7,6 +8,8 @@ const Classifications = ({ season }) => {
   const [raceResults, setRaceResults] = useState([]);
   const [driversData, setDriversData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
+
   const limit = 100;
 
   const getShortRaceName = (raceName) => {
@@ -140,7 +143,13 @@ const Classifications = ({ season }) => {
             {driversData.map((driver, idx) => (
               <tr className="align-all-middle" key={idx}>
                 <td className="text-info">{driver.pos}</td>
-                <td className="text-warning" title={driver.name}>
+                <td
+                  className="text-warning cp"
+                  title={driver.name}
+                  onClick={() => {
+                    navigate("/ResultsDriver/" + driver.driverId);
+                  }}
+                >
                   {driver.pos === "1" ? (
                     <>
                       {driver.name} / {driver.constructors}
