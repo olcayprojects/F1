@@ -154,9 +154,9 @@ const RaceSchedule = ({ season }) => {
                     onClick={() =>
                       race.Sprint &&
                       navigate(
-                        `/Sprint/${season}/${race.round}/${getFormattedDate(
-                          race.Sprint
-                        ).replace("/", "-")}`
+                        `/Sprint/${season}/${
+                          race.round
+                        }/${race.Sprint.date.replace("/", "-")}`
                       )
                     }
                   >
