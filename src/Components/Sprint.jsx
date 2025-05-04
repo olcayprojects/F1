@@ -56,16 +56,18 @@ const Sprint = () => {
           <table className="mytable table table-dark table-striped table-bordered">
             <thead className="text-center">
               <tr className="align-middle">
-                <th className="bg-danger text-black">P</th>
-                <th className="text-black bg-primary">G</th>
-                <th className="text-start bg-info text-black">DRIVER</th>
-                <th className="text-black text-start bg-warning">
+                <th className="bg-danger text-danger-emphasis">P</th>
+                <th className="text-primary-emphasis bg-primary">G</th>
+                <th className="text-start bg-info text-info-emphasis">
+                  DRIVER
+                </th>
+                <th className="text-warning-emphasis text-start bg-warning">
                   CONSTRUCTOR
                 </th>
-                <th className="text-black bg-success">LAPS</th>
-                <th className="text-black bg-light text-end">TIME</th>
-                <th className="text-black bg-danger">PTS</th>
-                <th className="text-black bg-light op text-start">
+                <th className="text-success-emphasis bg-success">LAPS</th>
+                <th className="text-light-emphasis bg-light text-end">TIME</th>
+                <th className="text-danger-emphasis bg-danger">PTS</th>
+                <th className="text-light-emphasis bg-light op text-start">
                   FASTEST LAP
                 </th>
               </tr>
