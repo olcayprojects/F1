@@ -21,17 +21,28 @@ export const dateTime = (date, time) => new Date(`${date} ${time}`);
 
 // 03/25, 08:10
 export const getFormattedDate = (event) => {
-  if (!event) return "-";
-  const fullDate = event.time
-    ? dateTime(event.date, event.time)
-    : new Date(event.date);
-  return fullDate.toLocaleString("en", {
-    month: "2-digit",
-    day: "2-digit",
-    hourCycle: "h23",
-    hour: "2-digit",
-    minute: "2-digit",
-  });
+  if (!event || !event.date) return "-";
+
+  let fullDate;
+
+  if (event.time) {
+    fullDate = dateTime(event.date, event.time);
+    return fullDate.toLocaleString("en", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+      hourCycle: "h23",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } else {
+    fullDate = new Date(event.date);
+    return fullDate.toLocaleString("en", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit"
+    });
+  }
 };
 
 export const isUpcoming = (raceDate) => {
