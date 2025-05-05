@@ -28,8 +28,8 @@ const RaceHistoryChart = () => {
           setInfo(data.MRData.RaceTable.Races[0]);
         }
       } catch (err) {
-        console.error(err);
-        setError("Yarış bilgileri alınırken bir hata oluştu.");
+        // console.error(err);
+        setError("Data not found!");
       }
     };
 
@@ -75,8 +75,8 @@ const RaceHistoryChart = () => {
               return;
             }
           } else {
-            console.error("Unexpected data structure:", data);
-            setError("Unexpected data structure received.");
+            // console.error("Unexpected data structure:", data);
+            setError("Data Not Found!");
             return;
           }
         };
@@ -143,7 +143,19 @@ const RaceHistoryChart = () => {
   }, [season, round]);
 
   if (loading) return <Loading />;
-  if (error) return <div>{error}</div>;
+  if (error)
+    return (
+      <>
+        <Nav />
+        <div className="text-center text-danger mt-5">
+          <h3>
+            {season}#{round}
+          </h3>
+          <h4>{error}</h4>
+        </div>
+        ;
+      </>
+    );
 
   return (
     <>

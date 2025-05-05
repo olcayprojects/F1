@@ -11,6 +11,7 @@ import AppBar from "@mui/material/AppBar";
 import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import BuildIcon from "@mui/icons-material/Build";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
+import LastRace from "./LastRace";
 
 import Team from "./Team";
 import Nav from "./Nav";
@@ -55,7 +56,7 @@ const F1Race = (props) => {
         .then((data) => {
           setIsLoaded(true);
 
-          setData(data["MRData"].RaceTable.Races);
+          setData(data["MRData"].RaceTable);
         })
         .catch((err) => {
           console.log(err);
@@ -77,10 +78,10 @@ const F1Race = (props) => {
       <>
         <div className="container-fluid bg-black p-0">
           <Nav />
-          {sdata.length > 0 ? (
-            sdata?.map((item, indexItem) => {
-              season = item.season;
-              round = item.round;
+          {sdata?.Races?.length > 0 ? (
+            sdata?.Races?.map((item, indexItem) => {
+              season = sdata?.season;
+              round = sdata?.round;
               // laps = item.Results[0].laps;
               const dateTime = (d, t) =>
                 new Date(d + " " + t).toLocaleString("en-EN", {
@@ -154,8 +155,8 @@ const F1Race = (props) => {
 
                   {season2 > "1970" ? (
                     <Events
-                      date={sdata[0]?.date}
-                      name={sdata[0]?.raceName}
+                      date={sdata?.Races[0]?.date}
+                      name={sdata?.Races[0]?.raceName}
                       s={"2"}
                     />
                   ) : null}
@@ -506,9 +507,13 @@ const F1Race = (props) => {
               );
             })
           ) : (
-            <h2 className="text-center">
-              Season:{season2} Round#{rounds}
-            </h2>
+            <div className="container">
+              <LastRace />
+              <h4 className="text-success text-center bi-hourglass-split">
+                "The final race information is currently being prepared. Please
+                check back shortly."
+              </h4>
+            </div>
           )}
           <Tabs
             className="bg-dark"
@@ -575,17 +580,26 @@ const F1Race = (props) => {
           <Box sx={{ pt: 1 }}>
             {currentTabIndex === 0 && (
               <div className="container-fluid p-0">
-                <QualifyingResults season={season} round={round} />
+                <QualifyingResults
+                  season={season ? season : sdata.season}
+                  round={round ? round : sdata.round}
+                />
               </div>
             )}
             {currentTabIndex === 1 && (
               <div className="container-fluid p-0">
-                <Pitstops season={season} round={round} />
+                <Pitstops
+                  season={season ? season : sdata.season}
+                  round={round ? round : sdata.round}
+                />
               </div>
             )}
-            {currentTabIndex === 2 && (
-              <Laptimes season={season} round={round} laps={1} lapsx={1} />
-            )}
+            {currentTabIndex === 2 &&
+              (season ? (
+                <Laptimes season={season} round={round} laps={1} lapsx={1} />
+              ) : (
+                <h4 className="text-center text-danger">Data not found!</h4>
+              ))}
           </Box>
         </div>
       </>
