@@ -82,7 +82,7 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
             <th>PST</th>
             <th>Driver</th>
             <th className="bi-arrow-down-up"></th>
-            <th className="">PIT</th> {/* Yeni sütun */}
+            <th className="">PIT</th>
             <th>Time</th>
           </tr>
         </thead>

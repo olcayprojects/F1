@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 import { useDrivers } from "../context/DriverContext";
@@ -28,6 +27,27 @@ const getFormattedDate = (timestamp) => {
   });
 };
 
+const fetchWithRetry = async (url, retries = 6, delayTime = 3000) => {
+  let attempt = 0;
+  while (attempt < retries) {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      if (attempt < retries - 1) {
+        attempt++;
+        await new Promise((resolve) => setTimeout(resolve, delayTime));
+      } else {
+        throw new Error("Failed after multiple attempts.");
+      }
+    }
+  }
+};
+
 const ApiDataComponent = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,11 +56,11 @@ const ApiDataComponent = () => {
   const itemsPerPage = 100;
 
   const { drivers, setSeason } = useDrivers();
-
   const { season, rounds = "1" } = useParams();
+
   useEffect(() => {
     setSeason(season);
-  }, [setSeason,season]);
+  }, [setSeason, season]);
 
   const apiUrl = `${BASE_URL}/${season}/${rounds}/laps.json`;
 
@@ -51,28 +71,20 @@ const ApiDataComponent = () => {
       let allData = [];
       let total = 0;
       try {
-        const response = await axios.get(apiUrl, {
-          params: {
-            limit: itemsPerPage,
-            offset: 0,
-          },
-        });
+        const response = await fetchWithRetry(apiUrl);
+        total = response.MRData.total;
 
-        total = response.data.MRData.total;
-
-        const raceInfo = response.data.MRData.RaceTable.Races[0];
+        const raceInfo = response.MRData.RaceTable.Races[0];
         setRaceDetails(raceInfo);
 
         let totalPages = Math.ceil(total / itemsPerPage);
         for (let i = 0; i < totalPages; i++) {
-          const pageResponse = await axios.get(apiUrl, {
-            params: {
-              limit: itemsPerPage,
-              offset: i * itemsPerPage,
-            },
-          });
+          const pageUrl = `${apiUrl}?limit=${itemsPerPage}&offset=${
+            i * itemsPerPage
+          }`;
+          const pageResponse = await fetchWithRetry(pageUrl);
 
-          const raceData = pageResponse.data.MRData.RaceTable.Races[0];
+          const raceData = pageResponse.MRData.RaceTable?.Races[0];
           if (raceData && raceData.Laps) {
             allData = [
               ...allData,
@@ -116,7 +128,6 @@ const ApiDataComponent = () => {
   }
 
   if (error) {
-    console.log("Error:", error);
     return <div>{error}</div>;
   }
 
@@ -124,8 +135,8 @@ const ApiDataComponent = () => {
     <div className="container-fluid p-0">
       <Nav />
 
-      <div className="border border-danger border-5 fs-2 text-info text-center fw-bold m-1 ">
-        <p className=" ">
+      <div className="border border-danger border-5 fs-2 text-info text-center fw-bold m-1">
+        <p>
           {raceDetails?.raceName} <br />
           {raceDetails?.season} #{raceDetails?.round} <br />
           {getFormattedDate(raceDetails?.date + "T" + raceDetails?.time)} <br />
@@ -138,7 +149,7 @@ const ApiDataComponent = () => {
       </div>
 
       <table className="mytable table table-striped table-dark caption-top table-bordered">
-        <thead className="">
+        <thead>
           <tr className="text-center">
             <th className="text-start text-light">#</th>
             <th className="text-start bg-danger text-black">Driver Info</th>
@@ -156,7 +167,7 @@ const ApiDataComponent = () => {
                 (driver) => driver.driverId === timing.driverId
               );
               return (
-                <tr key={index} className="">
+                <tr key={index}>
                   <td className="py-0 text-end p-2">{index + 1}</td>
                   <td className="col-8 text-danger fw-bold ps-2 p-0">
                     <span className="px-2">
@@ -172,7 +183,7 @@ const ApiDataComponent = () => {
                     <span className="px-2">{timing.lapNumber}</span>
                   </td>
                   <td className="col-1 text-success text-center p-0">
-                    <span className="">{timing.position}</span>
+                    <span>{timing.position}</span>
                   </td>
                 </tr>
               );

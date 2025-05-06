@@ -7,6 +7,26 @@ import { useNavigate } from "react-router-dom";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
+const fetchWithRetry = async (url, retries = 6, delayTime = 3000) => {
+  let attempt = 0;
+  while (attempt < retries) {
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error(`Error: ${response.status}`);
+      }
+    } catch (error) {
+      if (attempt < retries - 1) {
+        attempt++;
+        await new Promise((resolve) => setTimeout(resolve, delayTime));
+      } else {
+      }
+    }
+  }
+};
+
 const ResultsDriver = () => {
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -23,8 +43,10 @@ const ResultsDriver = () => {
 
     while (hasMoreData) {
       const url = `${BASE_URL}/drivers/${driver}/results.json?limit=${limit}&offset=${offset}`;
-      const response = await fetch(url);
-      const data = await response.json();
+      // const response = await fetch(url);
+      // const data = await response.json();
+      // const races = data["MRData"].RaceTable.Races;
+      const data = await fetchWithRetry(url);
       const races = data["MRData"].RaceTable.Races;
 
       if (races.length > 0) {
