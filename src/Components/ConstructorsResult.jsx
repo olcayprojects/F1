@@ -87,7 +87,7 @@ const ConstructorsResult = () => {
               <div className="text-danger container-fluid" key={index}>
                 <div className="table-responsive-sm">
                   <table className="table table-striped table-dark caption-top table-bordered">
-                    <caption className="text-primary bg-dark text-center fs-4">
+                    <caption className="text-primary bg-dark text-center fs-5">
                       <span className="bg-black p-2 fw-bold">
                         {items.raceName}/{items.Circuit?.Location?.locality}
                         {" Round#"}
@@ -107,10 +107,10 @@ const ConstructorsResult = () => {
                         <th className="text-center bg-info text-info-emphasis text-info">
                           P
                         </th>
-                        <th className="text-center bg-dark text-black op">
-                          G
+                        <th className="text-center bg-dark text-black op">G</th>
+                        <th className="bg-light-subtle text-light-emphasis">
+                          DRIVER
                         </th>
-                        <th className="bg-light-subtle text-light-emphasis">DRIVER</th>
                         <th className="text-center bg-secondary text-secondary-emphasis op">
                           TIME
                         </th>
@@ -136,12 +136,13 @@ const ConstructorsResult = () => {
                           return (
                             <tr key={index} className="">
                               <td className="op text-center text-info fw-bold">
-                                {!isNaN(+item.positionText)
+                                {/* {!isNaN(+item.positionText)
                                   ? item.positionText
                                   : item.position +
                                     " (" +
                                     item.positionText +
-                                    ")"}
+                                    ")"} */}
+                                {item.position}
                               </td>
                               <td className="text-center text-black">
                                 {item.grid}

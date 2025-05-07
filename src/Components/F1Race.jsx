@@ -470,16 +470,12 @@ const F1Race = (props) => {
                                       {result.FastestLap?.Time.time}
                                     </span>
                                   </>
-                                ) : (
-                                  <h3 className="text-center">-</h3>
-                                )}
+                                ) : null}
                               </td>
-                              <td className="text-center fw-bold text-warning">
-                                {result.FastestLap?.lap ? (
-                                  result.FastestLap?.lap
-                                ) : (
-                                  <h3>-</h3>
-                                )}
+                              <td className="text-center m-0 fw-bold text-warning">
+                                {result.FastestLap?.lap
+                                  ? result.FastestLap?.lap
+                                  : null}
                               </td>
                               {season2 !== "2025" && (
                                 <td className="op text-start">
@@ -492,9 +488,7 @@ const F1Race = (props) => {
                                         {result?.FastestLap?.AverageSpeed.units}
                                       </span>
                                     </>
-                                  ) : (
-                                    <h3 className="text-center">-</h3>
-                                  )}
+                                  ) : null}
                                 </td>
                               )}
                             </tr>

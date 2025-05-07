@@ -164,7 +164,7 @@ const ResultsDriver = () => {
                             <td className="text-center op">{item.season}</td>
                             <td className="text-center">{item.round}</td>
                             <td
-                              className={`p op ${
+                              className={`cp op ${
                                 !item.Results ? "text-info" : ""
                               }`}
                               onClick={() =>

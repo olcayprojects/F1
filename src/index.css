@@ -74,7 +74,7 @@ tr {
 
 .cp:hover {
   cursor: pointer;
-  border: 4px dashed teal;
+  border: 1px dashed teal;
   box-sizing: border-box;
 }
 
