@@ -47,7 +47,8 @@ const DriverStandings = (props) => {
         </h2>
       </div>
 
-      <div className="d-block align-items-center">
+      <div className="d-block align-items-center
+       animate__rollIn animate__animated animate__slower">
         {standings?.map((driver, indexedDB) => {
           return driver.positionText === "1" ? (
             <div key={indexedDB}>

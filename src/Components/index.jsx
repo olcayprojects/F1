@@ -1,5 +1,6 @@
 import { HashRouter,  Routes, Route } from "react-router-dom";
 import React from "react";
+import 'animate.css';
 
 import F1 from "./F1";
 import F1Race from "./F1Race";

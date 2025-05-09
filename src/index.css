@@ -87,7 +87,7 @@ tr {
 } */
 
 .carousel-item {
-  transition: opacity 2s ease-in-out !important;
+  transition: opacity 4s ease-in-out !important;
 }
 li {
   transition: opacity 2s ease !important;

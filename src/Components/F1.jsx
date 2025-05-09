@@ -53,8 +53,8 @@ const F1 = () => {
 
   return (
     <>
-      <div className="container-fluid bg-black p-0">
-        <div className="mb-2">
+      <div className="container-fluid bg-black p-0 ">
+        <div className="mb-2 animate__backInUp animate__animated animate__slower">
           <Next />
           <Carousel />
         </div>

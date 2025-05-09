@@ -4,6 +4,7 @@ import { fetchPlayer } from "../redux/playerSlice";
 import { Carousel } from "react-bootstrap";
 import Loading from "./Loading";
 
+
 const PlayerCarousel = ({ playerImages }) => {
   return (
     <div className="container mt-4">
@@ -127,7 +128,8 @@ const PlayerProfile = ({ playerId, t }) => {
   ) : t === "3" ? (
     <div className="container-fluid text-info">
       <img
-        className="img-fluid d-block mx-auto text-center"
+        className="img-fluid d-block mx-auto text-center 
+          animate__animated animate__pulse animate__infinite animate__slower"
         src={
           (playerData.strCutout ||
             playerData.strThumb ||

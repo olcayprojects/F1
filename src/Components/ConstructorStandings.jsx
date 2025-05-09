@@ -81,7 +81,8 @@ const ConstructorStandings = (props) => {
           </div>
         )} */}
 
-      <div className="table-responsive">
+      <div className="table-responsive 
+      animate__jackInTheBox animate__animated animate__slower">
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
             <tr>

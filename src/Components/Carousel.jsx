@@ -24,42 +24,46 @@ const Carousel = () => {
       style={{ height: "110px" }}
     >
       {data.map((item, i) => (
-        <Caro.Item interval={1000} key={i}>
-          <h1
-            style={{ fontFamily: "fantasy", transform: "scaleX(-1)" }}
-            className="text-danger float-start pe-1"
-          >
-            {item.strTeamAlternate}
-          </h1>
-          <img
-            style={{
-              width: "28%",
-              height: "140px",
-              objectFit: "cover",
-              objectPosition: "top 50%",
-            }}
-            className="rounded float-start p-0"
-            src={item.strEquipment + "/medium"}
-            alt=""
-          />
-          <h1
-            style={{ fontFamily: "fantasy" }}
-            className="text-danger float-end pe-1"
-          >
-            {item.strTeamAlternate}
-          </h1>
-          <img
-            style={{
-              width: "28%",
-              height: "140px",
-              objectFit: "cover",
-              objectPosition: "center",
-              transform: "scaleX(-1)",
-            }}
-            className="rounded float-end p-0"
-            src={item.strEquipment + "/medium"}
-            alt=""
-          />
+        <Caro.Item interval={1000} key={i} className="">
+          <div className="animate__lightSpeedInLeft  animate__delay-1s animate__animated animate__slower">
+            <h1
+              style={{ fontFamily: "fantasy" }}
+              className="text-danger float-start pe-1"
+            >
+              {item.strTeamAlternate}
+            </h1>
+            <img
+              style={{
+                width: "28%",
+                height: "140px",
+                objectFit: "cover",
+                objectPosition: "top 50%",
+              }}
+              className="rounded float-start p-0"
+              src={item.strEquipment + "/medium"}
+              alt=""
+            />
+          </div>
+          <div className="animate__lightSpeedInRight  animate__delay-1s animate__animated animate__slower">
+            <h1
+              style={{ fontFamily: "fantasy" }}
+              className="text-danger float-end pe-1"
+            >
+              {item.strTeamAlternate}
+            </h1>
+            <img
+              style={{
+                width: "28%",
+                height: "140px",
+                objectFit: "cover",
+                objectPosition: "center",
+                transform: "scaleX(-1)",
+              }}
+              className="rounded float-end p-0"
+              src={item.strEquipment + "/medium"}
+              alt=""
+            />
+          </div>
         </Caro.Item>
       ))}
     </Caro>
