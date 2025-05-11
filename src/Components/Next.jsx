@@ -42,20 +42,19 @@ const Next = () => {
         };
 
         return (
-          <h2
+          <h5
             key={index}
-            className="bg-dark text-warning mt-1 m-0 pt-1 fw-bold"
+            className="bg-black text-warning mt-1 m-0 pt-1 fw-bold"
             style={{}}
           >
-            <marquee className="" behavior="" scrollamount="8">
-              <span className="text-primary">
+            <marquee className=""  behavior="" scrollamount="10">
+              <span className="ps-5 text-primary">
                 ROUND {data.round} - UP NEXT{" "}
               </span>
               <span className="text-info ">{data.raceName}</span>
               <i className="bi bi-calendar3 text-warning px-1"></i>
               <span className="text-danger">
                 <span className="text-success">RACE </span>
-
                 {data.time
                   ? getFormattedDate(data, data)
                   : new Date(data.date).toLocaleDateString("tr-TR")}
@@ -70,7 +69,6 @@ const Next = () => {
               {data.FirstPractice?.date ? (
                 <>
                   <i className="bi bi-clock-fill text-info px-1"></i>
-
                   <span className="text-success">PRACTICE1 </span>
                   <span>
                     {getFormattedDate(data.FirstPractice, data.FirstPractice)}
@@ -118,7 +116,7 @@ const Next = () => {
                 </>
               )}
             </marquee>
-          </h2>
+          </h5>
         );
       })}
     </div>

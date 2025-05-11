@@ -87,6 +87,9 @@ const WinRacesInaSeason = (props) => {
                           " " +
                           item.Results[0].Driver.familyName.toUpperCase()}
                       </span>
+                      <span className="">
+                        {` ${item.Results[0].Driver.dateOfBirth} (${item.Results[0].Driver.nationality}) `}
+                      </span>
                       <span
                         className="fw-bold px-2 text-black bg-info fst-italic cp"
                         onClick={() => {

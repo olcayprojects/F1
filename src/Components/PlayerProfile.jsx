@@ -95,9 +95,9 @@ const PlayerProfile = ({ playerId, t }) => {
       </pre>
     </div>
   ) : t === "2" ? (
-    <div className="container-fluid">
+    <div className="container-fluid ">
       <img
-        className="img-fluid"
+        className="img-fluid  animate__animated animate__fadeInDownBig animate__slower"
         src={
           (playerData.strBanner ||
             playerData.strCutout ||
@@ -129,7 +129,7 @@ const PlayerProfile = ({ playerId, t }) => {
     <div className="container-fluid text-info">
       <img
         className="img-fluid d-block mx-auto text-center 
-          animate__animated animate__pulse animate__infinite animate__slower"
+          a  animate__animated animate__backInDown animate__slower"
         src={
           (playerData.strCutout ||
             playerData.strThumb ||

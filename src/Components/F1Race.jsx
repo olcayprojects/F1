@@ -89,8 +89,6 @@ const F1Race = (props) => {
                   timeStyle: "short",
                 });
 
-                
-
               return (
                 <div key={indexItem} className="container-fluid bg-black p-0">
                   <h4 className=" text-center text-warning fst-italic fw-bold bg-dark border border-danger border-2">
@@ -164,8 +162,10 @@ const F1Race = (props) => {
                     />
                   ) : null}
 
-                  <div className="table-responsive-sm
-                   animate__jackInTheBox animate__animated animate__slower">
+                  <div
+                    className="table-responsive-sm
+                   animate__jackInTheBox animate__animated animate__slower"
+                  >
                     <table className="myTable table table-dark table-striped table-bordered border-dark">
                       <thead className="">
                         <tr className="align-middle fs-7">
@@ -355,6 +355,9 @@ const F1Race = (props) => {
 
                                   {result.Driver?.familyName.toUpperCase()}
                                 </span>
+                                <pre className="d-inline">
+                                  {`(${result.Driver?.dateOfBirth})`}
+                                </pre>
 
                                 <span className="fw-bold p-1 fst-italic text-black bg-info pe-2">
                                   {result.Driver?.nationality}

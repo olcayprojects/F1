@@ -25,13 +25,13 @@ const Carousel = () => {
     >
       {data.map((item, i) => (
         <Caro.Item interval={1000} key={i} className="">
-          <div className="animate__lightSpeedInLeft  animate__delay-1s animate__animated animate__slower">
-            <h1
-              style={{ fontFamily: "fantasy" }}
-              className="text-danger float-start pe-1"
+          <div className="m-0 p-0 animate__lightSpeedInLeft  animate__delay-1s animate__animated animate__slower">
+            <h2
+              // style={{ fontFamily: "fantasy" }}
+              className="text-danger float-start  m-0"
             >
               {item.strTeamAlternate}
-            </h1>
+            </h2>
             <img
               style={{
                 width: "28%",
@@ -45,12 +45,12 @@ const Carousel = () => {
             />
           </div>
           <div className="animate__lightSpeedInRight  animate__delay-1s animate__animated animate__slower">
-            <h1
-              style={{ fontFamily: "fantasy" }}
-              className="text-danger float-end pe-1"
+            <h2
+              // style={{ fontFamily: "fantasy" }}
+              className="text-danger float-end m-0"
             >
               {item.strTeamAlternate}
-            </h1>
+            </h2>
             <img
               style={{
                 width: "28%",

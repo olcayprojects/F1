@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
 const Nav = () => {
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark p-0">
         <div className="container-fluid">
           <Link to="/" className="text-center text-black text-decoration-none">
-            <h1 className="fw-bold animate__animated animate__heartBeat animate__slower">
+            <h1 className="fw-bold animate__animated animate__jackInTheBox animate__slower animate__delay-2">
               <span
                 className="blink2 rounded-top pe-1"
                 style={{ textShadow: "1px 1px 4px yellow" }}

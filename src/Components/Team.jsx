@@ -71,7 +71,7 @@ const Team = ({ constructor, teamName, ls }) => {
       if (ls === 2) {
         return (
           <img
-            className="img-fluid me-1 object-fit-md-cover object-fit-sm-none"
+            className="img-fluid me-1 object-fit-md-cover object-fit-sm-none  animate__flip animate__animated animate__slower"
             key={index}
             style={{
               width: "20%",

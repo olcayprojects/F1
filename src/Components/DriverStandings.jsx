@@ -27,7 +27,7 @@ const DriverStandings = (props) => {
   return (
     <div className="container-fluid">
       {props.tab !== "1" && <Nav />}
-      <div className="d-flex align-items-center justify-content-center">
+      <div className="d-flex align-items-center justify-content-center  animate__zoomInDown animate__animated animate__slower">
         <select
           className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2"
           value={year}
@@ -47,8 +47,10 @@ const DriverStandings = (props) => {
         </h2>
       </div>
 
-      <div className="d-block align-items-center
-       animate__rollIn animate__animated animate__slower">
+      <div
+        className="d-block align-items-center
+       animate__wobble animate__animated animate__slower"
+      >
         {standings?.map((driver, indexedDB) => {
           return driver.positionText === "1" ? (
             <div key={indexedDB}>

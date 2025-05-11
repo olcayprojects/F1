@@ -43,7 +43,7 @@ const ConstructorStandings = (props) => {
       {props.tab !== 1 && <Nav />}
 
       {!props.season && (
-        <div className="d-flex align-items-center justify-content-center">
+        <div className="d-flex align-items-center justify-content-center  animate__zoomInDown animate__animated animate__slower">
           <select
             className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2"
             value={year}
@@ -81,8 +81,10 @@ const ConstructorStandings = (props) => {
           </div>
         )} */}
 
-      <div className="table-responsive 
-      animate__jackInTheBox animate__animated animate__slower">
+      <div
+        className="table-responsive 
+      animate__jackInTheBox animate__animated animate__slower"
+      >
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
             <tr>
