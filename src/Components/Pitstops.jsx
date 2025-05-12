@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDrivers } from "../context/DriverContext";
 import Loading from "./Loading";
+import { amET } from "@mui/material/locale";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -44,6 +45,8 @@ function Pitstops(props) {
   let navigate = useNavigate();
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
+  let animate =
+    "animate__animated animate__bounceInUp animate__slow  animate__delay-";
 
   useEffect(() => {
     setSeason(props.season);
@@ -137,7 +140,7 @@ function Pitstops(props) {
 
   return formattedData.length ? (
     <div className="container-fluid p-0 border border-dark border-5">
-      <div className="table-responsive">
+      <div className={"table-responsive " + animate}>
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="border-dark">
             <tr className="text-black align-middle">
@@ -153,16 +156,18 @@ function Pitstops(props) {
               </th>
             </tr>
           </thead>
-          <tbody className="text-danger">
+          <tbody className={"text-danger " + animate + "2s"}>
             {formattedData.map((ps, index) => {
               const driver = drivers.find(
                 (driver) => driver.driverId === ps.driverId
               );
               return (
                 <tr key={index} className="align-middle">
-                  <td className="op text-center px-1 py-0">{index + 1}</td>
+                  <td className={"op text-center px-1 py-0"}>{index + 1}</td>
                   <td
-                    className="col-auto fw-bold  text-info cp"
+                    className={
+                      "col-auto fw-bold  text-info cp " + animate + "4s"
+                    }
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
@@ -198,7 +203,13 @@ function Pitstops(props) {
                     </pre>
                   </td>
 
-                  <td className="text-center text-success fw-bold op py-0">
+                  <td
+                    className={
+                      "text-center text-success fw-bold op py-0 " +
+                      animate +
+                      "3s"
+                    }
+                  >
                     <span
                     // className={
                     //   index % 2 !== 0
