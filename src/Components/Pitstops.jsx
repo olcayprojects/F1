@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDrivers } from "../context/DriverContext";
 import Loading from "./Loading";
-import { amET } from "@mui/material/locale";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
