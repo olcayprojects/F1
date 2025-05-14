@@ -166,7 +166,7 @@ const F1Race = (props) => {
                     className="table-responsive-sm
                    animate__jackInTheBox animate__animated animate__slower"
                   >
-                    <table className="myTable table table-dark table-striped table-bordered border-dark">
+                    <table className="myTable table table-dark table-striped table-bordered border-dark text-nowrap">
                       <thead className="">
                         <tr className="align-middle fs-7">
                           <th className="bg-light text-center op">
@@ -450,7 +450,7 @@ const F1Race = (props) => {
 
                               <td
                                 className={
-                                  "fw-bold op text-end pe-1 cp " +
+                                  "fw-bold op text-end pe-2 p-0 m-0 cp " +
                                   (result.FastestLap?.rank in
                                   ["1", "2", "3", "4"]
                                     ? "text-danger"
@@ -473,7 +473,7 @@ const F1Race = (props) => {
                                       {result.FastestLap?.rank}.
                                     </span>
                                     <i className="bi bi-forward-fill fs-5 px-1"></i>
-                                    <span className="px-3 p-0 bg-black">
+                                    <span className="px-1 p-0 bg-black">
                                       {result.FastestLap?.Time.time}
                                     </span>
                                   </>

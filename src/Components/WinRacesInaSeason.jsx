@@ -40,7 +40,7 @@ const WinRacesInaSeason = (props) => {
     return (
       <div className="container-responsive p-0">
         <div className="table-responsive">
-          <table className="myTable table table-dark table-striped table-bordered">
+          <table className="myTable table table-dark table-striped table-bordered text-nowrap">
             <thead className="">
               <tr className="">
                 <th className="text-black bg-light op py-0">#</th>
