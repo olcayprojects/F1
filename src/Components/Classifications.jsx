@@ -125,7 +125,9 @@ const Classifications = ({ season }) => {
           <thead>
             <tr className="">
               <th className="text-info-emphasis bg-info">#</th>
-              <th className="text-warning-emphasis bg-warning text-start">Driver</th>
+              <th className="text-warning-emphasis bg-warning text-start">
+                Driver
+              </th>
               {raceResults.map((race, idx) => (
                 <th
                   title={race.raceName}
@@ -150,12 +152,15 @@ const Classifications = ({ season }) => {
                     navigate("/ResultsDriver/" + driver.driverId);
                   }}
                 >
-                  {driver.pos === "1" ? (
+                  {driver.pos !== "0" ? (
                     <>
                       {driver.name} / {driver.constructors}
-                      <br />({driver.driverNationality} /{" "}
-                      {driver.constructorsNationality})
-                      {/* <DrvInfo drv={driver.name} s="1" /> */}
+                      <br />
+                      <span className="text-warning-emphasis">
+                        {driver.driverNationality} /{" "}
+                        {driver.constructorsNationality}
+                        {/* <DrvInfo drv={driver.name} s="1" /> */}
+                      </span>
                     </>
                   ) : (
                     <>
