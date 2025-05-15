@@ -124,19 +124,19 @@ const Classifications = ({ season }) => {
         <table className="myTable table table-dark table-striped table-bordered border-dark text-center">
           <thead>
             <tr className="">
-              <th className="text-dark bg-info">#</th>
-              <th className="text-dark bg-warning">Driver</th>
+              <th className="text-info-emphasis bg-info">#</th>
+              <th className="text-warning-emphasis bg-warning text-start">Driver</th>
               {raceResults.map((race, idx) => (
                 <th
                   title={race.raceName}
-                  className="text-dark bg-danger"
+                  className="text-danger-emphasis bg-danger"
                   key={idx}
                 >
                   {getShortRaceName(race.raceName)}
                 </th>
               ))}
-              <th className="text-dark bg-success">W</th>
-              <th className="text-dark bg-primary">P</th>
+              <th className="text-success-emphasis bg-success">W</th>
+              <th className="text-primary-emphasis bg-primary">P</th>
             </tr>
           </thead>
           <tbody>
@@ -144,7 +144,7 @@ const Classifications = ({ season }) => {
               <tr className="align-all-middle" key={idx}>
                 <td className="text-info">{driver.pos}</td>
                 <td
-                  className="text-warning cp"
+                  className="text-warning cp text-start"
                   title={driver.name}
                   onClick={() => {
                     navigate("/ResultsDriver/" + driver.driverId);
