@@ -78,12 +78,11 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
         </caption>
         <thead>
           <tr className="text-center">
-            <th>#</th>
-            <th>PST</th>
-            <th>Driver</th>
-            <th className="bi-arrow-down-up"></th>
-            <th className="">PIT</th>
-            <th>Time</th>
+            <th className="text-secondary bg-black">#</th>
+            <th className="bg-black text-success">Driver</th>
+            <th className="bi-arrow-down-up bg-black text-warning"></th>
+            <th className="bg-black text-info">PIT</th>
+            <th className="text-light bg-black">Time</th>
           </tr>
         </thead>
         <tbody>
@@ -105,20 +104,9 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
               );
 
               return (
-                <tr className="fs-5 text-center" key={i}>
-                  <td className="px-0 align-middle">{formatPosition(i + 1)}</td>
-                  <td>
-                    <strong className="text-warning">
-                      {formatPosition(
-                        prevLap?.Timings?.find(
-                          (prevTiming) =>
-                            prevTiming.driverId === timing.driverId
-                        )?.position || "N/A"
-                      )}
-                      <span className="mx-2">→</span>
-                      {formatPosition(timing.position)}
-                    </strong>
-                  </td>
+                <tr className="fs-6 text-center" key={i}>
+                  <td className="px-0 align-middle text-secondary">{formatPosition(i + 1)}</td>
+
                   <td
                     className={
                       timing.position === "1"
