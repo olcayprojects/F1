@@ -107,7 +107,7 @@ const RaceSchedule = ({ season }) => {
                     ) : (
                       <>
                         <span>{race.raceName}</span>
-                        <i className="text-danger bi bi-slash-lg"></i>
+                        <hr className="m-0 text-success" />
                         <span
                           className="cp text-info"
                           onClick={() =>

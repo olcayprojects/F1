@@ -131,7 +131,7 @@ const Classifications = ({ season }) => {
               {raceResults.map((race, idx) => (
                 <th
                   title={race.raceName}
-                  className="text-danger-emphasis bg-danger"
+                  className="text-danger-emphasis bg-danger p-0"
                   key={idx}
                 >
                   {getShortRaceName(race.raceName)}
@@ -155,7 +155,7 @@ const Classifications = ({ season }) => {
                   {driver.pos !== "0" ? (
                     <>
                       {driver.name} / {driver.constructors}
-                      <br />
+                      <hr className="m-0" />
                       <span className="text-warning-emphasis">
                         {driver.driverNationality} /{" "}
                         {driver.constructorsNationality}

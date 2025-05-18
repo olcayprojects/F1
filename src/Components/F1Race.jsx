@@ -168,37 +168,40 @@ const F1Race = (props) => {
                   >
                     <table className="myTable table table-dark table-striped table-bordered border-dark text-nowrap">
                       <thead className="">
-                        <tr className="align-middle fs-7">
-                          <th className="bg-light text-center op">
-                            <span className=" p-1 text-light-emphasis">P</span>
+                        {/* Üst Satır */}
+                        <tr className="align-bottom fs-7">
+                          <th rowSpan={2} className="bg-light text-center op">
+                            <span className="p-1 text-light bg-black">P</span>
                           </th>
-                          <th className="text-center bg-success">
-                            <span className="text-success-emphasis p-1">G</span>
+                          <th rowSpan={2} className="text-center bg-success">
+                            <span className="text-success p-1 bg-black">G</span>
                           </th>
-                          <th className="text-center bg-warning">
-                            <span className="text-warning-emphasis p-1">
+                          <th rowSpan={2} className="text-center bg-warning">
+                            <span className="text-warning p-1 bg-black">
                               NO
                             </span>
                           </th>
                           <th
+                            rowSpan={2}
                             className="text-end bg-info"
                             style={{ letterSpacing: "5px" }}
                           >
-                            <span className="text-info-emphasis p-1">
+                            <span className="text-info p-1 bg-black">
                               DRIVER
                             </span>
                           </th>
-                          <th className="bg-primary">
-                            <span className="text-primary-emphasis p-1 ">
+                          <th rowSpan={2} className="bg-primary">
+                            <span className="text-primary p-1 bg-black">
                               T E A M
                             </span>
                           </th>
-                          <th className="text-center op bg-danger">
-                            <span className="text-danger-emphasis p-1">
+                          <th rowSpan={2} className="text-center op bg-danger">
+                            <span className="text-danger bg-black p-1">
                               LAPS
                             </span>
                           </th>
                           <th
+                            rowSpan={2}
                             className="text-center text-black"
                             style={{ backgroundColor: "#86995B" }}
                           >
@@ -210,6 +213,7 @@ const F1Race = (props) => {
                             </span>
                           </th>
                           <th
+                            rowSpan={2}
                             className="text-center text-black op"
                             style={{ backgroundColor: "aquamarine" }}
                           >
@@ -220,35 +224,42 @@ const F1Race = (props) => {
                               PTS
                             </span>
                           </th>
-                          <th className="text-center text-black bg-secondary"></th>
-                          <th className="text-end bg-success">
-                            <span className="text-decoration-underline text-black">
-                              F A S T E S T
-                            </span>
-                            <br />
-                            <span className="bg-black text-light p-1 px-2">
+                          <th rowSpan={2} className="bg-secondary"></th>
+
+                          {/* FASTEST başlığı 3 sütuna yayılacak */}
+                          <th
+                            colSpan={season2 !== "2025" ? 3 : 2}
+                            className="text-center text-black bg-success  p-0"
+                          >
+                            <h6
+                              className="text-black fw-bold m-0"
+                              style={{ letterSpacing: "6px" }}
+                            >
+                              FASTEST LAPS
+                            </h6>
+                          </th>
+                        </tr>
+
+                        {/* Alt Satır (FASTEST altındaki sütunlar) */}
+                        <tr>
+                          <th className="text-end">
+                            <span className="bg-black text-light px-2">
                               POS
                             </span>
                             <i className="bi bi-forward-fill px-1 text-light"></i>
-                            <span className="text-light bg-black p-1 px-2">
+                            <span className="text-light bg-black px-2">
                               TIME
                             </span>
                           </th>
-                          <th className="text-center bg-success text-warning">
-                            <br />
-                            LAP
-                          </th>
+                          <th className="text-center text-warning">LAP</th>
                           {season2 !== "2025" && (
-                            <th className="text-start bg-success">
-                              <span className="text-decoration-underline text-black">
-                                L A P S
-                              </span>
-                              <br />
+                            <th className="text-start">
                               <span className="text-white">AVGSPEED</span>
                             </th>
                           )}
                         </tr>
                       </thead>
+
                       <tbody className="">
                         {item?.Results?.map((result, indexResult) => {
                           return (
@@ -453,8 +464,8 @@ const F1Race = (props) => {
                                   "fw-bold op text-end pe-2 p-0 m-0 cp " +
                                   (result.FastestLap?.rank in
                                   ["1", "2", "3", "4"]
-                                    ? "text-danger"
-                                    : null)
+                                    ? " text-info"
+                                    : "")
                                 }
                                 onClick={() => {
                                   navigate(
@@ -469,8 +480,8 @@ const F1Race = (props) => {
                               >
                                 {result.FastestLap ? (
                                   <>
-                                    <span className="bg-black p-0 d-inline-block w-25 text-center">
-                                      {result.FastestLap?.rank}.
+                                    <span className="bg-black p-0 px-1 text-center">
+                                      {result.FastestLap?.rank}
                                     </span>
                                     <i className="bi bi-forward-fill fs-5 px-1"></i>
                                     <span className="px-1 p-0 bg-black">
