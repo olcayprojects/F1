@@ -361,13 +361,13 @@ const F1Race = (props) => {
                                   " details"
                                 }
                               >
-                                <span className="text-info bg-black fw-bold px-1 p-1 ">
+                                <span className="text-info bg-black fw-bold px-1 p-1 bg-gradient">
                                   {result.Driver?.givenName + " "}
 
                                   {result.Driver?.familyName.toUpperCase()}
                                 </span>
-                                <pre className="d-inline">
-                                  {`(${result.Driver?.dateOfBirth})`}
+                                <pre className="d-inline text-dark-emphasis bg-black bg-gradient px-1">
+                                  {`${result.Driver?.dateOfBirth}`}
                                 </pre>
 
                                 <span className="fw-bold p-1 fst-italic text-black bg-info pe-2">
@@ -392,7 +392,7 @@ const F1Race = (props) => {
                                 }}
                               >
                                 <>
-                                  <span className="bg-black text-primary fw-bold p-1 px-1">
+                                  <span className="bg-black text-primary fw-bold p-1 px-1 bg-gradient">
                                     {result.Constructor.name.toUpperCase()}
                                   </span>
                                   <span className="bg-primary text-black p-1 pe-2 fw-bold fst-italic">
