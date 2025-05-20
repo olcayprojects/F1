@@ -29,7 +29,7 @@ const DriverStandings = (props) => {
       {props.tab !== "1" && <Nav />}
       <div className="d-flex align-items-center justify-content-center  animate__zoomInDown animate__animated animate__slower">
         <select
-          className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-4 me-1 px-2"
+          className="px-4 w-auto bg-black text-danger border-danger fw-bold fs-5 me-1 px-2"
           value={year}
           onChange={handleYearChange}
         >
@@ -42,9 +42,9 @@ const DriverStandings = (props) => {
             </option>
           ))}
         </select>
-        <h2 className="text-center fw-bold m-0 text-danger">
+        <h4 className="text-center fw-bold m-0 text-danger">
           DRIVER STANDINGS
-        </h2>
+        </h4>
       </div>
 
       <div

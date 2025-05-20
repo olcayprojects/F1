@@ -51,26 +51,26 @@ const ConstructorsResult = () => {
     <div>
       <div className="container-fluid p-0">
         <Nav />
-        <div>
+        <div className="text-center">
           <select
-            className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
+            className="bg-black bg-gradient text-center me-1 fs-5 text-danger mb-1"
             onChange={(e) => {
               setSeas(e.target.value);
             }}
           >
-            <option value="" hidden>
+            <option value="" hidden className="">
               {seas}
             </option>
             {years.map((year, index) => {
               return (
-                <option key={`year${index}`} value={year}>
+                <option key={`year${index}`} value={year} className="">
                   {year}
                 </option>
               );
             })}
           </select>
           <select
-            className="form-select bg-black text-center fs-4 text-danger border-danger border-5 shadow-none cp mb-1"
+            className="bg-black bg-gradient text-center fs-5 text-danger mb-1"
             onChange={(e) => setCons(e.target.value)}
           >
             <option value="" hidden>
