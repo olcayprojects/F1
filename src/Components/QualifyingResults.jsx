@@ -38,10 +38,10 @@ const QualifyingResults = (props) => {
 
   return sdata.length ? (
     <div className="container-fluid p-0">
-      <div className="table-responsive">
+      <div className="table-responsive border border-dark border-5">
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
-            <tr className="text-black  text-center">
+            <tr className="text-black text-center">
               <th className="bg-black border-4 border-secondary text-light py-0">
                 P
               </th>
@@ -88,7 +88,7 @@ const QualifyingResults = (props) => {
                       <td className="text-center py-0">{qualifying.number}</td>
                       <td className={"col-5 op py-0 text-end"}>
                         <span
-                          className="fw-bold text-info bg-black px-1 cp"
+                          className="fw-bold text-info bg-black px-1 cp bg-gradient"
                           onClick={() => {
                             navigate(
                               "/ResultsDriver/" + qualifying.Driver.driverId
@@ -124,16 +124,16 @@ const QualifyingResults = (props) => {
                       <td className="text-center py-1">
                         <span
                           className={
-                            "d-block bg-black px-1 text-success fw-bold align-middle"
+                            "d-block bg-black px-1 text-success fw-bold align-middle bg-gradient"
                           }
                         >
                           {qualifying?.Q3 ? qualifying?.Q3 : "-"}
                         </span>
                       </td>
-                      <td className="text-center op py-0">
+                      <td className="text-center op py-0 ">
                         <span
                           className={
-                            "d-block bg-black px-1 fw-bold text-warning"
+                            "d-block bg-black px-1 fw-bold text-warning bg-gradient"
                           }
                         >
                           {qualifying?.Q2 || "-"}
@@ -143,7 +143,7 @@ const QualifyingResults = (props) => {
                         <span
                           className={
                             qualifying?.Q1
-                              ? "d-block bg-black px-1 text-danger"
+                              ? "d-block bg-black px-1 text-danger bg-gradient"
                               : null
                           }
                         >

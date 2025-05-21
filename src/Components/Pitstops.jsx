@@ -155,7 +155,7 @@ function Pitstops(props) {
               </th>
             </tr>
           </thead>
-          <tbody className={"text-danger " + animate + "2s"}>
+          <tbody className={"text-danger "}>
             {formattedData.map((ps, index) => {
               const driver = drivers.find(
                 (driver) => driver.driverId === ps.driverId
@@ -164,9 +164,7 @@ function Pitstops(props) {
                 <tr key={index} className="align-middle">
                   <td className={"op text-center px-1 py-0"}>{index + 1}</td>
                   <td
-                    className={
-                      "col-auto fw-bold  text-info cp " + animate + "4s"
-                    }
+                    className={"col-auto fw-bold  text-info cp "}
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
@@ -202,13 +200,7 @@ function Pitstops(props) {
                     </pre>
                   </td>
 
-                  <td
-                    className={
-                      "text-center text-success fw-bold op py-0 " +
-                      animate +
-                      "3s"
-                    }
-                  >
+                  <td className={"text-center text-success fw-bold op py-0 "}>
                     <span
                     // className={
                     //   index % 2 !== 0

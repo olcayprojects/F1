@@ -162,10 +162,7 @@ const F1Race = (props) => {
                     />
                   ) : null}
 
-                  <div
-                    className="table-responsive-sm
-                   animate__jackInTheBox animate__animated animate__slower"
-                  >
+                  <div className="table-responsive-sm">
                     <table className="myTable table table-dark table-striped table-bordered border-dark text-nowrap">
                       <thead className="">
                         {/* Üst Satır */}
@@ -410,7 +407,7 @@ const F1Race = (props) => {
                               </td>
                               <td className="text-wrap text-center fw-bold px-1">
                                 <span
-                                  className="bg-black w-100 d-inline-block"
+                                  className="bg-black w-100 d-inline-block bg-gradient"
                                   style={{ color: "#86995B" }}
                                 >
                                   {result.Time?.time ? (
