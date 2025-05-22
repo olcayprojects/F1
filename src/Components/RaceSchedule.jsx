@@ -94,7 +94,7 @@ const RaceSchedule = ({ season }) => {
                     {showThumb ? (
                       <>
                         <RaceThumb date={race.date} name={race.raceName} />
-                        <h6 className="m-0">{race.raceName}</h6>
+                        <h5 className="m-0">{race.raceName}</h5>
                         <h6
                           className="m-0 cp text-info"
                           onClick={() =>
@@ -106,8 +106,7 @@ const RaceSchedule = ({ season }) => {
                       </>
                     ) : (
                       <>
-                        <span>{race.raceName}</span>
-                        <hr className="m-0 text-success" />
+                        <h5 className="bg-black bg-gradient text-center m-0">{race.raceName}</h5>
                         <span
                           className="cp text-info"
                           onClick={() =>
@@ -129,7 +128,10 @@ const RaceSchedule = ({ season }) => {
                         : navigate(`/RaceInfo/${race.date}/${race.raceName}`)
                     }
                   >
+                    <span className="bg-black bg-gradient p-2">
                     {getFormattedDate(race)}
+
+                    </span>
                   </td>
 
                   <td
@@ -167,19 +169,19 @@ const RaceSchedule = ({ season }) => {
                     {resultSprintQual}
                   </td>
 
-                  <td className="text-nowrap text-center op">
+                  <td className="text-nowrap text-center op p-0">
                     {race.FirstPractice
                       ? getFormattedDate(race.FirstPractice)
                       : "-"}
                   </td>
 
-                  <td className="text-nowrap text-center">
+                  <td className="text-nowrap text-center p-0">
                     {race.SecondPractice
                       ? getFormattedDate(race.SecondPractice)
                       : "-"}
                   </td>
 
-                  <td className="text-nowrap text-center op">
+                  <td className="text-nowrap text-center op p-0">
                     {race.ThirdPractice
                       ? getFormattedDate(race.ThirdPractice)
                       : "-"}
