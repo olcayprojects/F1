@@ -155,7 +155,7 @@ const Classifications = ({ season }) => {
                   {driver.pos !== "0" ? (
                     <>
                       {driver.name} / {driver.constructors}
-                      <hr className="m-0" />
+                      <hr className="m-0 border-3" />
                       <span className="text-warning-emphasis">
                         {driver.driverNationality} /{" "}
                         {driver.constructorsNationality}
@@ -179,7 +179,7 @@ const Classifications = ({ season }) => {
                       }
                       key={i}
                     >
-                      {res?.position}
+                      {res?.position || "-"}
                     </td>
                   );
                 })}
