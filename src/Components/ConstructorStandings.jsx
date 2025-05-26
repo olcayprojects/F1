@@ -50,8 +50,8 @@ const ConstructorStandings = (props) => {
             onChange={handleYearChange}
           >
             {Array.from(
-              { length: 2025 - 1950 + 1 },
-              (_, index) => 2025 - index
+              { length: new Date().getFullYear() - 1950 + 1 },
+              (_, index) => new Date().getFullYear() - index
             ).map((yearOption) => (
               <option key={yearOption} value={yearOption}>
                 {yearOption}

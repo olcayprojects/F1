@@ -20,7 +20,10 @@ const ConstructorsResult = () => {
   const [seas, setSeas] = useState(season);
 
   const year = new Date().getFullYear();
-  const years = Array.from(new Array(75), (val, index) => year - index);
+  const years = Array.from(
+    { length: year - 1950 + 1 },
+    (_, index) => year - index
+  );
 
   const dateTime = (d, t) =>
     new Date(d + " " + t).toDateString() +

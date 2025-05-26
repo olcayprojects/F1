@@ -49,7 +49,7 @@ const F1 = () => {
   let d = new Date();
 
   let navigate = useNavigate();
-  const { season2 = "2025" } = useParams();
+  const { season2 = d.getFullYear() } = useParams();
 
   return (
     <>
@@ -59,7 +59,7 @@ const F1 = () => {
           <Carousel />
         </div>
 
-        {season2 === "2025" ? <F1Race /> : <Nav />}
+        {season2 === d.getFullYear() ? <F1Race /> : <Nav />}
 
         <select
           className="form-select bg-black text-danger p-0 fs-3 text-center shadow-none cp mb-1"

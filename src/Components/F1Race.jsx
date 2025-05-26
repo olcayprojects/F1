@@ -35,8 +35,10 @@ const F1Race = (props) => {
   let season, round;
   // ,laps
 
+    let yearNow = new Date().getFullYear();
+
   let navigate = useNavigate();
-  const { season2 = "2025" } = useParams();
+  const { season2 = yearNow } = useParams();
   const { rounds = 0 } = useParams();
   // const timeMS = (d) => new Date(d);
 
@@ -225,7 +227,7 @@ const F1Race = (props) => {
 
                           {/* FASTEST başlığı 3 sütuna yayılacak */}
                           <th
-                            colSpan={season2 !== "2025" ? 3 : 2}
+                            colSpan={season2 !== yearNow ? 3 : 2}
                             className="text-center text-black bg-success  p-0"
                           >
                             <h6
@@ -249,7 +251,7 @@ const F1Race = (props) => {
                             </span>
                           </th>
                           <th className="text-center text-warning">LAP</th>
-                          {season2 !== "2025" && (
+                          {season2 !== yearNow && (
                             <th className="text-start">
                               <span className="text-white">AVGSPEED</span>
                             </th>
@@ -492,7 +494,7 @@ const F1Race = (props) => {
                                   ? result.FastestLap?.lap
                                   : null}
                               </td>
-                              {season2 !== "2025" && (
+                              {season2 !== yearNow && (
                                 <td className="op text-start">
                                   {result?.FastestLap?.AverageSpeed?.speed ? (
                                     <>
