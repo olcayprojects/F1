@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RaceThumb } from "./RaceInfo";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +18,8 @@ const RaceSchedule = ({ season }) => {
   const navigate = useNavigate();
 
   const { races, isLoading, error } = useSelector((state) => state.schedule);
+
+  const [showImage, setShowImage] = useState(true);
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -91,32 +93,26 @@ const RaceSchedule = ({ season }) => {
                       season === thisYear ? "col-2" : ""
                     } ${isCurrentMonthThisYear ? "text-end" : "text-start"}`}
                   >
-                    {showThumb ? (
-                      <>
-                        <RaceThumb date={race.date} name={race.raceName} />
-                        <h5 className="m-0">{race.raceName}</h5>
-                        <h6
-                          className="m-0 cp text-info"
-                          onClick={() =>
-                            navigate(`/Circuit/${race.Circuit.circuitId}`)
-                          }
-                        >
-                          {race.Circuit.circuitName}
-                        </h6>
-                      </>
+                    {showImage ? (
+                      <RaceThumb
+                        date={race.date}
+                        name={race.raceName}
+                        onError={() => setShowImage(false)}
+                      />
                     ) : (
-                      <>
-                        <h5 className="bg-black bg-gradient text-center m-0">{race.raceName}</h5>
-                        <span
-                          className="cp text-info"
-                          onClick={() =>
-                            navigate(`/Circuit/${race.Circuit.circuitId}`)
-                          }
-                        >
-                          {race.Circuit.circuitName}
-                        </span>
-                      </>
+                      ""
                     )}
+                    <h5 className="bg-black bg-gradient text-center m-0">
+                      {race.raceName}
+                    </h5>
+                    <h6
+                      className="m-0 cp text-info"
+                      onClick={() =>
+                        navigate(`/Circuit/${race.Circuit.circuitId}`)
+                      }
+                    >
+                      {race.Circuit.circuitName}
+                    </h6>
                   </td>
 
                   <td
@@ -129,8 +125,7 @@ const RaceSchedule = ({ season }) => {
                     }
                   >
                     <span className="bg-black bg-gradient p-2">
-                    {getFormattedDate(race)}
-
+                      {getFormattedDate(race)}
                     </span>
                   </td>
 

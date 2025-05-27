@@ -2,32 +2,36 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 
-export function RaceThumb(props) {
+export function RaceThumb({ date, name, onError }) {
   const [data, setData] = useState([]);
 
   let url = "";
-  url = `https://www.thesportsdb.com/api/v1/json/3/searchfilename.php?e=Formula 1 ${props.date} ${props.name}`;
+  url = `https://www.thesportsdb.com/api/v1/json/3/searchfilename.php?e=Formula 1 ${date} ${name}`;
 
   useEffect(() => {
     function fetchData() {
-      fetch(url)
-        .then((response) => response.json())
-        .then((items) => {
-          setData(items["event"]);
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
+      setTimeout(() => {
+        fetch(url)
+          .then((response) => response.json())
+          .then((items) => {
+            setData(items["event"]);
+          })
+          .catch((err) => {
+            // console.log(err.message);
+          });
+      }, 2000);
     }
+
     fetchData();
   }, [url]);
 
   return data ? (
     <img
-      className="img-thumbnail w-50 m-0 p-0"
-      src={data[0]?.strThumb}
+      className="img-fluid m-0 p-0"
+      src={data[0]?.strBanner}
       alt=""
       srcSet=""
+      onError={onError}
     />
   ) : null;
 }
@@ -68,23 +72,34 @@ const RaceInfo = () => {
       <div className="row">
         {data?.map((event, index) => {
           return (
-            <div className="col text-center" key={index}>
-              <h1 className="text-light">{event.strFilename}</h1>
-              <img
-                className="img-fluid"
-                src={event?.strPoster}
-                alt=""
-                srcSet=""
-              />
+            <div className="col text-center pt-1" key={index}>
+              {event?.strBanner ? (
+                <img
+                  className="img-fluid"
+                  src={event?.strBanner + ""}
+                  alt=""
+                  srcSet=""
+                />
+              ) : (
+                <>
+                  <h5 className="text-light">{event?.strVenue}</h5>
+                  <h5 className="text-light">{event?.strCountry}</h5>
+                  <h5 className="text-light">{event?.strCity}</h5>
+                </>
+              )}
               {/* <img className="img-fluid" src={event.strMap + "/preview"} alt="" srcSet="" /> */}
-              <h5 className="text-light">{event?.strVenue}</h5>
-              <h5 className="text-light">{event?.strCountry}</h5>
-              <h5 className="text-light">{event?.strCity}</h5>
+
               <h5 className="text-light">
                 Your Time: {formatDate(event?.strTimestamp)}
               </h5>
               <h5 className="text-light">Local Time: {event?.strTimeLocal}</h5>
               <h5 className="text-light">{event?.strDescriptionEN}</h5>
+              <img
+                className="img-fluid"
+                src={event?.strPoster + "/medium"}
+                alt=""
+                srcSet=""
+              />
             </div>
           );
         })}
