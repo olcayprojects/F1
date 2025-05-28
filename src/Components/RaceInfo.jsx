@@ -36,17 +36,36 @@ export function RaceThumb({ date, name, onError, s }) {
       />
     ) : (
       <div className="text-center">
-        <img
-          className="img-fluid m-0 p-0 d-block mx-auto"
-          src={
-            data[0]?.strFanart
-              ? `${data[0].strFanart}/medium`
-              : `${data[0]?.strSquare}/medium`
-          }
-          alt={data[0]?.strFilename || "Art"}
-          title={data[0]?.strFilename || "Art"}
-          onError={onError}
-        />
+        {(data[0]?.strFanart ||
+          data[0]?.strSquare ||
+          data[0]?.strPoster ||
+          data[0]?.strThumb) && (
+          <div className="d-flex justify-content-center flex-wrap gap-2">
+            {data[0]?.strSquare || data[0]?.strFanart || data[0]?.strPoster
+              ? ["strSquare", "strFanart", "strPoster"].map((key) =>
+                  data[0]?.[key] ? (
+                    <img
+                      key={key}
+                      className="img-fluid m-0 p-0"
+                      src={`${data[0][key]}/medium`}
+                      alt={data[0]?.strFilename || "Art"}
+                      title={data[0]?.strFilename || "Art"}
+                      onError={onError}
+                    />
+                  ) : null
+                )
+              : data[0]?.strThumb && (
+                  <img
+                    className="img-fluid m-0 p-0"
+                    src={`${data[0].strThumb}/medium`}
+                    alt={data[0]?.strFilename || "Art"}
+                    title={data[0]?.strFilename || "Art"}
+                    onError={onError}
+                  />
+                )}
+          </div>
+        )}
+
         {data[0]?.strDescriptionEN && (
           <pre className="text-success m-3 text-wrap">
             {data[0].strDescriptionEN}

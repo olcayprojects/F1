@@ -166,11 +166,6 @@ const F1Race = (props) => {
                   ) : null}
 
                   <div className="table-responsive-sm">
-                    <RaceThumb
-                      date={sdata?.Races[0]?.date}
-                      name={sdata?.Races[0]?.raceName}
-                      s={1}
-                    />
                     <table className="myTable table table-dark table-striped table-bordered border-dark text-nowrap">
                       <thead className="">
                         {/* Üst Satır */}
@@ -520,6 +515,11 @@ const F1Race = (props) => {
                       </tbody>
                     </table>
                   </div>
+                  <RaceThumb
+                    date={sdata?.Races[0]?.date}
+                    name={sdata?.Races[0]?.raceName}
+                    s={1}
+                  />
                 </div>
               );
             })
@@ -532,6 +532,7 @@ const F1Race = (props) => {
               </h4>
             </div>
           )}
+
           <Tabs
             className="bg-dark"
             value={currentTabIndex}
