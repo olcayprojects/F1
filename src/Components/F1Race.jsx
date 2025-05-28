@@ -12,6 +12,7 @@ import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
 import BuildIcon from "@mui/icons-material/Build";
 import ShowChartIcon from "@mui/icons-material/ShowChart";
 import LastRace from "./LastRace";
+import { RaceThumb } from "./RaceInfo";
 
 import Team from "./Team";
 import Nav from "./Nav";
@@ -35,7 +36,7 @@ const F1Race = (props) => {
   let season, round;
   // ,laps
 
-    let yearNow = new Date().getFullYear();
+  let yearNow = new Date().getFullYear();
 
   let navigate = useNavigate();
   const { season2 = yearNow } = useParams();
@@ -165,6 +166,11 @@ const F1Race = (props) => {
                   ) : null}
 
                   <div className="table-responsive-sm">
+                    <RaceThumb
+                      date={sdata?.Races[0]?.date}
+                      name={sdata?.Races[0]?.raceName}
+                      s={1}
+                    />
                     <table className="myTable table table-dark table-striped table-bordered border-dark text-nowrap">
                       <thead className="">
                         {/* Üst Satır */}

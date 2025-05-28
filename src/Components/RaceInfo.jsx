@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 
-export function RaceThumb({ date, name, onError }) {
+export function RaceThumb({ date, name, onError, s }) {
   const [data, setData] = useState([]);
 
   let url = "";
@@ -26,13 +26,34 @@ export function RaceThumb({ date, name, onError }) {
   }, [url]);
 
   return data ? (
-    <img
-      className="img-fluid m-0 p-0"
-      src={data[0]?.strBanner}
-      alt=""
-      srcSet=""
-      onError={onError}
-    />
+    s === 2 ? (
+      <img
+        className="img-fluid m-0 p-0"
+        src={data[0]?.strBanner ? data[0]?.strBanner : data[0]?.strThumb}
+        alt=""
+        srcSet=""
+        onError={onError}
+      />
+    ) : (
+      <div className="text-center">
+        <img
+          className="img-fluid m-0 p-0 d-block mx-auto"
+          src={
+            data[0]?.strFanart
+              ? `${data[0].strFanart}/medium`
+              : `${data[0]?.strSquare}/medium`
+          }
+          alt={data[0]?.strFilename || "Art"}
+          title={data[0]?.strFilename || "Art"}
+          onError={onError}
+        />
+        {data[0]?.strDescriptionEN && (
+          <pre className="text-success m-3 text-wrap">
+            {data[0].strDescriptionEN}
+          </pre>
+        )}
+      </div>
+    )
   ) : null;
 }
 

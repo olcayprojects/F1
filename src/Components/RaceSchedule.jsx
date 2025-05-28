@@ -93,7 +93,7 @@ const RaceSchedule = ({ season }) => {
                       season === thisYear ? "col-2" : ""
                     } ${isCurrentMonthThisYear ? "text-end" : "text-start"}`}
                   >
-                    {showImage ? (
+                    {/* {showImage ? (
                       <RaceThumb
                         date={race.date}
                         name={race.raceName}
@@ -101,7 +101,7 @@ const RaceSchedule = ({ season }) => {
                       />
                     ) : (
                       ""
-                    )}
+                    )} */}
                     <h5 className="bg-black bg-gradient text-center m-0">
                       {race.raceName}
                     </h5>
