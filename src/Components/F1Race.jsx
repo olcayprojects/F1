@@ -196,9 +196,7 @@ const F1Race = (props) => {
                             </span>
                           </th>
                           <th rowSpan={2} className="text-center op bg-danger">
-                            <span className="text-danger bg-black p-1">
-                              LAPS
-                            </span>
+                            <span className="text-danger bg-black p-1">L</span>
                           </th>
                           <th
                             rowSpan={2}
@@ -221,7 +219,7 @@ const F1Race = (props) => {
                               className="bg-black p-1"
                               style={{ color: "aquamarine" }}
                             >
-                              PTS
+                              PT
                             </span>
                           </th>
                           <th rowSpan={2} className="bg-secondary"></th>
@@ -233,7 +231,7 @@ const F1Race = (props) => {
                           >
                             <h6
                               className="text-black fw-bold m-0"
-                              style={{ letterSpacing: "6px" }}
+                              style={{ letterSpacing: "2px" }}
                             >
                               FASTEST LAPS
                             </h6>
@@ -243,13 +241,9 @@ const F1Race = (props) => {
                         {/* Alt Satır (FASTEST altındaki sütunlar) */}
                         <tr>
                           <th className="text-end">
-                            <span className="bg-black text-light px-2">
-                              POS
-                            </span>
-                            <i className="bi bi-forward-fill px-1 text-light"></i>
-                            <span className="text-light bg-black px-2">
-                              TIME
-                            </span>
+                            <span className="bg-black text-light">POS</span>
+                            <i className="bi bi-forward-fill text-light"></i>
+                            <span className="text-light bg-black">TIME</span>
                           </th>
                           <th className="text-center text-warning">LAP</th>
                           {season2 !== yearNow && (
@@ -270,7 +264,7 @@ const F1Race = (props) => {
                                 (indexResult === 0 ? " fs-6 fw-bold" : "")
                               }
                             >
-                              <td className="text-center">
+                              <td className="text-center p-0">
                                 {result.positionText in [1, 2, 3, 4] ? (
                                   result.positionText === "1" ? (
                                     <b className="text-black bg-danger px-2">
@@ -301,7 +295,7 @@ const F1Race = (props) => {
                                 )}
                               </td>
                               <td
-                                className="op text-center"
+                                className="op text-center p-0"
                                 style={{ color: "#74F0B6" }}
                               >
                                 <span>
@@ -361,7 +355,7 @@ const F1Race = (props) => {
                                   " details"
                                 }
                               >
-                                <span className="text-info bg-black fw-bold px-1 p-1 bg-gradient">
+                                <span className="text-info bg-black fw-bold px-1 bg-gradient">
                                   {result.Driver?.givenName + " "}
 
                                   {result.Driver?.familyName.toUpperCase()}
@@ -404,13 +398,13 @@ const F1Race = (props) => {
                                 className="op text-center fw-bold"
                                 style={{ color: "#DE3126" }}
                               >
-                                <span className="d-block bg-black px-1">
+                                <span className="d-block bg-black">
                                   {result.laps}
                                 </span>
                               </td>
-                              <td className="text-wrap text-center fw-bold px-1">
+                              <td className="text-wrap text-center fw-bold m-0 p-0">
                                 <span
-                                  className="bg-black w-100 d-inline-block bg-gradient"
+                                  className="bg-black w-100 p-0 d-inline-block bg-gradient"
                                   style={{ color: "#86995B" }}
                                 >
                                   {result.Time?.time ? (
@@ -441,7 +435,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="text-center fw-bold op"
+                                className="text-center fw-bold op m-0 p-0"
                                 style={
                                   result.points > 0
                                     ? { color: "aquamarine" }
@@ -450,7 +444,7 @@ const F1Race = (props) => {
                               >
                                 <span
                                   className={
-                                    "d-block mx-1  " +
+                                    "d-block   " +
                                     (result.points > 0 ? "bg-black" : "")
                                   }
                                 >
@@ -461,7 +455,7 @@ const F1Race = (props) => {
 
                               <td
                                 className={
-                                  "fw-bold op text-end pe-2 p-0 m-0 cp " +
+                                  "fw-bold op text-end p-0 m-0 cp " +
                                   (result.FastestLap?.rank in
                                   ["1", "2", "3", "4"]
                                     ? " text-info"

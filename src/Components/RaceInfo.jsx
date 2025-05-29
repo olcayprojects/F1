@@ -7,7 +7,7 @@ export function RaceThumb({ date, name, onError, s }) {
 
   let url = "";
   url = `https://www.thesportsdb.com/api/v1/json/3/searchfilename.php?e=Formula 1 ${date} ${name}`;
-
+console.log(url);
   useEffect(() => {
     function fetchData() {
       setTimeout(() => {
@@ -37,12 +37,12 @@ export function RaceThumb({ date, name, onError, s }) {
     ) : (
       <div className="text-center">
         {(data[0]?.strFanart ||
-          data[0]?.strSquare ||
+          data[0]?.strMap ||
           data[0]?.strPoster ||
           data[0]?.strThumb) && (
-          <div className="d-flex justify-content-center flex-wrap gap-2">
-            {data[0]?.strSquare || data[0]?.strFanart || data[0]?.strPoster
-              ? ["strSquare", "strFanart", "strPoster"].map((key) =>
+          <div className="d-flex justify-content-center flex-wrap gap-1">
+            {data[0]?.strMap || data[0]?.strFanart || data[0]?.strPoster
+              ? ["strMap", "strPoster", "strFanart"].map((key) =>
                   data[0]?.[key] ? (
                     <img
                       key={key}
