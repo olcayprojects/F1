@@ -222,36 +222,49 @@ const F1Race = (props) => {
                               PT
                             </span>
                           </th>
-                          <th rowSpan={2} className="bg-secondary"></th>
 
-                          {/* FASTEST başlığı 3 sütuna yayılacak */}
-                          <th
-                            colSpan={season2 !== yearNow ? 3 : 2}
-                            className="text-center text-black bg-success  p-0"
-                          >
-                            <h6
-                              className="text-black fw-bold m-0"
-                              style={{ letterSpacing: "2px" }}
-                            >
-                              FASTEST LAPS
-                            </h6>
-                          </th>
+                          {season > 2004 ? (
+                            <>
+                              <th rowSpan={2} className="bg-secondary"></th>
+
+                              {/* FASTEST başlığı 3 sütuna yayılacak */}
+
+                              <th
+                                colSpan={season2 !== yearNow ? 3 : 2}
+                                className="text-center text-black bg-success  p-0"
+                              >
+                                <h6
+                                  className="text-black fw-bold m-0"
+                                  style={{ letterSpacing: "2px" }}
+                                >
+                                  FASTEST LAPS
+                                </h6>
+                              </th>
+                            </>
+                          ) : null}
                         </tr>
 
                         {/* Alt Satır (FASTEST altındaki sütunlar) */}
-                        <tr>
-                          <th className="text-end">
-                            <span className="bg-black text-light">POS</span>
-                            <i className="bi bi-forward-fill text-light"></i>
-                            <span className="text-light bg-black">TIME</span>
-                          </th>
-                          <th className="text-center text-warning">LAP</th>
-                          {season2 !== yearNow && (
-                            <th className="text-start">
-                              <span className="text-white">AVGSPEED</span>
-                            </th>
-                          )}
-                        </tr>
+
+                        {season > 2004 ? (
+                          <>
+                            <tr>
+                              <th className="text-end">
+                                <span className="bg-black text-light">POS</span>
+                                <i className="bi bi-forward-fill text-light"></i>
+                                <span className="text-light bg-black">
+                                  TIME
+                                </span>
+                              </th>
+                              <th className="text-center text-warning">LAP</th>
+                              {Number(season2) !== yearNow ? (
+                                <th className="text-start">
+                                  <span className="text-white">AVGSPEED</span>
+                                </th>
+                              ) : null}
+                            </tr>
+                          </>
+                        ) : null}
                       </thead>
 
                       <tbody className="">
@@ -265,7 +278,9 @@ const F1Race = (props) => {
                               }
                             >
                               <td className="text-center p-0">
-                                {result.positionText in [1, 2, 3, 4] ? (
+                                {["1", "2", "3"].includes(
+                                  result.positionText
+                                ) ? (
                                   result.positionText === "1" ? (
                                     <b className="text-black bg-danger px-2">
                                       1
@@ -451,58 +466,70 @@ const F1Race = (props) => {
                                   {result.points}
                                 </span>
                               </td>
-                              <td className="bg-secondary"></td>
+                              {season > 2004 ? (
+                                <>
+                                  <td className="bg-secondary"></td>
 
-                              <td
-                                className={
-                                  "fw-bold op text-end p-0 m-0 cp " +
-                                  (result.FastestLap?.rank in
-                                  ["1", "2", "3", "4"]
-                                    ? " text-info"
-                                    : "")
-                                }
-                                onClick={() => {
-                                  navigate(
-                                    "/Laps/" +
-                                      result.Driver.driverId +
-                                      "/" +
-                                      season +
-                                      "/" +
-                                      round
-                                  );
-                                }}
-                              >
-                                {result.FastestLap ? (
-                                  <>
-                                    <span className="bg-black p-0 px-1 text-center">
-                                      {result.FastestLap?.rank}
-                                    </span>
-                                    <i className="bi bi-forward-fill fs-5 px-1"></i>
-                                    <span className="px-1 p-0 bg-black">
-                                      {result.FastestLap?.Time.time}
-                                    </span>
-                                  </>
-                                ) : null}
-                              </td>
-                              <td className="text-center m-0 fw-bold text-warning">
-                                {result.FastestLap?.lap
-                                  ? result.FastestLap?.lap
-                                  : null}
-                              </td>
-                              {season2 !== yearNow && (
-                                <td className="op text-start">
-                                  {result?.FastestLap?.AverageSpeed?.speed ? (
-                                    <>
-                                      <span className="ms-1 fw-bold">
-                                        {result?.FastestLap?.AverageSpeed.speed}{" "}
-                                      </span>
-                                      <span className="fst-italic text-secondary">
-                                        {result?.FastestLap?.AverageSpeed.units}
-                                      </span>
-                                    </>
-                                  ) : null}
-                                </td>
-                              )}
+                                  <td
+                                    className={
+                                      "fw-bold op text-end p-0 m-0 cp " +
+                                      (["1", "2", "3"].includes(
+                                        result.FastestLap?.rank
+                                      )
+                                        ? " text-info"
+                                        : "")
+                                    }
+                                    onClick={() => {
+                                      navigate(
+                                        "/Laps/" +
+                                          result.Driver.driverId +
+                                          "/" +
+                                          season +
+                                          "/" +
+                                          round
+                                      );
+                                    }}
+                                  >
+                                    {result.FastestLap ? (
+                                      <>
+                                        <span className="bg-black p-0 px-1 text-center">
+                                          {result.FastestLap?.rank}
+                                        </span>
+                                        <i className="bi bi-forward-fill fs-5 px-1"></i>
+                                        <span className="px-1 p-0 bg-black">
+                                          {result.FastestLap?.Time.time}
+                                        </span>
+                                      </>
+                                    ) : null}
+                                  </td>
+                                  <td className="text-center m-0 fw-bold text-warning">
+                                    {result.FastestLap?.lap
+                                      ? result.FastestLap?.lap
+                                      : null}
+                                  </td>
+                                  {Number(season2) !== yearNow && (
+                                    <td className="op text-start">
+                                      {result?.FastestLap?.AverageSpeed
+                                        ?.speed ? (
+                                        <>
+                                          <span className="ms-1 fw-bold">
+                                            {
+                                              result?.FastestLap?.AverageSpeed
+                                                .speed
+                                            }{" "}
+                                          </span>
+                                          <span className="fst-italic text-secondary">
+                                            {
+                                              result?.FastestLap?.AverageSpeed
+                                                .units
+                                            }
+                                          </span>
+                                        </>
+                                      ) : null}
+                                    </td>
+                                  )}
+                                </>
+                              ) : null}
                             </tr>
                           );
                         })}

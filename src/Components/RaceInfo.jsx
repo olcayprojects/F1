@@ -7,7 +7,6 @@ export function RaceThumb({ date, name, onError, s }) {
 
   let url = "";
   url = `https://www.thesportsdb.com/api/v1/json/3/searchfilename.php?e=Formula 1 ${date} ${name}`;
-console.log(url);
   useEffect(() => {
     function fetchData() {
       setTimeout(() => {
