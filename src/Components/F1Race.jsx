@@ -379,7 +379,7 @@ const F1Race = (props) => {
                                   {`${result.Driver?.dateOfBirth}`}
                                 </pre>
 
-                                <span className="fw-bold p-1 fst-italic text-black bg-info pe-2">
+                                <span className="fw-bold px-1 fst-italic text-black bg-info pe-2">
                                   {result.Driver?.nationality}
                                 </span>
                               </td>
@@ -401,10 +401,10 @@ const F1Race = (props) => {
                                 }}
                               >
                                 <>
-                                  <span className="bg-black text-primary fw-bold p-1 px-1 bg-gradient">
+                                  <span className="bg-black text-primary fw-bold px-1 bg-gradient">
                                     {result.Constructor.name.toUpperCase()}
                                   </span>
-                                  <span className="bg-primary text-black p-1 pe-2 fw-bold fst-italic">
+                                  <span className="bg-primary text-black pe-2 fw-bold fst-italic">
                                     {" " + result.Constructor.nationality}
                                   </span>
                                 </>
