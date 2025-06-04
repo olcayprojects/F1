@@ -9,6 +9,15 @@ const WinRacesInaSeason = (props) => {
   const [seasonResults, setSeasonResults] = useState([]);
   const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
 
+  const formatDate = (dateStr) => {
+    const date = new Date(dateStr);
+    return date.toLocaleString("en", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "2-digit",
+    });
+  };
+
   let navigate = useNavigate();
 
   const { season2 = "2024" } = useParams();
@@ -43,7 +52,7 @@ const WinRacesInaSeason = (props) => {
           <table className="myTable table table-dark table-striped table-bordered text-nowrap">
             <thead className="">
               <tr className="">
-                <th className="text-black bg-light op py-0">#</th>
+                <th className="text-black bg-light op p-0">#</th>
                 <th className="text-black bg-warning py-0">Race Name</th>
                 <th className="text-black bg-info op py-0">Driver Info</th>
                 <th className="text-black bg-danger text-center py-0">P</th>
@@ -60,9 +69,9 @@ const WinRacesInaSeason = (props) => {
               {seasonResults?.map((item, index) => {
                 return (
                   <tr className="align-middle" key={index}>
-                    <td className="op fw-bold py-0">#{item.round}</td>
+                    <td className="op fw-bold p-0 text-center">{item.round}</td>
                     <td
-                      className="col cp py-0"
+                      className="col cp p-0"
                       onClick={() =>
                         navigate("/F1Race/" + props.season + "/" + item.round)
                       }
@@ -74,7 +83,7 @@ const WinRacesInaSeason = (props) => {
                         {item.time ? dateTime(item.date, item.time) : item.date}
                       </i>
                     </td>
-                    <td className="col op py-0">
+                    <td className="col op p-0">
                       <span
                         className="text-info bg-black px-2 fw-bold cp"
                         onClick={() => {
@@ -87,9 +96,12 @@ const WinRacesInaSeason = (props) => {
                           " " +
                           item.Results[0].Driver.familyName.toUpperCase()}
                       </span>
-                      <span className="">
-                        {` ${item.Results[0].Driver.dateOfBirth} (${item.Results[0].Driver.nationality}) `}
+                      <span className="text-secondary">
+                        {`${formatDate(item.Results[0].Driver.dateOfBirth)} (${
+                          item.Results[0].Driver.nationality
+                        })`}
                       </span>
+
                       <span
                         className="fw-bold px-2 text-black bg-info fst-italic cp"
                         onClick={() => {
@@ -104,7 +116,7 @@ const WinRacesInaSeason = (props) => {
                         {item.Results[0].Constructor.name.toUpperCase()}
                       </span>
                     </td>
-                    <td className="col text-center text-danger fw-bold py-0">
+                    <td className="col text-center text-danger fw-bold p-0">
                       <span className="bg-black px-2">
                         {item.Results[0].points}
                       </span>
@@ -115,22 +127,22 @@ const WinRacesInaSeason = (props) => {
                         {item.Results[0].laps}
                       </span>
                     </td>
-                    <td className="col text-center text-success fw-bold py-0">
-                      <span className="bg-black px-2">
+                    <td className="col text-center text-success fw-bold py-0 p-0">
+                      <span className="bg-black px-1">
                         {item.Results[0].Time.time}
                       </span>
                     </td>
 
                     <td
                       className={
-                        "text-center op col fw-bold py-0 " +
+                        "text-center op col fw-bold p-0 " +
                         (item.Results[0].FastestLap?.rank in [1, 2, 3, 4]
                           ? "text-primary"
                           : "text-success")
                       }
                     >
                       {item.Results[0].FastestLap ? (
-                        <span className="px-2 bg-black ">
+                        <span className="px-1 bg-black ">
                           <>
                             {"#"}
                             {item.Results[0].FastestLap.rank}

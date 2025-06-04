@@ -91,7 +91,11 @@ const RaceSchedule = ({ season }) => {
                   <td
                     className={`text-nowrap op fw-bold text-warning py-0 ${
                       season === thisYear ? "col-2" : ""
-                    } ${isCurrentMonthThisYear ? "text-end" : "text-start"}`}
+                    } ${
+                      isCurrentMonthThisYear
+                        ? "text-center border border-3 border-danger"
+                        : "text-start"
+                    }`}
                   >
                     {/* {showImage ? (
                       <RaceThumb
@@ -102,7 +106,7 @@ const RaceSchedule = ({ season }) => {
                     ) : (
                       ""
                     )} */}
-                    <h5 className="bg-black bg-gradient text-center m-0">
+                    <h5 className="bg-black bg-gradient m-0">
                       {race.raceName}
                     </h5>
                     <h6
