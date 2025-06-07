@@ -34,12 +34,11 @@ const Events = (props) => {
           />
           {(data?.strResult || data?.strDescriptionEN) && (
             
-            <p
-              className="text-secondary text-center small-text"
-              style={{ fontSize: "0.7em" }}
+            <span
+              className="text-secondary small-text"
             >
               &quot; {data?.strResult || data?.strDescriptionEN} &quot;
-            </p>
+            </span>
           )}
         </div>
       ) : <img

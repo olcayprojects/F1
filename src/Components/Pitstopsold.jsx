@@ -32,7 +32,7 @@ const Pitstops = (props) => {
       })
       .catch((err) => {
         setIsLoaded(false);
-        console.log(err.message);
+        // console.log(err.message);
       });
   }, [url]);
 

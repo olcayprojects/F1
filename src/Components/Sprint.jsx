@@ -28,7 +28,7 @@ const Sprint = () => {
           setData(items["MRData"].RaceTable.Races[0]);
         })
         .catch((err) => {
-          console.log(err.message);
+          // console.log(err.message);
           setIsLoaded(true);
         });
     }
@@ -39,7 +39,7 @@ const Sprint = () => {
     return <Loading />;
   } else {
     return (
-      <div className="container-fluid p-0">
+      <div className="container-fluid bg-black p-0">
         <Nav />
 
         <h3 className="text-black text-center fw-bold mt-2 m-0">

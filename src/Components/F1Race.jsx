@@ -62,7 +62,7 @@ const F1Race = (props) => {
           setData(data["MRData"].RaceTable);
         })
         .catch((err) => {
-          console.log(err);
+          // console.log(err);
           setIsLoaded(true);
         });
     }
@@ -375,9 +375,9 @@ const F1Race = (props) => {
 
                                   {result.Driver?.familyName.toUpperCase()}
                                 </span>
-                                <pre className="d-inline text-dark-emphasis bg-black bg-gradient px-1">
+                                <p className="d-inline text-dark-emphasis bg-black bg-gradient px-1 small-text">
                                   {`${result.Driver?.dateOfBirth}`}
-                                </pre>
+                                </p>
 
                                 <span className="fw-bold px-1 fst-italic text-black bg-info pe-2">
                                   {result.Driver?.nationality}

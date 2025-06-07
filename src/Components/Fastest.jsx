@@ -17,12 +17,12 @@ const Fastest = (props) => {
       setIsLoaded(true);
     } catch (e) {
       if (e.response && e.response.status === 429) {
-        console.log("Too many requests. Waiting 5 seconds before retrying...");
-        setError("Too many requests. Please try again later.");
+        // console.log("Too many requests. Waiting 5 seconds before retrying...");
+        // setError("Too many requests. Please try again later.");
         setTimeout(fetchFastest, 5000);
       } else {
-        console.log("Error fetching data: ", e);
-        setError("An error occurred while fetching the data.");
+        // console.log("Error fetching data: ", e);
+        // setError("An error occurred while fetching the data.");
         setIsLoaded(true);
       }
     }
@@ -30,7 +30,7 @@ const Fastest = (props) => {
 
   const getFastestLapForRound = (round) => {
     if (!sdata || !Array.isArray(sdata)) return null;
-    console.log(sdata);
+    // console.log(sdata);
     const race = sdata.find((race) => race.round === round);
     return race ? race.Results[0] : null;
   };

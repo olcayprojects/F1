@@ -25,7 +25,7 @@ const DriverStandings = (props) => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid p-0 bg-black">
       {props.tab !== "1" && <Nav />}
       <div className="d-flex align-items-center justify-content-center  animate__zoomInDown animate__animated animate__slower">
         <select

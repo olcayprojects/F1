@@ -34,7 +34,7 @@ export function RaceThumb({ date, name, onError, s }) {
         onError={onError}
       />
     ) : (
-      <div className="text-center">
+      <div className="">
         {(data[0]?.strFanart ||
           data[0]?.strMap ||
           data[0]?.strPoster ||
@@ -66,9 +66,7 @@ export function RaceThumb({ date, name, onError, s }) {
         )}
 
         {data[0]?.strDescriptionEN && (
-          <pre className="text-success m-3 text-wrap">
-            {data[0].strDescriptionEN}
-          </pre>
+          <span className="text-success mx-1">{data[0].strDescriptionEN}</span>
         )}
       </div>
     )
@@ -98,7 +96,7 @@ const RaceInfo = () => {
           setData(items["event"]);
         })
         .catch((err) => {
-          console.log(err.message);
+          // console.log(err.message);
         });
     }
     fetchData();

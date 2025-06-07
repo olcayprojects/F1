@@ -27,7 +27,7 @@ const QualifyingResults = (props) => {
         setIsLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setIsLoaded(true);
       });
   }, [url]);

@@ -44,10 +44,10 @@ const Next = () => {
         return (
           <h5
             key={index}
-            className="bg-black text-warning mt-1 m-0 pt-1 fw-bold"
+            className="bg-black text-warning m-0 pt-1 fw-bold"
             style={{}}
           >
-            <marquee className=""  behavior="" scrollamount="10">
+            <marquee className="" behavior="" scrollamount="10">
               <span className="ps-5 text-primary">
                 ROUND {data.round} - UP NEXT{" "}
               </span>

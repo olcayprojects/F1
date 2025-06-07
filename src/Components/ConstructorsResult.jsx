@@ -43,7 +43,7 @@ const ConstructorsResult = () => {
           setData(items["MRData"].RaceTable?.Races);
         })
         .catch((err) => {
-          console.log("Hata:", err.message);
+          // console.log("Hata:", err.message);
           setIsLoaded(true);
         });
     }
@@ -51,8 +51,8 @@ const ConstructorsResult = () => {
   }, [url]);
 
   return (
-    <div>
-      <div className="container-fluid p-0">
+    <div className=" bg-black">
+      <div className="p-0">
         <Nav />
         <div className="text-center">
           <select
@@ -87,7 +87,7 @@ const ConstructorsResult = () => {
       {sdata.length
         ? sdata.map((items, index) => {
             return (
-              <div className="text-danger container-fluid" key={index}>
+              <div className="text-danger" key={index}>
                 <div className="table-responsive-sm">
                   <table className="table table-striped table-dark caption-top table-bordered">
                     <caption className="text-primary bg-dark text-center fs-5">

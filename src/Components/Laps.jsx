@@ -132,7 +132,7 @@ const ApiDataComponent = () => {
   }
 
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid bg-black p-0">
       <Nav />
 
       <div className="border border-danger border-5 fs-2 text-info text-center fw-bold m-1">

@@ -33,7 +33,7 @@ const Event = (props) => {
         setData(data.event);
       })
       .catch((err) => {
-        console.log(err.message);
+        // console.log(err.message);
       });
   };
 

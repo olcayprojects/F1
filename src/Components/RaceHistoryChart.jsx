@@ -160,7 +160,7 @@ const RaceHistoryChart = () => {
   return (
     <>
       <Nav />
-      <div className="RaceHistoryChart">
+      <div className="container-fluid p-0 bg-black">
         <h2 className="text-info text-center">
           Last Race Laps, Times, and Positions
         </h2>

@@ -4,7 +4,6 @@ import { fetchPlayer } from "../redux/playerSlice";
 import { Carousel } from "react-bootstrap";
 import Loading from "./Loading";
 
-
 const PlayerCarousel = ({ playerImages }) => {
   return (
     <div className="container mt-4">
@@ -108,25 +107,22 @@ const PlayerProfile = ({ playerId, t }) => {
       />
       <div className="bg-secondary">
         {/* {playerData?.strTeam} */}
-        <pre className="text-center m-0">
+        <p className="text-center m-0 small-text">
           {new Date(playerData?.dateBorn).toDateString()}{" "}
           {playerData.strBirthLocation} {playerData.strNationality}
-        </pre>
+        </p>
         {playerData.strHeight && (
-          <pre className="m-0 text-center">
+          <p className="m-0 text-center small-text">
             {playerData.strHeight} {playerData.strWeight}
-          </pre>
+          </p>
         )}
       </div>
-      <p
-        className="m-0 bg-dark text-start px-1"
-        style={{ whiteSpace: "pre-wrap" }}
-      >
+      <p className="m-0 bg-dark text-start px-1 small-text">
         {playerData?.strDescriptionEN}
       </p>
     </div>
   ) : t === "3" ? (
-    <div className="container-fluid text-info">
+    <div className="container-fluid p-0 text-info">
       <img
         className="img-fluid d-block mx-auto text-center 
           a  animate__animated animate__backInDown animate__slower"
@@ -134,19 +130,19 @@ const PlayerProfile = ({ playerId, t }) => {
           (playerData.strCutout ||
             playerData.strThumb ||
             playerData.strRender ||
-            null) + "/tiny"
+            null) + "/small"
         }
         alt={playerData.strPlayer}
         title={playerData.strDescriptionEN}
       />
-      <pre className="text-center m-0">
+      <p className="text-center m-0 small-text">
         {new Date(playerData.dateBorn).toDateString()} <br />
         {playerData.strBirthLocation} {playerData.strNationality}
-      </pre>
+      </p>
       {playerData.strHeight && (
-        <pre className="m-0 text-center">
+        <p className="m-0 text-center small-text">
           {playerData.strHeight} {playerData.strWeight}
-        </pre>
+        </p>
       )}
     </div>
   ) : (

@@ -31,7 +31,7 @@ export const RaceHistoryChart = () => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 
   urlx = `https://ergast.com/api/f1/${season}/${round}/laps.json?limit=1200`;
@@ -45,7 +45,7 @@ export const RaceHistoryChart = () => {
         setIsLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         setIsLoaded(true);
       });
   };

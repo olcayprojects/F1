@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-
 const Constructor = (props) => {
   let url = `${BASE_URL}/${props.year}/constructors.json`;
 
@@ -20,7 +19,6 @@ const Constructor = (props) => {
           setData(items["MRData"]?.ConstructorTable?.Constructors);
         })
         .catch((err) => {
-          console.log("Hata:", err.message);
           setIsLoaded(true);
         });
     }

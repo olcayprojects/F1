@@ -39,7 +39,7 @@ const ConstructorStandings = (props) => {
   if (isLoading) return <Loading />;
 
   return (
-    <div className="container-fluid p-0">
+    <div className="container-fluid bg-black p-0">
       {props.tab !== 1 && <Nav />}
 
       {!props.season && (

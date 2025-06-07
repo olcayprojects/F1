@@ -37,7 +37,7 @@ const WinRacesInaSeason = (props) => {
         setIsLoaded(true);
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       })
       .finally((e) => {
         setIsLoaded(true);
