@@ -35,9 +35,11 @@ const RaceSchedule = ({ season }) => {
 
   return (
     <div className="bg-black container-fluid p-0">
-      <div className="text-center bg-black text-danger border-top border-start border-end border-danger border-5 m-0 p-0">
-        <h1>F1 Schedule {season}</h1>
-        <h6>{season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR</h6>
+      <div className="text-center bg-black text-danger m-0 p-0 border border-danger border-5 bg-gradient">
+        <h1 className="fw-bold m-0">F1 Schedule {season}</h1>
+        <h6 className="fw-bold m-0">
+          {season} FIA FORMULA ONE WORLD CHAMPIONSHIP™ RACE CALENDAR
+        </h6>
       </div>
       <div className="table-responsive">
         <table className="myTable table table-dark table-striped table-bordered border-dark m-0">
