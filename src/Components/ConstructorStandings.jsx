@@ -13,6 +13,7 @@ import {
   fetchDriverStandings,
   setYear as setDriverYear,
 } from "../redux/driverStandingsSlice";
+import { isNumber } from "@mui/x-data-grid/internals";
 
 const ConstructorStandings = (props) => {
   const dispatch = useDispatch();
@@ -115,7 +116,9 @@ const ConstructorStandings = (props) => {
               }
 
               const renderChange = () => {
-                if (!prev || change === 0) return null;
+                console.log(change);
+
+                if (!prev || change === 0 || Number.isNaN(change)) return null;
                 return (
                   <span
                     className={`ms-1 fw-normal ${
