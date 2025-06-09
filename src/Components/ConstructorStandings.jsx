@@ -116,7 +116,6 @@ const ConstructorStandings = (props) => {
               }
 
               const renderChange = () => {
-                console.log(change);
 
                 if (!prev || change === 0 || Number.isNaN(change)) return null;
                 return (
