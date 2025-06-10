@@ -23,7 +23,7 @@ const Events = (props) => {
   return (
     <div className="container-fluid p-0">
       {data?.strThumb ? (
-        <div className="container">
+        <div className="container-fluid">
           <img
             style={{ width: "44%" }}
             className="img-fluid p-0 m-0 mx-auto d-block"
@@ -33,10 +33,7 @@ const Events = (props) => {
             srcSet=""
           />
           {(data?.strResult || data?.strDescriptionEN) && (
-            
-            <span
-              className="text-secondary small-text"
-            >
+            <span className="text-secondary small-text">
               &quot; {data?.strResult || data?.strDescriptionEN} &quot;
             </span>
           )}
