@@ -33,9 +33,9 @@ const Events = (props) => {
             srcSet=""
           />
           {(data?.strResult || data?.strDescriptionEN) && (
-            <span className="text-secondary small-text">
+            <p className="text-secondary fw-bold small-text lh-sm">
               &quot; {data?.strResult || data?.strDescriptionEN} &quot;
-            </span>
+            </p>
           )}
         </div>
       ) : <img
