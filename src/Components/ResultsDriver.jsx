@@ -274,20 +274,17 @@ const ResultsDriver = () => {
                             <td className="text-center op">
                               {results.length > 0 ? results[0].points : "-"}
                             </td>
-                            <td className="">
-                              <span className="text-danger fw-bold text-secondary text-center">
+                            <td className="text-danger">
+                              <span className="">
                                 {results.length > 0 &&
                                 results[0]?.FastestLap ? (
                                   <>
                                     <span className="">
                                       {results[0].FastestLap.rank
-                                        ? "#" +
-                                          results[0].FastestLap.rank +
-                                          " || "
+                                        ? results[0].FastestLap.rank + " - "
                                         : null}
                                     </span>
-                                    Time:{" "}
-                                    {results[0].FastestLap.Time?.time + " || "}
+                                    {results[0].FastestLap.Time?.time + " ( "}
                                     {results[0].FastestLap.AverageSpeed
                                       ? "AvgSpd: " +
                                         results[0].FastestLap.AverageSpeed
@@ -295,12 +292,12 @@ const ResultsDriver = () => {
                                         " " +
                                         results[0].FastestLap.AverageSpeed
                                           ?.units +
-                                        " || "
+                                        "  "
                                       : null}
-                                    Lap: {results[0].FastestLap.lap}
+                                    Lap: {results[0].FastestLap.lap} )
                                   </>
                                 ) : (
-                                  <span className="text-danger">-</span>
+                                  <span className="">-</span>
                                 )}
                               </span>
                             </td>
