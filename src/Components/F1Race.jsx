@@ -536,11 +536,11 @@ const F1Race = (props) => {
                       </tbody>
                     </table>
                   </div>
-                  <RaceThumb
+                  {/* <RaceThumb
                     date={sdata?.Races[0]?.date}
                     name={sdata?.Races[0]?.raceName}
                     s={1}
-                  />
+                  /> */}
                 </div>
               );
             })

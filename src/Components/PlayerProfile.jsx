@@ -103,7 +103,7 @@ const PlayerProfile = ({ playerId, t }) => {
             playerData.strThumb ||
             "") + "/small"
         }
-        alt=""
+        alt={playerData.strPlayer}
       />
       <div className="bg-secondary">
         {/* {playerData?.strTeam} */}

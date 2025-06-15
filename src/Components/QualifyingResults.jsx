@@ -142,12 +142,10 @@ const QualifyingResults = (props) => {
                       <td className="text-center fw-bolder align-middle py-0">
                         <span
                           className={
-                            qualifying?.Q1
-                              ? "d-block bg-black px-1 text-danger bg-gradient"
-                              : null
+                            "d-block bg-black px-1 text-danger bg-gradient"
                           }
                         >
-                          {qualifying?.Q1}
+                          {qualifying?.Q1 || "-"}
                         </span>
                       </td>
                     </tr>

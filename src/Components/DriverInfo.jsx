@@ -63,8 +63,8 @@ export const DrvInfo = (props) => {
           style={{}}
           src={
             player?.strCutout
-              ? player?.strCutout + "/preview"
-              : player?.strThumb + "/preview"
+              ? player?.strCutout + "/small"
+              : player?.strThumb + "/small"
           }
           alt={player?.strPlayer}
           title={player?.strPlayer + " / " + player?.strNationality}

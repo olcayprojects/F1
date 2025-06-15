@@ -116,7 +116,6 @@ const ConstructorStandings = (props) => {
               }
 
               const renderChange = () => {
-
                 if (!prev || change === 0 || Number.isNaN(change)) return null;
                 return (
                   <span
@@ -149,7 +148,7 @@ const ConstructorStandings = (props) => {
                       }
                     >
                       {cs.Constructor.name.toUpperCase()}
-                      {cs.position < 11 && (
+                      {cs.position < 2 && (
                         <Team
                           teamName={cs.Constructor.name}
                           constructor={setConstructor}

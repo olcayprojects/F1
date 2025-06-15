@@ -29,7 +29,7 @@ export function RaceThumb({ date, name, onError, s }) {
       <img
         className="img-fluid m-0 p-0"
         src={data[0]?.strBanner ? data[0]?.strBanner : data[0]?.strThumb}
-        alt=""
+        alt={data[0]?.strFilename}
         srcSet=""
         onError={onError}
       />
@@ -114,7 +114,7 @@ const RaceInfo = () => {
                 <img
                   className="img-fluid"
                   src={event?.strBanner + ""}
-                  alt=""
+                  alt={event?.strFilename}
                   srcSet=""
                 />
               ) : (
@@ -134,7 +134,7 @@ const RaceInfo = () => {
               <img
                 className="img-fluid"
                 src={event?.strPoster + "/medium"}
-                alt=""
+                alt={event?.strFilename}
                 srcSet=""
               />
             </div>

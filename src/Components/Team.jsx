@@ -62,7 +62,7 @@ const Team = ({ constructor, teamName, ls }) => {
               className="img-fluid"
               style={{}}
               src={teams?.strLogo + "/tiny"}
-              alt=""
+              alt={teams?.strTeamAlternate}
               title={teams?.strDescriptionEN}
             />
           </div>
@@ -79,29 +79,32 @@ const Team = ({ constructor, teamName, ls }) => {
               objectPosition: "center",
             }}
             src={teams?.strEquipment + "/medium"}
-            alt=""
+            alt={teams?.strTeamAlternate}
             title={teams?.strDescriptionEN}
           />
         );
       } else {
         return (
-          <div key={index} className="container-fluid p-0" style={{}}>
-            <img
-              className="img-fluid mx-auto d-block w-50 object-fit-cover imgrun"
-              style={{ maxHeight: "220px" }}
-              src={teams?.strKit + ""}
-              alt=""
-              srcSet=""
-              title={teams?.strTeam}
-            />
-            <img
-              className="img-fluid mx-auto d-block w-50 object-fit-contain imgrun"
-              style={{ maxHeight: "380px" }}
-              src={teams?.strBadge + ""}
-              alt=""
-              srcSet=""
-              title={teams?.strTeam}
-            />
+          <div key={index} className="container-fluid  p-0">
+            <div className="d-flex justify-content-center align-items-center gap-1">
+              {teams?.strBanner && (
+                <img
+                  className="img-fluid"
+                  src={teams.strBanner + "/small"}
+                  alt={teams.strTeamAlternate}
+                  title={teams.strTeam}
+                />
+              )}
+              {teams?.strFanart1 && (
+                <img
+                  className="img-fluid"
+                  src={teams.strFanart1 + "/small"}
+                  alt={teams.strTeamAlternate}
+                  title={teams.strTeam}
+                />
+              )}
+            </div>
+
             <h5 className="text-center text-light fw-bold">
               {teams?.intFormedYear} {teams?.strCountry}
             </h5>
