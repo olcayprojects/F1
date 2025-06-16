@@ -133,21 +133,22 @@ const WinRacesInaSeason = (props) => {
                       </span>
                     </td>
 
-                    <td
-                      className={
-                        "text-center op col fw-bold p-0 " +
-                        (item.Results[0].FastestLap?.rank in [1, 2, 3, 4]
-                          ? "text-primary"
-                          : "text-success")
-                      }
-                    >
+                    <td className={"text-center fw-bold p-0 "}>
                       {item.Results[0].FastestLap ? (
-                        <span className="px-1 bg-black ">
+                        <span
+                          className={
+                            "px-1 m-0 bg-black " +
+                            ([1, 2, 3].includes(
+                              item.Results[0].FastestLap?.rank
+                            )
+                              ? "text-success"
+                              : "text-primary")
+                          }
+                        >
                           <>
-                            {"#"}
                             {item.Results[0].FastestLap.rank}
-                            {" => Time: "}
-                            {item.Results[0].FastestLap.Time?.time}
+                            {" - "}
+                            {item.Results[0].FastestLap.Time?.time}{" "}
                             {item.Results[0].FastestLap.AverageSpeed ? (
                               <>
                                 {" "}
@@ -160,10 +161,11 @@ const WinRacesInaSeason = (props) => {
                             ) : (
                               ""
                             )}
-                            {" Lap: "}
+                            {" (Lap "}
                             {item.Results[0].FastestLap.lap < 10
                               ? `0${item.Results[0].FastestLap.lap}`
                               : item.Results[0].FastestLap.lap}
+                            )
                           </>
                         </span>
                       ) : (
