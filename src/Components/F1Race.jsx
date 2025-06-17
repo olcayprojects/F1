@@ -256,7 +256,7 @@ const F1Race = (props) => {
                                   TIME
                                 </span>
                               </th>
-                              <th className="text-center text-warning">LAP</th>
+                              <th className="text-start text-warning">LAP</th>
                               {Number(season2) !== yearNow ? (
                                 <th className="text-start">
                                   <span className="text-white">AVGSPEED</span>
@@ -413,11 +413,11 @@ const F1Race = (props) => {
                                 className="op text-center fw-bold"
                                 style={{ color: "#DE3126" }}
                               >
-                                <span className="d-block bg-black">
+                                <span className="d-block bg-black bg-gradient">
                                   {result.laps}
                                 </span>
                               </td>
-                              <td className="text-wrap text-center fw-bold m-0 p-0">
+                              <td className="text-wrap text-center fw-bold m-0 p-0 px-1">
                                 <span
                                   className="bg-black w-100 p-0 d-inline-block bg-gradient"
                                   style={{ color: "#86995B" }}
@@ -459,7 +459,7 @@ const F1Race = (props) => {
                               >
                                 <span
                                   className={
-                                    "d-block   " +
+                                    "d-block  bg-gradient " +
                                     (result.points > 0 ? "bg-black" : "")
                                   }
                                 >
@@ -502,7 +502,7 @@ const F1Race = (props) => {
                                       </>
                                     ) : null}
                                   </td>
-                                  <td className="text-center m-0 fw-bold text-warning">
+                                  <td className="text-start m-0 fw-bold text-warning">
                                     {result.FastestLap?.lap
                                       ? result.FastestLap?.lap
                                       : null}
