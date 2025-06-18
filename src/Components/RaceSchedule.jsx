@@ -71,7 +71,7 @@ const RaceSchedule = ({ season }) => {
 
               const rowClass = `align-middle ${
                 showThumb
-                  ? "text-center fw-bold table-dark fst-italic"
+                  ? "text-center fw-bold fst-italic"
                   : isFuture && season === thisYear
                   ? "text-center fw-bold "
                   : ""
@@ -130,7 +130,13 @@ const RaceSchedule = ({ season }) => {
                         : navigate(`/RaceInfo/${race.date}/${race.raceName}`)
                     }
                   >
-                    <span className="bg-black bg-gradient p-2">
+                    <span
+                      className={`p-2 ${
+                        showThumb
+                          ? "text-black bg-gradient bg-danger"
+                          : "bg-black bg-gradient "
+                      }`}
+                    >
                       {getFormattedDate(race)}
                     </span>
                   </td>
