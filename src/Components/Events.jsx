@@ -29,12 +29,12 @@ const Events = (props) => {
             className="img-fluid p-0 m-0 mx-auto d-block"
             src={data?.strBanner + "/small"}
             alt={data?.strFilename}
-            title={data?.strFilename}
+            title={data?.strResult}
             srcSet=""
           />
           {(data?.strResult || data?.strDescriptionEN) && (
             <p className="text-secondary fw-bold small-text lh-sm">
-              &quot; {data?.strResult || data?.strDescriptionEN} &quot;
+              &quot; {data?.strDescriptionEN || data?.strResult} &quot;
             </p>
           )}
         </div>
