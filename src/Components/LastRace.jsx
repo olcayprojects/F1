@@ -6,7 +6,7 @@ const LastRace = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("https://api.jolpi.ca/ergast/f1/current/last.json")
+    fetch("https://api.jolpi.ca/ergast/f1/current/next.json")
       .then((res) => res.json())
       .then((data) => {
         const raceData = data.MRData.RaceTable.Races[0];
