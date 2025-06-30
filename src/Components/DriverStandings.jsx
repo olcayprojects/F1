@@ -143,42 +143,53 @@ const DriverStandings = (props) => {
                     <td
                       className="op cp fw-bold fst-italic text-warning py-1 ps-2"
                       onClick={() => {
+                        const constructors = driver.Constructors;
+                        const selectedConstructor =
+                          constructors.length > 1
+                            ? constructors[constructors.length - 1]
+                            : constructors[0];
                         navigate(
                           "/ConstructorsResult/" +
-                            driver.Constructors[0].constructorId +
+                            selectedConstructor.constructorId +
                             "/" +
                             year
                         );
                       }}
                     >
                       <span className="bg-black px-1">
-                        {driver.Constructors && driver.Constructors[0] && (
+                        {driver.Constructors && (
                           <span>
-                            {driver.Constructors[0].name.toUpperCase()}
+                            {driver.Constructors[
+                              driver.Constructors.length - 1
+                            ].name.toUpperCase()}
                           </span>
                         )}
                       </span>
 
-                      <span className="ps-2  text-warning-emphasis px-2">
-                        {driver.Constructors[0]?.nationality.toUpperCase()}
+                      <span className="ps-2 text-warning-emphasis px-2">
+                        {driver.Constructors[
+                          driver.Constructors.length - 1
+                        ]?.nationality.toUpperCase()}
                       </span>
 
-                      <span className="px-2">
-                        {driver.Constructors?.slice(1).map(
-                          (constructor, index) => (
-                            <span
-                              key={index}
-                              style={{
-                                textDecorationLine: "line-through",
-                                color: "gray",
-                              }}
-                            >
-                              {constructor.name.toUpperCase()}
-                              {index < driver.Constructors.length - 2 && ", "}
-                            </span>
-                          )
-                        )}
-                      </span>
+                      {driver.Constructors.length > 1 && (
+                        <span className="px-2">
+                          {driver.Constructors.slice(0, -1).map(
+                            (constructor, index) => (
+                              <span
+                                key={index}
+                                style={{
+                                  textDecorationLine: "line-through",
+                                  color: "gray",
+                                }}
+                              >
+                                {constructor.name.toUpperCase()}
+                                {index < driver.Constructors.length - 2 && ", "}
+                              </span>
+                            )
+                          )}
+                        </span>
+                      )}
                     </td>
 
                     <td className="text-center text-light py-1">
