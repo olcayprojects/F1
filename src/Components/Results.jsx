@@ -12,6 +12,7 @@ const Results = ({ season }) => {
           timeStyle: "short",
         })
       : d;
+
   useEffect(() => {
     const fetchAllData = async () => {
       let allRaces = [];
@@ -33,11 +34,18 @@ const Results = ({ season }) => {
 
       const groupedByRound = {};
       allRaces.forEach((race) => {
-        groupedByRound[race.round] = race;
+        const round = race.round;
+        if (!groupedByRound[round]) {
+          groupedByRound[round] = { ...race };
+        } else {
+          groupedByRound[round].Results = [
+            ...(groupedByRound[round].Results || []),
+            ...(race.Results || []),
+          ];
+        }
       });
 
       setIsLoaded(true);
-
       setRaces(groupedByRound);
     };
 
