@@ -103,7 +103,7 @@ const RaceInfo = () => {
   }, [url]);
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid bg-black">
       <Nav />
 
       <div className="row">
