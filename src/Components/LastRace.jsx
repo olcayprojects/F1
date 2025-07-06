@@ -24,29 +24,46 @@ const LastRace = () => {
 
   return (
     <div className="text-success">
-      <h2>Last Race {race.raceName}</h2>
-      <p>
-        <strong>Season:</strong> {race.season} <br />
-        <strong>Round:</strong> {race.round}
+      <h2 className="text-info-emphasis fw-bold text-center">
+        Last Race {race.raceName}
+      </h2>
+      <p className="m-0">
+        <strong>Season:</strong> {race.season}
+        <strong className="ps-1">Round:</strong> {race.round}
       </p>
-      <p>
+      <p className="m-0">
         <strong>Circuit:</strong> {race.Circuit.circuitName} (
         {race.Circuit.Location.locality}, {race.Circuit.Location.country})
       </p>
-      <hr />
-      <h3>Sessions</h3>
+      <hr className="m-0" />
       <ul>
         <li>
           <strong>First Practice:</strong>{" "}
           {getFormattedDate(race.FirstPractice)}
         </li>
-        <li>
-          <strong>Sprint Qualifying:</strong>{" "}
-          {getFormattedDate(race.SprintQualifying)}
-        </li>
-        <li>
-          <strong>Sprint:</strong> {getFormattedDate(race.Sprint)}
-        </li>
+        {race.SecondPractice && (
+          <li>
+            <strong>Second Practice:</strong>{" "}
+            {getFormattedDate(race.SecondPractice)}
+          </li>
+        )}
+        {race.ThirdPractice && (
+          <li>
+            <strong>Third Practice:</strong>{" "}
+            {getFormattedDate(race.ThirdPractice)}
+          </li>
+        )}
+        {race.SprintQualifying && (
+          <li>
+            <strong>Sprint Qualifying:</strong>{" "}
+            {getFormattedDate(race.SprintQualifying)}
+          </li>
+        )}
+        {race.Sprint && (
+          <li>
+            <strong>Sprint:</strong> {getFormattedDate(race.Sprint)}
+          </li>
+        )}
         <li>
           <strong>Qualifying:</strong> {getFormattedDate(race.Qualifying)}
         </li>
