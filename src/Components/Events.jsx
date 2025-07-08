@@ -25,7 +25,7 @@ const Events = (props) => {
       {data?.strThumb ? (
         <div className="container-fluid">
           <img
-            style={{ width: "44%" }}
+            style={{ width: "30%" }}
             className="img-fluid p-0 m-0 mx-auto d-block"
             src={data?.strBanner + "/small"}
             alt={data?.strFilename}
