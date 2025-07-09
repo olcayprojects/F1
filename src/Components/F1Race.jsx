@@ -502,7 +502,7 @@ const F1Race = (props) => {
                                       </>
                                     ) : null}
                                   </td>
-                                  <td className="text-start m-0 fw-bold text-warning">
+                                  <td className="text-center m-0 fw-bold text-warning">
                                     {result.FastestLap?.lap
                                       ? result.FastestLap?.lap
                                       : null}
