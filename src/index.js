@@ -14,10 +14,10 @@ import { DriverProvider } from "./context/DriverContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <Provider store={store}>
-           <DriverProvider>
+        <DriverProvider>
 
-        <App />
-           </DriverProvider>
+            <App />
+        </DriverProvider>
     </Provider>
 );
 
