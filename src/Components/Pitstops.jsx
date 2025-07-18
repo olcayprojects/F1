@@ -164,27 +164,22 @@ function Pitstops(props) {
                 <tr key={index} className="align-middle">
                   <td className={"op text-center px-1 py-0"}>{index + 1}</td>
                   <td
-                    className={"col-auto fw-bold  text-info cp "}
+                    className="col-auto fw-bold text-info cp"
                     onClick={() => {
                       navigate("/ResultsDriver/" + ps.driverId);
                     }}
                   >
-                    <span
-                    // className={
-                    //   index % 2 === 0
-                    //     ? "bg-black p-1"
-                    //     : "bg-info text-black p-1"
-                    // }
-                    >
-                      {driver
-                        ? `${driver.givenName} 
-                      ${driver.familyName}
-                          (${driver.permanentNumber})
-                          ${driver.nationality}
-                          ${driver.dateOfBirth}                          
-                          `
-                        : ps.driverId}
-                    </span>
+                    {driver ? (
+                      <>
+                        {driver.givenName} {driver.familyName}
+                        <span className="ms-2 opacity-50">
+                          ({driver.permanentNumber}) {driver.nationality}{" "}
+                          {driver.dateOfBirth}
+                        </span>
+                      </>
+                    ) : (
+                      ps.driverId
+                    )}
                   </td>
                   <td className="op fw-bold text-center">
                     <pre
