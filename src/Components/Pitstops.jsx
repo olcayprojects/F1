@@ -183,7 +183,7 @@ function Pitstops(props) {
                   </td>
                   <td className="op fw-bold text-center">
                     <pre
-                      className="text-warning px-1 d-inline-block m-0 align-middle"
+                      className="text-warning p-1 d-inline-block m-0 align-middle"
                       style={{
                         fontFamily: "Arial Black",
                         borderColor: "rgba(255,255,0,0.2)",
@@ -203,7 +203,7 @@ function Pitstops(props) {
                     //     : "bg-info text-black p-1"
                     // }
                     >
-                      {ps.totalDuration}
+                      <span className="bg-black p-1">{ps.totalDuration}</span>
                     </span>
                   </td>
                 </tr>
