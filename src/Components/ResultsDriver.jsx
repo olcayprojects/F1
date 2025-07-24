@@ -140,13 +140,13 @@ const ResultsDriver = () => {
                         Constructor
                       </th>
                       <th className="text-center bg-primary text-primary-emphasis">
-                        LAPS
+                        L
                       </th>
                       <th className="text-center bg-warning text-warning-emphasis">
                         Time / Status
                       </th>
                       <th className="text-center bg-light text-light-emphasis">
-                        PTS
+                        PT
                       </th>
                       <th className="bg-danger text-danger-emphasis">
                         <span className="">Fastest Lap</span>
@@ -230,7 +230,7 @@ const ResultsDriver = () => {
                                 );
                               })()} */}
                               {isNaN(parseInt(results[0]?.positionText))
-                                ? `${results[0]?.position} ${results[0]?.positionText}`
+                                ? `${results[0]?.position}${results[0]?.positionText}`
                                 : results[0]?.positionText}
                             </td>
 
@@ -281,10 +281,10 @@ const ResultsDriver = () => {
                                   <>
                                     <span className="">
                                       {results[0].FastestLap.rank
-                                        ? results[0].FastestLap.rank + " - "
+                                        ? results[0].FastestLap.rank + " ("
                                         : null}
                                     </span>
-                                    {results[0].FastestLap.Time?.time + " ( "}
+                                    {results[0].FastestLap.Time?.time + " "}
                                     {results[0].FastestLap.AverageSpeed
                                       ? "AvgSpd: " +
                                         results[0].FastestLap.AverageSpeed
@@ -294,7 +294,7 @@ const ResultsDriver = () => {
                                           ?.units +
                                         "  "
                                       : null}
-                                    Lap: {results[0].FastestLap.lap} )
+                                    Lap: {results[0].FastestLap.lap})
                                   </>
                                 ) : (
                                   <span className="">-</span>
