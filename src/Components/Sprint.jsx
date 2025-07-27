@@ -65,7 +65,13 @@ const Sprint = () => {
                   CONSTRUCTOR
                 </th>
                 <th className="text-success-emphasis bg-success">LAPS</th>
-                <th className="text-light-emphasis bg-light text-end">TIME</th>
+                <th className="text-light-emphasis bg-light">TIME</th>
+                <th
+                  className="text-light-emphasis bg-secondary text-center
+                "
+                >
+                  STATUS
+                </th>
                 <th className="text-danger-emphasis bg-danger">PTS</th>
                 <th className="text-light-emphasis bg-light op text-start">
                   FASTEST LAP
@@ -119,10 +125,11 @@ const Sprint = () => {
                       </span>
                     </td>
                     <td className="text-center text-success">{item.laps}</td>
-                    <td className="op text-end py-0">
-                      <span className="">
-                        {item.Time?.time ? item.Time?.time : item.status}
-                      </span>
+                    <td className="op text-center py-0">
+                      <span className="">{item.Time?.time}</span>
+                    </td>
+                    <td className="op text-center py-0">
+                      <span className="text-secondary">{item.status}</span>
                     </td>
                     <td className="text-center text-danger fw-bolder py-0">
                       {item.points}
