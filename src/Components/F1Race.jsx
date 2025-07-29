@@ -227,10 +227,10 @@ const F1Race = (props) => {
                             <>
                               <th rowSpan={2} className="bg-secondary"></th>
 
-                              {/* FASTEST başlığı 3 sütuna yayılacak */}
+                              {/* FASTEST başlığı 4 sütuna yayılacak */}
 
                               <th
-                                colSpan={season2 !== yearNow ? 3 : 2}
+                                colSpan={season2 !== yearNow ? 4 : 3}
                                 className="text-center text-black bg-success  p-0"
                               >
                                 <h6
@@ -249,14 +249,11 @@ const F1Race = (props) => {
                         {season > 2004 ? (
                           <>
                             <tr>
-                              <th className="text-end">
-                                <span className="bg-black text-light">POS</span>
-                                <i className="bi bi-forward-fill text-light"></i>
-                                <span className="text-light bg-black">
-                                  TIME
-                                </span>
+                              <th className="text-center">
+                                <span className="text-light">POS</span>
                               </th>
-                              <th className="text-start text-warning">LAP</th>
+                              <th className="text-center text-info">TIME</th>
+                              <th className="text-center text-success">LAP</th>
                               {Number(season2) !== yearNow ? (
                                 <th className="text-start">
                                   <span className="text-white">AVGSPEED</span>
@@ -472,11 +469,11 @@ const F1Race = (props) => {
 
                                   <td
                                     className={
-                                      "fw-bold op text-end p-0 m-0 cp " +
+                                      "fw-bold op text-center p-0 m-0 cp " +
                                       (["1", "2", "3"].includes(
                                         result.FastestLap?.rank
                                       )
-                                        ? " text-info"
+                                        ? " text-primary"
                                         : "")
                                     }
                                     onClick={() => {
@@ -490,19 +487,17 @@ const F1Race = (props) => {
                                       );
                                     }}
                                   >
-                                    {result.FastestLap ? (
-                                      <>
-                                        <span className="bg-black p-0 px-1 text-center">
-                                          {result.FastestLap?.rank}
-                                        </span>
-                                        <i className="bi bi-forward-fill fs-5 px-1"></i>
-                                        <span className="px-1 p-0 bg-black">
-                                          {result.FastestLap?.Time.time}
-                                        </span>
-                                      </>
-                                    ) : null}
+                                    {result.FastestLap
+                                      ? result.FastestLap?.rank
+                                      : null}
                                   </td>
-                                  <td className="text-center m-0 fw-bold text-warning">
+
+                                  <td className="text-center m-0 fw-bold text-info">
+                                    {result.FastestLap?.Time
+                                      ? result.FastestLap?.Time.time
+                                      : null}
+                                  </td>
+                                  <td className="text-center m-0 fw-bold text-success">
                                     {result.FastestLap?.lap
                                       ? result.FastestLap?.lap
                                       : null}

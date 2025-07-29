@@ -151,7 +151,7 @@ const ApiDataComponent = () => {
       <table className="mytable table table-striped table-dark caption-top table-bordered">
         <thead>
           <tr className="text-center">
-            <th className="text-start text-light">#</th>
+            <th className="text-light">#</th>
             <th className="text-start bg-danger text-black">Driver Info</th>
             <th className="bg-light text-black">
               Lap Time<i className="bi bi-sort-down-alt fs-4"></i>
@@ -168,9 +168,9 @@ const ApiDataComponent = () => {
               );
               return (
                 <tr key={index}>
-                  <td className="py-0 text-end p-2">{index + 1}</td>
-                  <td className="col-8 text-danger fw-bold ps-2 p-0">
-                    <span className="px-2">
+                  <td className="p-0 text-center m-0">{index + 1}</td>
+                  <td className="col-8 text-danger fw-bold ps-1 p-0">
+                    <span className="px-2 bg-black">
                       {driver
                         ? `${driver.givenName} ${driver.familyName} (${driver.permanentNumber}) ${driver.nationality} ${driver.dateOfBirth}`
                         : timing.driverId}
