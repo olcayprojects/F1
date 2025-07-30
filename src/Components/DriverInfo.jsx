@@ -45,9 +45,9 @@ export const DrvInfo = (props) => {
     fetchData();
   }, [props.drv]);
 
-  if (loading) {
-    return <Loading />;
-  }
+  // if (loading) {
+  //   return <Loading />;
+  // }
 
   if (props.s === "1") {
     return player ? (

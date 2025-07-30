@@ -57,7 +57,7 @@ const PlayerProfile = ({ playerId, t }) => {
 
   const playerData = playersData[playerId];
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (error) return <div>Hata: {error}</div>;
   if (!playerData) return null;
 

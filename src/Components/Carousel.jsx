@@ -12,7 +12,7 @@ const Carousel = () => {
     dispatch(fetchCarouselTeams());
   }, [dispatch]);
 
-  if (isLoading) return <Loading />;
+  // if (isLoading) return <Loading />;
   if (error) return <div className="text-danger">Hata: {error}</div>;
 
   return (
