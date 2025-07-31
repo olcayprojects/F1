@@ -195,12 +195,15 @@ const F1Race = (props) => {
                               T E A M
                             </span>
                           </th>
-                          <th rowSpan={2} className="text-center op bg-danger">
+                          <th
+                            rowSpan={2}
+                            className="text-center op bg-danger p-0"
+                          >
                             <span className="text-danger bg-black p-1">L</span>
                           </th>
                           <th
                             rowSpan={2}
-                            className="text-center text-black"
+                            className="text-center text-black p-0"
                             style={{ backgroundColor: "#86995B" }}
                           >
                             <span
@@ -212,7 +215,7 @@ const F1Race = (props) => {
                           </th>
                           <th
                             rowSpan={2}
-                            className="text-center text-black op"
+                            className="text-center text-black op p-0"
                             style={{ backgroundColor: "aquamarine" }}
                           >
                             <span
@@ -248,12 +251,16 @@ const F1Race = (props) => {
 
                         {season > 2004 ? (
                           <>
-                            <tr>
-                              <th className="text-center">
+                            <tr className="align-bottom">
+                              <th className="text-center p-0">
                                 <span className="text-light">POS</span>
                               </th>
-                              <th className="text-center text-info">TIME</th>
-                              <th className="text-center text-success">LAP</th>
+                              <th className="text-center text-info p-0">
+                                TIME
+                              </th>
+                              <th className="text-center text-success p-0">
+                                LAP
+                              </th>
                               {Number(season2) !== yearNow ? (
                                 <th className="text-start">
                                   <span className="text-white">AVGSPEED</span>
@@ -407,7 +414,7 @@ const F1Race = (props) => {
                                 </>
                               </td>
                               <td
-                                className="op text-center fw-bold"
+                                className="op text-center fw-bold p-0"
                                 style={{ color: "#DE3126" }}
                               >
                                 <span className="d-block bg-black bg-gradient">
@@ -492,12 +499,12 @@ const F1Race = (props) => {
                                       : null}
                                   </td>
 
-                                  <td className="text-center m-0 fw-bold text-info">
+                                  <td className="text-center m-0 p-0 fw-bold text-info">
                                     {result.FastestLap?.Time
                                       ? result.FastestLap?.Time.time
                                       : null}
                                   </td>
-                                  <td className="text-center m-0 fw-bold text-success">
+                                  <td className="text-center m-0 p-0 fw-bold text-success">
                                     {result.FastestLap?.lap
                                       ? result.FastestLap?.lap
                                       : null}
