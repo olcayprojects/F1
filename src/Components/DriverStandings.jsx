@@ -14,9 +14,14 @@ const DriverStandings = (props) => {
     (state) => state.driverStandings
   );
 
-  useEffect(() => {
+useEffect(() => {
+  const isDataAvailable = standings?.length > 0;
+
+  if (!isDataAvailable || (props.season && props.season !== year)) {
     dispatch(fetchDriverStandings(props.season || year));
-  }, [dispatch, year, props.season]);
+  }
+}, [dispatch, props.season, year, standings]);
+
 
   const handleYearChange = (e) => {
     dispatch(setYear(e.target.value));

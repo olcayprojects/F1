@@ -8,12 +8,15 @@ const Carousel = () => {
   const dispatch = useDispatch();
   const { data, isLoading, error } = useSelector((state) => state.carousel);
 
-  useEffect(() => {
+useEffect(() => {
+  if (!data || data.length === 0) {
     dispatch(fetchCarouselTeams());
-  }, [dispatch]);
+  }
+}, [dispatch, data]);
+
 
   // if (isLoading) return <Loading />;
-  if (error) return <div className="text-danger">Hata: {error}</div>;
+  // if (error) return <div className="text-danger">Hata: {error}</div>;
 
   return (
     <Caro

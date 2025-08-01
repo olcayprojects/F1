@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 const Team = ({ constructor, teamName, ls }) => {
   const [data, setData] = useState([]);
   const [foundTeam, setFoundTeam] = useState(null);
+  const previousDataRef = useRef(null); // Önceki veriyi tutar
 
-  let url = `https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=Formula 1`;
+  const url = `https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=Formula 1`;
 
   useEffect(() => {
-    function fetchData() {
-      fetch(url)
-        .then((response) => response.json())
-        .then((item) => {
-          setData(item?.teams);
-        })
-        .catch((err) => {
-          // console.log(err.message);
-        });
+    async function fetchData() {
+      try {
+        const response = await fetch(url);
+        const item = await response.json();
+
+        const newDataStr = JSON.stringify(item?.teams || []);
+        const prevDataStr = JSON.stringify(previousDataRef.current || []);
+
+        if (newDataStr !== prevDataStr) {
+          setData(item?.teams || []);
+          previousDataRef.current = item?.teams || [];
+        }
+      } catch (err) {
+        console.error(err);
+      }
     }
     fetchData();
   }, [url]);
@@ -29,17 +36,13 @@ const Team = ({ constructor, teamName, ls }) => {
         (teams) =>
           teams?.strTeam
             ?.toLowerCase()
-            ?.includes(changedTeamname?.toLowerCase()) ||
+            .includes(changedTeamname.toLowerCase()) ||
           teams?.strTeamAlternate
             ?.toLowerCase()
-            .includes(changedTeamname?.toLowerCase())
+            .includes(changedTeamname.toLowerCase())
       );
 
-      if (team) {
-        setFoundTeam(team);
-      } else {
-        setFoundTeam(null);
-      }
+      setFoundTeam(team || null);
     }
   }, [data, teamName]);
 
@@ -57,10 +60,9 @@ const Team = ({ constructor, teamName, ls }) => {
     if (foundTeam && teams?.strTeam === foundTeam.strTeam) {
       if (ls === 1) {
         return (
-          <div className="" key={index}>
+          <div key={index}>
             <img
               className="img-fluid"
-              style={{}}
               src={teams?.strLogo + "/tiny"}
               alt={teams?.strTeamAlternate}
               title={teams?.strDescriptionEN}
@@ -71,7 +73,7 @@ const Team = ({ constructor, teamName, ls }) => {
       if (ls === 2) {
         return (
           <img
-            className="img-fluid me-1 object-fit-md-cover object-fit-sm-none  animate__flip animate__animated animate__slower"
+            className="img-fluid me-1 object-fit-md-cover object-fit-sm-none animate__flip animate__animated animate__slower"
             key={index}
             style={{
               width: "20%",
@@ -85,7 +87,7 @@ const Team = ({ constructor, teamName, ls }) => {
         );
       } else {
         return (
-          <div key={index} className="container-fluid  p-0">
+          <div key={index} className="container-fluid p-0">
             <div className="d-flex justify-content-center align-items-center gap-1">
               {teams?.strBanner && (
                 <img
@@ -116,29 +118,23 @@ const Team = ({ constructor, teamName, ls }) => {
                 lineHeight: "26px",
               }}
             >
-              {teams?.strDescriptionEN ? (
+              {teams?.strDescriptionEN && (
                 <>
                   <h6 className="text-info bg-dark text-center">English</h6>
                   {teams?.strDescriptionEN}
                 </>
-              ) : (
-                ""
               )}
-              {teams?.strDescriptionDE ? (
+              {teams?.strDescriptionDE && (
                 <>
                   <h6 className="text-info bg-dark text-center">Deutsch</h6>
                   {teams?.strDescriptionDE}{" "}
                 </>
-              ) : (
-                ""
               )}
-              {teams?.strDescriptionFR ? (
+              {teams?.strDescriptionFR && (
                 <>
                   <h6 className="text-info bg-dark text-center">Français</h6>
                   {teams?.strDescriptionFR}{" "}
                 </>
-              ) : (
-                ""
               )}
             </pre>
           </div>
