@@ -70,7 +70,7 @@ const Results = ({ season }) => {
     return (
       <div className="table-responsive">
         <table
-          className="table table-dark table-striped table-bordered m-0"
+          className="table table-dark table-striped table-bordered"
           key={race.round}
           style={{}}
         >
@@ -130,12 +130,12 @@ const Results = ({ season }) => {
   }
 
   return (
-    <div className="container-fluid p-0">
-      <div className="row justify-content-center g-1">
+    <div className="container-fluid">
+      <div className="row justify-content-center g-1 m-0">
         {Object.keys(races)
           .sort((a, b) => parseInt(a) - parseInt(b))
           .map((round) => (
-            <div className="col-auto bg-danger m-1 p-0" key={round}>
+            <div className="col-auto bg-danger me-1" key={round}>
               {renderTable(races[round])}
             </div>
           ))}

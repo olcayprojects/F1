@@ -253,7 +253,7 @@ const F1Race = (props) => {
                           <>
                             <tr className="align-bottom">
                               <th className="text-center p-0">
-                                <span className="text-light">POS</span>
+                                <span className="text-light">P</span>
                               </th>
                               <th className="text-center text-info p-0">
                                 TIME
