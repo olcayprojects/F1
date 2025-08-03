@@ -32,15 +32,18 @@ const Team = ({ constructor, teamName, ls }) => {
       const changedTeamname =
         teamName === "Renault" ? "BWT Alpine Formula One Team" : teamName;
 
-      const team = data.find(
-        (teams) =>
-          teams?.strTeam
-            ?.toLowerCase()
-            .includes(changedTeamname.toLowerCase()) ||
-          teams?.strTeamAlternate
-            ?.toLowerCase()
-            .includes(changedTeamname.toLowerCase())
-      );
+      const team = data.find((teams) => {
+        if (!changedTeamname) return false;
+
+        const target = changedTeamname.toLowerCase();
+
+        return (
+          (typeof teams?.strTeam === "string" &&
+            teams.strTeam.toLowerCase().includes(target)) ||
+          (typeof teams?.strTeamAlternate === "string" &&
+            teams.strTeamAlternate.toLowerCase().includes(target))
+        );
+      });
 
       setFoundTeam(team || null);
     }
