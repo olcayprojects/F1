@@ -8,12 +8,11 @@ const Carousel = () => {
   const dispatch = useDispatch();
   const { data, isLoading, error } = useSelector((state) => state.carousel);
 
-useEffect(() => {
-  if (!data || data.length === 0) {
-    dispatch(fetchCarouselTeams());
-  }
-}, [dispatch, data]);
-
+  useEffect(() => {
+    if (!data || data.length === 0) {
+      dispatch(fetchCarouselTeams());
+    }
+  }, [dispatch, data]);
 
   // if (isLoading) return <Loading />;
   // if (error) return <div className="text-danger">Hata: {error}</div>;
@@ -47,7 +46,7 @@ useEffect(() => {
               alt=""
             />
           </div>
-          <div className="animate__lightSpeedInRight  animate__delay-1s animate__animated animate__slower">
+          <div className="animate__bounceInRight  animate__delay-1s animate__animated animate__slow">
             <h2
               // style={{ fontFamily: "fantasy" }}
               className="text-danger float-end m-0"
