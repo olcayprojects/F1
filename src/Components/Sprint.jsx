@@ -88,7 +88,9 @@ const Sprint = () => {
                     }
                   >
                     <td className="text-center text-danger">
-                      {item.positionText}
+                      <span className="bg-black d-block">
+                        {item.positionText}
+                      </span>
                     </td>
                     <td className="op text-center fw-normal text-primary p-0">
                       {item.grid}
@@ -99,8 +101,9 @@ const Sprint = () => {
                         navigate("/ResultsDriver/" + item.Driver.driverId);
                       }}
                     >
-                      <span className="bg-black px-2 text-uppercase">
-                        {item.Driver.givenName} {item.Driver.familyName}
+                      <span className="bg-black px-1 bg-gradient">
+                        {item.Driver.givenName}{" "}
+                        {item.Driver.familyName.toUpperCase()}
                       </span>
                       <span className="fst-italic fw-normal bg-info text-black px-2">
                         {item.Driver.nationality}
@@ -117,8 +120,8 @@ const Sprint = () => {
                         );
                       }}
                     >
-                      <span className="bg-black px-2">
-                        {item.Constructor.name.toUpperCase()}
+                      <span className="bg-black px-1 bg-gradient">
+                        {item.Constructor.name}
                       </span>
                       <span className="fst-italic fw-normal bg-warning text-black px-2">
                         {item.Constructor.nationality}
@@ -131,18 +134,27 @@ const Sprint = () => {
                     <td className="op text-center py-0">
                       <span className="text-secondary">{item.status}</span>
                     </td>
-                    <td className="text-center text-danger fw-bolder py-0">
-                      {item.points}
+                    <td className="text-center fw-bold py-0">
+                      <span
+                        className={
+                          item.points > 0
+                            ? "bg-black px-1 text-danger rounded"
+                            : "text-secondary"
+                        }
+                      >
+                        {item.points}
+                      </span>
                     </td>
                     <td className="op py-0 text-start">
                       <span className="">
                         {item.FastestLap
                           ? "#" +
                             item.FastestLap?.rank +
-                            " | " +
+                            " - " +
                             item.FastestLap?.Time.time +
-                            " | Lap: " +
-                            item.FastestLap?.lap
+                            " (Lap: " +
+                            item.FastestLap?.lap +
+                            " )"
                           : null}
                       </span>
                     </td>
