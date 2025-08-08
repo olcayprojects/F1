@@ -8,6 +8,7 @@ const QualifyingResults = (props) => {
   const [sdata, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   let navigate = useNavigate();
+  let animate = "animate__animated animate__tada animate__slow";
 
   const { season2 = new Date().getFullYear() } = useParams();
   const { rounds = 0 } = useParams();
@@ -38,7 +39,9 @@ const QualifyingResults = (props) => {
 
   return sdata.length ? (
     <div className="container-fluid p-0">
-      <div className="table-responsive border border-dark border-5">
+      <div
+        className={"table-responsive border border-dark border-5 " + animate}
+      >
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
             <tr className="text-black text-center">

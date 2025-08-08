@@ -45,7 +45,7 @@ function Pitstops(props) {
   const { season2 = "2023" } = useParams();
   const { rounds = 0 } = useParams();
   let animate =
-    "animate__animated animate__bounceInUp animate__slow  animate__delay-";
+    "animate__animated animate__jackInTheBox animate__slow  animate__delay-";
 
   useEffect(() => {
     setSeason(props.season);

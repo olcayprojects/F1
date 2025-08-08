@@ -14,14 +14,13 @@ const DriverStandings = (props) => {
     (state) => state.driverStandings
   );
 
-useEffect(() => {
-  const isDataAvailable = standings?.length > 0;
+  useEffect(() => {
+    const isDataAvailable = standings?.length > 0;
 
-  if (!isDataAvailable || (props.season && props.season !== year)) {
-    dispatch(fetchDriverStandings(props.season || year));
-  }
-}, [dispatch, props.season, year, standings]);
-
+    if (!isDataAvailable || (props.season && props.season !== year)) {
+      dispatch(fetchDriverStandings(props.season || year));
+    }
+  }, [dispatch, props.season, year, standings]);
 
   const handleYearChange = (e) => {
     dispatch(setYear(e.target.value));
@@ -54,7 +53,7 @@ useEffect(() => {
 
       <div
         className="d-block align-items-center
-       animate__wobble animate__animated animate__slower"
+       animate__backInLeft animate__animated animate__slower"
       >
         {standings?.map((driver, indexedDB) => {
           return driver.positionText === "1" ? (
