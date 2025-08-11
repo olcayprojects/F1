@@ -147,15 +147,13 @@ const Sprint = () => {
                     </td>
                     <td className="op py-0 text-start">
                       <span className="">
-                        {item.FastestLap
-                          ? "#" +
-                            item.FastestLap?.rank +
-                            " - " +
-                            item.FastestLap?.Time.time +
-                            " (Lap: " +
-                            item.FastestLap?.lap +
-                            " )"
-                          : null}
+                        {item.FastestLap && (
+                          <span className="">
+                            {item.FastestLap.rank
+                              ? `${item.FastestLap.rank} - ${item.FastestLap.Time.time} (Lap: ${item.FastestLap.lap})`
+                              : `${item.FastestLap.Time.time} (Lap: ${item.FastestLap.lap})`}
+                          </span>
+                        )}
                       </span>
                     </td>
                   </tr>
