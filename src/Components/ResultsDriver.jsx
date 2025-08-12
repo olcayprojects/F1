@@ -142,8 +142,11 @@ const ResultsDriver = () => {
                       <th className="text-center bg-primary text-primary-emphasis">
                         L
                       </th>
-                      <th className="text-center bg-warning text-warning-emphasis">
-                        Time / Status
+                      <th className="text-center bg-warning text-warning-emphasis p-0">
+                        Time
+                      </th>
+                      <th className="text-center bg-danger-subtle text-danger-emphasis p-0">
+                        Status
                       </th>
                       <th className="text-center bg-light text-light-emphasis">
                         PT
@@ -161,8 +164,10 @@ const ResultsDriver = () => {
                           item.Results || item.SprintResults || [];
                         return (
                           <tr key={index} className="text-danger align-middle">
-                            <td className="text-center op">{item.season}</td>
-                            <td className="text-center">{item.round}</td>
+                            <td className="text-center op p-0">
+                              {item.season}
+                            </td>
+                            <td className="text-center p-0">{item.round}</td>
                             <td
                               className={`cp op ${
                                 !item.Results ? "text-info" : ""
@@ -234,7 +239,7 @@ const ResultsDriver = () => {
                                 : results[0]?.positionText}
                             </td>
 
-                            <td className="text-center text-secondary fw-bold op">
+                            <td className="text-center text-secondary fw-bold op p-0">
                               {results.length > 0 ? results[0].grid : "-"}
                             </td>
                             <td
@@ -254,19 +259,25 @@ const ResultsDriver = () => {
                                   : "-"}
                               </span>
                             </td>
-                            <td className="text-center text-primary fw-bold op">
+                            <td className="text-center text-primary fw-bold op p-0">
                               {results.length > 0 ? results[0].laps : "-"}
                             </td>
-                            <td className="text-center text-warning">
+                            <td className="text-center text-warning p-0 text-uppercase">
                               {results.length > 0 ? (
-                                <>
-                                  <span>{results[0]?.Time?.time}</span>
-                                  <span className="text-danger">
-                                    {results[0]?.status !== "Finished"
-                                      ? results[0]?.status
-                                      : null}
-                                  </span>
-                                </>
+                                <span className="pe-1">
+                                  {results[0]?.Time?.time
+                                    ? results[0]?.Time?.time
+                                    : "-"}
+                                </span>
+                              ) : (
+                                "-"
+                              )}
+                            </td>
+                            <td className="text-center text-warning p-0 text-uppercase">
+                              {results.length > 0 ? (
+                                <span className="text-danger">
+                                  {results[0]?.status}
+                                </span>
                               ) : (
                                 "-"
                               )}
@@ -306,7 +317,7 @@ const ResultsDriver = () => {
                       })}
                     <tr>
                       <td
-                        colSpan={10}
+                        colSpan={11}
                         className="text-center text-light fw-bold"
                       >
                         Total Points:{" "}
