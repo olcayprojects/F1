@@ -228,7 +228,10 @@ const F1Race = (props) => {
 
                           {season > 2004 ? (
                             <>
-                              <th rowSpan={2} className="bg-secondary"></th>
+                              <th
+                                rowSpan={2}
+                                className="bg-secondary p-0 m-0"
+                              ></th>
 
                               {/* FASTEST başlığı 4 sütuna yayılacak */}
 
@@ -472,7 +475,7 @@ const F1Race = (props) => {
                               </td>
                               {season > 2004 ? (
                                 <>
-                                  <td className="bg-secondary"></td>
+                                  <td className="bg-success px-1"></td>
 
                                   <td
                                     className={
@@ -480,7 +483,7 @@ const F1Race = (props) => {
                                       (["1", "2", "3"].includes(
                                         result.FastestLap?.rank
                                       )
-                                        ? " text-primary"
+                                        ? " text-danger fst-italic"
                                         : "")
                                     }
                                     onClick={() => {
