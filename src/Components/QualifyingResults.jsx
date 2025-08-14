@@ -45,7 +45,7 @@ const QualifyingResults = (props) => {
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
             <tr className="text-black text-center">
-              <th className="bg-black border-4 border-secondary text-light py-0">
+              <th className="bg-black border-4 border-primary text-light py-0">
                 P
               </th>
               <th className="border-4 border-light bg-black text-light py-0">
@@ -79,11 +79,11 @@ const QualifyingResults = (props) => {
                     >
                       <td className="text-center op">
                         {qualifying.position < 4 ? (
-                          <span className="border border-1 border-info text-info px-1">
+                          <span className="border border-primary fw-bold bg-light text-black px-1">
                             {qualifying.position}
                           </span>
                         ) : (
-                          <span className="bg-secondary px-1">
+                          <span className="bg-black border-primary border px-1">
                             {qualifying.position}
                           </span>
                         )}

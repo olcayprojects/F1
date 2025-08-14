@@ -137,17 +137,17 @@ const F1 = () => {
           <Tab
             icon={<LeaderboardIcon />}
             iconPosition="start"
-            label="Races_In_a_Season"
+            label="Races In a Season"
           />
           <Tab
             icon={<EmojiEventsIcon />}
             iconPosition="start"
-            label="Driver_Standings"
+            label="Driver Standings"
           />
           <Tab
             icon={<FormatListNumberedIcon />}
             iconPosition="start"
-            label="Constructor_Standings"
+            label="Constructor Standings"
           />
           <Tab
             icon={<DirectionsCarIcon />}
