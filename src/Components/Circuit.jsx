@@ -28,8 +28,8 @@ const darkTheme = createTheme({
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-    border: "3px groove gray",
+    color: theme.palette.info.dark,
+    border: "4px groove gray",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
@@ -97,10 +97,10 @@ const Circuit = (props) => {
       <div className="container-fluid p-0">
         <Nav />
 
-        <h2 className="bg-dark text-light text-center mt-1">
-          {data?.[0]?.Circuit.circuitName} |{" "}
-          {data?.[0]?.Circuit.Location.locality} /{" "}
-          {data?.[0]?.Circuit.Location.country}
+        <h2 className="bg-dark text-warning text-center mt-1">
+          {data?.[0]?.Circuit.circuitName} [
+          {data?.[0]?.Circuit.Location.locality}/
+          {data?.[0]?.Circuit.Location.country}]
         </h2>
 
         <ThemeProvider theme={darkTheme}>
@@ -114,11 +114,21 @@ const Circuit = (props) => {
                       active={true}
                       direction={orderDirection}
                       onClick={handleSortRequest}
-                      sx={{ fontSize: 18 }}
+                      sx={{
+                        fontSize: 18,
+                        color: "info.main",
+                        "&.Mui-active": {
+                          color: "info.main",
+                        },
+                        "& .MuiTableSortLabel-icon": {
+                          color: "info.main !important",
+                        },
+                      }}
                     >
                       SEASON
                     </TableSortLabel>
                   </StyledTableCell>
+
                   <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     R
                   </StyledTableCell>
@@ -147,55 +157,75 @@ const Circuit = (props) => {
               </TableHead>
 
               <TableBody>
-                {data.map((row, index) => (
-                  <StyledTableRow key={index}>
-                    <StyledTableCell
-                      className="cp text-center"
-                      onClick={() => navigate("/F1/" + row.season)}
-                    >
-                      {row.season}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {row.round}
-                    </StyledTableCell>
-                    <StyledTableCell>{todate(row.date)}</StyledTableCell>
-                    <StyledTableCell>
-                      {row.Results[0].Driver.givenName}{" "}
-                      {row.Results[0].Driver.familyName.toUpperCase()}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {row.Results[0].Constructor.name.toUpperCase()}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {row.Results[0].grid}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">
-                      {row.Results[0].laps}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {row.Results[0].Time?.time}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {row.Results[0].FastestLap ? (
-                        <h6 className="text-center">
-                          <span className="text-danger">
-                            {row.Results[0].FastestLap?.rank}.{" "}
-                          </span>
-                          [{row.Results[0].FastestLap?.Time?.time}] [
-                          {row.Results[0].FastestLap?.AverageSpeed?.speed}{" "}
-                          <span className="text-secondary pe-1">
-                            {row.Results[0].FastestLap?.AverageSpeed?.units}
-                          </span>
-                          ]
-                        </h6>
-                      ) : (
-                        <h6 className="text-info fw-bold text-center">
-                          Data Not Found!
-                        </h6>
-                      )}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
+                {data.map((row, index) => {
+                  const result = row.Results[0];
+                  const {
+                    AverageSpeed: averageSpeed,
+                    Time: time,
+                    lap,
+                    rank,
+                  } = result?.FastestLap || {};
+                  return (
+                    <StyledTableRow key={index}>
+                      <StyledTableCell
+                        className="cp text-center"
+                        onClick={() =>
+                          navigate("/F1Race/" + row.season + "/" + row.round)
+                        }
+                      >
+                        {row.season}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {row.round}
+                      </StyledTableCell>
+                      <StyledTableCell>{todate(row.date)}</StyledTableCell>
+                      <StyledTableCell>
+                        {row.Results[0].Driver.givenName}{" "}
+                        {row.Results[0].Driver.familyName.toUpperCase()}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {row.Results[0].Constructor.name.toUpperCase()}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {row.Results[0].grid}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">
+                        {row.Results[0].laps}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {row.Results[0].Time?.time}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {result?.FastestLap ? (
+                          <div className="text-center">
+                            {rank && (
+                              <span className="text-danger fw-bold me-1">
+                                🥇 {rank}.
+                              </span>
+                            )}
+                            {time?.time && (
+                              <span className="text-success fw-semibold me-1">
+                                ⏱ {time.time}
+                              </span>
+                            )}
+                            {averageSpeed && (
+                              <span>
+                                🚀 {averageSpeed.speed} {averageSpeed.units}
+                              </span>
+                            )}
+                            {lap && (
+                              <span className="text-info fw-semibold ms-1">
+                                Lap {lap}
+                              </span>
+                            )}
+                          </div>
+                        ) : (
+                          <div className="text-info fw-bold text-center">-</div>
+                        )}
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </TableContainer>
