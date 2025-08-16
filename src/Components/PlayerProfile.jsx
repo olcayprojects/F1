@@ -122,15 +122,14 @@ const PlayerProfile = ({ playerId, t }) => {
       </p>
     </div>
   ) : t === "3" ? (
-    <div className="container-fluid p-0 text-info">
+    <div className="container-fluid p-0 text-warning">
       <img
-        className="img-fluid d-block mx-auto text-center 
-          a  animate__animated animate__backInDown animate__slower"
+        className="img-fluid d-block mx-auto text-center animate__animated animate__backInDown animate__slower mirror"
         src={
           (playerData.strCutout ||
             playerData.strThumb ||
             playerData.strRender ||
-            null) + "/small"
+            null) + "/tiny"
         }
         alt={playerData.strPlayer}
         title={playerData.strDescriptionEN}

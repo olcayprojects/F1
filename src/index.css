@@ -192,3 +192,7 @@ table th {
 .text-pit {
   color: #c084fc !important; /* lila tonu */
 }
+
+.mirror {
+  transform: scaleX(-1) !important;
+}
