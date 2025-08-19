@@ -65,7 +65,7 @@ const Team = ({ constructor, teamName, ls }) => {
         return (
           <div key={index}>
             <img
-              className="img-fluid"
+              className="img-fluid border border-dark"
               src={teams?.strLogo + "/tiny"}
               alt={teams?.strTeamAlternate}
               title={teams?.strDescriptionEN}

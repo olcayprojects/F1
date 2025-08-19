@@ -134,6 +134,7 @@ const PlayerProfile = ({ playerId, t }) => {
         alt={playerData.strPlayer}
         title={playerData.strDescriptionEN}
       />
+      <hr className="m-0" />
       <p className="text-center m-0 small-text">
         {new Date(playerData.dateBorn).toDateString()} <br />
         {playerData.strBirthLocation} {playerData.strNationality}
