@@ -45,25 +45,25 @@ const QualifyingResults = (props) => {
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
             <tr className="text-black text-center">
-              <th className="bg-black border-4 border-primary text-light py-0">
+              <th className="bg-dark border-4 border-primary text-light py-0">
                 P
               </th>
-              <th className="border-4 border-light bg-black text-light py-0">
+              <th className="border-4 border-light bg-dark text-light py-0">
                 No
               </th>
-              <th className="bg-black text-info border-4 border-info text-end py-0">
-                DRIVER
+              <th className="bg-dark text-info border-4 border-info text-end py-0">
+                <span className="bg-black px-1 bg-gradient">DRIVER</span>
               </th>
-              <th className="bg-black text-info border-4 border-info text-start py-0">
-                TEAM
+              <th className="bg-dark text-info border-4 border-info text-start py-0">
+                <span className="bg-black bg-gradient px-1">TEAM</span>
               </th>
-              <th className="border-4 bg-black border-success text-success py-0">
+              <th className="border-4 bg-dark border-success text-success py-0">
                 Q3
               </th>
-              <th className="border-4 border-warning text-warning bg-black py-0">
+              <th className="border-4 border-warning text-warning bg-dark py-0">
                 Q2
               </th>
-              <th className="py-0 border-4 border-danger text-danger bg-black">
+              <th className="py-0 border-4 border-danger text-danger bg-dark">
                 Q1
               </th>
             </tr>
