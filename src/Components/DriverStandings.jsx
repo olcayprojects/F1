@@ -74,9 +74,7 @@ const DriverStandings = (props) => {
               <tr>
                 <th className="text-center py-0">P</th>
                 <th className="text-center p-0 bi-arrow-down-up"></th>
-                <th className="bg-dark py-0 op text-center">
-                  NO
-                </th>
+                <th className="bg-dark py-0 op text-center">NO</th>
                 <th className="text-black-50 bg-info py-0 op">DRIVER INFO</th>
                 <th className="py-0 bg-warning text-black-50">CONSTRUCTOR</th>
                 <th className="text-center op py-0 bg-light text-black-50">
