@@ -46,7 +46,7 @@ const RaceSchedule = ({ season }) => {
           <thead>
             <tr className="text-black">
               <th className="text-center px-0">R</th>
-              <th className="bg-warning text-info text-center">Race Name</th>
+              <th className="bg-warning text-info">Race Name</th>
               <th className="text-center op">Race Date</th>
               <th className="text-center">Qualifying</th>
               <th className="text-center text-info">Sprint Date</th>
@@ -110,7 +110,7 @@ const RaceSchedule = ({ season }) => {
                       {race.raceName}
                     </h6>
                     <h6
-                      className="m-0 cp text-info"
+                      className="m-0 cp text-info bg-gradient"
                       onClick={() =>
                         navigate(`/Circuit/${race.Circuit.circuitId}`)
                       }
