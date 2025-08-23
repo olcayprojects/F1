@@ -167,7 +167,11 @@ const RaceSchedule = ({ season }) => {
                       )
                     }
                   >
-                    {race.Sprint ? getFormattedDate(race.Sprint) : "-"}
+                    <span
+                      className={race.Sprint ? "bg-gradient bg-black p-1" : ""}
+                    >
+                      {race.Sprint ? getFormattedDate(race.Sprint) : "-"}
+                    </span>
                   </td>
 
                   <td className="text-nowrap text-center text-info op">
