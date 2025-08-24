@@ -52,15 +52,22 @@ const WinRacesInaSeason = (props) => {
           <table className="myTable table table-dark table-striped table-bordered text-nowrap">
             <thead className="">
               <tr className="">
-                <th className="text-black bg-light op p-0">#</th>
-                <th className="text-black bg-warning py-0">Race Name</th>
-                <th className="text-black bg-info op py-0">Driver Info</th>
+                <th className="text-black bg-light op p-0 text-center">R</th>
+                <th className="text-black bg-warning py-0 text-center">
+                  Race Name
+                </th>
+                <th className="text-black bg-info op py-0 text-center">
+                  Driver Info
+                </th>
+                <th className="text-black bg-light text-center py-0">G</th>
                 <th className="text-black bg-danger text-center py-0">P</th>
                 <th className="text-black bg-secondary op text-center py-0">
-                  Laps
+                  L
                 </th>
-                <th className="text-black bg-success text-center py-0">Time</th>
-                <th className="text-black bg-primary op text-center py-0">
+                <th className="text-black bg-success text-center op py-0">
+                  Time
+                </th>
+                <th className="text-black bg-primary text-center py-0">
                   Fastest Lap
                 </th>
               </tr>
@@ -116,13 +123,18 @@ const WinRacesInaSeason = (props) => {
                         {item.Results[0].Constructor.name.toUpperCase()}
                       </span>
                     </td>
+                    <td className="col text-center text-light op fw-bold py-0 p-0">
+                      <span className="bg-black px-2">
+                        {item.Results[0].grid}
+                      </span>
+                    </td>
                     <td className="col text-center text-danger fw-bold p-0">
                       <span className="bg-black px-2">
                         {item.Results[0].points}
                       </span>
                     </td>
 
-                    <td className="col text-center text-secondary op fw-bold py-0">
+                    <td className="col text-center text-secondary op fw-bold py-0 p-0">
                       <span className="bg-black px-2">
                         {item.Results[0].laps}
                       </span>

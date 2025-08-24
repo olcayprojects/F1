@@ -127,7 +127,6 @@ const ResultsDriver = () => {
                 <table className="myTable mb-1 table table-dark table-striped table-bordered border-dark">
                   <thead>
                     <tr className="">
-                      <th className="text-center">S</th>
                       <th className="text-center">R</th>
                       <th className="">Race Name</th>
                       <th className="text-center text-info bg-info-subtle">
@@ -135,9 +134,6 @@ const ResultsDriver = () => {
                       </th>
                       <th className="text-center bg-secondary text-secondary-emphasis">
                         G
-                      </th>
-                      <th className="text-center bg-success text-success-emphasis">
-                        Constructor
                       </th>
                       <th className="text-center bg-primary text-primary-emphasis">
                         L
@@ -154,6 +150,9 @@ const ResultsDriver = () => {
                       <th className="bg-danger text-danger-emphasis">
                         <span className="">Fastest Lap</span>
                       </th>
+                      <th className="text-center bg-success text-success-emphasis">
+                        CONSTRUCTOR
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
@@ -164,9 +163,6 @@ const ResultsDriver = () => {
                           item.Results || item.SprintResults || [];
                         return (
                           <tr key={index} className="text-danger align-middle">
-                            <td className="text-center op p-0">
-                              {item.season}
-                            </td>
                             <td className="text-center p-0">{item.round}</td>
                             <td
                               className={`cp op ${
@@ -242,23 +238,6 @@ const ResultsDriver = () => {
                             <td className="text-center text-secondary fw-bold op p-0">
                               {results.length > 0 ? results[0].grid : "-"}
                             </td>
-                            <td
-                              className="text-center text-uppercase cp"
-                              onClick={() => {
-                                navigate(
-                                  "/ConstructorsResult/" +
-                                    results[0]?.Constructor?.constructorId +
-                                    "/" +
-                                    item.season
-                                );
-                              }}
-                            >
-                              <span className="fw-bold  text-center text-success">
-                                {results.length > 0
-                                  ? results[0]?.Constructor?.name
-                                  : "-"}
-                              </span>
-                            </td>
                             <td className="text-center text-primary fw-bold op p-0">
                               {results.length > 0 ? results[0].laps : "-"}
                             </td>
@@ -275,7 +254,13 @@ const ResultsDriver = () => {
                             </td>
                             <td className="text-center text-warning p-0 text-uppercase">
                               {results.length > 0 ? (
-                                <span className="text-danger">
+                                <span
+                                  className={
+                                    results[0]?.status === "Finished"
+                                      ? "text-success"
+                                      : "text-danger"
+                                  }
+                                >
                                   {results[0]?.status}
                                 </span>
                               ) : (
@@ -310,6 +295,23 @@ const ResultsDriver = () => {
                                 ) : (
                                   <span className="">-</span>
                                 )}
+                              </span>
+                            </td>
+                            <td
+                              className="text-center text-uppercase cp"
+                              onClick={() => {
+                                navigate(
+                                  "/ConstructorsResult/" +
+                                    results[0]?.Constructor?.constructorId +
+                                    "/" +
+                                    item.season
+                                );
+                              }}
+                            >
+                              <span className="fw-bold  text-center text-success">
+                                {results.length > 0
+                                  ? results[0]?.Constructor?.name
+                                  : "-"}
                               </span>
                             </td>
                           </tr>
