@@ -53,8 +53,11 @@ const WinRacesInaSeason = (props) => {
             <thead className="">
               <tr className="">
                 <th className="text-black bg-light op p-0 text-center">R</th>
-                <th className="text-black bg-warning py-0 text-center">
+                <th className="text-warning bg-black py-0">
                   Race Name
+                </th>
+                <th className="text-black bg-warning py-0 text-center">
+                  Race Date
                 </th>
                 <th className="text-black bg-info op py-0 text-center">
                   Driver Info
@@ -86,9 +89,11 @@ const WinRacesInaSeason = (props) => {
                       <span className="text-warning bg-black px-2 fw-bold">
                         {item.raceName}
                       </span>
-                      <i className="bg-warning bg-opacity-75 fw-bold text-black px-2">
+                    </td>
+                    <td className="p-0 text-center">
+                      <span className="bg-warning fw-bold text-black px-2">
                         {item.time ? dateTime(item.date, item.time) : item.date}
-                      </i>
+                      </span>
                     </td>
                     <td className="col op p-0">
                       <span
