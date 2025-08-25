@@ -56,7 +56,7 @@ const DriverDB = (props) => {
   }, [url, drvr]);
 
   if (!err) {
-    return <div>Oyuncu bulunamadı.</div>;
+    return null;
   }
 
   return playerId ? <PlayerProfile playerId={playerId} t={"2"} /> : null;
