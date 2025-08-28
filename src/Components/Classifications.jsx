@@ -147,7 +147,7 @@ const Classifications = ({ season }) => {
               <tr className="align-all-middle" key={idx}>
                 <td className="text-primary p-0">{driver.pos}</td>
                 <td
-                  className="text-warning cp text-start"
+                  className="text-warning cp text-start bg-gradient bg-black"
                   title={driver.name}
                   onClick={() => {
                     navigate("/ResultsDriver/" + driver.driverId);

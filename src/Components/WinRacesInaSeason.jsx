@@ -53,9 +53,7 @@ const WinRacesInaSeason = (props) => {
             <thead className="">
               <tr className="">
                 <th className="text-black bg-light op p-0 text-center">R</th>
-                <th className="text-warning bg-black py-0">
-                  Race Name
-                </th>
+                <th className="text-warning bg-black py-0">Race Name</th>
                 <th className="text-black bg-warning py-0 text-center">
                   Race Date
                 </th>
@@ -81,12 +79,12 @@ const WinRacesInaSeason = (props) => {
                   <tr className="align-middle" key={index}>
                     <td className="op fw-bold p-0 text-center">{item.round}</td>
                     <td
-                      className="col cp p-0"
+                      className="col cp p-0 bg-gradient bg-black"
                       onClick={() =>
                         navigate("/F1Race/" + props.season + "/" + item.round)
                       }
                     >
-                      <span className="text-warning bg-black px-2 fw-bold">
+                      <span className="text-warning px-2 fw-bold">
                         {item.raceName}
                       </span>
                     </td>
