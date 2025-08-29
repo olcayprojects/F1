@@ -43,12 +43,12 @@ const Sprint = () => {
         <Nav />
 
         <h3 className="text-black text-center fw-bold mt-2 m-0">
-          <span className="bg-info px-1">
-            {data?.raceName}|{data?.Circuit?.circuitName} Sprint Results
+          <span className="bg-info px-2 rounded">
+            {`${data?.raceName} (${data?.Circuit?.circuitName}) Sprint Results`}
           </span>
         </h3>
         <h5 className="text-center fw-bold mt-1">
-          <span className="bg-info text-black px-1">
+          <span className="text-light px-1">
             {data?.season}#{data?.round} - {sprintDate}
           </span>
         </h5>
@@ -59,10 +59,10 @@ const Sprint = () => {
                 <th className="bg-danger text-danger-emphasis">P</th>
                 <th className="text-primary-emphasis bg-primary">G</th>
                 <th className="text-start bg-info text-info-emphasis">
-                  DRIVER
+                  D R I V E R
                 </th>
                 <th className="text-warning-emphasis text-start bg-warning">
-                  CONSTRUCTOR
+                  C O N S T R U C T O R
                 </th>
                 <th className="text-success-emphasis bg-success">LAPS</th>
                 <th className="text-light-emphasis bg-light">TIME</th>
@@ -88,15 +88,13 @@ const Sprint = () => {
                     }
                   >
                     <td className="text-center text-danger">
-                      <span className="bg-black d-block">
-                        {item.positionText}
-                      </span>
+                      <span className="">{item.positionText}</span>
                     </td>
                     <td className="op text-center fw-normal text-primary p-0">
                       {item.grid}
                     </td>
                     <td
-                      className="text-info cp py-0"
+                      className="text-info cp p-0"
                       onClick={() => {
                         navigate("/ResultsDriver/" + item.Driver.driverId);
                       }}
@@ -110,7 +108,7 @@ const Sprint = () => {
                       </span>
                     </td>
                     <td
-                      className="op fst-italic text-warning cp py-0"
+                      className="op fst-italic text-warning cp p-0"
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +
@@ -127,18 +125,28 @@ const Sprint = () => {
                         {item.Constructor.nationality}
                       </span>
                     </td>
-                    <td className="text-center text-success">{item.laps}</td>
-                    <td className="op text-center py-0">
-                      <span className="">{item.Time?.time}</span>
+                    <td className="text-center text-success">
+                      <span className="bg-black px-2 rounded">{item.laps}</span>
                     </td>
-                    <td className="op text-center py-0">
-                      <span className="text-secondary">{item.status}</span>
+                    <td className="op text-center p-0">
+                      <span className="bg-black px-2 rounded">
+                        {item.Time?.time}
+                      </span>
+                    </td>
+                    <td className="op text-center p-0">
+                      <span
+                        className={`px-2 bg-black rounded ${
+                          item.status !== "Finished" ? "text-danger" : ""
+                        }`}
+                      >
+                        {item.status}
+                      </span>
                     </td>
                     <td className="text-center fw-bold py-0">
                       <span
                         className={
                           item.points > 0
-                            ? "bg-black px-1 text-danger rounded"
+                            ? "bg-black px-2 text-danger rounded"
                             : "text-secondary"
                         }
                       >
