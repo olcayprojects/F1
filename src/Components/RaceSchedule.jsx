@@ -46,14 +46,14 @@ const RaceSchedule = ({ season }) => {
           <thead>
             <tr className="text-black">
               <th className="text-center px-0">R</th>
-              <th className="bg-warning text-info">Race Name</th>
-              <th className="text-center op">Race Date</th>
-              <th className="text-center">Qualifying</th>
-              <th className="text-center text-info">Sprint Date</th>
-              <th className="text-center text-info op">Sprint Qualifying</th>
-              <th className="text-light text-center">Practice1</th>
-              <th className="op text-center text-light">Practice2</th>
-              <th className="text-light text-center">Practice3</th>
+              <th className="bg-warning text-info">GRAND PRIX</th>
+              <th className="text-center op">DATE</th>
+              <th className="text-center">QUALIFYING</th>
+              <th className="text-center text-info">SPRINT</th>
+              <th className="text-center text-info op">SPRINT QUALIFYING</th>
+              <th className="text-light text-center">PRACTICE 1</th>
+              <th className="op text-center text-light">PRACTICE 2</th>
+              <th className="text-light text-center">PRACTICE 3</th>
             </tr>
           </thead>
 

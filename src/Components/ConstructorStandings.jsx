@@ -89,7 +89,7 @@ const ConstructorStandings = (props) => {
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
             <tr>
-              <th className="bg-light text-center text-black">POS</th>
+              <th className="bg-light text-black">POS.</th>
               <th className="bg-warning op text-black">CONSTRUCTOR</th>
               <th className="bg-info text-end op text-black">POINTS</th>
               <th className="bg-primary text-black">WINS</th>
@@ -131,7 +131,7 @@ const ConstructorStandings = (props) => {
 
               return (
                 <tr key={cs.Constructor.constructorId}>
-                  <td className="text-center fw-bold py-0 align-middle">
+                  <td className="fw-bold py-0 ps-2 align-middle">
                     {cs.position}
                     {renderChange()}
                   </td>

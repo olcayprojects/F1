@@ -70,8 +70,7 @@ const F1 = () => {
         >
           {" "}
           <option value="" hidden>
-            Select Year for Drivers and Constructors Winning Races In a Season
-            1950 - {d.getFullYear()}
+            Select Race Year 1950 - {d.getFullYear()}
           </option>
           {Array.from(
             { length: d.getFullYear() - 1950 + 1 },

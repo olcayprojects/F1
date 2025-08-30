@@ -7,8 +7,11 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const WinRacesInaSeason = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [seasonResults, setSeasonResults] = useState([]);
-  const dateTime = (d, t) => new Date(d + " " + t).toLocaleString();
-
+  const dateTime = (d, t) => {
+    const date = new Date(d + " " + t);
+    const options = { day: "2-digit", month: "short" };
+    return date.toLocaleDateString("en-GB", options);
+  };
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleString("en", {
@@ -53,24 +56,16 @@ const WinRacesInaSeason = (props) => {
             <thead className="">
               <tr className="">
                 <th className="text-black bg-light op p-0 text-center">R</th>
-                <th className="text-warning bg-black py-0">Race Name</th>
-                <th className="text-black bg-warning py-0 text-center">
-                  Race Date
-                </th>
-                <th className="text-black bg-info op py-0 text-center">
-                  Driver Info
-                </th>
+                <th className="text-warning bg-black py-0">GRAND PRIX</th>
+                <th className="text-warning py-0">DATE</th>
+                <th className="text-danger op py-0">WINNER</th>
+                <th className="text-info op py-0">TEAM</th>
                 <th className="text-black bg-light text-center py-0">G</th>
-                <th className="text-black bg-danger text-center py-0">P</th>
                 <th className="text-black bg-secondary op text-center py-0">
                   L
                 </th>
-                <th className="text-black bg-success text-center op py-0">
-                  Time
-                </th>
-                <th className="text-black bg-primary text-center py-0">
-                  Fastest Lap
-                </th>
+                <th className="text-success text-end op py-0">TIME</th>
+                <th className="text-primary text-end py-0">FASTEST LAP</th>
               </tr>
             </thead>
             <tbody>
@@ -85,17 +80,17 @@ const WinRacesInaSeason = (props) => {
                       }
                     >
                       <span className="text-warning px-2 fw-bold">
-                        {item.raceName}
+                        {item.raceName.replace("Grand Prix", "").trim()}
                       </span>
                     </td>
-                    <td className="p-0 text-center">
-                      <span className="bg-warning fw-bold text-black px-2">
+                    <td className="p-0">
+                      <span className="bg-warning fw-bold text-black d-block px-2">
                         {item.time ? dateTime(item.date, item.time) : item.date}
                       </span>
                     </td>
                     <td className="col op p-0">
                       <span
-                        className="text-info bg-black px-2 fw-bold cp"
+                        className="text-black bg-danger px-2 fw-bold cp d-block"
                         onClick={() => {
                           navigate(
                             "/ResultsDriver/" + item.Results[0].Driver.driverId
@@ -104,16 +99,12 @@ const WinRacesInaSeason = (props) => {
                       >
                         {item.Results[0].Driver.givenName +
                           " " +
-                          item.Results[0].Driver.familyName.toUpperCase()}
+                          item.Results[0].Driver.familyName}
                       </span>
-                      <span className="text-secondary">
-                        {`${formatDate(item.Results[0].Driver.dateOfBirth)} (${
-                          item.Results[0].Driver.nationality
-                        })`}
-                      </span>
-
+                    </td>
+                    <td className="p-0">
                       <span
-                        className="fw-bold px-2 text-black bg-info fst-italic cp"
+                        className="fw-bold px-1 text-black bg-info fst-italic cp d-block"
                         onClick={() => {
                           navigate(
                             "/ConstructorsResult/" +
@@ -123,7 +114,7 @@ const WinRacesInaSeason = (props) => {
                           );
                         }}
                       >
-                        {item.Results[0].Constructor.name.toUpperCase()}
+                        {item.Results[0].Constructor.name}
                       </span>
                     </td>
                     <td className="col text-center text-light op fw-bold py-0 p-0">
@@ -131,33 +122,27 @@ const WinRacesInaSeason = (props) => {
                         {item.Results[0].grid}
                       </span>
                     </td>
-                    <td className="col text-center text-danger fw-bold p-0">
-                      <span className="bg-black px-2">
-                        {item.Results[0].points}
-                      </span>
-                    </td>
-
                     <td className="col text-center text-secondary op fw-bold py-0 p-0">
                       <span className="bg-black px-2">
                         {item.Results[0].laps}
                       </span>
                     </td>
-                    <td className="col text-center text-success fw-bold py-0 p-0">
-                      <span className="bg-black px-1">
+                    <td className="col text-end text-black fw-bold py-0 p-0">
+                      <span className="bg-success d-block px-1">
                         {item.Results[0].Time.time}
                       </span>
                     </td>
 
-                    <td className={"text-center fw-bold p-0 "}>
+                    <td className={"text-end text-black fw-bold p-0"}>
                       {item.Results[0].FastestLap ? (
                         <span
                           className={
-                            "px-1 m-0 bg-black " +
+                            "px-1 m-0 d-block  " +
                             ([1, 2, 3].includes(
                               item.Results[0].FastestLap?.rank
                             )
-                              ? "text-success"
-                              : "text-primary")
+                              ? "bg-success"
+                              : "bg-primary")
                           }
                         >
                           <>
