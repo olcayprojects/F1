@@ -26,14 +26,18 @@ const darkTheme = createTheme({
 });
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  margin: 0,
+
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
     color: theme.palette.info.dark,
     border: "4px groove gray",
   },
+
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
     border: "3px groove black",
+    padding: 0,
   },
 }));
 
@@ -105,8 +109,11 @@ const Circuit = (props) => {
 
         <ThemeProvider theme={darkTheme}>
           <CssBaseline />
-          <TableContainer component={Paper}>
-            <Table aria-label="simple table">
+          <TableContainer component={Paper} sx={{ paddingX: 2 }}>
+            <Table
+              aria-label="simple table"
+              sx={{ borderCollapse: "separate", borderSpacing: "0 1px" }}
+            >
               <TableHead>
                 <TableRow>
                   <StyledTableCell align="center">
@@ -132,26 +139,22 @@ const Circuit = (props) => {
                   <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     R
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
-                    DATE
-                  </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                  <StyledTableCell sx={{ fontSize: 18 }}>DATE</StyledTableCell>
+                  <StyledTableCell sx={{ fontSize: 18 }}>
                     WINNER
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
-                    CONSTRUCTOR
-                  </StyledTableCell>
+                  <StyledTableCell sx={{ fontSize: 18 }}>TEAM</StyledTableCell>
                   <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     G
                   </StyledTableCell>
                   <StyledTableCell align="center" sx={{ fontSize: 18 }}>
                     L
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
+                  <StyledTableCell align="right" sx={{ fontSize: 18 }}>
                     TIME
                   </StyledTableCell>
-                  <StyledTableCell align="center" sx={{ fontSize: 18 }}>
-                    Fastest Lap
+                  <StyledTableCell align="right" sx={{ fontSize: 18 }}>
+                    FASTEST LAP
                   </StyledTableCell>
                 </TableRow>
               </TableHead>
@@ -192,15 +195,15 @@ const Circuit = (props) => {
                       <StyledTableCell align="center">
                         {row.Results[0].laps}
                       </StyledTableCell>
-                      <StyledTableCell>
+                      <StyledTableCell align="right">
                         {row.Results[0].Time?.time}
                       </StyledTableCell>
-                      <StyledTableCell>
+                      <StyledTableCell align="right">
                         {result?.FastestLap ? (
-                          <div className="text-center">
+                          <div className="">
                             {rank && (
                               <span className="text-danger fw-bold me-1">
-                                🥇 {rank}.
+                                {rank}.
                               </span>
                             )}
                             {time?.time && (

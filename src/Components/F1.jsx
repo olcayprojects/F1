@@ -146,7 +146,7 @@ const F1 = () => {
           <Tab
             icon={<FormatListNumberedIcon />}
             iconPosition="start"
-            label="Constructor Standings"
+            label="Team Standings"
           />
           <Tab
             icon={<DirectionsCarIcon />}

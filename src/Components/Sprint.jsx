@@ -62,7 +62,7 @@ const Sprint = () => {
                   D R I V E R
                 </th>
                 <th className="text-warning-emphasis text-start bg-warning">
-                  C O N S T R U C T O R
+                  T E A M
                 </th>
                 <th className="text-success-emphasis bg-success">LAPS</th>
                 <th className="text-light-emphasis bg-light">TIME</th>

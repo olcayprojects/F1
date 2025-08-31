@@ -60,7 +60,7 @@ const ConstructorStandings = (props) => {
             ))}
           </select>
           <h2 className="text-center fw-bold m-0 text-danger">
-            CONSTRUCTOR STANDINGS
+            TEAM STANDINGS
           </h2>
         </div>
       )}
@@ -90,7 +90,7 @@ const ConstructorStandings = (props) => {
           <thead className="">
             <tr>
               <th className="bg-light text-black">POS.</th>
-              <th className="bg-warning op text-black">CONSTRUCTOR</th>
+              <th className="bg-warning op text-black">TEAM</th>
               <th className="bg-info text-end op text-black">POINTS</th>
               <th className="bg-primary text-black">WINS</th>
             </tr>

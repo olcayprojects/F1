@@ -128,7 +128,7 @@ const ResultsDriver = () => {
                   <thead>
                     <tr className="">
                       <th className="text-center">R</th>
-                      <th className="">Race Name</th>
+                      <th className="">GRAND PRIX</th>
                       <th className="text-center text-info bg-info-subtle">
                         P
                       </th>
@@ -139,19 +139,19 @@ const ResultsDriver = () => {
                         L
                       </th>
                       <th className="text-center bg-warning text-warning-emphasis p-0">
-                        Time
+                        TIME
                       </th>
                       <th className="text-center bg-danger-subtle text-danger-emphasis p-0">
-                        Status
+                        STATUS
                       </th>
                       <th className="text-center bg-light text-light-emphasis">
                         PT
                       </th>
                       <th className="bg-danger text-danger-emphasis">
-                        <span className="">Fastest Lap</span>
+                        <span className="">FASTEST LAP</span>
                       </th>
                       <th className="text-center bg-success text-success-emphasis">
-                        CONSTRUCTOR
+                        TEAM
                       </th>
                     </tr>
                   </thead>
