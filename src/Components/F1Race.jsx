@@ -96,10 +96,10 @@ const F1Race = (props) => {
                 <div key={indexItem} className="container-fluid bg-black p-0">
                   <h4 className=" text-center text-warning fst-italic fw-bold bg-dark bg-gradient">
                     {rounds === 0 ? (
-                      <h4 className="text-danger bg-black bg-gradient animate__animated animate__slow animate__flash animate__infinite">
-                        <i className="bi bi-arrow-down-square"></i> Last Race{" "}
-                        <i className="bi bi-arrow-down-square"></i>
-                      </h4>
+                      <span className="text-dark-emphasis fw-bold animate__animated animate__slow animate__flash animate__infinite">
+                        Last Race
+                        <i className="px-2 bi bi-arrow-right"></i>
+                      </span>
                     ) : (
                       ""
                     )}
