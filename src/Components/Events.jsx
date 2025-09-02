@@ -32,9 +32,9 @@ const Events = (props) => {
             title={data?.strResult}
             srcSet=""
           />
-          {(data?.strResult || data?.strDescriptionEN) && (
+          {/*data?.strResult ||*/ data?.strDescriptionEN && (
             <p className="text-secondary fw-bold small-text lh-sm">
-              &quot; {data?.strDescriptionEN || data?.strResult} &quot;
+              &quot; {data?.strDescriptionEN /*|| data?.strResult*/} &quot;
             </p>
           )}
         </div>
