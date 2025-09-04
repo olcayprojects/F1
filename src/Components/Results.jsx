@@ -70,7 +70,7 @@ const Results = ({ season }) => {
     return (
       <div className="table-responsive">
         <table
-          className="table table-dark table-striped table-bordered"
+          className="table table-dark table-striped table-bordered  animate__fadeInDown animate__animated animate__fast"
           key={race.round}
           style={{}}
         >
@@ -102,7 +102,7 @@ const Results = ({ season }) => {
               <th className="op bg-danger text-black text-center py-0">PT</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="animate__fadeInDown animate__animated animate__slower">
             {race.Results.map((result, i) => (
               <tr key={i}>
                 <td className="text-center p-0">{result.position}</td>
@@ -135,7 +135,7 @@ const Results = ({ season }) => {
         {Object.keys(races)
           .sort((a, b) => parseInt(a) - parseInt(b))
           .map((round) => (
-            <div className="col-auto bg-danger me-1" key={round}>
+            <div className="col-auto me-1" key={round}>
               {renderTable(races[round])}
             </div>
           ))}
