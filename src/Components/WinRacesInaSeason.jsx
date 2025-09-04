@@ -57,8 +57,8 @@ const WinRacesInaSeason = (props) => {
               <tr className="">
                 <th className="text-black bg-light op p-0 text-center">R</th>
                 <th className="text-warning bg-black py-0">GRAND PRIX</th>
-                <th className="text-warning py-0">DATE</th>
-                <th className="text-danger op py-0">WINNER</th>
+                <th className="text-warning py-0 text-center">DATE</th>
+                <th className="text-danger op py-0 text-end">WINNER</th>
                 <th className="text-info op py-0">TEAM</th>
                 <th className="text-black bg-light text-center py-0">G</th>
                 <th className="text-black bg-secondary op text-center py-0">
@@ -83,12 +83,12 @@ const WinRacesInaSeason = (props) => {
                         {item.raceName.replace("Grand Prix", "").trim()}
                       </span>
                     </td>
-                    <td className="p-0">
+                    <td className="p-0 text-center">
                       <span className="bg-warning fw-bold text-black d-block px-2">
                         {item.time ? dateTime(item.date, item.time) : item.date}
                       </span>
                     </td>
-                    <td className="col op p-0">
+                    <td className="col op p-0 text-end">
                       <span
                         className="text-black bg-danger px-2 fw-bold cp d-block"
                         onClick={() => {

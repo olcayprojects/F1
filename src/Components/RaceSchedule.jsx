@@ -93,7 +93,7 @@ const RaceSchedule = ({ season }) => {
                       season === thisYear ? "col-2" : ""
                     } ${
                       isCurrentMonthThisYear
-                        ? "text-center border border-3 border-danger"
+                        ? "text-center border border-1 border-danger"
                         : "text-start"
                     }`}
                   >
@@ -131,8 +131,8 @@ const RaceSchedule = ({ season }) => {
                     <span
                       className={`p-2 ${
                         showThumb
-                          ? "text-black bg-gradient bg-danger"
-                          : "bg-black bg-gradient "
+                          ? "text-danger bg-black bg-gradient"
+                          : "bg-gradient"
                       }`}
                     >
                       {getFormattedDate(race)}
@@ -155,7 +155,7 @@ const RaceSchedule = ({ season }) => {
 
                   <td
                     title={sprintTitle}
-                    className={`text-nowrap text-center text-info op ${
+                    className={`text-nowrap text-center text-info p-0 op ${
                       race.Sprint ? "cp" : "ch"
                     } ${isFuture ? "fw-bold" : ""}`}
                     onClick={() =>
