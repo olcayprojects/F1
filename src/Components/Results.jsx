@@ -93,7 +93,7 @@ const Results = ({ season }) => {
                 DRV
               </th>
               <th className="bg-danger text-black text-start py-0 text-nowrap">
-                CAR
+                TEAM
               </th>
               <th className="op bg-danger text-black text-center py-0">L</th>
               <th className="bg-danger text-black text-center py-0 text-nowrap">
@@ -109,12 +109,10 @@ const Results = ({ season }) => {
                 <td className="text-center text-secondary p-0">
                   {result.grid}
                 </td>
-                <td className="text-nowrap p-0">{`${
-                  result.Driver.code || result.Driver.familyName
-                }`}</td>
-                <td className="text-nowrap ">{result.Constructor.name}</td>
+                <td className="text-nowrap">{`${result.Driver.familyName}`}</td>
+                <td className="text-nowrap p-0">{result.Constructor.name}</td>
                 <td className="text-center p-0">{result.laps}</td>
-                <td className="text-center text-nowrap">
+                <td className="text-center text-nowrap p-0">
                   {result.Time?.time || result.status}
                 </td>
                 <td className="text-center">{result.points}</td>
