@@ -120,7 +120,7 @@ const ResultsDriver = () => {
         {sortedSeasons.map((season) => (
           <div className="pt-1">
             <h3 className="text-center text-primary m-0">
-              <span className="bg-dark px-2">Season {season}</span>
+              <span className="bg-black px-2 bg-gradient">Season {season}</span>
             </h3>
             <div className="table-responsive-sm">
               <div key={season}>
@@ -138,7 +138,7 @@ const ResultsDriver = () => {
                       <th className="text-center bg-primary text-primary-emphasis">
                         L
                       </th>
-                      <th className="text-center bg-warning text-warning-emphasis p-0">
+                      <th className="text-end pe-1 bg-warning text-warning-emphasis p-0">
                         TIME
                       </th>
                       <th className="text-center bg-danger-subtle text-danger-emphasis p-0">
@@ -241,7 +241,7 @@ const ResultsDriver = () => {
                             <td className="text-center text-primary fw-bold op p-0">
                               {results.length > 0 ? results[0].laps : "-"}
                             </td>
-                            <td className="text-center text-warning p-0 text-uppercase">
+                            <td className="text-end text-warning p-0 text-uppercase">
                               {results.length > 0 ? (
                                 <span className="pe-1">
                                   {results[0]?.Time?.time

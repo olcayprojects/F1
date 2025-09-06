@@ -105,12 +105,13 @@ const PlayerProfile = ({ playerId, t }) => {
         }
         alt={playerData.strPlayer}
       />
-      <div className="bg-secondary">
+      <div className="">
         {/* {playerData?.strTeam} */}
         <p className="text-center m-0 small-text">
           {new Date(playerData?.dateBorn).toDateString()}{" "}
           {playerData.strBirthLocation} {playerData.strNationality}
         </p>
+
         {playerData.strHeight && (
           <p className="m-0 text-center small-text">
             {playerData.strHeight} {playerData.strWeight}
