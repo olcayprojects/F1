@@ -10,6 +10,12 @@ const QualifyingResults = (props) => {
   let navigate = useNavigate();
   let animate = "animate__animated animate__tada animate__slow";
 
+  const timeToMillis = (timeStr) => {
+    if (!timeStr) return null;
+    const [min, sec] = timeStr.split(":");
+    return parseInt(min) * 60000 + parseFloat(sec) * 1000;
+  };
+
   const { season2 = new Date().getFullYear() } = useParams();
   const { rounds = 0 } = useParams();
 
@@ -71,7 +77,31 @@ const QualifyingResults = (props) => {
           {sdata?.map((item, index) => {
             return (
               <tbody key={index}>
-                {item?.QualifyingResults?.map((qualifying, indexQ) => {
+                {item?.QualifyingResults?.map((qualifying, indexQ, arr) => {
+                  const firstQ3Millis = timeToMillis(arr[0]?.Q3);
+                  const currentQ3Millis = timeToMillis(qualifying?.Q3);
+
+                  const prevQ3Millis =
+                    indexQ > 0 ? timeToMillis(arr[indexQ - 1]?.Q3) : null;
+
+                  const diffPrevMillis =
+                    currentQ3Millis && prevQ3Millis
+                      ? currentQ3Millis - prevQ3Millis
+                      : null;
+
+                  const diffFirstMillis =
+                    currentQ3Millis && firstQ3Millis
+                      ? currentQ3Millis - firstQ3Millis
+                      : null;
+
+                  const formatDiff = (diff) =>
+                    diff !== null
+                      ? (diff >= 0 ? "+" : "") + (diff / 1000).toFixed(3) + "s"
+                      : "";
+
+                  const diffPrevStr = formatDiff(diffPrevMillis);
+                  const diffFirstStr = formatDiff(diffFirstMillis);
+
                   return (
                     <tr
                       key={indexQ}
@@ -131,8 +161,19 @@ const QualifyingResults = (props) => {
                           }
                         >
                           {qualifying?.Q3 ? qualifying?.Q3 : "-"}
+                          {qualifying?.Q3 && diffFirstStr && indexQ !== 0 && (
+                            <small className="text-light ms-2">
+                              {diffFirstStr}
+                            </small>
+                          )}
+                          {qualifying?.Q3 && diffPrevStr && indexQ > 1 && (
+                            <small className="text-primary ms-1">
+                              ({diffPrevStr})
+                            </small>
+                          )}
                         </span>
                       </td>
+
                       <td className="text-center op py-0 ">
                         <span
                           className={
