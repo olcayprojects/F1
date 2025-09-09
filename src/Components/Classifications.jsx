@@ -126,7 +126,7 @@ const Classifications = ({ season }) => {
             <tr className="">
               <th className="text-primary-emphasis bg-primary p-0">P</th>
               <th className="text-warning-emphasis bg-warning text-start">
-                Driver / Constructor
+                Driver / Team
               </th>
               {raceResults.map((race, idx) => (
                 <th
