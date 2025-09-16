@@ -25,10 +25,18 @@ const ConstructorsResult = () => {
     (_, index) => year - index
   );
 
-  const dateTime = (d, t) =>
-    new Date(d + " " + t).toDateString() +
-    " " +
-    new Date(d + " " + t).toLocaleTimeString();
+  const dateTime = (d, t) => {
+    const date = new Date(d + " " + t);
+    return (
+      date.toDateString() +
+      " " +
+      date.toLocaleTimeString("en-GB", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      })
+    );
+  };
 
   let url = `${BASE_URL}/${seas}/constructors/${cons}/results.json?limit=100`;
 
@@ -90,13 +98,16 @@ const ConstructorsResult = () => {
               <div className="text-danger" key={index}>
                 <div className="table-responsive-sm">
                   <table className="table table-striped table-dark caption-top table-bordered">
-                    <caption className="text-primary bg-dark text-center fs-5">
+                    <caption
+                      className="text-primary text-center fs-5"
+                      style={{ backgroundColor: "#0e0e0eff" }}
+                    >
                       <span className="bg-black p-2 fw-bold">
-                        {items.raceName}/{items.Circuit?.Location?.locality}
-                        {" Round#"}
-                        {items.round}
-                        <i className="bi bi-calendar3 ms-1">
-                          <span className="px-2 text-info">
+                        {items.raceName} / {items.Circuit?.Location?.locality}
+                        {" [Round#"}
+                        {items.round}]
+                        <i className="bi bi-calendar3 ms-2">
+                          <span className="px-1 text-info">
                             {items.time
                               ? dateTime(items.date, items.time)
                               : new Date(items.date).toDateString()}

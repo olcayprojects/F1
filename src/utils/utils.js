@@ -28,9 +28,8 @@ export const getFormattedDate = (event) => {
   if (event.time) {
     fullDate = dateTime(event.date, event.time);
     return fullDate.toLocaleString("en", {
-      month: "2-digit",
+      month: "short",
       day: "2-digit",
-      year: "2-digit",
       hourCycle: "h23",
       hour: "2-digit",
       minute: "2-digit",

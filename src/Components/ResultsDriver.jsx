@@ -4,6 +4,13 @@ import Loading from "./Loading";
 import DriverDB from "./DriverDB";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
+import {
+  thisYear,
+  getFormattedDate,
+  isUpcoming,
+  shouldShowThumb,
+  dateTime,
+} from "../utils/utils";
 
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -127,7 +134,7 @@ const ResultsDriver = () => {
                 <table className="myTable mb-1 table table-dark table-striped table-bordered border-dark">
                   <thead>
                     <tr className="">
-                      <th className="text-center">R</th>
+                      <th className="text-center text-secondary">R</th>
                       <th className="">GRAND PRIX</th>
                       <th className="text-center text-info bg-info-subtle">
                         P
@@ -163,7 +170,9 @@ const ResultsDriver = () => {
                           item.Results || item.SprintResults || [];
                         return (
                           <tr key={index} className="text-danger align-middle">
-                            <td className="text-center p-0">{item.round}</td>
+                            <td className="text-center text-secondary p-0">
+                              {item.round}
+                            </td>
                             <td
                               className={`cp op ${
                                 !item.Results ? "text-info" : ""
@@ -185,14 +194,14 @@ const ResultsDriver = () => {
                                     )
                               }
                             >
-                              <span className="d-inline-block w-100">
-                                <span className="fw-bold text-decoration-underline">
+                              <span className="">
+                                <span className="text-decoration-underline">
                                   {item.Results
                                     ? item.raceName
                                     : item.raceName + " Sprint"}
                                 </span>{" "}
-                                <span className="fst-italic">
-                                  ({new Date(item.date).toDateString()})
+                                <span className="fst-italic bg-black px-2">
+                                  {getFormattedDate(item)}
                                 </span>
                               </span>
                             </td>
@@ -308,7 +317,7 @@ const ResultsDriver = () => {
                                 );
                               }}
                             >
-                              <span className="fw-bold  text-center text-success">
+                              <span className="fw-bold text-center text-success">
                                 {results.length > 0
                                   ? results[0]?.Constructor?.name
                                   : "-"}

@@ -7,11 +7,16 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const WinRacesInaSeason = (props) => {
   const [isLoaded, setIsLoaded] = useState(true);
   const [seasonResults, setSeasonResults] = useState([]);
+
   const dateTime = (d, t) => {
     const date = new Date(d + " " + t);
-    const options = { day: "2-digit", month: "short" };
-    return date.toLocaleDateString("en-GB", options);
+    const dateOptions = { day: "2-digit", month: "short" };
+    const timeOptions = { hour: "2-digit", minute: "2-digit", hour12: false };
+    const formattedDate = date.toLocaleDateString("en-GB", dateOptions);
+    const formattedTime = date.toLocaleTimeString("en-GB", timeOptions);
+    return `${formattedDate} ${formattedTime}`;
   };
+
   const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     return date.toLocaleString("en", {
