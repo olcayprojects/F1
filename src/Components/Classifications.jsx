@@ -125,7 +125,7 @@ const Classifications = ({ season }) => {
           <thead>
             <tr className="">
               <th className="text-primary-emphasis bg-primary p-0">P</th>
-              <th className="text-warning-emphasis bg-warning text-start">
+              <th className="text-warning bg-dark bg-gradient text-start">
                 Driver / Team
               </th>
               {raceResults.map((race, idx) => (
@@ -144,7 +144,13 @@ const Classifications = ({ season }) => {
           </thead>
           <tbody>
             {driversData.map((driver, idx) => (
-              <tr className="align-all-middle" key={idx}>
+              <tr
+                className={
+                  "align-all-middle " +
+                  (idx === 0 ? "fs-6 fw-bolder table-warning" : null)
+                }
+                key={idx}
+              >
                 <td className="text-primary p-0">{driver.pos}</td>
                 <td
                   className="text-warning cp text-start bg-gradient bg-black"
@@ -155,7 +161,9 @@ const Classifications = ({ season }) => {
                 >
                   {driver.pos !== "0" ? (
                     <>
-                      {driver.name} / {driver.constructors}
+                      <span className="bg-black px-1 bg-gradient">
+                        {driver.name} / {driver.constructors}
+                      </span>
                       <hr className="m-0 border-3" />
                       <span className="text-warning-emphasis">
                         {driver.driverNationality} /{" "}
