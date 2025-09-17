@@ -86,7 +86,7 @@ const DriverStandings = (props) => {
               </tr>
             </thead>
             <tbody>
-              {standings?.map((driver) => {
+              {standings?.map((driver, index) => {
                 const driverId = driver.Driver.driverId;
 
                 const prev = prevStandings?.find(
@@ -116,7 +116,10 @@ const DriverStandings = (props) => {
                 }
 
                 return (
-                  <tr key={driverId}>
+                  <tr
+                    key={driverId}
+                    className={index === 0 ? "fs-5 fw-bolder" : null}
+                  >
                     <td className="text-center fw-bold py-1 op">
                       {driver.position}
                     </td>

@@ -65,7 +65,7 @@ const Sprint = () => {
                   T E A M
                 </th>
                 <th className="text-success-emphasis bg-success">LAPS</th>
-                <th className="text-light-emphasis bg-light">TIME</th>
+                <th className="text-light-emphasis text-end bg-light">TIME</th>
                 <th
                   className="text-light-emphasis bg-secondary text-center
                 "
@@ -128,7 +128,7 @@ const Sprint = () => {
                     <td className="text-center text-success">
                       <span className="bg-black px-2 rounded">{item.laps}</span>
                     </td>
-                    <td className="op text-center p-0">
+                    <td className="op text-end p-0">
                       <span className="bg-black px-2 rounded">
                         {item.Time?.time}
                       </span>

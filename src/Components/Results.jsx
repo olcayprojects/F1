@@ -70,7 +70,7 @@ const Results = ({ season }) => {
     return (
       <div className="table-responsive">
         <table
-          className="table table-dark table-striped table-bordered  animate__fadeInDown animate__animated animate__fast"
+          className="table table-dark table-hover table-striped table-bordered  animate__fadeInDown animate__animated animate__fast"
           key={race.round}
           style={{}}
         >
@@ -104,7 +104,7 @@ const Results = ({ season }) => {
           </thead>
           <tbody className="animate__fadeInDown animate__animated animate__slower">
             {race.Results.map((result, i) => (
-              <tr key={i}>
+              <tr key={i} className={i < 3 ? "table-success" : null}>
                 <td className="text-center p-0">{result.position}</td>
                 <td className="text-center text-secondary p-0">
                   {result.grid}
