@@ -162,12 +162,12 @@ const QualifyingResults = (props) => {
                         >
                           {qualifying?.Q3 ? qualifying?.Q3 : "-"}
                           {qualifying?.Q3 && diffFirstStr && indexQ !== 0 && (
-                            <small className="text-light ms-2">
+                            <small className="ms-2 fst-italic bg-black">
                               {diffFirstStr}
                             </small>
                           )}
                           {qualifying?.Q3 && diffPrevStr && indexQ > 1 && (
-                            <small className="text-primary ms-1">
+                            <small className="text-success-emphasis bg-black ms-1">
                               ({diffPrevStr})
                             </small>
                           )}
