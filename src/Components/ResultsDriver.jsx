@@ -154,7 +154,7 @@ const ResultsDriver = () => {
                       <th className="text-center bg-light text-light-emphasis">
                         PT
                       </th>
-                      <th className="bg-danger text-danger-emphasis">
+                      <th className="bg-danger text-center text-danger-emphasis">
                         <span className="">FASTEST LAP</span>
                       </th>
                       <th className="text-center bg-success text-success-emphasis">
@@ -240,7 +240,7 @@ const ResultsDriver = () => {
                                 );
                               })()} */}
                               {isNaN(parseInt(results[0]?.positionText))
-                                ? `${results[0]?.position}${results[0]?.positionText}`
+                                ? `${results[0]?.position} ${results[0]?.positionText}`
                                 : results[0]?.positionText}
                             </td>
 
@@ -261,7 +261,7 @@ const ResultsDriver = () => {
                                 "-"
                               )}
                             </td>
-                            <td className="text-center text-warning p-0 text-uppercase">
+                            <td className="text-center text-warning p-0 text-uppercase fw-bold">
                               {results.length > 0 ? (
                                 <span
                                   className={
@@ -279,7 +279,7 @@ const ResultsDriver = () => {
                             <td className="text-center op">
                               {results.length > 0 ? results[0].points : "-"}
                             </td>
-                            <td className="text-danger">
+                            <td className="text-danger text-end">
                               <span className="">
                                 {results.length > 0 &&
                                 results[0]?.FastestLap ? (
