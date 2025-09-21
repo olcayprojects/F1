@@ -113,9 +113,9 @@ function Pitstops(props) {
               lapDetails: lapDetails
                 .map(
                   (detail) =>
-                    `${detail.stop}. [ Lap: ${
+                    `${detail.stop}:  Lap ${
                       detail.lap.length > 1 ? detail.lap : " " + detail.lap
-                    }, Time: ${detail.time}, Duration: ${detail.duration} ]`
+                    } - Time ${detail.time} - Duration ${detail.duration} `
                 )
                 .join("\n"),
               totalDuration: millisecondsToDuration(totalDuration),
@@ -183,7 +183,7 @@ function Pitstops(props) {
                   </td>
                   <td className="op fw-bold text-center">
                     <pre
-                      className="text-warning p-0 px-2 bg-black d-inline-block m-0 my-1 align-middle"
+                      className="d-block text-warning p-0 px-1 bg-black d-inline-block m-0 my-1 align-middle"
                       style={{
                         fontFamily: "Arial Black",
                         borderColor: "rgba(255,255,0,0.2)",
@@ -203,7 +203,7 @@ function Pitstops(props) {
                     //     : "bg-info text-black p-1"
                     // }
                     >
-                      <span className="bg-black p-1 border border-success">
+                      <span className="d-block bg-black p-1 border border-success">
                         {ps.totalDuration}
                       </span>
                     </span>
