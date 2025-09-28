@@ -126,16 +126,16 @@ const ResultsDriver = () => {
 
         {sortedSeasons.map((season) => (
           <div className="pt-1">
-            <h3 className="text-center text-primary m-0">
-              <span className="bg-black px-2 bg-gradient">Season {season}</span>
-            </h3>
+            <h4 className="text-center text-primary m-0">
+              <span className="bg-black fw-bold px-2 bg-gradient">Season {season}</span>
+            </h4>
             <div className="table-responsive-sm">
               <div key={season}>
                 <table className="myTable mb-1 table table-dark table-striped table-bordered border-dark">
                   <thead>
                     <tr className="">
-                      <th className="text-center text-secondary">R</th>
-                      <th className="">GRAND PRIX</th>
+                      <th className="text-center text-secondary bg-body-secondary">R</th>
+                      <th className="bg-dark-subtle text-dark">GRAND PRIX</th>
                       <th className="text-center text-info bg-info-subtle">
                         P
                       </th>
@@ -174,7 +174,7 @@ const ResultsDriver = () => {
                               {item.round}
                             </td>
                             <td
-                              className={`cp op ${
+                              className={`bg-gradient bg-black cp op ${
                                 !item.Results ? "text-info" : ""
                               }`}
                               onClick={() =>
