@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Marquee from "react-fast-marquee";
 const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const Next = () => {
@@ -47,12 +48,22 @@ const Next = () => {
             className="bg-black text-warning m-0 pt-1 fw-bold"
             style={{}}
           >
-            <marquee className="" behavior="" scrollamount="10">
-              <span className="ps-5 text-primary">
-                ROUND {data.round} - UP NEXT{" "}
+            <Marquee
+              gradient={true}
+              gradientColor="black"
+              gradientWidth={400}
+              pauseOnHover={true}
+              speed={100}
+            >
+              <span className="px-3 text-decoration-underline text-primary animate__animated animate__flash animate__infinite animate__slower">
+                <i class="bi bi-arrow-bar-left"></i>ROUND {data.round} - UP NEXT
+                <i class="bi bi-arrow-right"></i>
+                <span className="text-info text-uppercase fst-italic">
+                  {data.raceName}
+                </span>
+                <i class="bi bi-arrow-bar-right"></i>
               </span>
-              <span className="text-info ">{data.raceName}</span>
-              <i className="bi bi-calendar3 text-warning px-1"></i>
+              <i className="bi bi-calendar3 text-warning"></i>
               <span className="text-danger">
                 <span className="text-success">RACE </span>
                 {data.time
@@ -115,7 +126,7 @@ const Next = () => {
                   </span>
                 </>
               )}
-            </marquee>
+            </Marquee>
           </h5>
         );
       })}
