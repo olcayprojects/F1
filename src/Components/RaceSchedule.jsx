@@ -48,12 +48,24 @@ const RaceSchedule = ({ season }) => {
               <th className="text-center px-0">R</th>
               <th className="bg-warning text-info">GRAND PRIX</th>
               <th className="text-center op">DATE</th>
-              <th className="text-center">QUALIFYING</th>
-              <th className="text-center text-info">SPRINT</th>
-              <th className="text-center text-info op">SPRINT QUALIFYING</th>
-              <th className="text-light text-center">PRACTICE 1</th>
-              <th className="op text-center text-light">PRACTICE 2</th>
-              <th className="text-light text-center">PRACTICE 3</th>
+              {season >= 2006 && (
+                <>
+                  <th className="text-center">QUALIFYING</th>
+                  {season >= 2021 && (
+                    <>
+                      <th className="text-center text-info">SPRINT</th>
+                      {season >= 2023 && (
+                        <th className="text-center text-info op">
+                          S.QUALIFYING
+                        </th>
+                      )}
+                    </>
+                  )}
+                  <th className="text-light text-center">PRACTICE1</th>
+                  <th className="op text-center text-light">PRACTICE2</th>
+                  <th className="text-light text-center">PRACTICE3</th>
+                </>
+              )}
             </tr>
           </thead>
 
@@ -87,7 +99,6 @@ const RaceSchedule = ({ season }) => {
               return (
                 <tr className={rowClass} key={index}>
                   <td className="text-center align-middle">{race.round}</td>
-
                   <td
                     className={`text-nowrap op fw-bold text-warning py-0 ${
                       season === thisYear ? "col-2" : ""
@@ -97,15 +108,6 @@ const RaceSchedule = ({ season }) => {
                         : "text-start"
                     }`}
                   >
-                    {/* {showImage ? (
-                      <RaceThumb
-                        date={race.date}
-                        name={race.raceName}
-                        onError={() => setShowImage(false)}
-                      />
-                    ) : (
-                      ""
-                    )} */}
                     <h6 className="bg-black bg-gradient m-0">
                       {race.raceName}
                     </h6>
@@ -118,7 +120,6 @@ const RaceSchedule = ({ season }) => {
                       {race.Circuit.circuitName}
                     </h6>
                   </td>
-
                   <td
                     title={title}
                     className="py-0 text-center text-nowrap cp"
@@ -138,63 +139,73 @@ const RaceSchedule = ({ season }) => {
                       {getFormattedDate(race)}
                     </span>
                   </td>
-
-                  <td
-                    className="text-nowrap text-center cp"
-                    onClick={() =>
-                      navigate(
-                        `/Event/${race.raceName.replace(
-                          / /g,
-                          "_"
-                        )}_Qualifying/${season}/${race.round}`
-                      )
-                    }
-                  >
-                    {race.Qualifying ? getFormattedDate(race.Qualifying) : "-"}
-                  </td>
-
-                  <td
-                    title={sprintTitle}
-                    className={`text-nowrap text-center text-info p-0 op ${
-                      race.Sprint ? "cp" : "ch"
-                    } ${isFuture ? "fw-bold" : ""}`}
-                    onClick={() =>
-                      race.Sprint &&
-                      navigate(
-                        `/Sprint/${season}/${
-                          race.round
-                        }/${race.Sprint.date.replace("/", "-")}`
-                      )
-                    }
-                  >
-                    <span
-                      className={race.Sprint ? "bg-gradient bg-black p-1" : ""}
-                    >
-                      {race.Sprint ? getFormattedDate(race.Sprint) : "-"}
-                    </span>
-                  </td>
-
-                  <td className="text-nowrap text-center text-info op">
-                    {resultSprintQual}
-                  </td>
-
-                  <td className="text-nowrap text-center op p-0">
-                    {race.FirstPractice
-                      ? getFormattedDate(race.FirstPractice)
-                      : "-"}
-                  </td>
-
-                  <td className="text-nowrap text-center p-0">
-                    {race.SecondPractice
-                      ? getFormattedDate(race.SecondPractice)
-                      : "-"}
-                  </td>
-
-                  <td className="text-nowrap text-center op p-0">
-                    {race.ThirdPractice
-                      ? getFormattedDate(race.ThirdPractice)
-                      : "-"}
-                  </td>
+                  {season >= 2006 && (
+                    <>
+                      <td
+                        className="text-nowrap text-center cp"
+                        onClick={() =>
+                          navigate(
+                            `/Event/${race.raceName.replace(
+                              / /g,
+                              "_"
+                            )}_Qualifying/${season}/${race.round}`
+                          )
+                        }
+                      >
+                        {race.Qualifying
+                          ? getFormattedDate(race.Qualifying)
+                          : "-"}
+                      </td>
+                      {season >= 2021 && (
+                        <>
+                          <td
+                            title={sprintTitle}
+                            className={`text-nowrap text-center text-info p-0 op ${
+                              race.Sprint ? "cp" : "ch"
+                            } ${isFuture ? "fw-bold" : ""}`}
+                            onClick={() =>
+                              race.Sprint &&
+                              navigate(
+                                `/Sprint/${season}/${
+                                  race.round
+                                }/${race.Sprint.date.replace("/", "-")}`
+                              )
+                            }
+                          >
+                            <span
+                              className={
+                                race.Sprint ? "bg-gradient bg-black p-1" : ""
+                              }
+                            >
+                              {race.Sprint
+                                ? getFormattedDate(race.Sprint)
+                                : "-"}
+                            </span>
+                          </td>
+                          {season >= 2023 && (
+                            <td className="text-nowrap text-center text-info op">
+                              {resultSprintQual}
+                            </td>
+                          )}
+                        </>
+                      )}
+                      <td className="text-nowrap text-center op p-0">
+                        {race.FirstPractice
+                          ? getFormattedDate(race.FirstPractice)
+                          : "-"}
+                      </td>
+                      <td className="text-nowrap text-center p-0">
+                        {race.SecondPractice
+                          ? getFormattedDate(race.SecondPractice)
+                          : "-"}
+                      </td>
+                      <td className="text-nowrap text-center op p-0">
+                        {race.ThirdPractice
+                          ? getFormattedDate(race.ThirdPractice)
+                          : "-"}
+                      </td>
+                    </>
+                  )}
                 </tr>
               );
             })}
