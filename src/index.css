@@ -135,18 +135,12 @@ li {
 }
 
 .small-text {
-  font-size: 12px; /* Varsayılan font boyutu */
+  font-size: 11px; /* Varsayılan font boyutu */
 }
 
 @media (max-width: 768px) {
   .small-text {
-    font-size: 10px; /* Tablet ve daha küçük ekranlar için font boyutunu küçült */
-  }
-}
-
-@media (max-width: 480px) {
-  .small-text {
-    font-size: 18px; /* Mobil ekranlar için daha küçük font boyutu */
+    font-size: 9px; /* Tablet ve daha küçük ekranlar için font boyutunu küçült */
   }
 }
 

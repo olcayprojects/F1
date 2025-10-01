@@ -25,18 +25,19 @@ const Events = (props) => {
       {data?.strThumb ? (
         <div className="container-fluid">
           <img
-            style={{ width: "30%" }}
             className="img-fluid p-0 m-0 mx-auto d-block"
             src={data?.strBanner + "/small"}
             alt={data?.strFilename}
             title={data?.strResult}
             srcSet=""
           />
-          {/*data?.strResult ||*/ data?.strDescriptionEN && (
-            <p className="text-secondary fw-bold small-text lh-sm">
-              &quot; {data?.strDescriptionEN /*|| data?.strResult*/} &quot;
-            </p>
-          )}
+          {
+            /*data?.strResult ||*/ data?.strDescriptionEN && (
+              <p className="small-text text-secondary lh-sm">
+                &quot; {data?.strDescriptionEN /*|| data?.strResult*/} &quot;
+              </p>
+            )
+          }
         </div>
       ) : <img
           className="img-fluid pt-1 ps-1 mx-auto d-block"

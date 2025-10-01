@@ -125,7 +125,7 @@ const PlayerProfile = ({ playerId, t }) => {
   ) : t === "3" ? (
     <div className="container-fluid p-0 text-warning">
       <img
-        className="img-fluid d-block mx-auto text-center animate__animated animate__backInDown animate__slower mirror"
+        className="img-fluid d-block mx-auto text-center"
         src={
           (playerData.strCutout ||
             playerData.strThumb ||
@@ -136,7 +136,7 @@ const PlayerProfile = ({ playerId, t }) => {
         title={playerData.strDescriptionEN}
       />
       <hr className="m-0 w-50 mx-auto" />
-      <p className="text-center m-0 small-text">
+      <p className="text-center m-0 small-text pe-1">
         {new Date(playerData.dateBorn).toDateString()} <br />
         {playerData.strBirthLocation} {playerData.strNationality}
       </p>

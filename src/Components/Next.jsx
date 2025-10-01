@@ -56,12 +56,13 @@ const Next = () => {
               speed={100}
             >
               <span className="px-3 text-decoration-underline text-primary animate__animated animate__flash animate__infinite animate__slower">
-                <i class="bi bi-arrow-bar-left"></i>ROUND {data.round} - UP NEXT
-                <i class="bi bi-arrow-right"></i>
+                <i className="bi bi-arrow-bar-left"></i>ROUND {data.round} - UP
+                NEXT
+                <i className="bi bi-arrow-right"></i>
                 <span className="text-info text-uppercase fst-italic">
                   {data.raceName}
                 </span>
-                <i class="bi bi-arrow-bar-right"></i>
+                <i className="bi bi-arrow-bar-right"></i>
               </span>
               <i className="bi bi-calendar3 text-warning"></i>
               <span className="text-danger">
