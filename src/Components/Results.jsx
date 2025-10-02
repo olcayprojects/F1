@@ -86,29 +86,22 @@ const Results = ({ season }) => {
             )}
           </caption>
           <thead className="">
-            <tr>
-              <th className="bg-danger text-black p-0 text-center">P</th>
-              <th className="bg-danger text-black p-0 text-center">G</th>
-              <th className="op bg-danger text-black text-start p-0 text-nowrap">
-                DRV
-              </th>
-              <th className="bg-danger text-black text-start py-0 text-nowrap">
-                TEAM
-              </th>
-              <th className="op bg-danger text-black text-center py-0">L</th>
-              <th className="bg-danger text-black text-center py-0 text-nowrap">
-                TIME
-              </th>
-              <th className="op bg-danger text-black text-center py-0">PT</th>
+            <tr className="">
+              <th className="p-0 text-center">P</th>
+              <th className="op text-center p-0 text-nowrap">DRIVER</th>
+              <th className="text-center py-0 text-nowrap">TEAM</th>
+              <th className="op text-center py-0">L</th>
+              <th className="text-center py-0 text-nowrap">TIME</th>
+              <th className="op text-center py-0">PT</th>
             </tr>
           </thead>
           <tbody className="animate__fadeInDown animate__animated animate__slower">
             {race.Results.map((result, i) => (
-              <tr key={i} className={i < 3 ? "table-success" : null}>
+              <tr
+                key={i}
+                className={`table-${["success", "info", "warning"][i] || ""}`}
+              >
                 <td className="text-center p-0">{result.position}</td>
-                <td className="text-center text-secondary p-0">
-                  {result.grid}
-                </td>
                 <td className="text-nowrap">{`${result.Driver.familyName}`}</td>
                 <td className="text-nowrap p-0">{result.Constructor.name}</td>
                 <td className="text-center p-0">{result.laps}</td>
@@ -129,11 +122,11 @@ const Results = ({ season }) => {
 
   return (
     <div className="container-fluid">
-      <div className="row justify-content-center g-1 m-0">
+      <div className="row justify-content-center gx-1">
         {Object.keys(races)
           .sort((a, b) => parseInt(a) - parseInt(b))
           .map((round) => (
-            <div className="col-auto me-1" key={round}>
+            <div className="col-auto" key={round}>
               {renderTable(races[round])}
             </div>
           ))}

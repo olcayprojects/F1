@@ -54,7 +54,7 @@ const F1 = () => {
   return (
     <>
       <div className="container-fluid bg-black p-0 ">
-        <div className="mb-2 animate__backInUp animate__animated animate__slower">
+        <div className="mb-2 animate__backInDown animate__animated animate__slower">
           <Next />
           <Carousel />
         </div>
@@ -156,7 +156,7 @@ const F1 = () => {
         </Tabs>
 
         {/* Tab içeriği */}
-        <Box sx={{ pt: 0 }}>
+        <Box sx={{ pt: 1 }}>
           {currentTabIndex === 0 && <WinRacesInaSeason season={season2} />}
           {currentTabIndex === 1 && <Classifications season={season2} />}
           {currentTabIndex === 2 && (
