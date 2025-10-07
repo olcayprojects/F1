@@ -282,7 +282,9 @@ const F1Race = (props) => {
                               key={indexResult}
                               className={
                                 "align-middle" +
-                                (indexResult === 0 ? " fs-6 fw-bold" : "")
+                                (indexResult === 0
+                                  ? " fs-5 fw-bold border-danger"
+                                  : "")
                               }
                             >
                               <td className="text-center p-0">
