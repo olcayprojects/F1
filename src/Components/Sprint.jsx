@@ -94,7 +94,7 @@ const Sprint = () => {
                       {item.grid}
                     </td>
                     <td
-                      className="text-info cp p-0"
+                      className="text-info cp"
                       onClick={() => {
                         navigate("/ResultsDriver/" + item.Driver.driverId);
                       }}
@@ -108,7 +108,7 @@ const Sprint = () => {
                       </span>
                     </td>
                     <td
-                      className="op fst-italic text-warning cp p-0"
+                      className="op fst-italic text-warning cp"
                       onClick={() => {
                         navigate(
                           "/ConstructorsResult/" +

@@ -160,7 +160,7 @@ const RaceSchedule = ({ season }) => {
                         <>
                           <td
                             title={sprintTitle}
-                            className={`text-nowrap text-center text-info p-0 op ${
+                            className={`text-nowrap text-center text-info op ${
                               race.Sprint ? "cp" : "ch"
                             } ${isFuture ? "fw-bold" : ""}`}
                             onClick={() =>

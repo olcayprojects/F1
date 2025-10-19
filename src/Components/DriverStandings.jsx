@@ -153,7 +153,7 @@ const DriverStandings = (props) => {
                       </span>
                     </td>
                     <td
-                      className="op cp fw-bold fst-italic text-warning py-1 ps-2"
+                      className="op cp fw-bold fst-italic text-warning py-1"
                       onClick={() => {
                         const constructors = driver.Constructors;
                         const selectedConstructor =

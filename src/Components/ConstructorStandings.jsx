@@ -135,9 +135,9 @@ const ConstructorStandings = (props) => {
                     {cs.position}
                     {renderChange()}
                   </td>
-                  <td className="op fw-bold text-warning py-0">
+                  <td className="op fw-bold text-warning">
                     <span
-                      className="px-1 cp bg-black"
+                      className="cp bg-black"
                       onClick={() =>
                         navigate(
                           "/ConstructorsResult/" +

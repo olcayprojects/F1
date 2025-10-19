@@ -366,7 +366,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="cp op p-1 text-end"
+                                className="cp op"
                                 onClick={() => {
                                   navigate(
                                     "/ResultsDriver/" + result.Driver.driverId
@@ -395,7 +395,7 @@ const F1Race = (props) => {
                               </td>
 
                               <td
-                                className="cp ps-1"
+                                className="cp"
                                 title={
                                   "Click go to " +
                                   result.Constructor.name +
