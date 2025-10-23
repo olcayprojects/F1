@@ -130,7 +130,7 @@ const Sprint = () => {
                     </td>
                     <td className="op text-end p-0">
                       <span className="bg-black px-2 rounded">
-                        {item.Time?.time}
+                        {item.Time?.time || "-"}
                       </span>
                     </td>
                     <td className="op text-center p-0">
@@ -155,12 +155,14 @@ const Sprint = () => {
                     </td>
                     <td className="op py-0 text-start">
                       <span className="">
-                        {item.FastestLap && (
+                        {item.FastestLap ? (
                           <span className="">
                             {item.FastestLap.rank
                               ? `${item.FastestLap.rank} - ${item.FastestLap.Time.time} (Lap: ${item.FastestLap.lap})`
                               : `${item.FastestLap.Time.time} (Lap: ${item.FastestLap.lap})`}
                           </span>
+                        ) : (
+                         "-"
                         )}
                       </span>
                     </td>
