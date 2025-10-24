@@ -55,24 +55,24 @@ const Sprint = () => {
         <div className="table-responsive-sm">
           <table className="mytable table table-dark table-striped table-bordered">
             <thead className="text-center">
-              <tr className="align-middle">
+              <tr className="align-middle border-5 border-dark">
                 <th className="bg-danger text-danger-emphasis">P</th>
                 <th className="text-primary-emphasis bg-primary">G</th>
-                <th className="text-start bg-info text-info-emphasis">
+                <th className="text-start bg-info-subtle text-black">
                   D R I V E R
                 </th>
-                <th className="text-warning-emphasis text-start bg-warning">
+                <th className="text-black text-start bg-warning-subtle">
                   T E A M
                 </th>
                 <th className="text-success-emphasis bg-success">LAPS</th>
-                <th className="text-light-emphasis text-end bg-light">TIME</th>
+                <th className="text-light-emphasis bg-light">TIME</th>
                 <th
-                  className="text-light-emphasis bg-secondary text-center
+                  className="text-dark bg-secondary text-center
                 "
                 >
                   STATUS
                 </th>
-                <th className="text-danger-emphasis bg-danger">PTS</th>
+                <th className="text-danger-emphasis bg-warning">PTS</th>
                 <th className="text-light-emphasis bg-light op text-start">
                   FASTEST LAP
                 </th>
@@ -88,10 +88,12 @@ const Sprint = () => {
                     }
                   >
                     <td className="text-center text-danger">
-                      <span className="">{item.positionText}</span>
+                      <span className="rounded bg-black px-2">
+                        {item.positionText}
+                      </span>
                     </td>
                     <td className="op text-center fw-normal text-primary p-0">
-                      {item.grid}
+                      <span className="bg-black px-2 rounded">{item.grid}</span>
                     </td>
                     <td
                       className="text-info cp"
@@ -125,18 +127,30 @@ const Sprint = () => {
                         {item.Constructor.nationality}
                       </span>
                     </td>
-                    <td className="text-center text-success">
-                      <span className="bg-black px-2 rounded">{item.laps}</span>
+                    <td className="text-center">
+                      <span
+                        className={
+                          item.laps > 0
+                            ? "bg-black px-2 rounded text-success"
+                            : " text-secondary"
+                        }
+                      >
+                        {item.laps}
+                      </span>
                     </td>
-                    <td className="op text-end p-0">
-                      <span className="bg-black px-2 rounded">
+                    <td className="op text-center p-0">
+                      <span
+                        className={item.Time ? "bg-black px-2 rounded" : ""}
+                      >
                         {item.Time?.time || "-"}
                       </span>
                     </td>
                     <td className="op text-center p-0">
                       <span
                         className={`px-2 bg-black rounded ${
-                          item.status !== "Finished" ? "text-danger" : ""
+                          item.status !== "Finished"
+                            ? "text-danger"
+                            : "text-secondary"
                         }`}
                       >
                         {item.status}
@@ -146,7 +160,7 @@ const Sprint = () => {
                       <span
                         className={
                           item.points > 0
-                            ? "bg-black px-2 text-danger rounded"
+                            ? "bg-black px-2 text-warning rounded"
                             : "text-secondary"
                         }
                       >
@@ -156,13 +170,13 @@ const Sprint = () => {
                     <td className="op py-0 text-start">
                       <span className="">
                         {item.FastestLap ? (
-                          <span className="">
+                          <span className="bg-black rounded px-2">
                             {item.FastestLap.rank
                               ? `${item.FastestLap.rank} - ${item.FastestLap.Time.time} (Lap: ${item.FastestLap.lap})`
                               : `${item.FastestLap.Time.time} (Lap: ${item.FastestLap.lap})`}
                           </span>
                         ) : (
-                         "-"
+                          "-"
                         )}
                       </span>
                     </td>

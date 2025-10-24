@@ -170,7 +170,7 @@ const F1Race = (props) => {
                     <table className="myTable table table-dark table-striped table-bordered border-dark text-nowrap">
                       <thead className="">
                         {/* Üst Satır */}
-                        <tr className="align-bottom fs-7">
+                        <tr className="align-bottom fs-6">
                           <th rowSpan={2} className="bg-light text-center op">
                             <span className="p-1 text-light bg-black">P</span>
                           </th>
@@ -287,7 +287,7 @@ const F1Race = (props) => {
                                   : "")
                               }
                             >
-                              <td className="text-center p-0">
+                              <td className="text-center p-0 rounded-4">
                                 {["1", "2", "3"].includes(
                                   result.positionText
                                 ) ? (
