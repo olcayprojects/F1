@@ -59,16 +59,14 @@ const WinRacesInaSeason = (props) => {
         <div className="table-responsive">
           <table className="myTable table table-dark table-striped table-bordered text-nowrap">
             <thead className="">
-              <tr className="">
-                <th className="text-black bg-light op p-0 text-center">R</th>
-                <th className="text-warning bg-black py-0">GRAND PRIX</th>
-                <th className="text-warning py-0 text-center">DATE</th>
-                <th className="text-danger op py-0 text-end">WINNER</th>
+              <tr className="bord">
+                <th className="text-light p-0 text-center">R</th>
+                <th className="text-warning py-0">GRAND PRIX</th>
+                <th className="text-warning op py-0 text-center">DATE</th>
+                <th className="text-danger py-0 text-end">WINNER</th>
                 <th className="text-info op py-0">TEAM</th>
-                <th className="text-black bg-light text-center py-0">G</th>
-                <th className="text-black bg-secondary op text-center py-0">
-                  L
-                </th>
+                <th className="text-light text-center py-0">G</th>
+                <th className="text-secondary op text-center py-0">L</th>
                 <th className="text-success text-end op py-0">TIME</th>
                 <th className="text-primary text-end py-0">FASTEST LAP</th>
               </tr>

@@ -44,7 +44,7 @@ const RaceSchedule = ({ season }) => {
       <div className="table-responsive">
         <table className="myTable table table-dark table-striped table-bordered border-dark m-0">
           <thead>
-            <tr className="text-black">
+            <tr className="text-black bord">
               <th className="text-center px-0">R</th>
               <th className="bg-warning text-info">GRAND PRIX</th>
               <th className="text-center op">DATE</th>

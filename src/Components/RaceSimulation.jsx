@@ -77,7 +77,7 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
           </div>
         </caption>
         <thead>
-          <tr className="text-center">
+          <tr className="text-center bord">
             <th className="text-secondary bg-black">#</th>
             <th className="bg-black text-success">Driver</th>
             <th className="bi-arrow-down-up bg-black text-warning"></th>
@@ -105,7 +105,9 @@ const RaceSimulation = ({ laps, drivers, pitStops }) => {
 
               return (
                 <tr className="fs-6 text-center" key={i}>
-                  <td className="px-0 align-middle text-secondary">{formatPosition(i + 1)}</td>
+                  <td className="px-0 align-middle text-secondary">
+                    {formatPosition(i + 1)}
+                  </td>
 
                   <td
                     className={

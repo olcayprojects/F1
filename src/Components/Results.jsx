@@ -86,7 +86,7 @@ const Results = ({ season }) => {
             )}
           </caption>
           <thead className="">
-            <tr className="">
+            <tr className="bord">
               <th className="p-0 text-center">P</th>
               <th className="op text-center p-0 text-nowrap">DRIVER</th>
               <th className="text-center py-0 text-nowrap">TEAM</th>

@@ -71,7 +71,7 @@ const DriverStandings = (props) => {
         <div className="table-responsive me-1">
           <table className="myTable table table-dark table-striped table-bordered border-dark">
             <thead className="border-5 fs-6">
-              <tr>
+              <tr className="bord">
                 <th className="text-center py-0">P</th>
                 <th className="text-center p-0 bi-arrow-down-up"></th>
                 <th className="bg-dark py-0 op text-center">NO</th>

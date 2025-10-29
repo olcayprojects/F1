@@ -142,7 +142,7 @@ function Pitstops(props) {
       <div className={"table-responsive " + animate}>
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="border-dark">
-            <tr className="text-black align-middle">
+            <tr className="text-black align-middle bord">
               <th className="text-center py-0">#</th>
               <th className="py-0 bg-info text-info-emphasis bi-card-list">
                 DRIVER INFO

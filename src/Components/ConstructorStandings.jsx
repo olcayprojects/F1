@@ -88,7 +88,7 @@ const ConstructorStandings = (props) => {
       >
         <table className="myTable table table-dark table-striped table-bordered border-dark">
           <thead className="">
-            <tr>
+            <tr className="bord">
               <th className="bg-light text-black">POS.</th>
               <th className="bg-warning op text-black">TEAM</th>
               <th className="bg-info text-end op text-black">POINTS</th>

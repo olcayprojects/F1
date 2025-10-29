@@ -190,3 +190,7 @@ table th {
 .mirror {
   transform: scaleX(-1) !important;
 }
+
+.bord th {
+  border: 2px ridge red !important;
+}
