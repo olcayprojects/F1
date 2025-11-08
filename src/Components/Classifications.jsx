@@ -67,6 +67,7 @@ const Classifications = ({ season }) => {
 
           const standings =
             data.MRData.StandingsTable.StandingsLists[0].DriverStandings;
+          console.log(standings);
 
           const updatedDriversData = standings.map((stand) => ({
             pos: stand.positionText,
@@ -74,7 +75,8 @@ const Classifications = ({ season }) => {
             code: stand.Driver.code,
             name: `${stand.Driver.givenName} ${stand.Driver.familyName}`,
             driverNationality: stand.Driver.nationality,
-            constructors: stand.Constructors[0].name,
+            constructors:
+              stand.Constructors[stand.Constructors.length - 1].name,
             constructorsNationality: stand.Constructors[0].nationality,
             points: parseInt(stand.points),
             wins: parseInt(stand.wins),
