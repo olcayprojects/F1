@@ -78,7 +78,7 @@ const LapTable = ({ lapTimes, driverIds, positions }) => {
         <tbody>
           {lapNumbers.map((lapNumber) => (
             <tr className="text-center" key={lapNumber}>
-              <td className="px-0 ">{lapNumber}</td>
+              <td className="px-0 align-middle">{lapNumber}</td>
               {Array.from({ length: maxDrivers }, (_, i) => (
                 <td className="p-0" key={i + 1}>
                   {positionsArray[i] && positionsArray[i][lapNumber] ? (
