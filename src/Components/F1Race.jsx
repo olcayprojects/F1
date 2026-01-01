@@ -553,10 +553,10 @@ const F1Race = (props) => {
           ) : (
             <div className="container">
               <LastRace />
-              <h4 className="text-success text-center bi-hourglass-split">
+              {/* <h4 className="text-success text-center bi-hourglass-split">
                 "The final race information is currently being prepared. Please
                 check back shortly."
-              </h4>
+              </h4> */}
             </div>
           )}
 

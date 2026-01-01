@@ -9,7 +9,7 @@ const BASE_URL = process.env.REACT_APP_API_BASE_URL;
 const Laptimes = (props) => {
   const [laps, setLaps] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { season2 = "2025" } = useParams();
+  const { season2 = "2026" } = useParams();
   const { drivers, setSeason } = useDrivers();
   const [pitStops, setPitStops] = useState([]);
 

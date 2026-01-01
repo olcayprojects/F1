@@ -43,7 +43,7 @@ const constructorStandingsSlice = createSlice({
   initialState: {
     standings: [],
     prevStandings: [],
-    year: "2025",
+    year: "2026",
     round: 0,
     isLoading: false,
   },

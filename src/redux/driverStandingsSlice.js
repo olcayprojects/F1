@@ -37,7 +37,7 @@ const driverStandingsSlice = createSlice({
     standings: [],
     prevStandings: [],
     round: null,
-    year: "2025",
+    year: "2026",
     isLoading: false,
   },
   reducers: {
